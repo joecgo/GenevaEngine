@@ -84,7 +84,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\joecg\Desktop\GenevaEngine\GenevaEngine\Source\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\joecg\Desktop\GenevaEngine\Source\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\joecg\Desktop\GenevaEngine\opengl\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
