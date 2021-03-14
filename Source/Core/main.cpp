@@ -13,6 +13,7 @@ void processInput(GLFWwindow* window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
+const int triangleCount = 1;
 
 struct Color
 {
@@ -98,20 +99,55 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
-	float verticies[] = {
-	-0.2f, -0.4f, 0.0f, 1.0f,
-	-0.2f, 0.8f, 0.0f, 2.0f,
-	-0.8f, -0.2f, 0.0f,3.0f,
-	-0.1f, 0.9f, 0.0f, 1.0f,
-	0.9f, 0.9f, 0.0f, 2.0f,
-	0.9f, -0.1f, 0.0f, 3.0f,
+	float vertices[] = {
+		-0.5f, -0.5f, -0.5f,  1.0f,
+		 0.5f, -0.5f, -0.5f,  2.0f,
+		 0.5f,  0.5f, -0.5f,  3.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,
+		-0.5f,  0.5f, -0.5f,  2.0f,
+		-0.5f, -0.5f, -0.5f,  3.0f,
+
+		-0.5f, -0.5f,  0.5f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  2.0f,
+		 0.5f,  0.5f,  0.5f,  3.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  2.0f,
+		-0.5f, -0.5f,  0.5f,  3.0f,
+
+		-0.5f,  0.5f,  0.5f,  1.0f,
+		-0.5f,  0.5f, -0.5f,  2.0f,
+		-0.5f, -0.5f, -0.5f,  3.0f,
+		-0.5f, -0.5f, -0.5f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  2.0f,
+		-0.5f,  0.5f,  0.5f,  3.0f,
+
+		 0.5f,  0.5f,  0.5f,  1.0f,
+		 0.5f,  0.5f, -0.5f,  2.0f,
+		 0.5f, -0.5f, -0.5f,  3.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  2.0f,
+		 0.5f,  0.5f,  0.5f,  3.0f,
+
+		-0.5f, -0.5f, -0.5f,  1.0f,
+		 0.5f, -0.5f, -0.5f,  2.0f,
+		 0.5f, -0.5f,  0.5f,  3.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  2.0f,
+		-0.5f, -0.5f, -0.5f,  3.0f,
+
+		-0.5f,  0.5f, -0.5f,  1.0f,
+		 0.5f,  0.5f, -0.5f,  2.0f,
+		 0.5f,  0.5f,  0.5f,  3.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  2.0f,
+		-0.5f,  0.5f, -0.5f,  3.0f
 	};
 
-	unsigned int VBO[2], VAO[2];
-	glGenBuffers(2, VBO);
-	glGenVertexArrays(2, VAO);
+	unsigned int VBO[triangleCount], VAO[triangleCount];
+	glGenBuffers(triangleCount, VBO);
+	glGenVertexArrays(triangleCount, VAO);
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < triangleCount; i++)
 	{
 		/*
 			bind the Vertex Array Object first, then bind and set vertex buffer(s),
@@ -120,11 +156,12 @@ int main()
 		glBindVertexArray(VAO[i]);
 		// copy our vertices array in a vertex buffer for OpenGL to use
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[i]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 		// then set the vertex attributes pointers
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(3 * sizeof(float)));
+		glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float),
+			(void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 	}
 
@@ -154,12 +191,28 @@ int main()
 		glUniform4f(vertexColorLocation2, rgbValue3, rgbValue1, rgbValue2, 1.0f);
 		int vertexColorLocation3 = glGetUniformLocation(shaderProgram.ID, "color3");
 		glUniform4f(vertexColorLocation3, rgbValue2, rgbValue3, rgbValue1, 1.0f);
-		// draw our rectangles
-		for (int i = 0; i < 2; i++)
+		// transform and drawing triangles
+		for (int i = 0; i < triangleCount; i++)
 		{
+			// practice with coordinate systems
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+			glm::mat4 view = glm::mat4(1.0f);
+			// note that we're translating the scene in the reverse direction of where we want to move
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+			glm::mat4 projection;
+			projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+			int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+			int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
+			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+			// draw the triangle
 			int startVert = i * 3;
 			glBindVertexArray(VAO[i]);
-			glDrawArrays(GL_TRIANGLES, startVert, 3);
+			glDrawArrays(GL_TRIANGLES, startVert, 36);
 		}
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -170,8 +223,8 @@ int main()
 
 	// optional: de-allocate all resources once they've outlived their purpose:
 	// ------------------------------------------------------------------------
-	glDeleteVertexArrays(2, VAO);
-	glDeleteBuffers(2, VBO);
+	glDeleteVertexArrays(triangleCount, VAO);
+	glDeleteBuffers(triangleCount, VBO);
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
