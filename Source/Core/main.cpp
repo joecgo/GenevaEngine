@@ -7,13 +7,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <cstdlib> // rand
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-const int triangleCount = 1;
 
 struct Color
 {
@@ -33,6 +34,15 @@ Color palette[]{
   Color(0x64a6ea),
   Color(0xa163a2),
 };
+
+glm::vec3 generateRandRotAxis()
+{
+	return glm::vec3(
+		(rand() % 200) - 100 / 100.0f,
+		(rand() % 200) - 100 / 100.0f,
+		(rand() % 200) - 100 / 100.0f
+	);
+}
 
 void setClearColor(Color color)
 {
@@ -143,30 +153,44 @@ int main()
 		-0.5f,  0.5f, -0.5f,  3.0f
 	};
 
-	unsigned int VBO[triangleCount], VAO[triangleCount];
-	glGenBuffers(triangleCount, VBO);
-	glGenVertexArrays(triangleCount, VAO);
+	glm::vec3 cubePositions[] = {
+	glm::vec3(0.0f,  0.0f,  0.0f),
+	glm::vec3(2.0f,  5.0f, -15.0f),
+	glm::vec3(-1.5f, -2.2f, -2.5f),
+	glm::vec3(-3.8f, -2.0f, -12.3f),
+	glm::vec3(2.4f, -0.4f, -3.5f),
+	glm::vec3(-1.7f,  3.0f, -7.5f),
+	glm::vec3(1.3f, -2.0f, -2.5f),
+	glm::vec3(1.5f,  2.0f, -2.5f),
+	glm::vec3(1.5f,  0.2f, -1.5f),
+	glm::vec3(-1.3f,  1.0f, -1.5f)
+	};
 
-	for (int i = 0; i < triangleCount; i++)
-	{
-		/*
-			bind the Vertex Array Object first, then bind and set vertex buffer(s),
-			and then configure vertex attributes(s).
-		*/
-		glBindVertexArray(VAO[i]);
-		// copy our vertices array in a vertex buffer for OpenGL to use
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[i]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		// then set the vertex attributes pointers
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float),
-			(void*)(3 * sizeof(float)));
-		glEnableVertexAttribArray(1);
-	}
+	glm::vec3 rotAxis[10];
+	for (int i = 0; i < 10; i++)
+		rotAxis[i] = generateRandRotAxis();
+
+	unsigned int VBO, VAO;
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+
+	/*
+		bind the Vertex Array Object first, then bind and set vertex buffer(s),
+		and then configure vertex attributes(s).
+	*/
+	glBindVertexArray(VAO);
+	// copy our vertices array in a vertex buffer for OpenGL to use
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// then set the vertex attributes pointers
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	// draw in wireframe polygons
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glEnable(GL_DEPTH_TEST);
 
 	// render loop
 	// -----------
@@ -178,7 +202,7 @@ int main()
 
 		// render
 		// ------
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shaderProgram.use();
 		// update the uniform color
 		float timeValue = glfwGetTime();
@@ -191,28 +215,31 @@ int main()
 		glUniform4f(vertexColorLocation2, rgbValue3, rgbValue1, rgbValue2, 1.0f);
 		int vertexColorLocation3 = glGetUniformLocation(shaderProgram.ID, "color3");
 		glUniform4f(vertexColorLocation3, rgbValue2, rgbValue3, rgbValue1, 1.0f);
-		// transform and drawing triangles
-		for (int i = 0; i < triangleCount; i++)
+
+		// practice with coordinate systems
+		glm::mat4 view = glm::mat4(1.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 projection;
+		projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+		int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+		// draw the triangle
+		glBindVertexArray(VAO);
+		for (unsigned int i = 0; i < 10; i++)
 		{
-			// practice with coordinate systems
+			// calculate the model matrix for each object and pass it to shader before drawing
 			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-			glm::mat4 view = glm::mat4(1.0f);
-			// note that we're translating the scene in the reverse direction of where we want to move
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-			glm::mat4 projection;
-			projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(i * 5.0f + 5.0f),
+				rotAxis[i]);
 			int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-			int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-			int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
-			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-			// draw the triangle
-			int startVert = i * 3;
-			glBindVertexArray(VAO[i]);
-			glDrawArrays(GL_TRIANGLES, startVert, 36);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -223,8 +250,8 @@ int main()
 
 	// optional: de-allocate all resources once they've outlived their purpose:
 	// ------------------------------------------------------------------------
-	glDeleteVertexArrays(triangleCount, VAO);
-	glDeleteBuffers(triangleCount, VBO);
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
