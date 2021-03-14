@@ -19,17 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Core\main.cpp" />
-    <ClCompile Include="Source\Glad\glad.c" />
+    <ClCompile Include="Source\Core\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Source\Include\Camera\camera.h" />
-    <ClInclude Include="Source\Include\Shaders\shader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Shaders\shader_fs.glsl" />
-    <None Include="Shaders\shader_vs.glsl" />
+    <ClInclude Include="Source\Graphics\Camera.hpp" />
+    <ClInclude Include="Source\Graphics\Mesh.hpp" />
+    <ClInclude Include="Source\Graphics\Shader.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -93,9 +88,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\joecg\Desktop\GenevaEngine\Source\Include\Shaders;C:\Users\joecg\Desktop\GenevaEngine\Source\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\joecg\Desktop\GenevaEngine\opengl\libs;$(LibraryPath)</LibraryPath>
-    <ReferencePath>C:\Users\joecg\Desktop\GenevaEngine\Source\Include\Shaders;$(ReferencePath)</ReferencePath>
+    <IncludePath>C:\Users\joecg\Desktop\GenevaEngine\External;C:\Users\joecg\Desktop\GenevaEngine\Source;C:\Users\joecg\Desktop\GenevaEngine\Shaders;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\joecg\Desktop\GenevaEngine\Source\Graphics;C:\Users\joecg\Desktop\GenevaEngine\External\opengl;C:\Users\joecg\Desktop\GenevaEngine\External\glm;C:\Users\joecg\Desktop\GenevaEngine\External\khr;C:\Users\joecg\Desktop\GenevaEngine\External\GLFW;C:\Users\joecg\Desktop\GenevaEngine\External\assimp;$(LibraryPath)</LibraryPath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <SourcePath>C:\Users\joecg\Desktop\GenevaEngine\External\glad;C:\Users\joecg\Desktop\GenevaEngine\Source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -140,7 +136,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
