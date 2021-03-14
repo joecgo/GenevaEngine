@@ -29,6 +29,9 @@
     <ClInclude Include="Source\Include\Shaders\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Include\Camera\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\shader_fs.glsl">
