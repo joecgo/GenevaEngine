@@ -22,7 +22,6 @@
 #include <map>
 #include <vector>
 using namespace std;
-
 unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
 
 class Model
@@ -96,7 +95,7 @@ private:
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 		{
 			Vertex vertex;
-			glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+			glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to gfailed to load at path:lm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
 			// positions
 			vector.x = mesh->mVertices[i].x;
 			vector.y = mesh->mVertices[i].y;
@@ -215,6 +214,8 @@ unsigned int TextureFromFile(const char* path, const string& directory, bool gam
 	unsigned char* data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
 	if (data)
 	{
+		std::cout << "loading texture from file: " << filename << std::endl;
+
 		GLenum format;
 		if (nrComponents == 1)
 			format = GL_RED;

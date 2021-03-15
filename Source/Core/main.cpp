@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <iostream> // cout
+#include <iostream> // cout, endl
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
@@ -160,11 +160,16 @@ int main()
 		return -1;
 	}
 
-	// create shader program
-	Shader shaderProgram("Shaders\\shader.vert", "Shaders\\shader.frag");
+	// build and compile shaders
+	// -------------------------
+	Shader shaderProgram("Shaders/shader.vert", "Shaders/shader.frag");
+
+	// load model
+	// -----------
+	Model testModel("Assets/Art/Test/Backpack/backpack.obj");
 
 	// draw in wireframe polygons
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
 	// render loop
@@ -189,11 +194,20 @@ int main()
 		// practice with coordinate systems and camera view
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection;
-		projection = glm::perspective(glm::radians(camera.Fov), 800.0f / 600.0f, 0.1f, 100.0f);
+		projection = glm::perspective(glm::radians(camera.Fov),
+			(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+		// render the loaded model
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		testModel.Draw(shaderProgram);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
