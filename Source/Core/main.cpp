@@ -171,13 +171,16 @@ int main()
 	// -------------------------
 	Shader shaderProgram("Shaders/shader.vert", "Shaders/shader.frag");
 
-	// load model
-	// -----------
-	Model testModel("Assets/Art/Test/Backpack/backpack.obj");
+	// tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
+	stbi_set_flip_vertically_on_load(true);
 
-	// draw in wireframe polygons
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// configure global opengl state
+	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
+
+	// load model
+// -----------
+	Model testModel("Assets/Art/Test/Backpack/backpack.obj");
 
 	// render loop
 	// -----------
