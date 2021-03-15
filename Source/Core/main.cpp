@@ -75,15 +75,22 @@ void processInput(GLFWwindow* window)
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
+	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-		setClearColor(palette[0]);
+		setClearColor(Color(000000));
 	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-		setClearColor(palette[1]);
+		setClearColor(palette[0]);
 	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-		setClearColor(palette[2]);
+		setClearColor(palette[1]);
 	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-		setClearColor(palette[3]);
+		setClearColor(palette[2]);
 	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		setClearColor(palette[3]);
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
 		setClearColor(palette[4]);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -169,7 +176,7 @@ int main()
 	Model testModel("Assets/Art/Test/Backpack/backpack.obj");
 
 	// draw in wireframe polygons
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
 	// render loop
