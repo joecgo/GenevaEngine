@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="External\glad\glad.c" />
     <ClCompile Include="Source\Core\Main.cpp" />
   </ItemGroup>
   <ItemGroup>

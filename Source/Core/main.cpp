@@ -1,4 +1,4 @@
-#include <Graphics/Glad.hpp>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <Graphics/Shader.hpp>
