@@ -4,7 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <cstdlib> // rand
 #include <iostream> // cout
 
 #include <Graphics/Shader.hpp>
@@ -164,89 +163,8 @@ int main()
 	// create shader program
 	Shader shaderProgram("Shaders\\shader.vert", "Shaders\\shader.frag");
 
-	// set up vertex data (and buffer(s)) and configure vertex attributes
-	// ------------------------------------------------------------------
-	float vertices[] = {
-		-0.5f, -0.5f, -0.5f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  2.0f,
-		 0.5f,  0.5f, -0.5f,  3.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,
-		-0.5f,  0.5f, -0.5f,  2.0f,
-		-0.5f, -0.5f, -0.5f,  3.0f,
-
-		-0.5f, -0.5f,  0.5f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  2.0f,
-		 0.5f,  0.5f,  0.5f,  3.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f,
-		-0.5f,  0.5f,  0.5f,  2.0f,
-		-0.5f, -0.5f,  0.5f,  3.0f,
-
-		-0.5f,  0.5f,  0.5f,  1.0f,
-		-0.5f,  0.5f, -0.5f,  2.0f,
-		-0.5f, -0.5f, -0.5f,  3.0f,
-		-0.5f, -0.5f, -0.5f,  1.0f,
-		-0.5f, -0.5f,  0.5f,  2.0f,
-		-0.5f,  0.5f,  0.5f,  3.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f,
-		 0.5f,  0.5f, -0.5f,  2.0f,
-		 0.5f, -0.5f, -0.5f,  3.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  2.0f,
-		 0.5f,  0.5f,  0.5f,  3.0f,
-
-		-0.5f, -0.5f, -0.5f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  2.0f,
-		 0.5f, -0.5f,  0.5f,  3.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,
-		-0.5f, -0.5f,  0.5f,  2.0f,
-		-0.5f, -0.5f, -0.5f,  3.0f,
-
-		-0.5f,  0.5f, -0.5f,  1.0f,
-		 0.5f,  0.5f, -0.5f,  2.0f,
-		 0.5f,  0.5f,  0.5f,  3.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f,
-		-0.5f,  0.5f,  0.5f,  2.0f,
-		-0.5f,  0.5f, -0.5f,  3.0f
-	};
-
-	glm::vec3 cubePositions[] = {
-	glm::vec3(0.0f,  0.0f,  0.0f),
-	glm::vec3(2.0f,  5.0f, -15.0f),
-	glm::vec3(-1.5f, -2.2f, -2.5f),
-	glm::vec3(-3.8f, -2.0f, -12.3f),
-	glm::vec3(2.4f, -0.4f, -3.5f),
-	glm::vec3(-1.7f,  3.0f, -7.5f),
-	glm::vec3(1.3f, -2.0f, -2.5f),
-	glm::vec3(1.5f,  2.0f, -2.5f),
-	glm::vec3(1.5f,  0.2f, -1.5f),
-	glm::vec3(-1.3f,  1.0f, -1.5f)
-	};
-
-	glm::vec3 rotAxis[10];
-	for (int i = 0; i < 10; i++)
-		rotAxis[i] = generateRandRotAxis();
-
-	unsigned int VBO, VAO;
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-
-	/*
-		bind the Vertex Array Object first, then bind and set vertex buffer(s),
-		and then configure vertex attributes(s).
-	*/
-	glBindVertexArray(VAO);
-	// copy our vertices array in a vertex buffer for OpenGL to use
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	// then set the vertex attributes pointers
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-
 	// draw in wireframe polygons
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
 	// render loop
@@ -267,17 +185,6 @@ int main()
 		// ------
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shaderProgram.use();
-		// update the uniform color
-		float timeValue = glfwGetTime();
-		float rgbValue1 = sin(timeValue + 2.09f) + 0.5f;
-		float rgbValue2 = sin(timeValue + 4.18f) + 0.5f;
-		float rgbValue3 = sin(timeValue) + 0.5f;
-		int vertexColorLocation1 = glGetUniformLocation(shaderProgram.ID, "color1");
-		glUniform4f(vertexColorLocation1, rgbValue1, rgbValue2, rgbValue3, 1.0f);
-		int vertexColorLocation2 = glGetUniformLocation(shaderProgram.ID, "color2");
-		glUniform4f(vertexColorLocation2, rgbValue3, rgbValue1, rgbValue2, 1.0f);
-		int vertexColorLocation3 = glGetUniformLocation(shaderProgram.ID, "color3");
-		glUniform4f(vertexColorLocation3, rgbValue2, rgbValue3, rgbValue1, 1.0f);
 
 		// practice with coordinate systems and camera view
 		glm::mat4 view = camera.GetViewMatrix();
@@ -288,31 +195,11 @@ int main()
 		int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-		// draw the cubes
-		glBindVertexArray(VAO);
-		for (unsigned int i = 0; i < 10; i++)
-		{
-			// calculate the model matrix for each object and pass it to shader before drawing
-			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, cubePositions[i]);
-			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(i * 5.0f + 5.0f),
-				rotAxis[i]);
-			int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-		}
-
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	// optional: de-allocate all resources once they've outlived their purpose:
-	// ------------------------------------------------------------------------
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
