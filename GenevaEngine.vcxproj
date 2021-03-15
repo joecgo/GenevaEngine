@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp" />
     <ClInclude Include="Source\Graphics\Mesh.hpp" />
+    <ClInclude Include="Source\Graphics\Model.hpp" />
     <ClInclude Include="Source\Graphics\Shader.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

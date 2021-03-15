@@ -32,5 +32,8 @@
     <ClInclude Include="Source\Graphics\Shader.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
