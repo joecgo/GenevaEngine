@@ -169,7 +169,8 @@ int main()
 
 	// build and compile shaders
 	// -------------------------
-	Shader shaderProgram("Shaders/shader.vert", "Shaders/shader.frag");
+	Shader textureShader("Shaders/Shader.vert", "Shaders/Shader.frag");
+	Shader greyShader("Shaders/Shader.vert", "Shaders/GreyShader.frag");
 
 	// tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
 	stbi_set_flip_vertically_on_load(true);
@@ -181,6 +182,7 @@ int main()
 	// load model
 // -----------
 	Model testModel("Assets/Art/Test/Backpack/backpack.obj");
+	Model kevinModel("Assets/Art/Test/Kevin/Kevin.obj");
 
 	// render loop
 	// -----------
@@ -199,25 +201,40 @@ int main()
 		// render
 		// ------
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		shaderProgram.use();
 
 		// practice with coordinate systems and camera view
+		textureShader.use();
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection;
 		projection = glm::perspective(glm::radians(camera.Fov),
 			(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+		int viewLoc = glGetUniformLocation(textureShader.ID, "view");
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		int projectionLoc = glGetUniformLocation(shaderProgram.ID, "projection");
+		int projectionLoc = glGetUniformLocation(textureShader.ID, "projection");
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-		// render the loaded model
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		testModel.Draw(shaderProgram);
+		// render the test model
+		glm::mat4 model1 = glm::mat4(1.0f);
+		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f));
+		model1 = glm::scale(model1, glm::vec3(1.0f, 1.0f, 1.0f));
+		int modelLoc1 = glGetUniformLocation(textureShader.ID, "model");
+		glUniformMatrix4fv(modelLoc1, 1, GL_FALSE, glm::value_ptr(model1));
+		testModel.Draw(textureShader);
+
+		// practice with coordinate systems and camera view
+		greyShader.use();
+		int viewLoc2 = glGetUniformLocation(greyShader.ID, "view");
+		glUniformMatrix4fv(viewLoc2, 1, GL_FALSE, glm::value_ptr(view));
+		int projectionLoc2 = glGetUniformLocation(greyShader.ID, "projection");
+		glUniformMatrix4fv(projectionLoc2, 1, GL_FALSE, glm::value_ptr(projection));
+
+		// render kevin
+		glm::mat4 model2 = glm::mat4(1.0f);
+		model2 = glm::translate(model2, glm::vec3(5.0f, -2.0f, 0.0f));
+		model2 = glm::scale(model2, glm::vec3(5.0f, 5.0f, 5.0f));
+		int modelLoc2 = glGetUniformLocation(greyShader.ID, "model");
+		glUniformMatrix4fv(modelLoc2, 1, GL_FALSE, glm::value_ptr(model2));
+		kevinModel.Draw(greyShader);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

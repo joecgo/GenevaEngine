@@ -28,6 +28,11 @@
     <ClInclude Include="Source\Graphics\Model.hpp" />
     <ClInclude Include="Source\Graphics\Shader.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\GreyShader.frag" />
+    <None Include="Shaders\Shader.frag" />
+    <None Include="Shaders\Shader.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
