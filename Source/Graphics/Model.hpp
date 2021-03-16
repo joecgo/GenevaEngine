@@ -1,5 +1,4 @@
-#ifndef MODEL_H
-#define MODEL_H
+#pragma once
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -52,4 +51,3 @@ namespace GenevaEngine
 		unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
 	};
 }
-#endif
