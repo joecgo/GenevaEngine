@@ -5,20 +5,17 @@
  *                                                                          *
  *   GenevaEngine is a custom C++ engine built for the purposes of 			*
  *	 learning and fun. You can reach me at joecgo@gmail.com. 				*
- *                                                                          *  
+ *                                                                          *
  ****************************************************************************/
 
-/**
- * @file Palette.hpp
- * @author Joe Goldman
- * @brief Palette class declaration
- **/
+ /**
+  * @file Color.cpp
+  * @author Joe Goldman
+  * @brief Color class definition
+  **/
 
-#pragma once
+#include <Graphics/Color.hpp>
 
 namespace GenevaEngine
 {
-	class Palette
-	{
-	};
 }
