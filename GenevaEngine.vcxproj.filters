@@ -21,6 +21,18 @@
     <ClCompile Include="External\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp">
