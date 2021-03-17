@@ -27,6 +27,8 @@
 #include <Graphics/Camera.hpp>
 #include <Graphics/Mesh.hpp>
 #include <Graphics/Model.hpp>
+#include <Graphics/Color.hpp>
+#include <Graphics/Palette.hpp>
 
 namespace GenevaEngine
 {
@@ -50,17 +52,6 @@ namespace GenevaEngine
 	// timing
 	float deltaTime = 0.0f;	// time between current frame and last frame
 	float lastFrame = 0.0f;
-
-	struct Color
-	{
-		float r = 0.0f, g = 0.0f, b = 0.0f;
-		Color(int hexValue)
-		{
-			r = ((hexValue >> 16) & 0xFF) / 255.0f;
-			g = ((hexValue >> 8) & 0xFF) / 255.0f;
-			b = ((hexValue) & 0xFF) / 255.0f;
-		}
-	};
 
 	Color palette[]{
 	  Color(0x7eed94),
