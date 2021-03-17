@@ -18,4 +18,15 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Constructor using RGB hex value
+	 *
+	 *      \param [in] hexValue
+	 */
+	Color::Color(int hexValue)
+	{
+		r = ((hexValue >> 16) & 0xFF) / 255.0f;
+		g = ((hexValue >> 8) & 0xFF) / 255.0f;
+		b = ((hexValue) & 0xFF) / 255.0f;
+	}
 }
