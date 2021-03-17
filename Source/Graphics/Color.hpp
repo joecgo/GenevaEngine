@@ -9,15 +9,18 @@
  ****************************************************************************/
 
  /**
-  * @file Color.hpp
-  * @author Joe Goldman
-  * @brief Color class declaration
-  **/
+  * \file Color.hpp
+  * \author Joe Goldman
+  * \brief Color class declaration
+  */
 
 #pragma once
 
 namespace GenevaEngine
 {
+	/*!
+	 * \brief A container for a single color.
+	 */
 	class Color
 	{
 	};

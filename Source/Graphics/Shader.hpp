@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file Shader.hpp
-  * @author Joe Goldman
-  * @brief Shader class declaration
-  **/
+  * \file Shader.hpp
+  * \author Joe Goldman
+  * \brief Shader class declaration
+  */
 
 #pragma once
 
@@ -25,6 +25,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief Manages a single shader program.
+	 */
 	class Shader
 	{
 	public:

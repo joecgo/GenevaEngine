@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file Mesh.hpp
-  * @author Joe Goldman
-  * @brief Mesh class declaration
-  **/
+  * \file Mesh.hpp
+  * \author Joe Goldman
+  * \brief Mesh class declaration
+  */
 
 #pragma once
 
@@ -29,6 +29,9 @@ using namespace std;
 
 namespace GenevaEngine
 {
+	/**
+	 * \brief Container for all the data associated with a single vertex
+	 */
 	struct Vertex {
 		// position
 		glm::vec3 Position;
@@ -42,12 +45,18 @@ namespace GenevaEngine
 		glm::vec3 Bitangent;
 	};
 
+	/**
+	 * \brief Container for all the data associated with a single texture
+	 */
 	struct Texture {
-		unsigned int id;
+		unsigned int id = 0;
 		string type;
 		string path;
 	};
 
+	/*!
+	 *  \brief A renderable mesh which contains its own vertices, indices, and texture data.
+	 */
 	class Mesh {
 	public:
 		// mesh Data

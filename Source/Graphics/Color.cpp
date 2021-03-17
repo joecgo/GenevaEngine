@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file Color.cpp
-  * @author Joe Goldman
-  * @brief Color class definition
-  **/
+  * \file Color.cpp
+  * \author Joe Goldman
+  * \brief Color class definition
+  */
 
 #include <Graphics/Color.hpp>
 

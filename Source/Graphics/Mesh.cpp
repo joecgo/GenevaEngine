@@ -9,10 +9,11 @@
  ****************************************************************************/
 
  /**
-  * @file Mesh.cpp
-  * @author Joe Goldman
-  * @brief Mesh class definition
-  **/
+  * \file Mesh.cpp
+  * \author Joe Goldman
+  * \brief Mesh class definition
+  *
+  */
 
 #include <Graphics/Mesh.hpp>
 
@@ -20,7 +21,13 @@ using namespace std;
 
 namespace GenevaEngine
 {
-	// constructor
+	/*!
+	 *  Constructor.
+	 *
+	 *      \param [in] vertices
+	 *      \param [in] indices
+	 *      \param [in] textures
+	 */
 	Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
 	{
 		this->vertices = vertices;
@@ -32,7 +39,11 @@ namespace GenevaEngine
 		setupMesh();
 	}
 
-	// render the mesh
+	/*!
+	 *  Draws the mesh.
+	 *
+	 *      \param [in,out] shader
+	 */
 	void Mesh::Draw(Shader& shader)
 	{
 		// bind appropriate textures
@@ -63,14 +74,16 @@ namespace GenevaEngine
 
 		// draw mesh
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		// always good practice to set everything back to defaults once configured.
 		glActiveTexture(GL_TEXTURE0);
 	}
 
-	// initializes all the buffer objects/arrays
+	/*!
+	 *  Initializes all the buffer objects/arrays
+	 */
 	void Mesh::setupMesh()
 	{
 		// create buffers/arrays

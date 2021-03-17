@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file Palette.cpp
-  * @author Joe Goldman
-  * @brief Palette class definition
-  **/
+  * \file Palette.cpp
+  * \author Joe Goldman
+  * \brief Palette class definition
+  */
 
 #include <Graphics/Palette.hpp>
 

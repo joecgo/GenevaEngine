@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file main.cpp
-  * @author Joe Goldman
-  * @brief main file currently used for testing and tutorials, contains main()
-  **/
+  * \file main.cpp
+  * \author Joe Goldman
+  * \brief main file currently used for testing and tutorials, contains main()
+  */
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -41,8 +41,8 @@ namespace GenevaEngine
 
 	// mouse input
 	bool firstMouse = true;
-	float lastX = SCR_WIDTH / 2.0;
-	float lastY = SCR_HEIGHT / 2.0;
+	double lastX = SCR_WIDTH / 2.0;
+	double lastY = SCR_HEIGHT / 2.0;
 
 	//camera
 	Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -135,8 +135,8 @@ namespace GenevaEngine
 			firstMouse = false;
 		}
 
-		float xoffset = xpos - lastX;
-		float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+		double xoffset = xpos - lastX;
+		double yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
 		lastX = xpos;
 		lastY = ypos;
 
@@ -144,12 +144,12 @@ namespace GenevaEngine
 		xoffset *= sensitivity;
 		yoffset *= sensitivity;
 
-		camera.ProcessMouseMovement(xoffset, yoffset);
+		camera.ProcessMouseMovement((float)xoffset, (float)yoffset);
 	}
 
 	void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	{
-		camera.ProcessMouseScroll(yoffset);
+		camera.ProcessMouseScroll((float)yoffset);
 	}
 }
 
@@ -211,7 +211,7 @@ int main()
 	{
 		// per-frame time logic
 		// --------------------
-		float currentFrame = glfwGetTime();
+		float currentFrame = (float)glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 

@@ -9,16 +9,22 @@
  ****************************************************************************/
 
  /**
-  * @file Camera.cpp
-  * @author Joe Goldman
-  * @brief Camera class definition
-  **/
-
+ * \file Camera.cpp
+ * \author Joe Goldman
+ * \brief Camera class definition
+ */
 #include <Graphics/Camera.hpp>
 
 namespace GenevaEngine
 {
-	// constructor with vectors
+	/*!
+	 *  Constructor with vectors.
+	 *
+	 *      \param [in] position
+	 *      \param [in] up
+	 *      \param [in] yaw
+	 *      \param [in] pitch
+	 */
 	Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
 		Front(glm::vec3(0.0f, 0.0f, -1.0f)),
 		MovementSpeed(SPEED),
@@ -31,7 +37,18 @@ namespace GenevaEngine
 		updateCameraVectors();
 	}
 
-	// constructor with scalar values
+	/*!
+	 *  Constructor with scalar values.
+	 *
+	 *      \param [in] posX
+	 *      \param [in] posY
+	 *      \param [in] posZ
+	 *      \param [in] upX
+	 *      \param [in] upY
+	 *      \param [in] upZ
+	 *      \param [in] yaw
+	 *      \param [in] pitch
+	 */
 	Camera::Camera(float posX, float posY, float posZ, float upX, float upY,
 		float upZ, float yaw, float pitch) :
 		Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED),
@@ -43,15 +60,24 @@ namespace GenevaEngine
 		Pitch = pitch;
 		updateCameraVectors();
 	}
-
-	// returns the view matrix calculated using Euler Angles and the LookAt Matrix
+	/*!
+	 *  Returns the camera's view matrix.
+	 *
+	 *      \return The view matrix.
+	 */
 	glm::mat4 Camera::GetViewMatrix()
 	{
 		return glm::lookAt(Position, Position + Front, Up);
 	}
 
-	// processes input received from any keyboard-like input system.
-	// Accepts input parameter in the form of camera defined ENUM
+	/*!
+	 *  processes input received from any keyboard-like input system.
+	 *  Accepts input parameter in the form of camera defined ENUM
+	 *
+	 *      \param [in] direction
+	 *      \param [in] deltaTime
+	 *
+	 */
 	void Camera::ProcessKeyboard(Movement direction, float deltaTime)
 	{
 		float velocity = MovementSpeed * deltaTime;
@@ -69,8 +95,13 @@ namespace GenevaEngine
 			Position -= Up * velocity;
 	}
 
-	// processes input received from a mouse input system.
-	// Expects the offset value in both the x and y direction.
+	/*!
+	 *  Processes the mouse movement.
+	 *
+	 *      \param [in] xoffset
+	 *      \param [in] yoffset
+	 *      \param [in] constrainPitch
+	 */
 	void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
 	{
 		xoffset *= MouseSensitivity;
@@ -92,8 +123,11 @@ namespace GenevaEngine
 		updateCameraVectors();
 	}
 
-	// processes input received from a mouse scroll-wheel event.
-	// Only requires input on the vertical wheel-axis
+	/*!
+	 *  Processes the mouse scroll.
+	 *
+	 *      \param [in] yoffset
+	 */
 	void Camera::ProcessMouseScroll(float yoffset)
 	{
 		Fov -= (float)yoffset;
@@ -103,7 +137,9 @@ namespace GenevaEngine
 			Fov = MaxFov;
 	}
 
-	// calculates the front vector from the Camera's (updated) Euler Angles
+	/*!
+	 *  Calculates the front vector from the Camera's (updated) Euler Angles
+	 */
 	void Camera::updateCameraVectors()
 	{
 		// calculate the new Front vector

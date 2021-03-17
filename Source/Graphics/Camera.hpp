@@ -9,10 +9,10 @@
  ****************************************************************************/
 
  /**
-  * @file Camera.hpp
-  * @author Joe Goldman
-  * @brief Camera class declaration
-  **/
+  * \file Camera.hpp
+  * \author Joe Goldman
+  * \brief Camera class declaration
+  */
 
 #pragma once
 
@@ -24,13 +24,17 @@
 
 namespace GenevaEngine
 {
-	// An abstract camera class that processes input and calculates the corresponding Euler Angles,
-	// Vectors and Matrices for use in OpenGL
+	/**
+	 * \brief An abstract camera class that processes input and calculates the corresponding
+	 * Euler Angles, aVectors and Matrices for use in OpenGL
+	 */
 	class Camera
 	{
 	public:
 
-		// Defines several possible options for camera movement.
+		/**
+		 * Defines several possible options for camera movement.
+		 */
 		enum class Movement
 		{
 			FORWARD,

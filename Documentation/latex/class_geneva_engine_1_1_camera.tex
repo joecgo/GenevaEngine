@@ -1,0 +1,181 @@
+\hypertarget{class_geneva_engine_1_1_camera}{}\doxysection{Geneva\+Engine\+::Camera Class Reference}
+\label{class_geneva_engine_1_1_camera}\index{GenevaEngine::Camera@{GenevaEngine::Camera}}
+
+
+An abstract camera class that processes input and calculates the corresponding Euler Angles, a\+Vectors and Matrices for use in Open\+GL.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}{Movement}} \{ \newline
+{\bfseries FORWARD}
+, {\bfseries BACKWARD}
+, {\bfseries LEFT}
+, {\bfseries RIGHT}
+, \newline
+{\bfseries UP}
+, {\bfseries DOWN}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_camera_aa277cb56c2bd1d652e55722b660a6b52}{Camera}} (glm\+::vec3 position=glm\+::vec3(0.\+0f, 0.\+0f, 0.\+0f), glm\+::vec3 up=glm\+::vec3(0.\+0f, 1.\+0f, 0.\+0f), float yaw=YAW, float pitch=PITCH)
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_camera_acadd3ef21ee4ba083b3761ec4af5048a}{Camera}} (float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}{Get\+View\+Matrix}} ()
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_camera_a0fb5dc40c738e95f679c816f9807b8c5}{Process\+Keyboard}} (\mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}{Movement}} direction, float delta\+Time)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_camera_a96cdb286eeac015a8d6dc900271dc36f}{Process\+Mouse\+Movement}} (float xoffset, float yoffset, GLboolean constrain\+Pitch=true)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_camera_a447a259703e6a0ded4b311d503b4264c}{Process\+Mouse\+Scroll}} (float yoffset)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a0fc30cbece5d7c137b0a03cdc716ca1e}\label{class_geneva_engine_1_1_camera_a0fc30cbece5d7c137b0a03cdc716ca1e}} 
+glm\+::vec3 {\bfseries Position}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a7725a973fd750a675885e666602e0a6a}\label{class_geneva_engine_1_1_camera_a7725a973fd750a675885e666602e0a6a}} 
+glm\+::vec3 {\bfseries Front}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a0a0362a150175e46607464a8bed5a887}\label{class_geneva_engine_1_1_camera_a0a0362a150175e46607464a8bed5a887}} 
+glm\+::vec3 {\bfseries Up}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_aba0cad79409552639456512822692ad2}\label{class_geneva_engine_1_1_camera_aba0cad79409552639456512822692ad2}} 
+glm\+::vec3 {\bfseries Right}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_af7dba6bd08ab0584ae5f31803561a2d2}\label{class_geneva_engine_1_1_camera_af7dba6bd08ab0584ae5f31803561a2d2}} 
+glm\+::vec3 {\bfseries World\+Up}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_adee8992fab232118a4ed177acc4f1736}\label{class_geneva_engine_1_1_camera_adee8992fab232118a4ed177acc4f1736}} 
+float {\bfseries Yaw} = -\/90.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a8da7589c8b226c7bbb90e29446bb5325}\label{class_geneva_engine_1_1_camera_a8da7589c8b226c7bbb90e29446bb5325}} 
+float {\bfseries Pitch} = 0.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a855330749641046d197d09c38718c6a0}\label{class_geneva_engine_1_1_camera_a855330749641046d197d09c38718c6a0}} 
+float {\bfseries Movement\+Speed}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a26628a7ac06ef5979504868ad1e160bc}\label{class_geneva_engine_1_1_camera_a26628a7ac06ef5979504868ad1e160bc}} 
+float {\bfseries Mouse\+Sensitivity}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a3adc0a59b273fba9258f187c4c599f9c}\label{class_geneva_engine_1_1_camera_a3adc0a59b273fba9258f187c4c599f9c}} 
+float {\bfseries Fov}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a77083575ab2a566cf4ba4336fed40439}\label{class_geneva_engine_1_1_camera_a77083575ab2a566cf4ba4336fed40439}} 
+float {\bfseries Max\+Fov} = 150.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a4e2289a6c8ac001a2a8ce4ef546851d6}\label{class_geneva_engine_1_1_camera_a4e2289a6c8ac001a2a8ce4ef546851d6}} 
+float {\bfseries Min\+Fov} = 20.\+0f
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a91dad0013a3ecfa235349adc318ad913}\label{class_geneva_engine_1_1_camera_a91dad0013a3ecfa235349adc318ad913}} 
+static constexpr float {\bfseries YAW} = -\/90.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a992b3e0ef5fa450b4723e29817f25dd9}\label{class_geneva_engine_1_1_camera_a992b3e0ef5fa450b4723e29817f25dd9}} 
+static constexpr float {\bfseries PITCH} = 0.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a49460255b1b227a5b98d166d79a9a93f}\label{class_geneva_engine_1_1_camera_a49460255b1b227a5b98d166d79a9a93f}} 
+static constexpr float {\bfseries SPEED} = 2.\+5f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a5664dbdc79374ceceb932be01173598b}\label{class_geneva_engine_1_1_camera_a5664dbdc79374ceceb932be01173598b}} 
+static constexpr float {\bfseries SENSITIVITY} = 0.\+3f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a2735128d806d47770df30f908fedb1f5}\label{class_geneva_engine_1_1_camera_a2735128d806d47770df30f908fedb1f5}} 
+static constexpr float {\bfseries FOV} = 70.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An abstract camera class that processes input and calculates the corresponding Euler Angles, a\+Vectors and Matrices for use in Open\+GL. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}\label{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!Movement@{Movement}}
+\index{Movement@{Movement}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{Movement}{Movement}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}{Geneva\+Engine\+::\+Camera\+::\+Movement}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+Defines several possible options for camera movement. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_aa277cb56c2bd1d652e55722b660a6b52}\label{class_geneva_engine_1_1_camera_aa277cb56c2bd1d652e55722b660a6b52}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position = {\ttfamily glm\+:\+:vec3(0.0f,~0.0f,~0.0f)},  }\item[{glm\+::vec3}]{up = {\ttfamily glm\+:\+:vec3(0.0f,~1.0f,~0.0f)},  }\item[{float}]{yaw = {\ttfamily YAW},  }\item[{float}]{pitch = {\ttfamily PITCH} }\end{DoxyParamCaption})}
+
+Constructor with vectors. \begin{DoxyVerb}\param [in] position
+\param [in] up
+\param [in] yaw
+\param [in] pitch
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_camera_acadd3ef21ee4ba083b3761ec4af5048a}\label{class_geneva_engine_1_1_camera_acadd3ef21ee4ba083b3761ec4af5048a}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{float}]{posX,  }\item[{float}]{posY,  }\item[{float}]{posZ,  }\item[{float}]{upX,  }\item[{float}]{upY,  }\item[{float}]{upZ,  }\item[{float}]{yaw,  }\item[{float}]{pitch }\end{DoxyParamCaption})}
+
+Constructor with scalar values. \begin{DoxyVerb}\param [in] posX
+\param [in] posY
+\param [in] posZ
+\param [in] upX
+\param [in] upY
+\param [in] upZ
+\param [in] yaw
+\param [in] pitch
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}\label{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!GetViewMatrix@{GetViewMatrix}}
+\index{GetViewMatrix@{GetViewMatrix}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{GetViewMatrix()}{GetViewMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Geneva\+Engine\+::\+Camera\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the camera\textquotesingle{}s view matrix. \begin{DoxyVerb}\return The view matrix.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a0fb5dc40c738e95f679c816f9807b8c5}\label{class_geneva_engine_1_1_camera_a0fb5dc40c738e95f679c816f9807b8c5}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!ProcessKeyboard@{ProcessKeyboard}}
+\index{ProcessKeyboard@{ProcessKeyboard}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{ProcessKeyboard()}{ProcessKeyboard()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Camera\+::\+Process\+Keyboard (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}{Movement}}}]{direction,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+processes input received from any keyboard-\/like input system. Accepts input parameter in the form of camera defined ENUM \begin{DoxyVerb}\param [in] direction
+\param [in] deltaTime
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a96cdb286eeac015a8d6dc900271dc36f}\label{class_geneva_engine_1_1_camera_a96cdb286eeac015a8d6dc900271dc36f}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!ProcessMouseMovement@{ProcessMouseMovement}}
+\index{ProcessMouseMovement@{ProcessMouseMovement}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{ProcessMouseMovement()}{ProcessMouseMovement()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Camera\+::\+Process\+Mouse\+Movement (\begin{DoxyParamCaption}\item[{float}]{xoffset,  }\item[{float}]{yoffset,  }\item[{GLboolean}]{constrain\+Pitch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Processes the mouse movement. \begin{DoxyVerb}\param [in] xoffset
+\param [in] yoffset
+\param [in] constrainPitch
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a447a259703e6a0ded4b311d503b4264c}\label{class_geneva_engine_1_1_camera_a447a259703e6a0ded4b311d503b4264c}} 
+\index{GenevaEngine::Camera@{GenevaEngine::Camera}!ProcessMouseScroll@{ProcessMouseScroll}}
+\index{ProcessMouseScroll@{ProcessMouseScroll}!GenevaEngine::Camera@{GenevaEngine::Camera}}
+\doxysubsubsection{\texorpdfstring{ProcessMouseScroll()}{ProcessMouseScroll()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Camera\+::\+Process\+Mouse\+Scroll (\begin{DoxyParamCaption}\item[{float}]{yoffset }\end{DoxyParamCaption})}
+
+Processes the mouse scroll. \begin{DoxyVerb}\param [in] yoffset
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Graphics/\mbox{\hyperlink{_camera_8hpp}{Camera.\+hpp}}\item 
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Graphics/\mbox{\hyperlink{_camera_8cpp}{Camera.\+cpp}}\end{DoxyCompactItemize}
