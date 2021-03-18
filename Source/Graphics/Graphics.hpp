@@ -17,13 +17,16 @@
 
 #pragma once
 
+#include <Core/ASystem.hpp>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <stb/stb_image.h>
 
 #include <iostream> // cout, endl
-#include <vector>
+#include <vector> // vector
+#include <map> // map
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
@@ -31,19 +34,12 @@
 #include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
 #include <Core/GameSession.hpp>
-#include <Core/ASystem.hpp>
 
 namespace GenevaEngine
 {
-	static class Graphics : public ASystem
+	class Graphics : public ASystem
 	{
 	public:
-		// temp for testing
-		Model kevinModel;
-		Model testModel;
-		Shader textureShader;
-		Shader greyShader;
-
 		// window constants
 		static const unsigned int SCR_WIDTH = 1200;
 		static const unsigned int SCR_HEIGHT = 900;
@@ -55,17 +51,23 @@ namespace GenevaEngine
 
 		// glfw wrappers
 		static void SetClearColor(Color color);
-
-		// constructor
-		Graphics() {};
-
 		// glfw callbacks
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+		// shader storage and access methods
+		void SaveShader(std::string name, Shader shader);
+		Shader GetShader(std::string name);
+		// model storage and access methods
+		void SaveModel(std::string name, Model model);
+		Model GetModel(std::string name);
 
 	private:
+		// asset storage in maps
+		std::map<std::string, Shader> shaders_;
+		std::map<std::string, Model> models_;
+
 		// inherited virtual methods
-		void Start() override;
-		void Update() override;
-		void End() override;
+		void Start();
+		void Update();
+		void End();
 	};
 }

@@ -58,21 +58,19 @@ namespace GenevaEngine
 			return; // TODO: inform GameSession of fatal error
 		}
 
-		// build and compile shaders
-		textureShader = Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
-		greyShader = Shader("Shaders/Shader.vert", "Shaders/GreyShader.frag");
-
 		// tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
 		stbi_set_flip_vertically_on_load(true);
 
 		// configure global opengl state
 		glEnable(GL_DEPTH_TEST);
 
-		// load models
-		testModel = Model("Assets/Art/Test/Backpack/backpack.obj");
-		kevinModel = Model("Assets/Art/Test/Kevin/Kevin.obj");
+		// create and save shaders and models. TODO: do this with an asset file
+		SaveShader("textureShader", Shader("Shaders/Shader.vert", "Shaders/Shader.frag"));
+		SaveShader("greyShader", Shader("Shaders/Shader.vert", "Shaders/GreyShader.frag"));
+		SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
+		SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
 
-		// set starting clear color
+		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
 	}
 
@@ -88,39 +86,39 @@ namespace GenevaEngine
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// practice with coordinate systems and camera view
-		textureShader.use();
-		glm::mat4 view = camera.GetViewMatrix();
-		glm::mat4 projection;
-		projection = glm::perspective(glm::radians(camera.Fov),
-			(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		int viewLoc = glGetUniformLocation(textureShader.ID, "view");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		int projectionLoc = glGetUniformLocation(textureShader.ID, "projection");
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-		// render the test model
-		glm::mat4 model1 = glm::mat4(1.0f);
-		model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f));
-		model1 = glm::scale(model1, glm::vec3(1.0f, 1.0f, 1.0f));
-		int modelLoc1 = glGetUniformLocation(textureShader.ID, "model");
-		glUniformMatrix4fv(modelLoc1, 1, GL_FALSE, glm::value_ptr(model1));
-		testModel.Draw(textureShader);
-
-		// practice with coordinate systems and camera view
-		greyShader.use();
-		int viewLoc2 = glGetUniformLocation(greyShader.ID, "view");
-		glUniformMatrix4fv(viewLoc2, 1, GL_FALSE, glm::value_ptr(view));
-		int projectionLoc2 = glGetUniformLocation(greyShader.ID, "projection");
-		glUniformMatrix4fv(projectionLoc2, 1, GL_FALSE, glm::value_ptr(projection));
-
-		// render kevin
-		glm::mat4 model2 = glm::mat4(1.0f);
-		model2 = glm::translate(model2, glm::vec3(5.0f, -2.0f, 0.0f));
-		model2 = glm::scale(model2, glm::vec3(5.0f, 5.0f, 5.0f));
-		int modelLoc2 = glGetUniformLocation(greyShader.ID, "model");
-		glUniformMatrix4fv(modelLoc2, 1, GL_FALSE, glm::value_ptr(model2));
-		kevinModel.Draw(greyShader);
-
+		//textureShader.use();
+		//glm::mat4 view = camera.GetViewMatrix();
+		//glm::mat4 projection;
+		//projection = glm::perspective(glm::radians(camera.Fov),
+		//	(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		//int viewLoc = glGetUniformLocation(textureShader.ID, "view");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		//int projectionLoc = glGetUniformLocation(textureShader.ID, "projection");
+		//glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//
+		//// render the test model
+		//glm::mat4 model1 = glm::mat4(1.0f);
+		//model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f));
+		//model1 = glm::scale(model1, glm::vec3(1.0f, 1.0f, 1.0f));
+		//int modelLoc1 = glGetUniformLocation(textureShader.ID, "model");
+		//glUniformMatrix4fv(modelLoc1, 1, GL_FALSE, glm::value_ptr(model1));
+		//testModel.Draw(textureShader);
+		//
+		//// practice with coordinate systems and camera view
+		//greyShader.use();
+		//int viewLoc2 = glGetUniformLocation(greyShader.ID, "view");
+		//glUniformMatrix4fv(viewLoc2, 1, GL_FALSE, glm::value_ptr(view));
+		//int projectionLoc2 = glGetUniformLocation(greyShader.ID, "projection");
+		//glUniformMatrix4fv(projectionLoc2, 1, GL_FALSE, glm::value_ptr(projection));
+		//
+		//// render kevin
+		//glm::mat4 model2 = glm::mat4(1.0f);
+		//model2 = glm::translate(model2, glm::vec3(5.0f, -2.0f, 0.0f));
+		//model2 = glm::scale(model2, glm::vec3(5.0f, 5.0f, 5.0f));
+		//int modelLoc2 = glGetUniformLocation(greyShader.ID, "model");
+		//glUniformMatrix4fv(modelLoc2, 1, GL_FALSE, glm::value_ptr(model2));
+		//kevinModel.Draw(greyShader);
+		//
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -146,5 +144,51 @@ namespace GenevaEngine
 	void Graphics::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
+	}
+
+	/*!
+	 *  Saves a shader by name.
+	 *
+	 *      \param [in] name
+	 *      \param [in] shader
+	 */
+	void Graphics::SaveShader(std::string name, Shader shader)
+	{
+		shaders_[name] = shader;
+	}
+
+	/*!
+	 *  Retrieves a shader from Graphics system by name.
+	 *
+	 *      \param [in] name
+	 *
+	 *      \return The shader.
+	 */
+	Shader Graphics::GetShader(std::string name)
+	{
+		return shaders_[name];
+	}
+
+	/*!
+ *  Saves a model by name.
+ *
+ *      \param [in] name
+ *      \param [in] model
+ */
+	void Graphics::SaveModel(std::string name, Model model)
+	{
+		models_[name] = model;
+	}
+
+	/*!
+	 *  Retrieves a model from Graphics system by name.
+	 *
+	 *      \param [in] name
+	 *
+	 *      \return The model.
+	 */
+	Model Graphics::GetModel(std::string name)
+	{
+		return models_[name];
 	}
 }

@@ -9,25 +9,47 @@
  ****************************************************************************/
 
  /**
-  * \file ASystem.hpp
+  * \file Entity.hpp
   * \author Joe Goldman
-  * \brief Abstract system class declaration
+  * \brief Entity class declaration
   *
   */
 
 #pragma once
 
+#include <glm/glm.hpp>
+
+#include <Graphics/Shader.hpp>
+#include <Graphics/Model.hpp>
+#include <Core/GameSession.hpp>
+#include <string>
+
 namespace GenevaEngine
 {
 	/*!
-	 *  Abstract class for game engine systems to inherit from
+	 *  \brief An object that populates the game. Like an actor or game object.
 	 */
-	class ASystem
+	class Entity
 	{
+	public:
+		Entity(glm::vec3 pos, glm::vec3 scale, string model_name,
+			string shader_name = "textureShader");
+
+		// TODO: store these things in components that are attached to the Entity
+		// Model Component
+		Model* model_ = nullptr;
+		std::string model_name_ = 0;
+		// Render Component
+		Shader* shader_ = nullptr;
+		std::string shader_name_ = 0;
+		// Transform Component
+		glm::vec3 position_ = glm::vec3(0.0f, 0.0f, 0.0f);
+		glm::vec3 scale_ = glm::vec3(1.0f, 1.0f, 51.0f);
+
 	private:
-		virtual void Start() = 0;
-		virtual void Update() = 0;
-		virtual void End() = 0;
+		void Start();
+		void Update();
+		void End();
 
 		friend class GameSession;
 	};

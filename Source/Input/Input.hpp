@@ -18,6 +18,7 @@
 #pragma once
 
 #include <Core/ASystem.hpp>
+
 #include <Graphics/Graphics.hpp>
 #include <Graphics/Camera.hpp>
 
@@ -26,7 +27,7 @@ namespace GenevaEngine
 	/*!
 	 *  Core system for handling input
 	 */
-	static class Input : public ASystem
+	class Input : public ASystem
 	{
 	public:
 		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -39,9 +40,9 @@ namespace GenevaEngine
 		static double lastY_;
 
 		// inherited virtual methods
-		void Start() override;
-		void Update() override;
-		void End() override;
+		void Start();
+		void Update();
+		void End();
 
 		// called on update
 		static void processInput(GLFWwindow* window);

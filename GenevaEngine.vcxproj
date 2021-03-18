@@ -28,6 +28,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Core\Entity.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Graphics\Color.cpp">
       <SubType>
       </SubType>
@@ -53,6 +57,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Core\GameSession.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Entity.hpp">
       <SubType>
       </SubType>
     </ClInclude>

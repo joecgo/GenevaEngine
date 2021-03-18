@@ -49,8 +49,9 @@ namespace GenevaEngine
 		string directory;
 		bool gammaCorrection = false;
 
-		// default constructor
+		// default contructor
 		Model() {};
+
 		// constructor, expects a filepath to a 3D model.
 		Model(string const& path, bool gamma = false);
 

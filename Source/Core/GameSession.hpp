@@ -17,6 +17,8 @@
   */
 
 #pragma once
+#include <Core/ASystem.hpp>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -26,6 +28,7 @@
 
 #include <iostream> // cout, endl
 
+#include <Core/Entity.hpp>
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
 #include <Graphics/Mesh.hpp>
@@ -33,7 +36,6 @@
 #include <Graphics/Color.hpp>
 #include <Graphics/Graphics.hpp>
 #include <Input/Input.hpp>
-#include <Core/ASystem.hpp>
 
 #include <vector> // vector
 
@@ -48,6 +50,8 @@ namespace GenevaEngine
 		GameSession();
 		bool IsRunning() { return isRunning_; }
 		static float GetDeltaTime() { return deltaTime_; }
+		void AddSystem(ASystem* system);
+		void AddEntity(Entity* entity);
 
 	private:
 		// TODO?: Move time-related stuff to its own system
@@ -55,10 +59,14 @@ namespace GenevaEngine
 		static float lastFrame_;
 
 		bool isRunning_ = true;
-		std::vector<ASystem*> systems_;
 
+		std::vector<ASystem*> systems_;
+		std::vector<Entity*> entities_;
+
+		void CreateEntities();
 		void Start();
 		void GameLoop();
 		void End();
+		void UpdateTime();
 	};
 }
