@@ -22,7 +22,7 @@ namespace GenevaEngine
 	/*!
 	 *  Abstract class for game engine systems to inherit from
 	 */
-	static class ASystem
+	class ASystem
 	{
 	private:
 		virtual void Start() {}

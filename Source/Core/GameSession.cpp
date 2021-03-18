@@ -20,28 +20,30 @@
 
 namespace GenevaEngine
 {
+	// define static variables
+	float GameSession::deltaTime_ = 0.0f;
+	float GameSession::lastFrame_ = 0.0f;
+
 	/*!
-	 *  Constructor. Initialize core systems
+	 *  Constructor. Initialize and start core systems
 	 */
 	GameSession::GameSession()
 	{
-		deltaTime_ = 0.0f;
-		lastFrame_ = 0.0f;
-
 		systems_.push_back(new Input());
 		systems_.push_back(new Graphics());
 
 		Start();
-		GameLoop();
 	}
 
 	/*!
-	 *  Starts the game session.
+	 *  Starts the core systems and enter game loop
 	 */
 	void GameSession::Start()
 	{
 		for (ASystem* system : systems_)
 			system->Start();
+
+		GameLoop();
 	}
 
 	/*!
@@ -52,11 +54,11 @@ namespace GenevaEngine
 		while (!glfwWindowShouldClose(Graphics::window))
 		{
 			// per-frame time logic
-			// --------------------
 			float currentFrame = (float)glfwGetTime();
 			deltaTime_ = currentFrame - lastFrame_;
 			lastFrame_ = currentFrame;
 
+			// update systems
 			for (ASystem* system : systems_)
 				system->Update();
 		}
@@ -64,6 +66,9 @@ namespace GenevaEngine
 		End();
 	}
 
+	/*!
+	 *  Ends the game session. deletes systems from memory.
+	 */
 	void GameSession::End()
 	{
 		for (ASystem* system : systems_)
@@ -72,6 +77,7 @@ namespace GenevaEngine
 		for (ASystem* system : systems_)
 			delete system;
 
+		// public flag for closing down the program in main()
 		isRunning_ = false;
 	}
 }

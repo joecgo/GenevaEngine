@@ -19,6 +19,13 @@
 
 namespace GenevaEngine
 {
+	// define static variables
+	std::vector<Color> Graphics::palette = {
+		Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),
+		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
+	Camera Graphics::camera(glm::vec3(0.0f, 0.0f, 3.0f));;
+	GLFWwindow* Graphics::window;
+
 	void Graphics::Start()
 	{
 		// glfw: initialize and configure
@@ -27,15 +34,14 @@ namespace GenevaEngine
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		// glfw window creation
-		// --------------------
-		window = glfwCreateWindow(Graphics::SCR_WIDTH, Graphics::SCR_HEIGHT, "GenevaEngine", NULL,
-			NULL);
+		// glfw: window creation
+		window = glfwCreateWindow(Graphics::SCR_WIDTH, Graphics::SCR_HEIGHT,
+			"GenevaEngine", NULL, NULL);
 		if (window == NULL)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
-			return;
+			return; // TODO: inform GameSession of fatal error
 		}
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -46,18 +52,13 @@ namespace GenevaEngine
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		// glad: load all OpenGL function pointers
-		// ---------------------------------------
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
 			std::cout << "Failed to initialize GLAD" << std::endl;
-			return;
+			return; // TODO: inform GameSession of fatal error
 		}
 
-		// create camera
-		camera = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
-
 		// build and compile shaders
-		// -------------------------
 		textureShader = Shader("Shaders/Shader.vert", "Shaders/Shader.frag");
 		greyShader = Shader("Shaders/Shader.vert", "Shaders/GreyShader.frag");
 
@@ -65,13 +66,14 @@ namespace GenevaEngine
 		stbi_set_flip_vertically_on_load(true);
 
 		// configure global opengl state
-		// -----------------------------
 		glEnable(GL_DEPTH_TEST);
 
 		// load models
-		// -----------
 		testModel = Model("Assets/Art/Test/Backpack/backpack.obj");
 		kevinModel = Model("Assets/Art/Test/Kevin/Kevin.obj");
+
+		// set starting clear color
+		Graphics::SetClearColor(Graphics::palette[0]);
 	}
 
 	void Graphics::End()
@@ -82,6 +84,7 @@ namespace GenevaEngine
 
 	void Graphics::Update()
 	{
+		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// practice with coordinate systems and camera view
@@ -119,7 +122,6 @@ namespace GenevaEngine
 		kevinModel.Draw(greyShader);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

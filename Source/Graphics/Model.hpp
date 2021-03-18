@@ -35,8 +35,6 @@
 #include <map>
 #include <vector>
 
-using namespace std;
-
 namespace GenevaEngine
 {
 	/*!
@@ -49,7 +47,7 @@ namespace GenevaEngine
 		vector<Texture> textures_loaded; // stores all the textures loaded so far
 		vector<Mesh>    meshes;
 		string directory;
-		bool gammaCorrection;
+		bool gammaCorrection = false;
 
 		// default constructor
 		Model() {};

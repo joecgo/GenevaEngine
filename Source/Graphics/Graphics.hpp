@@ -48,11 +48,9 @@ namespace GenevaEngine
 		static const unsigned int SCR_WIDTH = 1200;
 		static const unsigned int SCR_HEIGHT = 900;
 
-		// colors
+		// static variable declarations
 		static std::vector<Color> palette;
-		// Camera
 		static Camera camera;
-		// window
 		static GLFWwindow* window;
 
 		// glfw wrappers

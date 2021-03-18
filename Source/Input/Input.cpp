@@ -19,11 +19,13 @@
 
 namespace GenevaEngine
 {
+	// define static variables
+	bool Input::firstMouse_ = true;;
+	double Input::lastX_ = Graphics::SCR_WIDTH / 2.0;;
+	double Input::lastY_ = Graphics::SCR_HEIGHT / 2.0;;
+
 	void Input::Start()
 	{
-		firstMouse_ = true;
-		lastX_ = Graphics::SCR_WIDTH / 2.0;
-		lastY_ = Graphics::SCR_HEIGHT / 2.0;
 	}
 
 	void Input::End()
@@ -51,17 +53,17 @@ namespace GenevaEngine
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-			Graphics::SetClearColor(Color(000000));
-		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 			Graphics::SetClearColor(Graphics::palette[0]);
-		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 			Graphics::SetClearColor(Graphics::palette[1]);
-		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
 			Graphics::SetClearColor(Graphics::palette[2]);
-		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
 			Graphics::SetClearColor(Graphics::palette[3]);
-		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
 			Graphics::SetClearColor(Graphics::palette[4]);
+		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+			Graphics::SetClearColor(Graphics::palette[5]);
 
 		float dt = GameSession::GetDeltaTime();
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
