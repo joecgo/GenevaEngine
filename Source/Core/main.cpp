@@ -28,7 +28,6 @@
 #include <Graphics/Mesh.hpp>
 #include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
-#include <Graphics/Palette.hpp>
 
 namespace GenevaEngine
 {
@@ -53,7 +52,8 @@ namespace GenevaEngine
 	float deltaTime = 0.0f;	// time between current frame and last frame
 	float lastFrame = 0.0f;
 
-	Color palette[]{
+	typedef std::vector<Color> Palette;
+	Palette palette{
 	  Color(0x7eed94),
 	  Color(0x1a2c79),
 	  Color(0xe6a26e),

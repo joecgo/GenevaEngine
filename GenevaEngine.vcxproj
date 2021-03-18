@@ -28,10 +28,6 @@
     <ClCompile Include="Source\Graphics\Camera.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Model.cpp" />
-    <ClCompile Include="Source\Graphics\Palette.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="External\stb\stb_image.cpp" />
   </ItemGroup>
@@ -43,10 +39,6 @@
     <ClInclude Include="Source\Graphics\Camera.hpp" />
     <ClInclude Include="Source\Graphics\Mesh.hpp" />
     <ClInclude Include="Source\Graphics\Model.hpp" />
-    <ClInclude Include="Source\Graphics\Palette.hpp">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Shader.hpp" />
   </ItemGroup>
   <ItemGroup>
