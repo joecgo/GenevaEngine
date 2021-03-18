@@ -9,17 +9,26 @@
  ****************************************************************************/
 
  /**
-  * \file Main.cpp
+  * \file ASystem.hpp
   * \author Joe Goldman
-  * \brief Launches engine in main()
+  * \brief Abstract system class declaration
+  *
   */
 
-#include <Core/GameSession.hpp>
+#pragma once
 
-int main()
+namespace GenevaEngine
 {
-	GenevaEngine::GameSession gs;
-	while (gs.IsRunning()) {}
+	/*!
+	 *  Abstract class for game engine systems to inherit from
+	 */
+	static class ASystem
+	{
+	private:
+		virtual void Start() {}
+		virtual void Update() {}
+		virtual void End() {}
 
-	return 0;
+		friend class GameSession;
+	};
 }

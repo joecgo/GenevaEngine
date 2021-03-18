@@ -19,7 +19,6 @@
   // Disable warning messages from assimp: C26812 C26451
 #pragma warning( disable : 26812 26451)
 
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <assimp/Importer.hpp>
@@ -52,6 +51,8 @@ namespace GenevaEngine
 		string directory;
 		bool gammaCorrection;
 
+		// default constructor
+		Model() {};
 		// constructor, expects a filepath to a 3D model.
 		Model(string const& path, bool gamma = false);
 

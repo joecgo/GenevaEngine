@@ -9,17 +9,14 @@
  ****************************************************************************/
 
  /**
-  * \file Main.cpp
+  * \file ASystem.cpp
   * \author Joe Goldman
-  * \brief Launches engine in main()
-  */
+  * \brief Abstract System class definition
+  *
+  **/
 
-#include <Core/GameSession.hpp>
+#include <Core/ASystem.hpp>
 
-int main()
+namespace GenevaEngine
 {
-	GenevaEngine::GameSession gs;
-	while (gs.IsRunning()) {}
-
-	return 0;
 }

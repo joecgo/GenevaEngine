@@ -20,26 +20,58 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\glad\glad.c" />
+    <ClCompile Include="Source\Core\ASystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Core\GameSession.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Graphics\Color.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Core\Main.cpp" />
     <ClCompile Include="Source\Graphics\Camera.cpp" />
+    <ClCompile Include="Source\Graphics\Graphics.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="External\stb\stb_image.cpp" />
+    <ClCompile Include="Source\Input\Input.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\ASystem.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Core\GameSession.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Graphics\Color.hpp">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Camera.hpp" />
+    <ClInclude Include="Source\Graphics\Graphics.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Graphics\Mesh.hpp" />
     <ClInclude Include="Source\Graphics\Model.hpp" />
     <ClInclude Include="Source\Graphics\Shader.hpp" />
+    <ClInclude Include="Source\Input\Input.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\GreyShader.frag" />
