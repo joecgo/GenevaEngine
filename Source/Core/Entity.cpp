@@ -43,13 +43,26 @@ namespace GenevaEngine
 
 	void Entity::Start()
 	{
+		model_ = Graphics::GetModel(model_name_);
+		shader_ = Graphics::GetShader(shader_name_);
 	}
 
 	void Entity::Update()
 	{
+		Render();
 	}
 
 	void Entity::End()
 	{
+	}
+
+	void Entity::Render()
+	{
+		// TODO: move caclculation of world transformation to transform component
+		glm::mat4 transform = glm::mat4(1.0f);
+		transform = glm::translate(transform, position_);
+		transform = glm::scale(transform, scale_);
+
+		Graphics::Render(model_, shader_, transform);
 	}
 }

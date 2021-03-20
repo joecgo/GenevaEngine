@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Input/Input.hpp>
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {

@@ -53,6 +53,8 @@ namespace GenevaEngine
 		void Update();
 		void End();
 
+		void Render();
+
 		friend class GameSession;
 	};
 }

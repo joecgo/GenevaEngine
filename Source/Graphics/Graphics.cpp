@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Graphics\Graphics.hpp>
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
@@ -25,6 +25,14 @@ namespace GenevaEngine
 		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
 	Camera Graphics::camera(glm::vec3(0.0f, 0.0f, 3.0f));;
 	GLFWwindow* Graphics::window;
+	std::queue<RenderData> Graphics::render_queue_;
+	std::map<std::string, Shader> Graphics::shaders_;
+	std::map<std::string, Model> Graphics::models_;
+
+	RenderData::RenderData(Shader* shader, Model* model, glm::mat4 world_tranform) :
+		shader_(shader), model_(model), world_transform_(world_tranform)
+	{
+	}
 
 	void Graphics::Start()
 	{
@@ -85,43 +93,44 @@ namespace GenevaEngine
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// practice with coordinate systems and camera view
-		//textureShader.use();
-		//glm::mat4 view = camera.GetViewMatrix();
-		//glm::mat4 projection;
-		//projection = glm::perspective(glm::radians(camera.Fov),
-		//	(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		//int viewLoc = glGetUniformLocation(textureShader.ID, "view");
-		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		//int projectionLoc = glGetUniformLocation(textureShader.ID, "projection");
-		//glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		//
-		//// render the test model
-		//glm::mat4 model1 = glm::mat4(1.0f);
-		//model1 = glm::translate(model1, glm::vec3(0.0f, 0.0f, 0.0f));
-		//model1 = glm::scale(model1, glm::vec3(1.0f, 1.0f, 1.0f));
-		//int modelLoc1 = glGetUniformLocation(textureShader.ID, "model");
-		//glUniformMatrix4fv(modelLoc1, 1, GL_FALSE, glm::value_ptr(model1));
-		//testModel.Draw(textureShader);
-		//
-		//// practice with coordinate systems and camera view
-		//greyShader.use();
-		//int viewLoc2 = glGetUniformLocation(greyShader.ID, "view");
-		//glUniformMatrix4fv(viewLoc2, 1, GL_FALSE, glm::value_ptr(view));
-		//int projectionLoc2 = glGetUniformLocation(greyShader.ID, "projection");
-		//glUniformMatrix4fv(projectionLoc2, 1, GL_FALSE, glm::value_ptr(projection));
-		//
-		//// render kevin
-		//glm::mat4 model2 = glm::mat4(1.0f);
-		//model2 = glm::translate(model2, glm::vec3(5.0f, -2.0f, 0.0f));
-		//model2 = glm::scale(model2, glm::vec3(5.0f, 5.0f, 5.0f));
-		//int modelLoc2 = glGetUniformLocation(greyShader.ID, "model");
-		//glUniformMatrix4fv(modelLoc2, 1, GL_FALSE, glm::value_ptr(model2));
-		//kevinModel.Draw(greyShader);
-		//
+		// get view matrics from camera
+		glm::mat4 view = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
+
+		// render everything in the render queue
+		while (!render_queue_.empty())
+		{
+			// retrieve data from front of queue
+			RenderData data = render_queue_.front();
+			Shader* shader = data.shader_;
+			Model* model = data.model_;
+			glm::mat4 worldTransform = data.world_transform_;
+			render_queue_.pop();
+
+			// render the model using shader and camera view
+			shader->use();
+			int viewLoc = glGetUniformLocation(shader->ID, "view");
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+			int modelLoc = glGetUniformLocation(shader->ID, "model");
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(worldTransform));
+			model->Draw(*shader);
+		}
+
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+	}
+
+	/*!
+	 *  Queues up the provided object data to be rendered next update.
+	 *
+	 *      \param [in,out] model
+	 *      \param [in,out] shader
+	 *      \param [in]     worldTranform
+	 */
+	void Graphics::Render(Model* model, Shader* shader, glm::mat4 worldTranform)
+	{
+		// package data for rendering during next graphics update, placed in queue
+		render_queue_.push(RenderData(shader, model, worldTranform));
 	}
 
 	/*!
@@ -164,9 +173,9 @@ namespace GenevaEngine
 	 *
 	 *      \return The shader.
 	 */
-	Shader Graphics::GetShader(std::string name)
+	Shader* Graphics::GetShader(std::string name)
 	{
-		return shaders_[name];
+		return &(shaders_[name]);
 	}
 
 	/*!
@@ -187,8 +196,8 @@ namespace GenevaEngine
 	 *
 	 *      \return The model.
 	 */
-	Model Graphics::GetModel(std::string name)
+	Model* Graphics::GetModel(std::string name)
 	{
-		return models_[name];
+		return &(models_[name]);
 	}
 }

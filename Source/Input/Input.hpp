@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include <Graphics/Graphics.hpp>
 #include <Graphics/Camera.hpp>
 #include <Core/GameCommon.hpp>
 

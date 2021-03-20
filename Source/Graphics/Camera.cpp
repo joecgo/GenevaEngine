@@ -28,7 +28,8 @@ namespace GenevaEngine
 	Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
 		Front(glm::vec3(0.0f, 0.0f, -1.0f)),
 		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY), Fov(FOV)
+		MouseSensitivity(SENSITIVITY),
+		Fov(FOV)
 	{
 		Position = position;
 		WorldUp = up;
@@ -65,9 +66,13 @@ namespace GenevaEngine
 	 *
 	 *      \return The view matrix.
 	 */
-	glm::mat4 Camera::GetViewMatrix()
+	glm::mat4 Camera::GetViewMatrix(int screen_width, int screen_height) const
 	{
-		return glm::lookAt(Position, Position + Front, Up);
+		glm::mat4 view = glm::lookAt(Position, Position + Front, Up);
+		glm::mat4 perspective = glm::perspective(glm::radians(Fov),
+			(float)screen_width / (float)screen_height, NearClipping, FarClipping);
+
+		return view * perspective;
 	}
 
 	/*!

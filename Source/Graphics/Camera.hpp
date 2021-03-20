@@ -67,8 +67,11 @@ namespace GenevaEngine
 		float MovementSpeed;
 		float MouseSensitivity;
 		float Fov;
+		float NearClipping = 0.1f;
+		float FarClipping = 100.0f;
 		float MaxFov = 150.0f;
 		float MinFov = 20.0f;
+		bool PerspectiveView = true; // as opposed to orthogonal
 
 		// constructor with vectors
 		Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),
@@ -78,8 +81,9 @@ namespace GenevaEngine
 		Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw,
 			float pitch);
 
-		// returns the view matrix calculated using Euler Angles and the LookAt Matrix
-		glm::mat4 GetViewMatrix();
+		// returns the view matrix calculated using Euler Angles,
+		// the LookAt Matrix and (potentially) a perspective transformation
+		glm::mat4 GetViewMatrix(int screen_width, int screen_height) const;
 
 		// processes input received from any keyboard-like input system.
 		// Accepts input parameter in the form of camera defined ENUM

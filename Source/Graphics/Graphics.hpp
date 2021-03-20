@@ -27,6 +27,7 @@
 #include <iostream> // cout, endl
 #include <vector> // vector
 #include <map> // map
+#include <queue> // queue
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
@@ -36,6 +37,14 @@
 
 namespace GenevaEngine
 {
+	struct RenderData
+	{
+		RenderData(Shader* shader, Model* model, glm::mat4 world_tranform);
+		Shader* shader_;
+		Model* model_;
+		glm::mat4 world_transform_;
+	};
+
 	class Graphics : public ASystem
 	{
 	public:
@@ -54,15 +63,17 @@ namespace GenevaEngine
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 		// shader storage and access methods
 		void SaveShader(std::string name, Shader shader);
-		Shader GetShader(std::string name);
+		static Shader* GetShader(std::string name);
 		// model storage and access methods
 		void SaveModel(std::string name, Model model);
-		Model GetModel(std::string name);
+		static Model* GetModel(std::string name);
+		static void Render(Model* model, Shader* shader, glm::mat4 worldTranform);
 
 	private:
 		// asset storage in maps
-		std::map<std::string, Shader> shaders_;
-		std::map<std::string, Model> models_;
+		static std::map<std::string, Shader> shaders_;
+		static std::map<std::string, Model> models_;
+		static std::queue<RenderData> render_queue_;
 
 		// inherited methods and constructors
 		using ASystem::ASystem;
