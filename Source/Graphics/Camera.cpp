@@ -72,7 +72,7 @@ namespace GenevaEngine
 		glm::mat4 perspective = glm::perspective(glm::radians(Fov),
 			(float)screen_width / (float)screen_height, NearClipping, FarClipping);
 
-		return view * perspective;
+		return perspective * view;
 	}
 
 	/*!
