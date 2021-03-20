@@ -17,10 +17,9 @@
 
 #pragma once
 
-#include <Core/ASystem.hpp>
-
 #include <Graphics/Graphics.hpp>
 #include <Graphics/Camera.hpp>
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
@@ -39,7 +38,8 @@ namespace GenevaEngine
 		static double lastX_;
 		static double lastY_;
 
-		// inherited virtual methods
+		// inherited methods and constructors
+		using ASystem::ASystem;
 		void Start();
 		void Update();
 		void End();

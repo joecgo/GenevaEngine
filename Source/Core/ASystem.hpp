@@ -16,17 +16,19 @@
   */
 
 #pragma once
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
-	class GameSession;
-
 	/*!
 	 *  Abstract class for game engine systems to inherit from
 	 */
 	class ASystem
 	{
 	private:
+		GameSession* gamesession_;
+
+		ASystem(GameSession* gs) : gamesession_(gs) { gamesession_->AddSystem(this); }
 		virtual void Start() = 0;
 		virtual void Update() = 0;
 		virtual void End() = 0;

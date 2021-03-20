@@ -17,7 +17,7 @@
   */
 
 #pragma once
-#include <Core/ASystem.hpp>
+#include <Core/GameCommon.hpp>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -33,9 +33,6 @@
 #include <Graphics/Mesh.hpp>
 #include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
-#include <Graphics/Graphics.hpp>
-#include <Input/Input.hpp>
-#include <Core/GameCommon.hpp>
 #include <vector> // vector
 
 namespace GenevaEngine

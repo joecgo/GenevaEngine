@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include <Core/ASystem.hpp>
+#include <Core/GameCommon.hpp>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -33,7 +33,6 @@
 #include <Graphics/Mesh.hpp>
 #include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
-#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
@@ -65,7 +64,8 @@ namespace GenevaEngine
 		std::map<std::string, Shader> shaders_;
 		std::map<std::string, Model> models_;
 
-		// inherited virtual methods
+		// inherited methods and constructors
+		using ASystem::ASystem;
 		void Start();
 		void Update();
 		void End();

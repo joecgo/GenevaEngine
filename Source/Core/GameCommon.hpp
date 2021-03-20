@@ -18,4 +18,7 @@
 #pragma once
 
 #include <Core/GameSession.hpp>
+#include <Core/ASystem.hpp>
 #include <Core/Entity.hpp>
+#include <Graphics/Graphics.hpp>
+#include <Input/Input.hpp>

@@ -29,8 +29,8 @@ namespace GenevaEngine
 	 */
 	GameSession::GameSession()
 	{
-		new Input();
-		new Graphics();
+		new Input(this);
+		new Graphics(this);
 		CreateEntities();
 		Start();
 	}
