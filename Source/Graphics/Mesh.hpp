@@ -16,19 +16,20 @@
 
 #pragma once
 
-#include <glad/glad.h> // holds all OpenGL type declarations
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // GLFW
+#include <glm/gtc/matrix_transform.hpp> // vec2 vec3
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <string> // string
+#include <vector> // vector
 
 #include <Graphics/Shader.hpp>
 
-#include <string>
-#include <vector>
-using namespace std;
-
 namespace GenevaEngine
 {
+	using std::vector;
+	using std::string;
+
 	/**
 	 * \brief Container for all the data associated with a single vertex
 	 */
@@ -50,8 +51,8 @@ namespace GenevaEngine
 	 */
 	struct Texture {
 		unsigned int id = 0;
-		string type;
-		string path;
+		std::string type;
+		std::string path;
 	};
 
 	/*!

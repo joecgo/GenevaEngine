@@ -29,11 +29,6 @@ namespace GenevaEngine
 	std::map<std::string, Shader> Graphics::shaders_;
 	std::map<std::string, Model> Graphics::models_;
 
-	RenderData::RenderData(Shader* shader, Model* model, glm::mat4 world_tranform) :
-		shader_(shader), model_(model), world_transform_(world_tranform)
-	{
-	}
-
 	void Graphics::Start()
 	{
 		// glfw: initialize and configure

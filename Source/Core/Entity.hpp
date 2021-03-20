@@ -17,12 +17,13 @@
 
 #pragma once
 
-#include <glm/glm.hpp>
+#include <glm/glm.hpp> // vec3
+
+#include <string>
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Model.hpp>
 #include <Core/GameCommon.hpp>
-#include <string>
 
 namespace GenevaEngine
 {

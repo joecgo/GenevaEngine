@@ -17,18 +17,18 @@
 
 #pragma once
 
-#include <Core/GameCommon.hpp>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <stb/stb_image.h>
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // GLFW
+#include <glm/gtc/matrix_transform.hpp> // vec3 mat4
+#include <glm/gtc/type_ptr.hpp> // value_ptr
+#include <stb/stb_image.h> // stbi_set_flip_vertically_on_load
 
 #include <iostream> // cout, endl
 #include <vector> // vector
 #include <map> // map
 #include <queue> // queue
 
+#include <Core/GameCommon.hpp>
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
 #include <Graphics/Mesh.hpp>
@@ -39,7 +39,8 @@ namespace GenevaEngine
 {
 	struct RenderData
 	{
-		RenderData(Shader* shader, Model* model, glm::mat4 world_tranform);
+		RenderData(Shader* shader, Model* model, glm::mat4 world_tranform) :
+			shader_(shader), model_(model), world_transform_(world_tranform) {}
 		Shader* shader_;
 		Model* model_;
 		glm::mat4 world_transform_;

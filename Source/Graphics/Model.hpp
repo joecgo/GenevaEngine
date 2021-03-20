@@ -24,9 +24,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include <stb/stb_image.h>
-
-#include <Graphics/Mesh.hpp>
+#include <stb/stb_image.h> // stbi_image_free stbi_image_load
 
 #include <string>
 #include <fstream>
@@ -34,6 +32,8 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
+#include <Graphics/Mesh.hpp>
 
 namespace GenevaEngine
 {

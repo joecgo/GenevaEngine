@@ -16,7 +16,8 @@
 
 #pragma once
 
-#include <glad/glad.h>
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // GLFW
 
 #include <string>
 #include <fstream>

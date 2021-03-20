@@ -17,23 +17,12 @@
   */
 
 #pragma once
-#include <Core/GameCommon.hpp>
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // glfwWindowShouldClose
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <stb/stb_image.h>
-
-#include <iostream> // cout, endl
-
-#include <Graphics/Shader.hpp>
-#include <Graphics/Camera.hpp>
-#include <Graphics/Mesh.hpp>
-#include <Graphics/Model.hpp>
-#include <Graphics/Color.hpp>
 #include <vector> // vector
+
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
