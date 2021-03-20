@@ -16,7 +16,7 @@
   *
   **/
 
-#include <Core/GameSession.hpp>
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
@@ -29,8 +29,8 @@ namespace GenevaEngine
 	 */
 	GameSession::GameSession()
 	{
-		//new Input();
-		//new Graphics();
+		new Input();
+		new Graphics();
 		CreateEntities();
 		Start();
 	}
@@ -41,9 +41,9 @@ namespace GenevaEngine
 	 */
 	void GameSession::CreateEntities()
 	{
-		new Entity(glm::vec3(5.0f, -2.0f, 0.0f), glm::vec3(5.0f, 5.0f, 5.0f),
+		new Entity(this, glm::vec3(5.0f, -2.0f, 0.0f), glm::vec3(5.0f, 5.0f, 5.0f),
 			"kevin", "greyShader");
-		new Entity(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
+		new Entity(this, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 			"backpack", "textureShader");
 	}
 

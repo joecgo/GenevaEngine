@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Core/Entity.hpp>
+#include <Core/GameCommon.hpp>
 
 using namespace std;
 namespace GenevaEngine
@@ -30,12 +30,15 @@ namespace GenevaEngine
 	 *
 	 *      \return
 	 */
-	Entity::Entity(glm::vec3 pos, glm::vec3 scale, string model_name, string shader_name) :
+	Entity::Entity(GameSession* gs, glm::vec3 pos, glm::vec3 scale,
+		string model_name, string shader_name) :
+		gamesession_(gs),
 		position_(pos),
 		scale_(scale),
 		model_name_(model_name),
 		shader_name_(shader_name)
 	{
+		gamesession_->AddEntity(this);
 	}
 
 	void Entity::Start()

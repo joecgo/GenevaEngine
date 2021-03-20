@@ -21,6 +21,12 @@ using namespace std;
 namespace GenevaEngine
 {
 	/*!
+	 *  Constructor.
+	 *
+	 */
+	Model::Model() {};
+
+	/*!
 	 *  Constructor that expects a filepath to a 3D model..
 	 *
 	 *      \param [in] path

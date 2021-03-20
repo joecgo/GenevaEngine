@@ -28,7 +28,6 @@
 
 #include <iostream> // cout, endl
 
-#include <Core/Entity.hpp>
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
 #include <Graphics/Mesh.hpp>
@@ -36,11 +35,14 @@
 #include <Graphics/Color.hpp>
 #include <Graphics/Graphics.hpp>
 #include <Input/Input.hpp>
-
+#include <Core/GameCommon.hpp>
 #include <vector> // vector
 
 namespace GenevaEngine
 {
+	class Entity;
+	class ASystem;
+
 	/*!
 	 *  GameSession contains the control flow and initialization of all the systems.
 	 */
@@ -48,6 +50,7 @@ namespace GenevaEngine
 	{
 	public:
 		GameSession();
+
 		bool IsRunning() { return isRunning_; }
 		static float GetDeltaTime() { return deltaTime_; }
 		void AddSystem(ASystem* system);

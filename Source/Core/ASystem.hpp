@@ -19,6 +19,8 @@
 
 namespace GenevaEngine
 {
+	class GameSession;
+
 	/*!
 	 *  Abstract class for game engine systems to inherit from
 	 */

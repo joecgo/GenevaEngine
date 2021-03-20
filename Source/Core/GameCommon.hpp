@@ -9,17 +9,13 @@
  ****************************************************************************/
 
  /**
-  * \file Main.cpp
+  * \file GameCommon.hpp
   * \author Joe Goldman
-  * \brief Launches engine in main()
+  * \brief Includes all the common classes for the game engine in one place
+  *
   */
 
-#include <Core/GameCommon.hpp>
+#pragma once
 
-int main()
-{
-	GenevaEngine::GameSession gs;
-	while (gs.IsRunning()) {}
-
-	return 0;
-}
+#include <Core/GameSession.hpp>
+#include <Core/Entity.hpp>

@@ -21,7 +21,7 @@
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Model.hpp>
-#include <Core/GameSession.hpp>
+#include <Core/GameCommon.hpp>
 #include <string>
 
 namespace GenevaEngine
@@ -32,7 +32,7 @@ namespace GenevaEngine
 	class Entity
 	{
 	public:
-		Entity(glm::vec3 pos, glm::vec3 scale, string model_name,
+		Entity(GameSession* gs, glm::vec3 pos, glm::vec3 scale, string model_name,
 			string shader_name = "textureShader");
 
 		// TODO: store these things in components that are attached to the Entity
@@ -47,6 +47,8 @@ namespace GenevaEngine
 		glm::vec3 scale_ = glm::vec3(1.0f, 1.0f, 51.0f);
 
 	private:
+		GameSession* gamesession_;
+
 		void Start();
 		void Update();
 		void End();

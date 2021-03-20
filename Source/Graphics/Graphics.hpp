@@ -33,7 +33,7 @@
 #include <Graphics/Mesh.hpp>
 #include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
-#include <Core/GameSession.hpp>
+#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {

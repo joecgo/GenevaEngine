@@ -19,6 +19,11 @@
 namespace GenevaEngine
 {
 	/*!
+	 *  Default Constructor.
+	 */
+	Shader::Shader() {}
+
+	/*!
 	 *  constructor generates the shader a fragment shader and vertex shader file path
 	 *
 	 *      \param [in] vertexPath
