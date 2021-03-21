@@ -62,7 +62,7 @@ namespace GenevaEngine
 	 */
 	void Entity::Render()
 	{
-		// TODO: move caclculation of world transformation to transform component
+		// TODO: add rotation
 		glm::mat4 transform = glm::mat4(1.0f);
 		transform = glm::translate(transform, position_);
 		transform = glm::scale(transform, scale_);
