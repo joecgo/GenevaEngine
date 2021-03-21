@@ -110,6 +110,9 @@ namespace GenevaEngine
 		isRunning_ = false;
 	}
 
+	/*!
+	 *  Time tick, called once per frame
+	 */
 	void GameSession::UpdateTime()
 	{
 		// per-frame time logic
@@ -118,11 +121,21 @@ namespace GenevaEngine
 		lastFrame_ = currentFrame;
 	}
 
+	/*!
+	 *  Adds an entity to GameSession's array of entity
+	 *
+	 *      \param [in,out] entity
+	 */
 	void GameSession::AddEntity(Entity* entity)
 	{
 		entities_.push_back(entity);
 	}
 
+	/*!
+	 *  Adds a System to GameSession's array of Systems
+	 *
+	 *      \param [in,out] system
+	 */
 	void GameSession::AddSystem(ASystem* system)
 	{
 		systems_.push_back(system);

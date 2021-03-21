@@ -56,6 +56,10 @@ namespace GenevaEngine
 	{
 	}
 
+	/*!
+	 *  Calculates world transform and makes a request to the graphics system to render
+	 *  this entity.
+	 */
 	void Entity::Render()
 	{
 		// TODO: move caclculation of world transformation to transform component
