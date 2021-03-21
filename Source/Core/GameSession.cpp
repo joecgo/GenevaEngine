@@ -20,17 +20,13 @@
 
 namespace GenevaEngine
 {
-	// define static variables
-	float GameSession::deltaTime_ = 0.0f;
-	float GameSession::lastFrame_ = 0.0f;
-
 	/*!
 	 *  Constructor. Initialize and start core systems
 	 */
 	GameSession::GameSession()
 	{
-		new Input(this);
-		new Graphics(this);
+		input = new Input(this);
+		graphics = new Graphics(this);
 		CreateEntities();
 		Start();
 	}
@@ -53,11 +49,11 @@ namespace GenevaEngine
 	void GameSession::Start()
 	{
 		// start systems
-		for (ASystem* system : systems_)
+		for (ASystem* system : systems)
 			system->Start();
 
 		// start entities
-		for (Entity* entity : entities_)
+		for (Entity* entity : entities)
 			entity->Start();
 
 		GameLoop();
@@ -68,18 +64,20 @@ namespace GenevaEngine
 	 */
 	void GameSession::GameLoop()
 	{
-		while (!glfwWindowShouldClose(Graphics::window))
+		while (!glfwWindowShouldClose(graphics->window))
 		{
-			// TODO?: move this method to a time or physics system
+			// Delta time updated
 			UpdateTime();
 
-			// update systems
-			for (ASystem* system : systems_)
-				system->Update();
+			// Input system updated
+			input->Update();
 
-			// update entities
-			for (Entity* entity : entities_)
+			// Entities updated
+			for (Entity* entity : entities)
 				entity->Update();
+
+			// Graphics system updated
+			graphics->Update();
 		}
 
 		End();
@@ -91,23 +89,23 @@ namespace GenevaEngine
 	void GameSession::End()
 	{
 		// end entities
-		for (Entity* entity : entities_)
+		for (Entity* entity : entities)
 			entity->End();
 
 		// end systems
-		for (ASystem* system : systems_)
+		for (ASystem* system : systems)
 			system->End();
 
 		// delete entities
-		for (Entity* entity : entities_)
+		for (Entity* entity : entities)
 			delete entity;
 
 		// delete systems
-		for (ASystem* system : systems_)
+		for (ASystem* system : systems)
 			delete system;
 
 		// public flag for closing down the program in main()
-		isRunning_ = false;
+		isRunning = false;
 	}
 
 	/*!
@@ -117,8 +115,8 @@ namespace GenevaEngine
 	{
 		// per-frame time logic
 		float currentFrame = (float)glfwGetTime();
-		deltaTime_ = currentFrame - lastFrame_;
-		lastFrame_ = currentFrame;
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
 	}
 
 	/*!
@@ -128,7 +126,7 @@ namespace GenevaEngine
 	 */
 	void GameSession::AddEntity(Entity* entity)
 	{
-		entities_.push_back(entity);
+		entities.push_back(entity);
 	}
 
 	/*!
@@ -138,6 +136,6 @@ namespace GenevaEngine
 	 */
 	void GameSession::AddSystem(ASystem* system)
 	{
-		systems_.push_back(system);
+		systems.push_back(system);
 	}
 }

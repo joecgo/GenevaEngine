@@ -28,6 +28,8 @@ namespace GenevaEngine
 {
 	class Entity;
 	class ASystem;
+	class Graphics;
+	class Input;
 
 	/*!
 	 *  GameSession contains the control flow and initialization of all the systems.
@@ -37,25 +39,24 @@ namespace GenevaEngine
 	public:
 		GameSession();
 
-		bool IsRunning() { return isRunning_; }
-		static float GetDeltaTime() { return deltaTime_; }
+		bool isRunning = true; // flag tells main when to return
+		float deltaTime = 0.0f; // time between current frame and last frame
+		float lastFrame = 0.0f;
+		Graphics* graphics = nullptr;
+		Input* input = nullptr;
+
 		void AddSystem(ASystem* system);
 		void AddEntity(Entity* entity);
 
 	private:
-		// TODO?: Move time-related stuff to its own system
-		static float deltaTime_; // time between current frame and last frame
-		static float lastFrame_;
+		// system and entity references
+		std::vector<ASystem*> systems;
+		std::vector<Entity*> entities;
 
-		bool isRunning_ = true;
-
-		std::vector<ASystem*> systems_;
-		std::vector<Entity*> entities_;
-
-		void CreateEntities();
 		void Start();
 		void GameLoop();
 		void End();
+		void CreateEntities();
 		void UpdateTime();
 	};
 }

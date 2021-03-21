@@ -19,7 +19,7 @@
 
 #include <glm/glm.hpp> // vec3
 
-#include <string>
+#include <string> // string
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Model.hpp>
@@ -38,17 +38,17 @@ namespace GenevaEngine
 
 		// TODO: store these things in components that are attached to the Entity
 		// Model Component
-		Model* model_ = nullptr;
-		std::string model_name_ = 0;
+		Model* model = nullptr;
+		std::string model_name = 0;
 		// Render Component
-		Shader* shader_ = nullptr;
-		std::string shader_name_ = 0;
+		Shader* shader = nullptr;
+		std::string shader_name = 0;
 		// Transform Component
-		glm::vec3 position_ = glm::vec3(0.0f, 0.0f, 0.0f);
-		glm::vec3 scale_ = glm::vec3(1.0f, 1.0f, 51.0f);
+		glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+		glm::vec3 scale = glm::vec3(1.0f, 1.0f, 51.0f);
 
 	private:
-		GameSession* gamesession_;
+		GameSession* gamesession;
 
 		void Start();
 		void Update();

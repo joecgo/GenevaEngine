@@ -27,23 +27,17 @@ namespace GenevaEngine
 	 */
 	class Input : public ASystem
 	{
-	public:
-		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-		static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
 	private:
-		// mouse input state
-		static bool firstMouse_;
-		static double lastX_;
-		static double lastY_;
-
 		// inherited methods and constructors
 		using ASystem::ASystem;
+		using ASystem::DT;
 		void Start();
 		void Update();
 		void End();
 
 		// called on update
-		static void processInput(GLFWwindow* window);
+		void processInput(GLFWwindow* window);
+
+		friend class GameSession;
 	};
 }

@@ -19,15 +19,10 @@
 
 namespace GenevaEngine
 {
-	// define static variables
-	std::vector<Color> Graphics::palette = {
-		Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),
-		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
-	Camera Graphics::camera(glm::vec3(0.0f, 0.0f, 3.0f));;
-	GLFWwindow* Graphics::window;
-	std::queue<RenderData> Graphics::render_queue_;
-	std::map<std::string, Shader> Graphics::shaders_;
-	std::map<std::string, Model> Graphics::models_;
+	// define static member variables for mouse callback function
+	double Graphics::mouse_x = 0.0;
+	double Graphics::mouse_y = 0.0;
+	double Graphics::mouse_scroll = 0.0;
 
 	void Graphics::Start()
 	{
@@ -48,8 +43,8 @@ namespace GenevaEngine
 		}
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-		glfwSetCursorPosCallback(window, Input::mouse_callback);
-		glfwSetScrollCallback(window, Input::scroll_callback);
+		glfwSetCursorPosCallback(window, mouse_callback);
+		glfwSetScrollCallback(window, scroll_callback);
 
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -85,6 +80,8 @@ namespace GenevaEngine
 
 	void Graphics::Update()
 	{
+		UpdateCameraMovement();
+
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -92,14 +89,14 @@ namespace GenevaEngine
 		glm::mat4 view = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
 
 		// render everything in the render queue
-		while (!render_queue_.empty())
+		while (!render_queue.empty())
 		{
 			// retrieve data from front of queue
-			RenderData data = render_queue_.front();
-			Shader* shader = data.shader_;
-			Model* model = data.model_;
-			glm::mat4 worldTransform = data.world_transform_;
-			render_queue_.pop();
+			RenderData data = render_queue.front();
+			Shader* shader = data.shader;
+			Model* model = data.model;
+			glm::mat4 worldTransform = data.world_transform;
+			render_queue.pop();
 
 			// render the model using shader and camera view
 			shader->use();
@@ -125,7 +122,7 @@ namespace GenevaEngine
 	void Graphics::Render(Model* model, Shader* shader, glm::mat4 worldTranform)
 	{
 		// package data for rendering during next graphics update, placed in queue
-		render_queue_.push(RenderData(shader, model, worldTranform));
+		render_queue.push(RenderData(shader, model, worldTranform));
 	}
 
 	/*!
@@ -139,18 +136,6 @@ namespace GenevaEngine
 	}
 
 	/*!
-	 *  Callback for the framebuffer
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     width
-	 *      \param [in]     height
-	 */
-	void Graphics::framebuffer_size_callback(GLFWwindow* window, int width, int height)
-	{
-		glViewport(0, 0, width, height);
-	}
-
-	/*!
 	 *  Saves a shader by name.
 	 *
 	 *      \param [in] name
@@ -158,7 +143,7 @@ namespace GenevaEngine
 	 */
 	void Graphics::SaveShader(std::string name, Shader shader)
 	{
-		shaders_[name] = shader;
+		shaders[name] = shader;
 	}
 
 	/*!
@@ -170,7 +155,7 @@ namespace GenevaEngine
 	 */
 	Shader* Graphics::GetShader(std::string name)
 	{
-		return &(shaders_[name]);
+		return &(shaders[name]);
 	}
 
 	/*!
@@ -181,7 +166,7 @@ namespace GenevaEngine
  */
 	void Graphics::SaveModel(std::string name, Model model)
 	{
-		models_[name] = model;
+		models[name] = model;
 	}
 
 	/*!
@@ -193,6 +178,67 @@ namespace GenevaEngine
 	 */
 	Model* Graphics::GetModel(std::string name)
 	{
-		return &(models_[name]);
+		return &(models[name]);
+	}
+
+	/*!
+	 *  Callback for mouse input
+	 *
+	 *      \param [in,out] window
+	 *      \param [in]     xpos
+	 *      \param [in]     ypos
+	 */
+
+	void Graphics::UpdateCameraMovement()
+	{
+		if (firstMouse)
+		{
+			lastX = mouse_x;
+			lastY = mouse_y;
+			firstMouse = false;
+		}
+
+		double xoffset = mouse_x - lastX;
+		double yoffset = lastY - mouse_y; // reversed since y-coordinates go from bottom to top
+		lastX = mouse_x;
+		lastY = mouse_y;
+
+		float sensitivity = 0.1f; // change this value to your liking
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		camera.ProcessMouseMovement((float)xoffset, (float)yoffset);
+		camera.ProcessMouseScroll((float)mouse_scroll);
+		mouse_scroll = 0.0;
+	}
+
+	void Graphics::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+	{
+		mouse_x = xpos;
+		mouse_y = ypos;
+	}
+
+	/*!
+	 *  callback for scroll input
+	 *
+	 *      \param [in,out] window
+	 *      \param [in]     xoffset
+	 *      \param [in]     yoffset
+	 */
+	void Graphics::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		mouse_scroll = yoffset;
+	}
+
+	/*!
+ *  Callback for the framebuffer
+ *
+ *      \param [in,out] window
+ *      \param [in]     width
+ *      \param [in]     height
+ */
+	void Graphics::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	{
+		glViewport(0, 0, width, height);
 	}
 }

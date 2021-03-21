@@ -39,11 +39,11 @@ namespace GenevaEngine
 {
 	struct RenderData
 	{
-		RenderData(Shader* shader, Model* model, glm::mat4 world_tranform) :
-			shader_(shader), model_(model), world_transform_(world_tranform) {}
-		Shader* shader_;
-		Model* model_;
-		glm::mat4 world_transform_;
+		RenderData(Shader* arg_shader, Model* arg_model, glm::mat4 arg_world_tranform) :
+			shader(arg_shader), model(arg_model), world_transform(arg_world_tranform) {}
+		Shader* shader;
+		Model* model;
+		glm::mat4 world_transform;
 	};
 
 	class Graphics : public ASystem
@@ -53,33 +53,53 @@ namespace GenevaEngine
 		static const unsigned int SCR_WIDTH = 1200;
 		static const unsigned int SCR_HEIGHT = 900;
 
-		// static variable declarations
-		static std::vector<Color> palette;
-		static Camera camera;
-		static GLFWwindow* window;
+		// member variables
+		std::vector<Color> palette = {
+		Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),
+		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
+		Camera camera = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
+		GLFWwindow* window;
 
-		// glfw wrappers
-		static void SetClearColor(Color color);
 		// glfw callbacks
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+		static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+
+		// glfw wrappers
+		void SetClearColor(Color color);
 		// shader storage and access methods
 		void SaveShader(std::string name, Shader shader);
-		static Shader* GetShader(std::string name);
+		Shader* GetShader(std::string name);
 		// model storage and access methods
 		void SaveModel(std::string name, Model model);
-		static Model* GetModel(std::string name);
-		static void Render(Model* model, Shader* shader, glm::mat4 worldTranform);
+		Model* GetModel(std::string name);
+		// render model
+		void Render(Model* model, Shader* shader, glm::mat4 worldTranform);
 
 	private:
-		// asset storage in maps
-		static std::map<std::string, Shader> shaders_;
-		static std::map<std::string, Model> models_;
-		static std::queue<RenderData> render_queue_;
+		// mouse state
+		static double mouse_y;
+		static double mouse_x;
+		static double mouse_scroll;
+		bool firstMouse;
+		double lastX = SCR_WIDTH / 2.0f;
+		double lastY = SCR_HEIGHT / 2.0f;
 
-		// inherited methods and constructors
+		// asset storage in maps
+		std::map<std::string, Shader> shaders;
+		std::map<std::string, Model> models;
+		std::queue<RenderData> render_queue;
+
+		// inherited mebers, methods, and constructors
 		using ASystem::ASystem;
+		using ASystem::DT;
 		void Start();
 		void Update();
 		void End();
+
+		void UpdateCameraMovement();
+		void UpdateCameraFOV();
+
+		friend class GameSession;
 	};
 }

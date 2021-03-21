@@ -25,10 +25,24 @@ namespace GenevaEngine
 	 */
 	class ASystem
 	{
-	private:
-		GameSession* gamesession_;
+	protected:
+		GameSession* gamesession = nullptr;
 
-		ASystem(GameSession* gs) : gamesession_(gs) { gamesession_->AddSystem(this); }
+		/*!
+		 *		Returns the change in time from the previous frame to this one.
+		 *
+		 *      \return Delta Time, or the change in time from the previous frame to this one
+		 */
+		float DT() { return gamesession->deltaTime; }
+
+	private:
+		/*!
+		 *  Constructor.
+		 *
+		 *      \param [in] gs
+		 */
+		ASystem(GameSession* gs) : gamesession(gs) { gamesession->AddSystem(this); }
+
 		virtual void Start() = 0;
 		virtual void Update() = 0;
 		virtual void End() = 0;

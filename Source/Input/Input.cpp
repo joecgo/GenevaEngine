@@ -19,11 +19,6 @@
 
 namespace GenevaEngine
 {
-	// define static variables
-	bool Input::firstMouse_ = true;;
-	double Input::lastX_ = Graphics::SCR_WIDTH / 2.0;;
-	double Input::lastY_ = Graphics::SCR_HEIGHT / 2.0;;
-
 	void Input::Start()
 	{
 	}
@@ -34,7 +29,7 @@ namespace GenevaEngine
 
 	void Input::Update()
 	{
-		processInput(Graphics::window);
+		processInput(gamesession->graphics->window);
 	}
 
 	/*!
@@ -52,71 +47,31 @@ namespace GenevaEngine
 		if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+		Graphics* gfx = gamesession->graphics;
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[0]);
+			gfx->SetClearColor(gfx->palette[0]);
 		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[1]);
+			gfx->SetClearColor(gfx->palette[1]);
 		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[2]);
+			gfx->SetClearColor(gfx->palette[2]);
 		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[3]);
+			gfx->SetClearColor(gfx->palette[3]);
 		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[4]);
+			gfx->SetClearColor(gfx->palette[4]);
 		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
-			Graphics::SetClearColor(Graphics::palette[5]);
+			gfx->SetClearColor(gfx->palette[5]);
 
-		float dt = GameSession::GetDeltaTime();
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::FORWARD, dt);
+			gfx->camera.ProcessKeyboard(Camera::Movement::FORWARD, DT());
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::BACKWARD, dt);
+			gfx->camera.ProcessKeyboard(Camera::Movement::BACKWARD, DT());
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::LEFT, dt);
+			gfx->camera.ProcessKeyboard(Camera::Movement::LEFT, DT());
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::RIGHT, dt);
+			gfx->camera.ProcessKeyboard(Camera::Movement::RIGHT, DT());
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::DOWN, dt);
+			gfx->camera.ProcessKeyboard(Camera::Movement::DOWN, DT());
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-			Graphics::camera.ProcessKeyboard(Camera::Movement::UP, dt);
-	}
-
-	/*!
-	 *  Callback for mouse input
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     xpos
-	 *      \param [in]     ypos
-	 */
-	void Input::mouse_callback(GLFWwindow* window, double xpos, double ypos)
-	{
-		if (firstMouse_)
-		{
-			lastX_ = xpos;
-			lastY_ = ypos;
-			firstMouse_ = false;
-		}
-
-		double xoffset = xpos - lastX_;
-		double yoffset = lastY_ - ypos; // reversed since y-coordinates go from bottom to top
-		lastX_ = xpos;
-		lastY_ = ypos;
-
-		float sensitivity = 0.1f; // change this value to your liking
-		xoffset *= sensitivity;
-		yoffset *= sensitivity;
-
-		Graphics::camera.ProcessMouseMovement((float)xoffset, (float)yoffset);
-	}
-
-	/*!
-	 *  callback for scroll input
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     xoffset
-	 *      \param [in]     yoffset
-	 */
-	void Input::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-	{
-		Graphics::camera.ProcessMouseScroll((float)yoffset);
+			gfx->camera.ProcessKeyboard(Camera::Movement::UP, DT());
 	}
 }
