@@ -203,12 +203,13 @@ namespace GenevaEngine
 		lastX = mouse_x;
 		lastY = mouse_y;
 
-		float sensitivity = 0.1f; // change this value to your liking
-		xoffset *= sensitivity;
-		yoffset *= sensitivity;
+		float look_sensitivity = 10.0f;
+		float scroll_sensitivity = 100.0f;
+		xoffset *= look_sensitivity * DT();
+		yoffset *= look_sensitivity * DT();
 
 		camera.ProcessMouseMovement((float)xoffset, (float)yoffset);
-		camera.ProcessMouseScroll((float)mouse_scroll);
+		camera.ProcessMouseScroll((float)mouse_scroll * DT() * scroll_sensitivity);
 		mouse_scroll = 0.0;
 	}
 

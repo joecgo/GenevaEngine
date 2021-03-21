@@ -86,7 +86,7 @@ namespace GenevaEngine
 
 		// processes input received from any keyboard-like input system.
 		// Accepts input parameter in the form of camera defined ENUM
-		void ProcessKeyboard(Movement direction, float deltaTime);
+		void ProcessCameraMovement(Movement direction, float deltaTime);
 
 		// processes input received from a mouse input system.
 		// Expects the offset value in both the x and y direction.

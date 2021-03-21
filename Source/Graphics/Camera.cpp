@@ -83,7 +83,7 @@ namespace GenevaEngine
 	 *      \param [in] deltaTime
 	 *
 	 */
-	void Camera::ProcessKeyboard(Movement direction, float deltaTime)
+	void Camera::ProcessCameraMovement(Movement direction, float deltaTime)
 	{
 		float velocity = MovementSpeed * deltaTime;
 		if (direction == Movement::FORWARD)

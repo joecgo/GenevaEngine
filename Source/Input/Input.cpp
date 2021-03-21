@@ -61,17 +61,19 @@ namespace GenevaEngine
 		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
 			gfx->SetClearColor(gfx->palette[5]);
 
+		float sensitivity = 5.0f;
+		float moveRate = DT() * sensitivity;
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::FORWARD, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::FORWARD, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::BACKWARD, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::BACKWARD, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::LEFT, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::LEFT, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::RIGHT, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::RIGHT, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::DOWN, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::DOWN, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-			gfx->camera.ProcessKeyboard(Camera::Movement::UP, DT());
+			gfx->camera.ProcessCameraMovement(Camera::Movement::UP, moveRate);
 	}
 }
