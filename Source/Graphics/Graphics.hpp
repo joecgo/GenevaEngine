@@ -92,13 +92,12 @@ namespace GenevaEngine
 
 		// inherited mebers, methods, and constructors
 		using ASystem::ASystem;
-		using ASystem::DT;
+
 		void Start();
-		void Update();
+		void Update(float dt);
 		void End();
 
-		void UpdateCameraMovement();
-		void UpdateCameraFOV();
+		void UpdateCameraMovement(float dt);
 
 		friend class GameSession;
 	};

@@ -17,10 +17,14 @@
   */
 
 #pragma once
+
+#define MS_PER_FRAME 0.033333333 // 60fps: 0.01666666
+
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // glfwWindowShouldClose
 
 #include <vector> // vector
+#include <windows.h> // Sleep
 
 #include <Core/GameCommon.hpp>
 
@@ -39,9 +43,10 @@ namespace GenevaEngine
 	public:
 		GameSession();
 
+		// clock stuff
 		bool isRunning = true; // flag tells main when to return
-		float deltaTime = 0.0f; // time between current frame and last frame
-		float lastFrame = 0.0f;
+
+		// system references
 		Graphics* graphics = nullptr;
 		Input* input = nullptr;
 
@@ -57,6 +62,5 @@ namespace GenevaEngine
 		void GameLoop();
 		void End();
 		void CreateEntities();
-		void UpdateTime();
 	};
 }

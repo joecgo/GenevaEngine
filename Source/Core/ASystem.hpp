@@ -27,14 +27,6 @@ namespace GenevaEngine
 	{
 	protected:
 		GameSession* gamesession = nullptr;
-
-		/*!
-		 *		Returns the change in time from the previous frame to this one.
-		 *
-		 *      \return Delta Time, or the change in time from the previous frame to this one
-		 */
-		float DT() { return gamesession->deltaTime; }
-
 	private:
 		/*!
 		 *  Constructor.
@@ -44,7 +36,7 @@ namespace GenevaEngine
 		ASystem(GameSession* gs) : gamesession(gs) { gamesession->AddSystem(this); }
 
 		virtual void Start() = 0;
-		virtual void Update() = 0;
+		virtual void Update(float dt) = 0;
 		virtual void End() = 0;
 
 		friend class GameSession;

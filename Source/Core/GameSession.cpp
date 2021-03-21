@@ -64,20 +64,24 @@ namespace GenevaEngine
 	 */
 	void GameSession::GameLoop()
 	{
+		double lastTime = glfwGetTime() - MS_PER_FRAME;
+		double elapsed = 0.0;
 		while (!glfwWindowShouldClose(graphics->window))
 		{
-			// Delta time updated
-			UpdateTime();
+			double current = glfwGetTime();
+			elapsed = current - lastTime;
 
 			// Input system updated
-			input->Update();
+			input->Update(elapsed);
 
 			// Entities updated
 			for (Entity* entity : entities)
-				entity->Update();
+				entity->Update(elapsed);
 
 			// Graphics system updated
-			graphics->Update();
+			graphics->Update(elapsed);
+
+			lastTime = current;
 		}
 
 		End();
@@ -106,17 +110,6 @@ namespace GenevaEngine
 
 		// public flag for closing down the program in main()
 		isRunning = false;
-	}
-
-	/*!
-	 *  Time tick, called once per frame
-	 */
-	void GameSession::UpdateTime()
-	{
-		// per-frame time logic
-		float currentFrame = (float)glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
 	}
 
 	/*!

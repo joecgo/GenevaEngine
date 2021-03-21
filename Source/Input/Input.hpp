@@ -30,13 +30,13 @@ namespace GenevaEngine
 	private:
 		// inherited methods and constructors
 		using ASystem::ASystem;
-		using ASystem::DT;
+
 		void Start();
-		void Update();
+		void Update(float dt);
 		void End();
 
 		// called on update
-		void processInput(GLFWwindow* window);
+		void processInput(GLFWwindow* window, float dt);
 
 		friend class GameSession;
 	};
