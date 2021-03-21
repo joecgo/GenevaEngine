@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['camera_52',['Camera',['../class_geneva_engine_1_1_camera.html#aa277cb56c2bd1d652e55722b660a6b52',1,'GenevaEngine::Camera::Camera(glm::vec3 position=glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up=glm::vec3(0.0f, 1.0f, 0.0f), float yaw=YAW, float pitch=PITCH)'],['../class_geneva_engine_1_1_camera.html#acadd3ef21ee4ba083b3761ec4af5048a',1,'GenevaEngine::Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)']]]
+  ['addentity_91',['AddEntity',['../class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352',1,'GenevaEngine::GameSession']]],
+  ['addsystem_92',['AddSystem',['../class_geneva_engine_1_1_game_session.html#a5d5e9f1453671980a1469cf599572218',1,'GenevaEngine::GameSession']]]
 ];

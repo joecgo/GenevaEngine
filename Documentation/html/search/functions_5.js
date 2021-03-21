@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['setbool_60',['setBool',['../class_geneva_engine_1_1_shader.html#a1c828730811dd3ee1263f6a8c80cf5ae',1,'GenevaEngine::Shader']]],
-  ['setfloat_61',['setFloat',['../class_geneva_engine_1_1_shader.html#a46a1320b258eacb0c155e9b288abec6d',1,'GenevaEngine::Shader']]],
-  ['setint_62',['setInt',['../class_geneva_engine_1_1_shader.html#ade8cbb93370e9a9d39439cda32bf67fd',1,'GenevaEngine::Shader']]],
-  ['shader_63',['Shader',['../class_geneva_engine_1_1_shader.html#ab45f2938b7b5ebf66845c6dfa3dcaf71',1,'GenevaEngine::Shader']]]
+  ['gamesession_98',['GameSession',['../class_geneva_engine_1_1_game_session.html#a921e4cd6d3e988752ccc83a9da820821',1,'GenevaEngine::GameSession']]],
+  ['getmodel_99',['GetModel',['../class_geneva_engine_1_1_graphics.html#ae4b55eac63fb2d2436df60d4b4d8584f',1,'GenevaEngine::Graphics']]],
+  ['getshader_100',['GetShader',['../class_geneva_engine_1_1_graphics.html#a4e910456159cfa7e05819e4345061fc3',1,'GenevaEngine::Graphics']]],
+  ['getviewmatrix_101',['GetViewMatrix',['../class_geneva_engine_1_1_camera.html#a6c364fa036441c962ec4cdeaff39326b',1,'GenevaEngine::Camera']]]
 ];

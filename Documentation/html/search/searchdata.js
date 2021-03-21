@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "cdgmpstuv",
-  1: "cmpstv",
-  2: "cmps",
-  3: "cdgmpsu",
+  0: "acdefgimprstuv",
+  1: "acegimrstv",
+  2: "acegims",
+  3: "acdefgmprsu",
   4: "m"
 };
 

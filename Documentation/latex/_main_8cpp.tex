@@ -2,103 +2,21 @@
 \label{_main_8cpp}\index{C:/Users/joecg/Desktop/GenevaEngine/Source/Core/Main.cpp@{C:/Users/joecg/Desktop/GenevaEngine/Source/Core/Main.cpp}}
 
 
-main file currently used for testing and tutorials, contains main()  
+Launches engine in main()  
 
 
-{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
-{\ttfamily \#include $<$GLFW/glfw3.\+h$>$}\newline
-{\ttfamily \#include $<$glm/glm.\+hpp$>$}\newline
-{\ttfamily \#include $<$glm/gtc/matrix\+\_\+transform.\+hpp$>$}\newline
-{\ttfamily \#include $<$glm/gtc/type\+\_\+ptr.\+hpp$>$}\newline
-{\ttfamily \#include $<$stb/stb\+\_\+image.\+h$>$}\newline
-{\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$Graphics/\+Shader.\+hpp$>$}\newline
-{\ttfamily \#include $<$Graphics/\+Camera.\+hpp$>$}\newline
-{\ttfamily \#include $<$Graphics/\+Mesh.\+hpp$>$}\newline
-{\ttfamily \#include $<$Graphics/\+Model.\+hpp$>$}\newline
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Geneva\+Engine\+::\+Color}}
-\begin{DoxyCompactList}\small\item\em A container for a single color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\ttfamily \#include $<$Core/\+Game\+Common.\+hpp$>$}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{_main_8cpp_af868046b4f8d9539101a53a1a570da02}\label{_main_8cpp_af868046b4f8d9539101a53a1a570da02}} 
-void {\bfseries Geneva\+Engine\+::framebuffer\+\_\+size\+\_\+callback} (GLFWwindow $\ast$window, int width, int height)
-\item 
-\mbox{\Hypertarget{_main_8cpp_a286b89e3e5ca0b4d71e7d1747e083b69}\label{_main_8cpp_a286b89e3e5ca0b4d71e7d1747e083b69}} 
-void {\bfseries Geneva\+Engine\+::mouse\+\_\+callback} (GLFWwindow $\ast$window, double xpos, double ypos)
-\item 
-\mbox{\Hypertarget{_main_8cpp_a4514f6e4989da0d0928f0fe37cde9018}\label{_main_8cpp_a4514f6e4989da0d0928f0fe37cde9018}} 
-void {\bfseries Geneva\+Engine\+::scroll\+\_\+callback} (GLFWwindow $\ast$window, double xoffset, double yoffset)
-\item 
-\mbox{\Hypertarget{_main_8cpp_a9ca8dfae64ee8d590feb97dbf613cc00}\label{_main_8cpp_a9ca8dfae64ee8d590feb97dbf613cc00}} 
-void {\bfseries Geneva\+Engine\+::process\+Input} (GLFWwindow $\ast$window)
-\item 
-\mbox{\Hypertarget{_main_8cpp_a625032d4e09dd2ce86aea4caf88f3e93}\label{_main_8cpp_a625032d4e09dd2ce86aea4caf88f3e93}} 
-glm\+::vec3 {\bfseries Geneva\+Engine\+::generate\+Rand\+Rot\+Axis} ()
-\item 
-\mbox{\Hypertarget{_main_8cpp_a7caed2b07e9920a2890cd9ba057736d5}\label{_main_8cpp_a7caed2b07e9920a2890cd9ba057736d5}} 
-void {\bfseries Geneva\+Engine\+::set\+Clear\+Color} (\mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}} color)
 \item 
 \mbox{\Hypertarget{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{_main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
 int {\bfseries main} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{_main_8cpp_ae9156d85e46c5fc8711abcf30d7f12a6}\label{_main_8cpp_ae9156d85e46c5fc8711abcf30d7f12a6}} 
-const unsigned int {\bfseries Geneva\+Engine\+::\+SCR\+\_\+\+WIDTH} = 1200
-\item 
-\mbox{\Hypertarget{_main_8cpp_a22fa239295f70d10944586fb555b420f}\label{_main_8cpp_a22fa239295f70d10944586fb555b420f}} 
-const unsigned int {\bfseries Geneva\+Engine\+::\+SCR\+\_\+\+HEIGHT} = 900
-\item 
-\mbox{\Hypertarget{_main_8cpp_ab7d09850e7aa47cc9d43b84b37e67a45}\label{_main_8cpp_ab7d09850e7aa47cc9d43b84b37e67a45}} 
-bool {\bfseries Geneva\+Engine\+::first\+Mouse} = true
-\item 
-\mbox{\Hypertarget{_main_8cpp_a050fb5035129b2c9d0bdecc50bb6b9f6}\label{_main_8cpp_a050fb5035129b2c9d0bdecc50bb6b9f6}} 
-double {\bfseries Geneva\+Engine\+::lastX} = SCR\+\_\+\+WIDTH / 2.\+0
-\item 
-\mbox{\Hypertarget{_main_8cpp_aa341b1c84c1729f818b7e49b149b0167}\label{_main_8cpp_aa341b1c84c1729f818b7e49b149b0167}} 
-double {\bfseries Geneva\+Engine\+::lastY} = SCR\+\_\+\+HEIGHT / 2.\+0
-\item 
-\mbox{\Hypertarget{_main_8cpp_a591ca1f689008fb286025b7f7dc453cf}\label{_main_8cpp_a591ca1f689008fb286025b7f7dc453cf}} 
-\mbox{\hyperlink{class_geneva_engine_1_1_camera}{Camera}} {\bfseries Geneva\+Engine\+::camera} (glm\+::vec3(0.\+0f, 0.\+0f, 3.\+0f))
-\item 
-\mbox{\Hypertarget{_main_8cpp_a889c39892c81e2dad7a16dff7678dc49}\label{_main_8cpp_a889c39892c81e2dad7a16dff7678dc49}} 
-float {\bfseries Geneva\+Engine\+::delta\+Time} = 0.\+0f
-\item 
-\mbox{\Hypertarget{_main_8cpp_a938751096b5c15edaf5c450fe8f7241d}\label{_main_8cpp_a938751096b5c15edaf5c450fe8f7241d}} 
-float {\bfseries Geneva\+Engine\+::last\+Frame} = 0.\+0f
-\item 
-\mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}} {\bfseries Geneva\+Engine\+::palette} \mbox{[}$\,$\mbox{]}
-\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-main file currently used for testing and tutorials, contains main() 
+Launches engine in main() 
 
 \begin{DoxyAuthor}{Author}
 Joe Goldman 
 \end{DoxyAuthor}
-
-
-\doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{_main_8cpp_abfd45c5e1631a5d6cb14561660559497}\label{_main_8cpp_abfd45c5e1631a5d6cb14561660559497}} 
-\index{Main.cpp@{Main.cpp}!palette@{palette}}
-\index{palette@{palette}!Main.cpp@{Main.cpp}}
-\doxysubsubsection{\texorpdfstring{palette}{palette}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}} Geneva\+Engine\+::palette\mbox{[}$\,$\mbox{]}}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{      \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}}(0x7eed94),}
-\DoxyCodeLine{      \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}}(0x1a2c79),}
-\DoxyCodeLine{      \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}}(0xe6a26e),}
-\DoxyCodeLine{      \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}}(0x64a6ea),}
-\DoxyCodeLine{      \mbox{\hyperlink{struct_geneva_engine_1_1_color}{Color}}(0xa163a2),}
-\DoxyCodeLine{    \}}
-
-\end{DoxyCode}

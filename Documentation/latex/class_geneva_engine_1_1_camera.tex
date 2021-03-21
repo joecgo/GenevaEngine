@@ -29,7 +29,7 @@ enum class \mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695
 \item 
 \mbox{\hyperlink{class_geneva_engine_1_1_camera_acadd3ef21ee4ba083b3761ec4af5048a}{Camera}} (float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
 \item 
-glm\+::mat4 \mbox{\hyperlink{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}{Get\+View\+Matrix}} ()
+glm\+::mat4 \mbox{\hyperlink{class_geneva_engine_1_1_camera_a6c364fa036441c962ec4cdeaff39326b}{Get\+View\+Matrix}} (int screen\+\_\+width, int screen\+\_\+height) const
 \item 
 void \mbox{\hyperlink{class_geneva_engine_1_1_camera_a0fb5dc40c738e95f679c816f9807b8c5}{Process\+Keyboard}} (\mbox{\hyperlink{class_geneva_engine_1_1_camera_a96b0be9070a4f7c50695bc3867a62105}{Movement}} direction, float delta\+Time)
 \item 
@@ -70,11 +70,20 @@ float {\bfseries Mouse\+Sensitivity}
 \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a3adc0a59b273fba9258f187c4c599f9c}\label{class_geneva_engine_1_1_camera_a3adc0a59b273fba9258f187c4c599f9c}} 
 float {\bfseries Fov}
 \item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a085b96f01d249a2e42ec73d450947726}\label{class_geneva_engine_1_1_camera_a085b96f01d249a2e42ec73d450947726}} 
+float {\bfseries Near\+Clipping} = 0.\+1f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_afc25bcbbc7aa7253d29cb1e7483d7332}\label{class_geneva_engine_1_1_camera_afc25bcbbc7aa7253d29cb1e7483d7332}} 
+float {\bfseries Far\+Clipping} = 100.\+0f
+\item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a77083575ab2a566cf4ba4336fed40439}\label{class_geneva_engine_1_1_camera_a77083575ab2a566cf4ba4336fed40439}} 
 float {\bfseries Max\+Fov} = 150.\+0f
 \item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_camera_a4e2289a6c8ac001a2a8ce4ef546851d6}\label{class_geneva_engine_1_1_camera_a4e2289a6c8ac001a2a8ce4ef546851d6}} 
 float {\bfseries Min\+Fov} = 20.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a8f6cc2904cd7e185e07103209a57a482}\label{class_geneva_engine_1_1_camera_a8f6cc2904cd7e185e07103209a57a482}} 
+bool {\bfseries Perspective\+View} = true
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
@@ -138,11 +147,11 @@ Constructor with scalar values. \begin{DoxyVerb}\param [in] posX
  
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}\label{class_geneva_engine_1_1_camera_a4156caa67a932599982b3e642d30a079}} 
+\mbox{\Hypertarget{class_geneva_engine_1_1_camera_a6c364fa036441c962ec4cdeaff39326b}\label{class_geneva_engine_1_1_camera_a6c364fa036441c962ec4cdeaff39326b}} 
 \index{GenevaEngine::Camera@{GenevaEngine::Camera}!GetViewMatrix@{GetViewMatrix}}
 \index{GetViewMatrix@{GetViewMatrix}!GenevaEngine::Camera@{GenevaEngine::Camera}}
 \doxysubsubsection{\texorpdfstring{GetViewMatrix()}{GetViewMatrix()}}
-{\footnotesize\ttfamily glm\+::mat4 Geneva\+Engine\+::\+Camera\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily glm\+::mat4 Geneva\+Engine\+::\+Camera\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+width,  }\item[{int}]{screen\+\_\+height }\end{DoxyParamCaption}) const}
 
 Returns the camera\textquotesingle{}s view matrix. \begin{DoxyVerb}\return The view matrix.
 \end{DoxyVerb}

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['processkeyboard_57',['ProcessKeyboard',['../class_geneva_engine_1_1_camera.html#a0fb5dc40c738e95f679c816f9807b8c5',1,'GenevaEngine::Camera']]],
-  ['processmousemovement_58',['ProcessMouseMovement',['../class_geneva_engine_1_1_camera.html#a96cdb286eeac015a8d6dc900271dc36f',1,'GenevaEngine::Camera']]],
-  ['processmousescroll_59',['ProcessMouseScroll',['../class_geneva_engine_1_1_camera.html#a447a259703e6a0ded4b311d503b4264c',1,'GenevaEngine::Camera']]]
+  ['framebuffer_5fsize_5fcallback_97',['framebuffer_size_callback',['../class_geneva_engine_1_1_graphics.html#ad577cfea23d716e1df257fee0097946b',1,'GenevaEngine::Graphics']]]
 ];
