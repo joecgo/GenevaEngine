@@ -26,18 +26,6 @@
 namespace GenevaEngine
 {
 	/*!
-	 *  \brief The physical state of an object in motion.
-	 */
-	struct MotionState
-	{
-		MotionState(glm::vec3 pos, glm::vec3 vel, glm::vec3 acc) :
-			position(pos), velocity(vel), acceleration(acc) {}
-		glm::vec3 acceleration;
-		glm::vec3 velocity;
-		glm::vec3 position;
-	};
-
-	/*!
 	 *  \brief Physics system
 	 */
 	class Physics : public ASystem
@@ -45,10 +33,9 @@ namespace GenevaEngine
 	public:
 
 	private:
-		std::vector<MotionState*> current_state;
-		std::vector<MotionState*> previous_state;
+		const glm::vec3 gravity = glm::vec3(0, -10.0f, 0);
 
-		void InterpolateMotion(double alpha);
+		void InterpolateMotion(float alpha);
 
 		// inherited members, methods, and constructors
 		using ASystem::ASystem;

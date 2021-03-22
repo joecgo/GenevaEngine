@@ -65,7 +65,6 @@ namespace GenevaEngine
 	 */
 	void GameSession::GameLoop()
 	{
-		double t = 0.0;
 		double dt = 0.01;
 		double currentTime = Time();
 		double accumulator = 0.0;
@@ -84,32 +83,29 @@ namespace GenevaEngine
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			input->Update(frameTime); 				// Input
+			input->Update(frameTime); 					// Input
 
 			// fixed update loop
 			while (accumulator >= dt)
 			{
-				physics->Update(dt);				// Physics (fixed update)
-				for (Entity* entity : entities)		// Game Logic (fixed update)
+				physics->Update(dt);					// Physics (fixed update)
+				for (Entity* entity : entities)			// Game Logic (fixed update)
 					entity->FixedUpdate(dt);
 
-				// time calculations
-				t += dt;
 				accumulator -= dt;
 			}
 
 			const double alpha = accumulator / dt;
-			physics->InterpolateMotion(alpha);		// Physics (interpolate motion)
-			for (Entity* entity : entities)			// Game Logic
+			physics->InterpolateMotion((float)alpha);	// Physics (interpolate motion)
+			for (Entity* entity : entities)				// Game Logic
 				entity->Update(frameTime);
-			graphics->Update(frameTime); 			// Render
-			while (paused) { newTime = Time(); };	// Pausing
+			graphics->Update(frameTime); 				// Render
+			while (paused) { newTime = Time(); };		// Pausing
 
 			//// -----------------------------------------------------
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			// time calculations
 			currentTime = newTime;
 		}
 

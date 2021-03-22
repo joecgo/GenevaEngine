@@ -102,7 +102,7 @@ namespace GenevaEngine
 	{
 		// TODO: add rotation tranformation
 		glm::mat4 worldTransform = glm::mat4(1.0f);
-		worldTransform = glm::translate(worldTransform, entity->position);
+		worldTransform = glm::translate(worldTransform, entity->Position());
 		worldTransform = glm::scale(worldTransform, entity->scale);
 
 		// render the model using shader and camera view
@@ -180,8 +180,8 @@ namespace GenevaEngine
 			firstMouse = false;
 		}
 
-		float xoffset = mouse_x - lastX;
-		float yoffset = lastY - mouse_y; // reversed since y-coordinates go from bottom to top
+		float xoffset = (float)mouse_x - (float)lastX;
+		float yoffset = (float)lastY - (float)mouse_y; // reversed since y-coordinates go from bottom to top
 		lastX = mouse_x;
 		lastY = mouse_y;
 
@@ -189,7 +189,7 @@ namespace GenevaEngine
 		float scroll_sensitivity = 3.0f;
 		xoffset *= look_sensitivity;
 		yoffset *= look_sensitivity;
-		float mouseScrollDelta = mouse_scroll * scroll_sensitivity;
+		float mouseScrollDelta = (float)mouse_scroll * scroll_sensitivity;
 		mouse_scroll = 0.0; // reset value
 
 		camera.ProcessMouseMovement(xoffset, yoffset);

@@ -29,13 +29,34 @@ namespace GenevaEngine
 
 	void Physics::Update(double dt)
 	{
-		// previousState = currentState;
-		// integrate(currentState, t, dt);
+		for (Entity* entity : gamesession->entities)
+		{
+			entity->previous_state = entity->current_state;
+			MotionState* state = &(entity->current_state);
+			state->acceleration += entity->impulse * entity->mass;		// acceleration
+			entity->impulse = glm::vec3();
+			if (entity->use_gravity)
+				state->velocity += gravity * (float)dt;					// gravity
+			state->velocity += state->acceleration * (float)dt;			// velocity
+			state->position += state->velocity * (float)dt;				// position
+		}
 	}
 
-	void Physics::InterpolateMotion(double alpha)
+	void Physics::InterpolateMotion(float alpha)
 	{
-		//State state = currentState * alpha +
-		//	previousState * (1.0 - alpha);
+		for (Entity* entity : gamesession->entities)
+		{
+			entity->interpolated_state.position =
+				entity->current_state.position * alpha +
+				entity->previous_state.position * (1.0f - alpha);
+
+			entity->interpolated_state.velocity =
+				entity->current_state.velocity * alpha +
+				entity->previous_state.velocity * (1.0f - alpha);
+
+			entity->interpolated_state.acceleration =
+				entity->current_state.acceleration * alpha +
+				entity->previous_state.acceleration * (1.0f - alpha);
+		}
 	}
 }

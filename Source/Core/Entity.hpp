@@ -28,6 +28,16 @@
 namespace GenevaEngine
 {
 	/*!
+	 *  \brief The physical state of an object in motion.
+	 */
+	struct MotionState
+	{
+		glm::vec3 acceleration;
+		glm::vec3 velocity;
+		glm::vec3 position;
+	};
+
+	/*!
 	 *  \brief An object that populates the game. Like an actor or game object.
 	 */
 	class Entity
@@ -44,8 +54,16 @@ namespace GenevaEngine
 		Shader* shader = nullptr;
 		std::string shader_name = 0;
 		// Transform Component
-		glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
-		glm::vec3 scale = glm::vec3(1.0f, 1.0f, 51.0f);
+		glm::vec3 startPosition = glm::vec3();
+		glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
+		glm::vec3 Position();
+		// Physics Component
+		bool use_gravity = true;
+		float mass = 10.0f;
+		glm::vec3 impulse = glm::vec3();
+		MotionState interpolated_state;
+		MotionState current_state;
+		MotionState previous_state;
 
 	private:
 		GameSession* gamesession;
