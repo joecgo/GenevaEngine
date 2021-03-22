@@ -68,23 +68,23 @@ namespace GenevaEngine
 		double lastTime = glfwGetTime() - 0.01666f; // 1/60
 		while (!glfwWindowShouldClose(graphics->window))
 		{
-			// calculate elapsed time
+			// calculate dt
 			double current = glfwGetTime();
-			double elapsed = current - lastTime;
+			double dt = current - lastTime;
 
-			//// --------------------------------------------
+			//// -----------------------------------------------------
 			/// Order of execution
-			// ----------------------------------------------
+			// -------------------------------------------------------
 
-			physics->Update(elapsed);			// Physics
-			input->Update(elapsed); 			// Input
+			physics->Update(dt);				// Physics
+			input->Update(dt); 					// Input
 			for (Entity* entity : entities)		// Game Logic
-				entity->Update(elapsed);
-			graphics->Update(elapsed); 			// Render
+				entity->Update(dt);
+			graphics->Update(dt); 				// Render
 
-			//// --------------------------------------------
+			//// -----------------------------------------------------
 			/// Order of execution
-			// ----------------------------------------------
+			// -------------------------------------------------------
 
 			// save time stamp
 			lastTime = current;
