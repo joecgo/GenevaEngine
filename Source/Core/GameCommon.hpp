@@ -22,3 +22,4 @@
 #include <Core/Entity.hpp>
 #include <Graphics/Graphics.hpp>
 #include <Input/Input.hpp>
+#include <Physics/Physics.hpp>

@@ -28,16 +28,14 @@ namespace GenevaEngine
 	class Input : public ASystem
 	{
 	private:
+		// called on update
+		void processInput(GLFWwindow* window, double dt);
+
 		// inherited methods and constructors
 		using ASystem::ASystem;
-
 		void Start();
-		void Update(float dt);
+		void Update(double dt);
 		void End();
-
-		// called on update
-		void processInput(GLFWwindow* window, float dt);
-
 		friend class GameSession;
 	};
 }

@@ -48,7 +48,7 @@ namespace GenevaEngine
 		shader = gamesession->graphics->GetShader(shader_name);
 	}
 
-	void Entity::Update(float dt)
+	void Entity::Update(double dt)
 	{
 		Render();
 	}

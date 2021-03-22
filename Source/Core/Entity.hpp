@@ -51,7 +51,7 @@ namespace GenevaEngine
 		GameSession* gamesession;
 
 		void Start();
-		void Update(float dt);
+		void Update(double dt);
 		void End();
 
 		void Render();

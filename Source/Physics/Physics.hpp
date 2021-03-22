@@ -9,36 +9,29 @@
  ****************************************************************************/
 
  /**
-  * \file ASystem.hpp
+  * \file Physics.hpp
   * \author Joe Goldman
-  * \brief Abstract system class declaration
+  * \brief Physics system class declaration
   *
   */
 
 #pragma once
+
 #include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
 	/*!
-	 *  Abstract class for game engine systems to inherit from
+	 *  \brief Physics system
 	 */
-	class ASystem
+	class Physics : public ASystem
 	{
-	protected:
-		GameSession* gamesession = nullptr;
 	private:
-		/*!
-		 *  Constructor.
-		 *
-		 *      \param [in] gs
-		 */
-		ASystem(GameSession* gs) : gamesession(gs) { gamesession->AddSystem(this); }
-
-		virtual void Start() = 0;
-		virtual void Update(double dt) = 0;
-		virtual void End() = 0;
-
+		// inherited mebers, methods, and constructors
+		using ASystem::ASystem;
+		void Start();
+		void Update(double dt);
+		void End();
 		friend class GameSession;
 	};
 }

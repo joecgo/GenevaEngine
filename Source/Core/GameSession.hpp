@@ -18,13 +18,10 @@
 
 #pragma once
 
-#define MS_PER_FRAME 0.033333333 // 60fps: 0.01666666
-
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // glfwWindowShouldClose
 
 #include <vector> // vector
-#include <windows.h> // Sleep
 
 #include <Core/GameCommon.hpp>
 
@@ -34,6 +31,7 @@ namespace GenevaEngine
 	class ASystem;
 	class Graphics;
 	class Input;
+	class Physics;
 
 	/*!
 	 *  GameSession contains the control flow and initialization of all the systems.
@@ -47,6 +45,7 @@ namespace GenevaEngine
 		bool isRunning = true; // flag tells main when to return
 
 		// system references
+		Physics* physics = nullptr;
 		Graphics* graphics = nullptr;
 		Input* input = nullptr;
 

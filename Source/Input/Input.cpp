@@ -27,7 +27,7 @@ namespace GenevaEngine
 	{
 	}
 
-	void Input::Update(float dt)
+	void Input::Update(double dt)
 	{
 		processInput(gamesession->graphics->window, dt);
 	}
@@ -37,7 +37,7 @@ namespace GenevaEngine
 	 *
 	 *      \param [in,out] window
 	 */
-	void Input::processInput(GLFWwindow* window, float dt)
+	void Input::processInput(GLFWwindow* window, double dt)
 	{
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
@@ -62,7 +62,7 @@ namespace GenevaEngine
 			gfx->SetClearColor(gfx->palette[5]);
 
 		float sensitivity = 5.0f;
-		float moveRate = dt * sensitivity;
+		float moveRate = (float)dt * sensitivity;
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 			gfx->camera.ProcessCameraMovement(Camera::Movement::FORWARD, moveRate);
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)

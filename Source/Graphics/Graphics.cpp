@@ -78,7 +78,7 @@ namespace GenevaEngine
 		glfwTerminate();
 	}
 
-	void Graphics::Update(float dt)
+	void Graphics::Update(double dt)
 	{
 		UpdateCameraMovement(dt);
 
@@ -189,7 +189,7 @@ namespace GenevaEngine
 	 *      \param [in]     ypos
 	 */
 
-	void Graphics::UpdateCameraMovement(float dt)
+	void Graphics::UpdateCameraMovement(double dt)
 	{
 		if (firstMouse)
 		{
@@ -203,14 +203,15 @@ namespace GenevaEngine
 		lastX = mouse_x;
 		lastY = mouse_y;
 
-		float look_sensitivity = 10.0f;
-		float scroll_sensitivity = 100.0f;
+		double look_sensitivity = 10.0f;
+		double scroll_sensitivity = 100.0f;
 		xoffset *= look_sensitivity * dt;
 		yoffset *= look_sensitivity * dt;
+		double mouseScrollDelta = mouse_scroll * dt * scroll_sensitivity;
+		mouse_scroll = 0.0; // reset value
 
 		camera.ProcessMouseMovement((float)xoffset, (float)yoffset);
-		camera.ProcessMouseScroll((float)mouse_scroll * dt * scroll_sensitivity);
-		mouse_scroll = 0.0;
+		camera.ProcessMouseScroll((float)mouseScrollDelta);
 	}
 
 	void Graphics::mouse_callback(GLFWwindow* window, double xpos, double ypos)

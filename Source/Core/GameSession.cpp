@@ -25,6 +25,7 @@ namespace GenevaEngine
 	 */
 	GameSession::GameSession()
 	{
+		physics = new Physics(this);
 		input = new Input(this);
 		graphics = new Graphics(this);
 		CreateEntities();
@@ -64,12 +65,11 @@ namespace GenevaEngine
 	 */
 	void GameSession::GameLoop()
 	{
-		double lastTime = glfwGetTime() - MS_PER_FRAME;
-		double elapsed = 0.0;
+		double lastTime = glfwGetTime() - 0.03f;
 		while (!glfwWindowShouldClose(graphics->window))
 		{
 			double current = glfwGetTime();
-			elapsed = current - lastTime;
+			double elapsed = current - lastTime;
 
 			// Input system updated
 			input->Update(elapsed);

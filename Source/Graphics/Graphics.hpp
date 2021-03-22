@@ -90,15 +90,13 @@ namespace GenevaEngine
 		std::map<std::string, Model> models;
 		std::queue<RenderData> render_queue;
 
+		void UpdateCameraMovement(double dt);
+
 		// inherited mebers, methods, and constructors
 		using ASystem::ASystem;
-
 		void Start();
-		void Update(float dt);
+		void Update(double dt);
 		void End();
-
-		void UpdateCameraMovement(float dt);
-
 		friend class GameSession;
 	};
 }

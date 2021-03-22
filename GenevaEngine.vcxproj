@@ -50,6 +50,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Physics\Physics.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\ASystem.hpp">
@@ -81,6 +85,10 @@
     <ClInclude Include="Source\Graphics\Model.hpp" />
     <ClInclude Include="Source\Graphics\Shader.hpp" />
     <ClInclude Include="Source\Input\Input.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\Physics.hpp">
       <SubType>
       </SubType>
     </ClInclude>
