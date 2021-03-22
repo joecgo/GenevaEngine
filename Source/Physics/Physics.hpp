@@ -26,8 +26,10 @@ namespace GenevaEngine
 	 */
 	class Physics : public ASystem
 	{
+	public:
+
 	private:
-		// inherited mebers, methods, and constructors
+		// inherited members, methods, and constructors
 		using ASystem::ASystem;
 		void Start();
 		void Update(double dt);
