@@ -29,5 +29,13 @@ namespace GenevaEngine
 
 	void Physics::Update(double dt)
 	{
+		// previousState = currentState;
+		// integrate(currentState, t, dt);
+	}
+
+	void Physics::InterpolateMotion(double alpha)
+	{
+		//State state = currentState * alpha +
+		//	previousState * (1.0 - alpha);
 	}
 }

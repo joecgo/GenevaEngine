@@ -65,29 +65,52 @@ namespace GenevaEngine
 	 */
 	void GameSession::GameLoop()
 	{
-		double lastTime = glfwGetTime() - 0.01666f; // 1/60
+		double t = 0.0;
+		double dt = 0.01;
+		double currentTime = Time();
+		double accumulator = 0.0;
+
 		while (!glfwWindowShouldClose(graphics->window))
 		{
-			// calculate dt
-			double current = glfwGetTime();
-			double dt = current - lastTime;
+			// time calculations
+			double newTime = Time();
+			double frameTime = newTime - currentTime;
+			if (frameTime > 0.25)
+				frameTime = 0.25;
+			currentTime = newTime;
+			accumulator += frameTime;
 
 			//// -----------------------------------------------------
-			/// Order of execution
+			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			physics->Update(dt);				// Physics
-			input->Update(dt); 					// Input
-			for (Entity* entity : entities)		// Game Logic
-				entity->Update(dt);
-			graphics->Update(dt); 				// Render
+			input->Update(frameTime); 				// Input
+
+			// fixed update loop
+			while (accumulator >= dt)
+			{
+				physics->Update(dt);				// Physics (fixed update)
+				for (Entity* entity : entities)		// Game Logic (fixed update)
+					entity->FixedUpdate(dt);
+
+				// time calculations
+				t += dt;
+				accumulator -= dt;
+			}
+
+			const double alpha = accumulator / dt;
+			physics->InterpolateMotion(alpha);		// Physics (interpolate motion)
+			for (Entity* entity : entities)			// Game Logic
+				entity->Update(frameTime);
+			graphics->Update(frameTime); 			// Render
+			while (paused) { newTime = Time(); };	// Pausing
 
 			//// -----------------------------------------------------
-			/// Order of execution
+			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			// save time stamp
-			lastTime = current;
+			// time calculations
+			currentTime = newTime;
 		}
 
 		End();
@@ -136,5 +159,15 @@ namespace GenevaEngine
 	void GameSession::AddSystem(ASystem* system)
 	{
 		systems.push_back(system);
+	}
+
+	/*!
+	 *  returns the time in seconds
+	 *
+	 *      \return returns the time in seconds
+	 */
+	double GameSession::Time()
+	{
+		return glfwGetTime();
 	}
 }

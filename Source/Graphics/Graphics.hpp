@@ -37,15 +37,6 @@
 
 namespace GenevaEngine
 {
-	struct RenderData
-	{
-		RenderData(Shader* arg_shader, Model* arg_model, glm::mat4 arg_world_tranform) :
-			shader(arg_shader), model(arg_model), world_transform(arg_world_tranform) {}
-		Shader* shader;
-		Model* model;
-		glm::mat4 world_transform;
-	};
-
 	class Graphics : public ASystem
 	{
 	public:
@@ -73,8 +64,6 @@ namespace GenevaEngine
 		// model storage and access methods
 		void SaveModel(std::string name, Model model);
 		Model* GetModel(std::string name);
-		// render model
-		void Render(Model* model, Shader* shader, glm::mat4 worldTranform);
 
 	private:
 		// mouse state
@@ -88,9 +77,9 @@ namespace GenevaEngine
 		// asset storage in maps
 		std::map<std::string, Shader> shaders;
 		std::map<std::string, Model> models;
-		std::queue<RenderData> render_queue;
 
-		void UpdateCameraMovement(double dt);
+		void UpdateCameraMovement();
+		void RenderEntity(Entity* entity, glm::mat4 viewTransform) const;
 
 		// inherited mebers, methods, and constructors
 		using ASystem::ASystem;

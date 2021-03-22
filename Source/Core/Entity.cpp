@@ -50,24 +50,13 @@ namespace GenevaEngine
 
 	void Entity::Update(double dt)
 	{
-		Render();
+	}
+
+	void Entity::FixedUpdate(double alpha)
+	{
 	}
 
 	void Entity::End()
 	{
-	}
-
-	/*!
-	 *  Calculates world transform and makes a request to the graphics system to render
-	 *  this entity.
-	 */
-	void Entity::Render()
-	{
-		// TODO: add rotation tranformation
-		glm::mat4 transform = glm::mat4(1.0f);
-		transform = glm::translate(transform, position);
-		transform = glm::scale(transform, scale);
-
-		gamesession->graphics->Render(model, shader, transform);
 	}
 }

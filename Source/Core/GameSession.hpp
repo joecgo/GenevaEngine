@@ -41,7 +41,7 @@ namespace GenevaEngine
 	public:
 		GameSession();
 
-		// clock stuff
+		bool paused = false;
 		bool isRunning = true; // flag tells main when to return
 
 		// system references
@@ -52,11 +52,12 @@ namespace GenevaEngine
 		void AddSystem(ASystem* system);
 		void AddEntity(Entity* entity);
 
-	private:
-		// system and entity references
+		// system, entity references
 		std::vector<ASystem*> systems;
 		std::vector<Entity*> entities;
 
+	private:
+		double Time();
 		void Start();
 		void GameLoop();
 		void End();

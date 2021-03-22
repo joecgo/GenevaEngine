@@ -51,10 +51,9 @@ namespace GenevaEngine
 		GameSession* gamesession;
 
 		void Start();
-		void Update(double dt);
+		void FixedUpdate(double alpha); // update on fixed time-steps
+		void Update(double dt);		 // update on every frame
 		void End();
-
-		void Render();
 
 		friend class GameSession;
 	};
