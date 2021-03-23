@@ -49,7 +49,6 @@ namespace GenevaEngine
 		Graphics* graphics = nullptr;
 		Input* input = nullptr;
 		Entity* kevin = nullptr; // testing jump
-		int KeyState_SPACE = 0;
 
 		void AddSystem(ASystem* system);
 		void AddEntity(Entity* entity);

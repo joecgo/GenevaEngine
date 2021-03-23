@@ -79,6 +79,7 @@ namespace GenevaEngine
 		double currentTime = Time();
 		double accumulator = 0.0;
 		double cooldown = 0;
+		int KeyState_SPACE = 0; // for kevin testing
 
 		while (!glfwWindowShouldClose(graphics->window))
 		{
@@ -97,7 +98,7 @@ namespace GenevaEngine
 			// test kevin's reflexes
 			if (KeyState_SPACE == 0 && glfwGetKey(graphics->window, GLFW_KEY_SPACE) == GLFW_PRESS)
 			{
-				kevin->impulse = glm::vec3(0.0f, 3.0f, 0.0f);
+				kevin->impulse = glm::vec3(0.0f, 250.0f, 0.0f);
 				KeyState_SPACE = 1;
 				std::cout << "JUMP" << std::endl;
 				cooldown = currentTime + 1.0;

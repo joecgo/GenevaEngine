@@ -35,12 +35,15 @@ namespace GenevaEngine
 
 			entity->previous_state = entity->current_state;
 			MotionState* state = &(entity->current_state);
-			state->velocity += entity->impulse * entity->mass;		// acceleration
-			entity->impulse = glm::vec3();
+
+			// acceleration (sum forces)
+			glm::vec3 acceleration = entity->impulse * entity->mass;
 			if (entity->use_gravity)
-				state->velocity += gravity * (float)dt;							// gravity
-			state->velocity += state->acceleration * (float)dt;			// velocity
-			state->position += state->velocity * (float)dt;				// position
+				acceleration += gravity;
+			entity->impulse = glm::vec3();
+
+			state->velocity += acceleration * (float)dt;		// velocity
+			state->position += state->velocity * (float)dt;		// position
 		}
 
 		// collision checks
@@ -80,10 +83,6 @@ namespace GenevaEngine
 			entity->interpolated_state.velocity =
 				entity->current_state.velocity * alpha +
 				entity->previous_state.velocity * (1.0f - alpha);
-
-			entity->interpolated_state.acceleration =
-				entity->current_state.acceleration * alpha +
-				entity->previous_state.acceleration * (1.0f - alpha);
 		}
 	}
 

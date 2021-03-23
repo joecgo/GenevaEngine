@@ -32,7 +32,6 @@ namespace GenevaEngine
 	 */
 	struct MotionState
 	{
-		glm::vec3 acceleration;
 		glm::vec3 velocity;
 		glm::vec3 position;
 	};
