@@ -44,7 +44,7 @@ namespace GenevaEngine
 	{
 	public:
 		Entity(GameSession* gs, glm::vec3 pos, glm::vec3 scale, string model_name,
-			string shader_name = "textureShader");
+			string shader_name = "TextureShader");
 
 		// TODO: store these things in components that are attached to the Entity
 		// Model Component
@@ -59,6 +59,9 @@ namespace GenevaEngine
 		glm::vec3 Position();
 		// Physics Component
 		bool use_gravity = true;
+		bool stationary = false;
+		bool rigid = true;
+		glm::vec2 rect_collider = glm::vec2(1.0f, 1.0f);
 		float mass = 10.0f;
 		glm::vec3 impulse = glm::vec3();
 		MotionState interpolated_state;

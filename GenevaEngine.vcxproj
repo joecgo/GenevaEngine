@@ -94,8 +94,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\GreyShader.frag" />
-    <None Include="Shaders\Shader.frag" />
+    <None Include="Shaders\SingleColorShader.frag" />
+    <None Include="Shaders\TextureShader.frag" />
     <None Include="Shaders\Shader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

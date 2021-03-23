@@ -63,10 +63,15 @@ namespace GenevaEngine
 		glEnable(GL_DEPTH_TEST);
 
 		// create and save shaders and models. TODO: do this with an asset file
-		SaveShader("textureShader", Shader("Shaders/Shader.vert", "Shaders/Shader.frag"));
-		SaveShader("greyShader", Shader("Shaders/Shader.vert", "Shaders/GreyShader.frag"));
+		SaveShader("TextureShader",
+			Shader("Shaders/Shader.vert", "Shaders/TextureShader.frag"));
+		SaveShader("SingeColorShader",
+			Shader("Shaders/Shader.vert", "Shaders/SingleColorShader.frag"));
+
+		// import and save models
 		SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
 		SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
+		SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
