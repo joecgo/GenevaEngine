@@ -24,18 +24,10 @@
 #include <Graphics/Shader.hpp>
 #include <Graphics/Model.hpp>
 #include <Core/GameCommon.hpp>
+#include <Physics/MotionState.hpp>
 
 namespace GenevaEngine
 {
-	/*!
-	 *  \brief The physical state of an object in motion.
-	 */
-	struct MotionState
-	{
-		glm::vec3 velocity;
-		glm::vec3 position;
-	};
-
 	/*!
 	 *  \brief An object that populates the game. Like an actor or game object.
 	 */

@@ -20,8 +20,10 @@
 #include <glm/gtc/matrix_transform.hpp> // vec3
 
 #include <vector> // vector
+#include <cmath> // isinf
 
 #include <Core/GameCommon.hpp>
+#include <Physics/MotionState.hpp>
 
 namespace GenevaEngine
 {
@@ -41,9 +43,12 @@ namespace GenevaEngine
 		static bool Intersect_Sphere_Sphere(
 			glm::vec3 a_pos, float a_radius,
 			glm::vec3 b_pos, float b_radius);
-		static bool Intersect_Rect_Rect(
+		static bool Intersect_AABB_AABB(
 			glm::vec3 a_pos, glm::vec2 a_rect,
 			glm::vec3 b_pos, glm::vec2 b_rect);
+		static bool Collision_AABB_AABB(float& t,
+			MotionState a_state, glm::vec2 a_rect,
+			MotionState b_state, glm::vec2 b_rect);
 
 		// inherited members, methods, and constructors
 		using ASystem::ASystem;

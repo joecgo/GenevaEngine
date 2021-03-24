@@ -44,6 +44,7 @@ namespace GenevaEngine
 		Entity* backpack = new Entity(this, glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 			"backpack", "TextureShader");
 		backpack->rect_collider = glm::vec2(1.0f, 2.5f);
+		backpack->stationary = true;
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
