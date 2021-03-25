@@ -67,6 +67,17 @@ namespace GenevaEngine
 						entity->current_state * t +
 						entity->previous_state * (1.0f - t);
 					entity->current_state.velocity = glm::vec3(0, 0, 0);
+					entity->previous_state = entity->current_state;
+
+					// resolve other
+					if (other->rigid && !other->stationary)
+					{
+						other->current_state =
+							other->current_state * t +
+							other->previous_state * (1.0f - t);
+						other->current_state.velocity = glm::vec3(0, 0, 0);
+						other->previous_state = other->current_state;
+					}
 				}
 			}
 		}
@@ -88,8 +99,8 @@ namespace GenevaEngine
 		glm::vec3 a_pos, glm::vec2 a_rect,
 		glm::vec3 b_pos, glm::vec2 b_rect)
 	{
-		return (glm::abs(a_pos.x - b_pos.x) * 2.0f < (a_rect.x + b_rect.x)) &&
-			(glm::abs(a_pos.y - b_pos.y) * 2.0f < (a_rect.y + a_rect.y));
+		return (glm::abs(a_pos.x - b_pos.x) * 2.0f <= (a_rect.x + b_rect.x + epsilon)) &&
+			(glm::abs(a_pos.y - b_pos.y) * 2.0f <= (a_rect.y + b_rect.y + epsilon));
 	}
 
 	bool Physics::Intersect_Sphere_Sphere(
@@ -125,7 +136,7 @@ namespace GenevaEngine
 
 		// calculate possible solutions for t (smallest value between 0 and dt)
 		float t1 = 0, t2 = 0;
-		glm::vec3 approach_vel = a_vel - b_vel.y;
+		glm::vec3 approach_vel = a_vel - b_vel;
 		if (Vec3LengthSq(approach_vel) == 0) return false;				  // no approaching vel
 		if (approach_vel.y < 0) t1 = (b_top - a_bottom) / approach_vel.y; // approaching b_top
 		else					t1 = (b_bottom - a_top) / approach_vel.y; // approaching b_bottom
@@ -133,8 +144,12 @@ namespace GenevaEngine
 		else					t2 = (b_left - a_right) / approach_vel.x; // approaching b_left
 
 		// logic for saving the correct solution to t
-		if (t1 > neg_epsilon && t1 < dt + epsilon) t = t1;
-		if (t2 > neg_epsilon && t2 < dt + epsilon && t2 < t1) t = t2;
+		if (t1 > neg_epsilon && t1 < dt + epsilon &&
+			Intersect_AABB_AABB(a_pos + a_vel * t1, a_rect, b_pos + b_vel * t1, b_rect))
+			t = t1;
+		if (t2 > neg_epsilon && t2 < dt + epsilon && t2 < t1 &&
+			Intersect_AABB_AABB(a_pos + a_vel * t2, a_rect, b_pos + b_vel * t2, b_rect))
+			t = t2;
 
 		// scale by 1/dt to a 0 - 1 value
 		t /= dt;
