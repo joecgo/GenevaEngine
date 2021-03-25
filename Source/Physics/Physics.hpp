@@ -21,12 +21,24 @@
 
 #include <vector> // vector
 #include <cmath> // signbit
+#include <queue> // priority_queue
+#include <set> // set
 
 #include <Core/GameCommon.hpp>
 #include <Physics/MotionState.hpp>
 
 namespace GenevaEngine
 {
+	struct CollisionData
+	{
+		float t;
+		Entity* entity_a;
+		Entity* entity_b;
+
+		// constructor
+		CollisionData(float time, Entity* a, Entity* b) : t(time), entity_a(a), entity_b(b) {}
+	};
+
 	/*!
 	 *  \brief Physics system
 	 */

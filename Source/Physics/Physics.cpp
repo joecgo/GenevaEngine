@@ -19,6 +19,12 @@
 
 namespace GenevaEngine
 {
+	// for sorting by t
+	bool operator<(const CollisionData& a, const CollisionData& b)
+	{
+		return a.t > b.t; // flipped > so lowest value is prioritized
+	}
+
 	void Physics::Start()
 	{
 	}
@@ -47,40 +53,64 @@ namespace GenevaEngine
 		}
 
 		// collision checks
+		std::priority_queue<CollisionData> collisions;
+		std::set<Entity*> objs;
 		for (Entity* entity : gamesession->entities)
 		{
-			if (!entity->rigid || entity->stationary) continue;
+			if (entity->stationary || !entity->rigid) continue;
+			objs.insert(entity);
+		}
 
-			for (Entity* other : gamesession->entities)
+		do
+		{ // while collisions is not empty
+			if (!collisions.empty())
 			{
-				if (!other->rigid || entity == other) continue;
+				CollisionData col = collisions.top();
+				collisions = std::priority_queue<CollisionData>();
 
-				float t = 0;
-				if (Collision_AABB_AABB(t, (float)dt,
-					entity->previous_state.position, entity->current_state.velocity,
-					entity->rect_collider,
-					other->previous_state.position, other->current_state.velocity,
-					other->rect_collider))
+				// resolve collision
+				// entity a
+				col.entity_a->current_state =
+					col.entity_a->current_state * col.t +
+					col.entity_a->previous_state * (1.0f - col.t);
+				col.entity_a->current_state.velocity = glm::vec3(0, 0, 0);
+				col.entity_a->previous_state = col.entity_a->current_state;
+				objs.erase(col.entity_a);
+
+				// entity b
+				if (!col.entity_b->stationary)
 				{
-					// resolve collision
-					entity->current_state =
-						entity->current_state * t +
-						entity->previous_state * (1.0f - t);
-					entity->current_state.velocity = glm::vec3(0, 0, 0);
-					entity->previous_state = entity->current_state;
+					col.entity_b->current_state =
+						col.entity_b->current_state * col.t +
+						col.entity_b->previous_state * (1.0f - col.t);
+					col.entity_b->current_state.velocity = glm::vec3(0, 0, 0);
+					col.entity_b->previous_state = col.entity_b->current_state;
 
-					// resolve other
-					if (other->rigid && !other->stationary)
+					objs.erase(col.entity_b);
+				}
+			}
+
+			for (Entity* entity : objs)
+			{
+				for (Entity* other : gamesession->entities)
+				{
+					if (!other->rigid || entity == other) continue;
+
+					float t = 0;
+					if (Collision_AABB_AABB(t, (float)dt,
+						entity->previous_state.position + entity->collider_offset,
+						entity->current_state.velocity,
+						entity->rect_collider,
+						other->previous_state.position + other->collider_offset,
+						other->current_state.velocity,
+						other->rect_collider))
 					{
-						other->current_state =
-							other->current_state * t +
-							other->previous_state * (1.0f - t);
-						other->current_state.velocity = glm::vec3(0, 0, 0);
-						other->previous_state = other->current_state;
+						// save resolution
+						collisions.push(CollisionData(t, entity, other));
 					}
 				}
 			}
-		}
+		} while (!collisions.empty());
 	}
 
 	void Physics::InterpolateMotion(float alpha)

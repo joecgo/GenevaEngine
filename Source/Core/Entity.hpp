@@ -53,6 +53,7 @@ namespace GenevaEngine
 		bool stationary = false;
 		bool rigid = true;
 		glm::vec2 rect_collider = glm::vec2(1.0f, 1.0f);
+		glm::vec3 collider_offset = glm::vec3(0.0f, 0.5f, 0.0f);
 		float mass = 10.0f;
 		glm::vec3 impulse = glm::vec3();
 		MotionState interpolated_state;

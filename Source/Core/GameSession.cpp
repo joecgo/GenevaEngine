@@ -42,13 +42,15 @@ namespace GenevaEngine
 			glm::vec3(0.0f, 13.0f, 0.0f),
 			glm::vec3(5.0f, 5.0f, 5.0f),
 			"kevin", "TextureShader");
-		kevin->rect_collider = glm::vec2(1.0f, 0.1f);
+		kevin->rect_collider = glm::vec2(1.0f, 6.0f);
+		kevin->collider_offset = glm::vec3(0, 3.5f, 0);
 
 		Entity* backpack = new Entity(this,
-			glm::vec3(10.0f, 15.0f, 0.0f),
+			glm::vec3(0.0f, 45.0f, 0.0f),
 			glm::vec3(1.0f, 1.0f, 1.0f),
 			"backpack", "TextureShader");
-		backpack->rect_collider = glm::vec2(1.0f, 2.55f);
+		backpack->rect_collider = glm::vec2(1.0f, 4.0f);
+		backpack->collider_offset = glm::vec3(0, 1.5f, 0);
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
