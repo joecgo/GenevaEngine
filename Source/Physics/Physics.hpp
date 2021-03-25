@@ -65,6 +65,11 @@ namespace GenevaEngine
 			glm::vec3 a_pos, glm::vec3 a_vel, glm::vec2 a_rect,
 			glm::vec3 b_pos, glm::vec3 b_vel, glm::vec2 b_rect);
 
+		void TimeStep(double dt);
+		void IntegrateEntities(std::vector<Entity*> entities, double dt);
+		void IntegrateEntity(Entity* entity, double dt);
+		void ResolveCollision(Entity* entity, double dt);
+
 		// inherited members, methods, and constructors
 		using ASystem::ASystem;
 		void Start();
