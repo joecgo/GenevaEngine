@@ -57,7 +57,7 @@ namespace GenevaEngine
 		static constexpr float PITCH = 0.0f;
 		static constexpr float SPEED = 2.5f;
 		static constexpr float SENSITIVITY = 0.3f;
-		static constexpr float FOV = 70.0f;
+		static constexpr float FOV = 50.0f;
 
 		// euler Angles
 		float Yaw = -90.0f;

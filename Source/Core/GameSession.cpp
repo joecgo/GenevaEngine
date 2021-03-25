@@ -53,10 +53,10 @@ namespace GenevaEngine
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
-			glm::vec3(30.0f, 1.0f, 30.0f),
-			"cube", "TextureShader");
+			glm::vec3(30.0f, 1.0f, 1.0f),
+			"cube", "SingleColorShader");
 		floor->stationary = true;
-		floor->rect_collider = glm::vec2(300.0f, 1.0f);
+		floor->rect_collider = glm::vec2(30.0f, 1.0f);
 	}
 
 	/*!
