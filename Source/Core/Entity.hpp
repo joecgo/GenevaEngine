@@ -56,6 +56,7 @@ namespace GenevaEngine
 		glm::vec3 collider_offset = glm::vec3(0.0f, 0.5f, 0.0f);
 		float mass = 10.0f;
 		glm::vec3 impulse = glm::vec3();
+		glm::vec3 acceleration = glm::vec3();
 		MotionState interpolated_state;
 		MotionState current_state;
 		MotionState previous_state;

@@ -22,7 +22,6 @@
 #include <vector> // vector
 #include <cmath> // signbit
 #include <queue> // priority_queue
-#include <set> // set
 
 #include <Core/GameCommon.hpp>
 #include <Physics/MotionState.hpp>

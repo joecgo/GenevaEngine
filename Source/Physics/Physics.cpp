@@ -38,39 +38,53 @@ namespace GenevaEngine
 		// priority queue used to select the earliest collision from the time step
 		std::priority_queue<CollisionData> collisions;
 
-		// integrate from previous state to current
-		IntegrateEntities(gamesession->entities, dt);
-
-		// create a set of unresolved collision entities
-		std::set<Entity*> unresolvedEntities;
+		// calc acceleration (sum forces)
 		for (Entity* entity : gamesession->entities)
 		{
-			if (!entity->stationary && entity->rigid)
-				unresolvedEntities.insert(entity);
+			entity->acceleration = entity->impulse * entity->mass;
+			if (entity->use_gravity)
+				entity->acceleration += gravity;
+			entity->impulse = glm::vec3();
 		}
 
 		do // while collisions is not empty
 		{
 			if (!collisions.empty())
 			{
+				// step current state back
+				for (Entity* entity : gamesession->entities)
+					entity->current_state = entity->previous_state;
+
 				// get collision with lowest t value from top of priority queue
 				CollisionData collision = collisions.top();
 
-				// resolve collisions
-				// entity a
+				// resolve collision
 				ResolveCollision(collision.entity_a, collision.t);
-				unresolvedEntities.erase(collision.entity_a);
-				// entity b
 				ResolveCollision(collision.entity_b, collision.t);
-				unresolvedEntities.erase(collision.entity_b);
+
+				// reintegrate to collision t
+				IntegrateEntities(gamesession->entities, collision.t * dt);
+
+				// step forward dt by collision t
+				dt -= collision.t * dt;
 
 				// reset collision data
 				collisions = std::priority_queue<CollisionData>();
 			}
 
+			// step previous state forward
+			for (Entity* entity : gamesession->entities)
+				entity->previous_state = entity->current_state;
+
+			// integrate from previous state to current
+			IntegrateEntities(gamesession->entities, dt);
+
 			//  check for potential timestep collisions
-			for (Entity* entity : unresolvedEntities)
+			for (Entity* entity : gamesession->entities)
 			{
+				// sort out entities that are not moving or using collision
+				if (entity->stationary || !entity->rigid) continue;
+
 				for (Entity* other : gamesession->entities)
 				{
 					if (!other->rigid || entity == other) continue;
@@ -99,7 +113,6 @@ namespace GenevaEngine
 			entity->current_state * dt +
 			entity->previous_state * (1.0f - dt);
 		entity->current_state.velocity = glm::vec3(0, 0, 0);
-		entity->previous_state = entity->current_state;
 	}
 
 	void Physics::TimeStep(double dt)
@@ -113,17 +126,19 @@ namespace GenevaEngine
 			if (entity->stationary) continue;
 
 			entity->previous_state = entity->current_state;
-			MotionState* state = &(entity->current_state);
-
-			// acceleration (sum forces)
-			glm::vec3 acceleration = entity->impulse * entity->mass;
-			if (entity->use_gravity)
-				acceleration += gravity;
-			entity->impulse = glm::vec3();
-
-			state->velocity += acceleration * (float)dt;		// velocity
-			state->position += state->velocity * (float)dt;		// position
+			IntegrateEntity(entity, dt);
 		}
+	}
+
+	void Physics::IntegrateEntity(Entity* entity, double dt)
+	{
+		if (entity->stationary) return;
+
+		MotionState* state = &(entity->current_state);
+
+		state->velocity += entity->acceleration * (float)dt; // velocity
+		state->position += state->velocity * (float)dt;		// position
+		entity->acceleration = glm::vec3();
 	}
 
 	void Physics::InterpolateMotion(float alpha)
