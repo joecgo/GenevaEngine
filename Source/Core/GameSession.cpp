@@ -45,6 +45,7 @@ namespace GenevaEngine
 			"backpack", "TextureShader");
 		backpack->rect_collider = glm::vec2(1.0f, 2.5f);
 		backpack->stationary = true;
+		backpack->rigid = false;
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
@@ -99,7 +100,7 @@ namespace GenevaEngine
 			// test kevin's reflexes
 			if (KeyState_SPACE == 0 && glfwGetKey(graphics->window, GLFW_KEY_SPACE) == GLFW_PRESS)
 			{
-				kevin->impulse = glm::vec3(0.0f, 250.0f, 0.0f);
+				kevin->impulse = glm::vec3(0.0f, 300.0f, 0.0f);
 				KeyState_SPACE = 1;
 				std::cout << "JUMP" << std::endl;
 				cooldown = currentTime + 1.0;

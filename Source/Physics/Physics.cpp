@@ -49,16 +49,18 @@ namespace GenevaEngine
 		// collision checks
 		for (Entity* entity : gamesession->entities)
 		{
-			if (!entity->rigid) continue;
+			if (!entity->rigid || entity->stationary) continue;
 
 			for (Entity* other : gamesession->entities)
 			{
-				if (!other->rigid) continue;
-				if (entity == other) continue;
+				if (!other->rigid || entity == other) continue;
 
 				float t = 0;
-				if (Collision_AABB_AABB(t, entity->previous_state, entity->rect_collider,
-					other->current_state, other->rect_collider))
+				if (Collision_AABB_AABB(t, (float)dt,
+					entity->previous_state.position, entity->current_state.velocity,
+					entity->rect_collider,
+					other->previous_state.position, other->current_state.velocity,
+					other->rect_collider))
 				{
 					// resolve collision
 					entity->current_state =
@@ -105,38 +107,38 @@ namespace GenevaEngine
 		return v.x * v.x + v.y * v.y + v.z * v.z;
 	}
 
-	bool Physics::Collision_AABB_AABB(float& t,
-		MotionState a_state, glm::vec2 a_rect,
-		MotionState b_state, glm::vec2 b_rect)
+	bool Physics::Collision_AABB_AABB(float& t, float dt,
+		glm::vec3 a_pos, glm::vec3 a_vel, glm::vec2 a_rect,
+		glm::vec3 b_pos, glm::vec3 b_vel, glm::vec2 b_rect)
 	{
 		t = 2.0f; // default value for no collision
 
 		// get bounds of AABBs
-		float a_maxY = a_state.position.y + 0.5f * a_rect.y;
-		float a_minY = a_state.position.y - 0.5f * a_rect.y;
-		float b_maxY = b_state.position.y + 0.5f * b_rect.y;
-		float b_minY = b_state.position.y - 0.5f * b_rect.y;
-		float a_maxX = a_state.position.x + 0.5f * a_rect.x;
-		float a_minX = a_state.position.x - 0.5f * a_rect.x;
-		float b_maxX = b_state.position.x + 0.5f * b_rect.x;
-		float b_minX = b_state.position.x - 0.5f * b_rect.x;
+		float a_top = a_pos.y + 0.5f * a_rect.y;
+		float a_bottom = a_pos.y - 0.5f * a_rect.y;
+		float b_top = b_pos.y + 0.5f * b_rect.y;
+		float b_bottom = b_pos.y - 0.5f * b_rect.y;
+		float a_right = a_pos.x + 0.5f * a_rect.x;
+		float a_left = a_pos.x - 0.5f * a_rect.x;
+		float b_right = b_pos.x + 0.5f * b_rect.x;
+		float b_left = b_pos.x - 0.5f * b_rect.x;
 
-		// calculate possible solutions for t (smallest value between 0 - 0.01)
-		float t1 = (b_maxY - a_minY) / (a_state.velocity.y - b_state.velocity.y);
-		//float t2 = (a_maxY - b_minY) / (a_state.velocity.y - b_state.velocity.y);
-		//float t3 = b_maxX - a_minX / (a_state.velocity.x - b_state.velocity.x)*-1.0;
-		//float t4 = a_maxX - b_minX / (b_state.velocity.x - a_state.velocity.x)*-1.0;
+		// calculate possible solutions for t (smallest value between 0 and dt)
+		float t1 = 0, t2 = 0;
+		glm::vec3 approach_vel = a_vel - b_vel.y;
+		if (approach_vel.y < 0) t1 = (b_top - a_bottom) / approach_vel.y; // approaching b_top
+		else					t1 = (b_bottom - a_top) / approach_vel.y; // approaching b_bottom
+		if (approach_vel.x < 0) t2 = (b_right - a_left) / approach_vel.x; // approaching b_right
+		else					t2 = (b_left - a_right) / approach_vel.x; // approaching b_left
 
 		// logic for saving the correct solution to t
-		if (!isinf(t1) && t1 >= 0 && t1 <= 0.01f) t = t1 * 100.0f;
-		//if (!isinf(t2) && t2 >= 0 && t2 <= 0.01f && t2 < t) t = t2 * 100.0f;
-		//if (t3 >= 0 && t3 <= 1.0f && t3 < t) t = t3;
-		//if (t4 >= 0 && t4 <= 1.0f && t4 < t) t = t4;
+		if (t1 > neg_epsilon && t1 < dt + epsilon) t = t1;
+		if (t2 > neg_epsilon && t2 < dt + epsilon && t2 < t1) t = t2;
 
-		if (t != 2.0f)
-		{
-			std::cout << "HERE" << std::endl;
-		}
-		return t != 2.0f; // return true if collision: 0 < t < 1
+		// scale up by 1/dt to a 0 - 1 value
+		t /= dt;
+
+		// return true if collision: 0 < t < 1
+		return (t > neg_epsilon && t < 1.0f + epsilon);
 	}
 }

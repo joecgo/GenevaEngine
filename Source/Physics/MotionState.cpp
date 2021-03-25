@@ -19,18 +19,18 @@
 
 namespace GenevaEngine
 {
-	MotionState& MotionState::operator+(const MotionState& other)
+	MotionState::MotionState(glm::vec3 pos, glm::vec3 vel) : position(pos), velocity(vel)
 	{
-		position += other.position;
-		velocity += other.velocity;
-		return *this;
 	}
 
-	MotionState& MotionState::operator*(float scalar)
+	MotionState MotionState::operator+(const MotionState& other)
 	{
-		position *= scalar;
-		velocity *= scalar;
-		return *this;
+		return MotionState(position + other.position, velocity + other.velocity);
+	}
+
+	MotionState MotionState::operator*(float scalar)
+	{
+		return MotionState(position * scalar, velocity * scalar);
 	}
 
 	MotionState& MotionState::operator=(const MotionState& other)

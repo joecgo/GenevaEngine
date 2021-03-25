@@ -29,8 +29,9 @@ namespace GenevaEngine
 		glm::vec3 velocity;
 		glm::vec3 position;
 
-		MotionState& operator+(const MotionState& other);
-		MotionState& operator*(float scalar);
+		MotionState(glm::vec3 pos = glm::vec3(), glm::vec3 vel = glm::vec3());
+		MotionState operator+(const MotionState& other);
+		MotionState operator*(float scalar);
 		MotionState& operator=(const MotionState& other);
 	};
 }

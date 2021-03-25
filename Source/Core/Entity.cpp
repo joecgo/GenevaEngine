@@ -39,6 +39,9 @@ namespace GenevaEngine
 		shader_name(shader_name)
 	{
 		gamesession->AddEntity(this);
+		current_state = MotionState();
+		previous_state = MotionState();
+		interpolated_state = MotionState();
 	}
 
 	void Entity::Start()
