@@ -113,7 +113,7 @@ namespace GenevaEngine
 	{
 		t = 2.0f; // default value for no collision
 
-		// get bounds of AABBs
+		// get bounds of AABBs from position and xy extends
 		float a_top = a_pos.y + 0.5f * a_rect.y;
 		float a_bottom = a_pos.y - 0.5f * a_rect.y;
 		float b_top = b_pos.y + 0.5f * b_rect.y;
@@ -135,7 +135,7 @@ namespace GenevaEngine
 		if (t1 > neg_epsilon && t1 < dt + epsilon) t = t1;
 		if (t2 > neg_epsilon && t2 < dt + epsilon && t2 < t1) t = t2;
 
-		// scale up by 1/dt to a 0 - 1 value
+		// scale by 1/dt to a 0 - 1 value
 		t /= dt;
 
 		// return true if collision: 0 < t < 1
