@@ -126,6 +126,7 @@ namespace GenevaEngine
 		// calculate possible solutions for t (smallest value between 0 and dt)
 		float t1 = 0, t2 = 0;
 		glm::vec3 approach_vel = a_vel - b_vel.y;
+		if (Vec3LengthSq(approach_vel) == 0) return false;				  // no approaching vel
 		if (approach_vel.y < 0) t1 = (b_top - a_bottom) / approach_vel.y; // approaching b_top
 		else					t1 = (b_bottom - a_top) / approach_vel.y; // approaching b_bottom
 		if (approach_vel.x < 0) t2 = (b_right - a_left) / approach_vel.x; // approaching b_right
