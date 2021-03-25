@@ -68,10 +68,24 @@ namespace GenevaEngine
 	 */
 	glm::mat4 Camera::GetViewMatrix(int screen_width, int screen_height) const
 	{
+		// camera view
 		glm::mat4 view = glm::lookAt(Position, Position + Front, Up);
+
+		// Orthogonal view
+		if (OrthoView)
+		{
+			// orthro view
+			float right = OrthoWidth * 0.5f;
+			float left = right * -1.0f;
+			float top = right * (float)screen_height / (float)screen_width;
+			float bottom = top * -1.0f;
+			glm::mat4 ortho = glm::ortho<float>(left, right, bottom, top, -1.0f, FarClipping);
+			return ortho * view;
+		}
+
+		// Perspective view
 		glm::mat4 perspective = glm::perspective(glm::radians(Fov),
 			(float)screen_width / (float)screen_height, NearClipping, FarClipping);
-
 		return perspective * view;
 	}
 
@@ -98,6 +112,7 @@ namespace GenevaEngine
 			Position += Up * velocity;
 		if (direction == Movement::DOWN)
 			Position -= Up * velocity;
+		std::cout << Position.x << ", " << Position.y << ", " << Position.z << ", " << std::endl;
 	}
 
 	/*!

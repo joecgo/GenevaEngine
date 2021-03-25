@@ -48,7 +48,7 @@ namespace GenevaEngine
 		std::vector<Color> palette = {
 		Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),
 		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
-		Camera camera = Camera(glm::vec3(0.0f, 4.0f, 20.0f));
+		Camera camera = Camera(glm::vec3(0.0f, 5.0f, 20.0f));
 		GLFWwindow* window;
 
 		// glfw callbacks

@@ -19,6 +19,7 @@
 #include <glad/glad.h> // GLboolean constrainPitch
 #include <glm/gtc/matrix_transform.hpp> // vec3 mat4 perspective lookAt
 
+#include <iostream> // cout
 #include <vector>
 
 namespace GenevaEngine
@@ -70,7 +71,8 @@ namespace GenevaEngine
 		float FarClipping = 100.0f;
 		float MaxFov = 150.0f;
 		float MinFov = 20.0f;
-		bool PerspectiveView = true; // as opposed to orthogonal
+		float OrthoWidth = 50.0f;
+		bool OrthoView = false; // as opposed to perspective
 
 		// constructor with vectors
 		Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),
