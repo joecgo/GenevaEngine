@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\glad\glad.c" />
+    <ClCompile Include="Source\Graphics\GeoShader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Physics\MotionState.cpp">
       <SubType>
       </SubType>
@@ -60,6 +64,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Graphics\GeoShader.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Physics\MotionState.hpp">
       <SubType>
       </SubType>

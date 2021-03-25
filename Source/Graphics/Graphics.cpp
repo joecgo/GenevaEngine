@@ -65,13 +65,13 @@ namespace GenevaEngine
 		// create and save shaders and models. TODO: do this with an asset file
 		SaveShader("TextureShader",
 			Shader("Shaders/Shader.vert", "Shaders/TextureShader.frag"));
-		SaveShader("SingeColorShader",
+		SaveShader("SingleColorShader",
 			Shader("Shaders/Shader.vert", "Shaders/SingleColorShader.frag"));
 
 		// import and save models
+		SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
 		SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
 		SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
-		SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);

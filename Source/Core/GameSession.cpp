@@ -39,7 +39,7 @@ namespace GenevaEngine
 	void GameSession::CreateEntities()
 	{
 		kevin = new Entity(this, glm::vec3(5.0f, 13.0f, 0.0f), glm::vec3(5.0f, 5.0f, 5.0f),
-			"kevin", "SingeColorShader");
+			"kevin", "TextureShader");
 
 		Entity* backpack = new Entity(this, glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 			"backpack", "TextureShader");
@@ -49,10 +49,10 @@ namespace GenevaEngine
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
-			glm::vec3(100.0f, 1.0f, 100.0f),
+			glm::vec3(30.0f, 1.0f, 30.0f),
 			"cube", "TextureShader");
 		floor->stationary = true;
-		floor->rect_collider = glm::vec2(100.0f, 1.0f);
+		floor->rect_collider = glm::vec2(300.0f, 1.0f);
 	}
 
 	/*!
