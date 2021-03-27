@@ -33,8 +33,6 @@ namespace GenevaEngine
 	class Physics : public ASystem
 	{
 	public:
-		void SaveBodyDef(std::string name, b2BodyDef bodyDef);
-		b2BodyDef GetBodyDef(std::string name);
 		b2World* GetWorld();
 
 	private:
@@ -43,7 +41,6 @@ namespace GenevaEngine
 		const int32 position_iterations = 2; // setting for constraint solver
 		const b2Vec2 gravity = b2Vec2(0, -10.0f);
 		b2World world = b2World(gravity);
-		std::map<std::string, b2BodyDef> body_defs; // save BodyDef's for reuse
 
 		// inherited members, methods, and constructors
 		using ASystem::ASystem;

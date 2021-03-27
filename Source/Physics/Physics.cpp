@@ -36,14 +36,4 @@ namespace GenevaEngine
 	{
 		return &(world);
 	}
-
-	void Physics::SaveBodyDef(std::string name, b2BodyDef bodyDef)
-	{
-		body_defs[name] = bodyDef;
-	}
-
-	b2BodyDef Physics::GetBodyDef(std::string name)
-	{
-		return body_defs[name];
-	}
 }
