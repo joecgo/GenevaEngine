@@ -42,22 +42,16 @@ namespace GenevaEngine
 			glm::vec3(0.0f, 13.0f, 0.0f),
 			glm::vec3(5.0f, 5.0f, 5.0f),
 			"kevin", "TextureShader");
-		kevin->rect_collider = glm::vec2(1.0f, 6.0f);
-		kevin->collider_offset = glm::vec3(0, 3.0f, 0); // 3.5f
 
 		Entity* backpack = new Entity(this,
 			glm::vec3(0.0f, 45.0f, 0.0f),
 			glm::vec3(1.0f, 1.0f, 1.0f),
 			"backpack", "TextureShader");
-		backpack->rect_collider = glm::vec2(1.0f, 6.0f); // 4.0f
-		backpack->collider_offset = glm::vec3(0, 3.0f, 0); // 1.5f;
 
 		Entity* floor = new Entity(this,
 			glm::vec3(0.0f, 0.0f, 0.0f),
 			glm::vec3(30.0f, 1.0f, 1.0f),
 			"cube", "SingleColorShader");
-		floor->stationary = true;
-		floor->rect_collider = glm::vec2(30.0f, 1.0f);
 	}
 
 	/*!
@@ -85,8 +79,6 @@ namespace GenevaEngine
 		double dt = 0.01;
 		double currentTime = Time();
 		double accumulator = 0.0;
-		double cooldown = 0;
-		int KeyState_SPACE = 0; // for kevin testing
 
 		while (!glfwWindowShouldClose(graphics->window))
 		{
@@ -102,17 +94,6 @@ namespace GenevaEngine
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			// test kevin's reflexes
-			if (KeyState_SPACE == 0 && glfwGetKey(graphics->window, GLFW_KEY_SPACE) == GLFW_PRESS)
-			{
-				kevin->impulse = glm::vec3(0.0f, 300.0f, 0.0f);
-				KeyState_SPACE = 1;
-				std::cout << "JUMP" << std::endl;
-				cooldown = currentTime + 1.0;
-			}
-			if (KeyState_SPACE == 1 && cooldown < currentTime)
-				KeyState_SPACE = 0;
-
 			input->Update(frameTime); 					// Input
 
 			// fixed update loop
@@ -126,7 +107,7 @@ namespace GenevaEngine
 			}
 
 			const double alpha = accumulator / dt;
-			physics->InterpolateMotion((float)alpha);	// Physics (between time steps)
+			//physics->InterpolateMotion((float)alpha);	// Physics (between time steps)
 			for (Entity* entity : entities)				// Game Logic
 				entity->Update(frameTime);
 			graphics->Update(frameTime); 				// Render

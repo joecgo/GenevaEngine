@@ -107,7 +107,7 @@ namespace GenevaEngine
 	{
 		// TODO: add rotation tranformation
 		glm::mat4 worldTransform = glm::mat4(1.0f);
-		worldTransform = glm::translate(worldTransform, entity->Position());
+		worldTransform = glm::translate(worldTransform, entity->startPosition);
 		worldTransform = glm::scale(worldTransform, entity->scale);
 
 		// render the model using shader and camera view

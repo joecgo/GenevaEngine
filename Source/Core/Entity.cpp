@@ -20,6 +20,8 @@
 using namespace std;
 namespace GenevaEngine
 {
+	int Entity::entity_count = 0;
+
 	/*!
 	 *  Constructor
 	 *
@@ -36,12 +38,10 @@ namespace GenevaEngine
 		startPosition(pos),
 		scale(scale),
 		model_name(model_name),
-		shader_name(shader_name)
+		shader_name(shader_name),
+		id(++entity_count)
 	{
 		gamesession->AddEntity(this);
-		current_state = MotionState();
-		previous_state = MotionState();
-		interpolated_state = MotionState();
 	}
 
 	void Entity::Start()
@@ -49,11 +49,6 @@ namespace GenevaEngine
 		// get a pointer to the Entity's model and shader referenced by name in the constructor
 		model = gamesession->graphics->GetModel(model_name);
 		shader = gamesession->graphics->GetShader(shader_name);
-
-		// physics stuff
-		current_state.position = startPosition;
-		previous_state.position = startPosition;
-		interpolated_state.position = startPosition;
 	}
 
 	void Entity::Update(double dt)
@@ -66,10 +61,5 @@ namespace GenevaEngine
 
 	void Entity::End()
 	{
-	}
-
-	glm::vec3 Entity::Position()
-	{
-		return interpolated_state.position;
 	}
 }

@@ -17,27 +17,20 @@
 
 #pragma once
 
+  // Disable warning messages from box2d: C26812 C26495
+#pragma warning( disable : 26812 26495)
+
+#include <box2d/box2d.h> // box2d
 #include <glm/gtc/matrix_transform.hpp> // vec3
 
 #include <vector> // vector
+#include <list> // list
 #include <cmath> // signbit
-#include <queue> // priority_queue
 
 #include <Core/GameCommon.hpp>
-#include <Physics/MotionState.hpp>
 
 namespace GenevaEngine
 {
-	struct CollisionData
-	{
-		float t;
-		Entity* entity_a;
-		Entity* entity_b;
-
-		// constructor
-		CollisionData(float time, Entity* a, Entity* b) : t(time), entity_a(a), entity_b(b) {}
-	};
-
 	/*!
 	 *  \brief Physics system
 	 */
@@ -46,28 +39,9 @@ namespace GenevaEngine
 	public:
 
 	private:
-		static constexpr float epsilon = 0.0001f;
-		static constexpr float neg_epsilon = -0.0001f;
-
-		const glm::vec3 gravity = glm::vec3(0, -50.0f, 0);
-
-		void InterpolateMotion(float alpha);
-
-		static float Vec3LengthSq(glm::vec3 v);
-		static bool Intersect_Sphere_Sphere(
-			glm::vec3 a_pos, float a_radius,
-			glm::vec3 b_pos, float b_radius);
-		static bool Intersect_AABB_AABB(
-			glm::vec3 a_pos, glm::vec2 a_rect,
-			glm::vec3 b_pos, glm::vec2 b_rect);
-		static bool Collision_AABB_AABB(float& t, float dt,
-			glm::vec3 a_pos, glm::vec3 a_vel, glm::vec2 a_rect,
-			glm::vec3 b_pos, glm::vec3 b_vel, glm::vec2 b_rect);
-
-		void TimeStep(double dt);
-		void IntegrateEntities(std::vector<Entity*> entities, double dt);
-		void IntegrateEntity(Entity* entity, double dt);
-		void ResolveCollision(Entity* entity, double dt);
+		// box2d
+		const b2Vec2 gravity = b2Vec2(0, -10.0f);
+		b2World b2_world = b2World(gravity);
 
 		// inherited members, methods, and constructors
 		using ASystem::ASystem;
