@@ -43,8 +43,6 @@ namespace GenevaEngine
 		}
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-		//glfwSetCursorPosCallback(window, mouse_callback);
-		//glfwSetScrollCallback(window, scroll_callback);
 
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -62,16 +60,10 @@ namespace GenevaEngine
 		// configure global opengl state
 		glEnable(GL_DEPTH_TEST);
 
-		// create and save shaders and models. TODO: do this with an asset file
-		SaveShader("TextureShader",
-			Shader("Shaders/Shader.vert", "Shaders/TextureShader.frag"));
-		SaveShader("SingleColorShader",
-			Shader("Shaders/Shader.vert", "Shaders/SingleColorShader.frag"));
-
-		// import and save models
-		//SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
-		//SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
-		//SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
+		// create, save, and assign shaders. TODO: do this with a config file
+		SaveShader("ColorShader", Shader("Shaders/ColorShader.vert", "Shaders/ColorShader.frag"));
+		default_shader = GetShader("ColorShader");
+		default_shader->use();
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
@@ -85,14 +77,15 @@ namespace GenevaEngine
 
 	void Graphics::Update(double dt)
 	{
-		// update camera mouse look using glfw input
-		// UpdateCameraMovement();
-
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// get view matrics from camera
 		glm::mat4 viewTransform = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
+
+		// save view matrix to shader uniform value
+		int camera_view_loc = glGetUniformLocation(default_shader->ID, "uCameraView");
+		glUniformMatrix4fv(camera_view_loc, 1, GL_FALSE, glm::value_ptr(viewTransform));
 
 		// render entities
 		for (Entity* entity : gamesession->entities)
@@ -105,19 +98,17 @@ namespace GenevaEngine
 
 	void Graphics::RenderEntity(Entity* entity, glm::mat4 viewTransform) const
 	{
-		// TODO: add rotation tranformation
-		//glm::mat4 worldTransform = glm::mat4(1.0f);
-		//worldTransform = glm::translate(worldTransform, entity->startPosition);
-		//worldTransform = glm::scale(worldTransform, entity->scale);
+		// calc entity's world transform
+		glm::mat4 worldTransform = glm::mat4(1.0f);
+		worldTransform = glm::translate(worldTransform, entity->startPosition);
+		worldTransform = glm::scale(worldTransform, entity->scale);
 
-		// render the model using shader and camera view
-		//Shader* shader = entity->shader;
-		//shader->use();
-		//int viewLoc = glGetUniformLocation(shader->ID, "view");
-		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransform));
-		//int modelLoc = glGetUniformLocation(shader->ID, "model");
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(worldTransform));
-		//entity->model->Draw(*shader);
+		// pass world tranform to shader as a uniform value "uObject"
+		int object_loc = glGetUniformLocation(default_shader->ID, "uObject");
+		glUniformMatrix4fv(object_loc, 1, GL_FALSE, glm::value_ptr(worldTransform));
+
+		// draw the entity
+		//Draw(entity);
 	}
 
 	/*!
@@ -151,29 +142,6 @@ namespace GenevaEngine
 	Shader* Graphics::GetShader(std::string name)
 	{
 		return &(shaders[name]);
-	}
-
-	/*!
- *  Saves a model by name.
- *
- *      \param [in] name
- *      \param [in] model
- */
-	void Graphics::SaveModel(std::string name, Model model)
-	{
-		models[name] = model;
-	}
-
-	/*!
-	 *  Retrieves a model from Graphics system by name.
-	 *
-	 *      \param [in] name
-	 *
-	 *      \return The model.
-	 */
-	Model* Graphics::GetModel(std::string name)
-	{
-		return &(models[name]);
 	}
 
 	void Graphics::UpdateCameraMovement()

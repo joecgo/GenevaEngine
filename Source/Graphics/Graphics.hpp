@@ -75,9 +75,9 @@ namespace GenevaEngine
 		double lastX = SCR_WIDTH / 2.0f;
 		double lastY = SCR_HEIGHT / 2.0f;
 
-		// asset storage in maps
+		// Asset references references
+		Shader* default_shader;
 		std::map<std::string, Shader> shaders;
-		std::map<std::string, Model> models;
 
 		void UpdateCameraMovement();
 		void RenderEntity(Entity* entity, glm::mat4 viewTransform) const;

@@ -196,9 +196,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\SingleColorShader.frag" />
+    <None Include="Shaders\ColorShader.frag" />
+    <None Include="Shaders\ColorShader.vert" />
     <None Include="Shaders\TextureShader.frag" />
-    <None Include="Shaders\Shader.vert" />
+    <None Include="Shaders\TextureShader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
