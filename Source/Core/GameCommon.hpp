@@ -17,6 +17,10 @@
 
 #pragma once
 
+  // Disable warning messages from box2d: C26812 C26495
+#pragma warning( disable : 26812 26495)
+
+#include <box2d/box2d.h> // box2d
 #include <Core/GameSession.hpp>
 #include <Core/ASystem.hpp>
 #include <Core/Entity.hpp>

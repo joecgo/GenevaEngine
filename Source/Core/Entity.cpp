@@ -20,39 +20,47 @@
 using namespace std;
 namespace GenevaEngine
 {
+	// static members
 	int Entity::entity_count = 0;
 
-	/*!
-	 *  Constructor
-	 *
-	 *      \param [in] modelName
-	 *      \param [in] shaderName
-	 *      \param [in] position
-	 *      \param [in] scale
-	 *
-	 *      \return
-	 */
-	Entity::Entity(GameSession* gs, glm::vec3 pos, glm::vec3 scale,
-		string model_name, string shader_name) :
+	Entity::Entity(GameSession* gs, b2BodyDef arg_body_def, b2FixtureDef arg_fixture_def,
+		b2PolygonShape arg_shape_def, std::string arg_name) :
 		gamesession(gs),
-		startPosition(pos),
-		scale(scale),
-		model_name(model_name),
-		shader_name(shader_name),
-		id(++entity_count)
+		body_def(arg_body_def),
+		fixture_def(arg_fixture_def),
+		shape_def(arg_shape_def),
+		name(arg_name),
+		id(++entity_count),
+		world(gs->GetWorld())
 	{
-		gamesession->AddEntity(this);
+		gamesession->AddEntity(this); // add to gamesession entities
 	}
 
 	void Entity::Start()
 	{
-		// get a pointer to the Entity's model and shader referenced by name in the constructor
-		model = gamesession->graphics->GetModel(model_name);
-		shader = gamesession->graphics->GetShader(shader_name);
+		Spawn();
+	}
+
+	void Entity::Spawn()
+	{
+		// error check for existing body
+		if (body != nullptr)
+		{
+			std::cout << "Error - Entity::Spawn - Entity is already spawned" << std::endl;
+			return;
+		}
+
+		// spawn
+		body = world->CreateBody(&body_def);
+		fixture_def.shape = &shape_def;
+		body->CreateFixture(&fixture_def);
 	}
 
 	void Entity::Update(double dt)
 	{
+		b2Vec2 position = body->GetPosition();
+		float angle = body->GetAngle();
+		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 	}
 
 	void Entity::FixedUpdate(double alpha)

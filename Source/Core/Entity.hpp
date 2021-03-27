@@ -33,25 +33,31 @@ namespace GenevaEngine
 	class Entity
 	{
 	public:
+		// increments on entity construction
 		static int entity_count;
+
+		// general info
 		const int id = -1;
+		std::string name;
 
-		Entity(GameSession* gs, glm::vec3 pos, glm::vec3 scale, string model_name,
-			string shader_name = "TextureShader");
+		// constructor
+		Entity(GameSession* gs, b2BodyDef arg_body_def, b2FixtureDef arg_fixture_def,
+			b2PolygonShape arg_shape_def, std::string arg_name = "none");
 
-		// TODO: store these things in components that are attached to the Entity
-		// Model Component
-		Model* model = nullptr;
-		std::string model_name = 0;
-		// Render Component
-		Shader* shader = nullptr;
-		std::string shader_name = 0;
+		// helper methods
+		void Spawn();
+
 		// Transform Component
 		glm::vec3 startPosition = glm::vec3();
 		glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	private:
 		GameSession* gamesession;
+		b2World* world;
+		b2BodyDef body_def;
+		b2PolygonShape shape_def;
+		b2FixtureDef fixture_def;
+		b2Body* body = nullptr;
 
 		void Start();
 		void FixedUpdate(double alpha); // update on fixed time-steps

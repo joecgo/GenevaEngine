@@ -53,6 +53,9 @@ namespace GenevaEngine
 		void AddSystem(ASystem* system);
 		void AddEntity(Entity* entity);
 
+		// box2d
+		b2World* GetWorld();
+
 		// system, entity references
 		std::vector<ASystem*> systems;
 		std::vector<Entity*> entities;

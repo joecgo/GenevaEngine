@@ -69,9 +69,9 @@ namespace GenevaEngine
 			Shader("Shaders/Shader.vert", "Shaders/SingleColorShader.frag"));
 
 		// import and save models
-		SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
-		SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
-		SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
+		//SaveModel("cube", Model("Assets/Art/Test/Cube/cube.obj"));
+		//SaveModel("backpack", Model("Assets/Art/Test/Backpack/backpack.obj"));
+		//SaveModel("kevin", Model("Assets/Art/Test/Kevin/Kevin.obj"));
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
@@ -106,18 +106,18 @@ namespace GenevaEngine
 	void Graphics::RenderEntity(Entity* entity, glm::mat4 viewTransform) const
 	{
 		// TODO: add rotation tranformation
-		glm::mat4 worldTransform = glm::mat4(1.0f);
-		worldTransform = glm::translate(worldTransform, entity->startPosition);
-		worldTransform = glm::scale(worldTransform, entity->scale);
+		//glm::mat4 worldTransform = glm::mat4(1.0f);
+		//worldTransform = glm::translate(worldTransform, entity->startPosition);
+		//worldTransform = glm::scale(worldTransform, entity->scale);
 
 		// render the model using shader and camera view
-		Shader* shader = entity->shader;
-		shader->use();
-		int viewLoc = glGetUniformLocation(shader->ID, "view");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransform));
-		int modelLoc = glGetUniformLocation(shader->ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(worldTransform));
-		entity->model->Draw(*shader);
+		//Shader* shader = entity->shader;
+		//shader->use();
+		//int viewLoc = glGetUniformLocation(shader->ID, "view");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewTransform));
+		//int modelLoc = glGetUniformLocation(shader->ID, "model");
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(worldTransform));
+		//entity->model->Draw(*shader);
 	}
 
 	/*!

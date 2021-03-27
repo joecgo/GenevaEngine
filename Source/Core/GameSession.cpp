@@ -38,20 +38,24 @@ namespace GenevaEngine
 	 */
 	void GameSession::CreateEntities()
 	{
-		kevin = new Entity(this,
-			glm::vec3(0.0f, 13.0f, 0.0f),
-			glm::vec3(5.0f, 5.0f, 5.0f),
-			"kevin", "TextureShader");
+		// define these for each entity
+		b2BodyDef bodyDef;
+		b2FixtureDef fixtureDef;
+		b2PolygonShape shapeDef;
 
-		Entity* backpack = new Entity(this,
-			glm::vec3(0.0f, 45.0f, 0.0f),
-			glm::vec3(1.0f, 1.0f, 1.0f),
-			"backpack", "TextureShader");
+		// create ground
+		bodyDef.position.Set(0.0f, -10.0f);
+		shapeDef.SetAsBox(50.0f, 10.0f);
+		fixtureDef.density = 0; // 0 density is static
+		new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
 
-		Entity* floor = new Entity(this,
-			glm::vec3(0.0f, 0.0f, 0.0f),
-			glm::vec3(30.0f, 1.0f, 1.0f),
-			"cube", "SingleColorShader");
+		// create dynamic box
+		bodyDef.type = b2_dynamicBody;
+		bodyDef.position.Set(0.0f, 4.0f);
+		shapeDef.SetAsBox(1.0f, 1.0f);
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;
+		new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
 	}
 
 	/*!
@@ -176,5 +180,10 @@ namespace GenevaEngine
 	double GameSession::Time()
 	{
 		return glfwGetTime();
+	}
+
+	b2World* GameSession::GetWorld()
+	{
+		return &(physics->world);
 	}
 }
