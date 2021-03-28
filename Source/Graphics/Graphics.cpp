@@ -95,10 +95,15 @@ namespace GenevaEngine
 	{
 		// draw shape depending on type
 		b2PolygonShape shape = entity->GetShape();
+		b2Transform xf = entity->GetBody()->GetTransform();
+		for (size_t i = 0; i < shape.m_count; i++)
+			transformed_verts[i] = b2Mul(xf, shape.m_vertices[i]);
+
 		switch (shape.GetType())
 		{
 		case b2Shape::e_polygon:
-			DrawSolidPolygon(shape.m_vertices, shape.m_count, palette[5]);
+
+			DrawSolidPolygon(transformed_verts, shape.m_count, palette[5]);
 			break;
 
 		case b2Shape::e_chain:

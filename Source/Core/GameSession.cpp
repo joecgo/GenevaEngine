@@ -51,7 +51,7 @@ namespace GenevaEngine
 
 		// create dynamic box
 		bodyDef.type = b2_dynamicBody;
-		bodyDef.position.Set(0.0f, 4.0f);
+		bodyDef.position.Set(0.0f, 20.0f);
 		shapeDef.SetAsBox(1.0f, 1.0f);
 		fixtureDef.density = 1.0f;
 		fixtureDef.friction = 0.3f;

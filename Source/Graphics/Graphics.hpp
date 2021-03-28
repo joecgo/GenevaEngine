@@ -45,10 +45,11 @@ namespace GenevaEngine
 		static const unsigned int SCR_HEIGHT = SCR_WIDTH * 9 / 16;
 
 		// member variables
+		b2Vec2 transformed_verts[512];
 		std::vector<Color> palette = {
 		Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
 		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
-		Camera camera = Camera(glm::vec3(0, 28.0f, 60.0f));
+		Camera camera = Camera(glm::vec3(0, 6.0f, 45.f));
 		GLFWwindow* window;
 
 		// glfw callbacks

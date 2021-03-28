@@ -46,6 +46,7 @@ namespace GenevaEngine
 
 		// helper methods
 		b2PolygonShape GetShape() { return shape_def; }
+		b2Body* GetBody() { return body; }
 		void Spawn();
 
 		// Transform Component
