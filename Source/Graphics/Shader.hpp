@@ -47,7 +47,7 @@ namespace GenevaEngine
 	{
 	public:
 		// member vars
-		static constexpr int e_maxVertices = 512;
+		static constexpr int e_maxVertices = 4096;
 		b2Vec2 m_vertices[e_maxVertices];
 		Color m_colors[e_maxVertices];
 		int32 m_count = 0;

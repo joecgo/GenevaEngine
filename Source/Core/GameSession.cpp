@@ -49,13 +49,16 @@ namespace GenevaEngine
 		fixtureDef.density = 0; // 0 density is static
 		new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
 
-		// create dynamic box
-		bodyDef.type = b2_dynamicBody;
-		bodyDef.position.Set(0.0f, 20.0f);
-		shapeDef.SetAsBox(1.0f, 1.0f);
-		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 0.3f;
-		new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+		// create dynamic boxes
+		for (size_t i = 0; i < 100; i++)
+		{
+			bodyDef.type = b2_dynamicBody;
+			bodyDef.position.Set(0.0f, (float)i * 5.0f);
+			shapeDef.SetAsBox(1.0f, 1.0f);
+			fixtureDef.density = 1.0f;
+			fixtureDef.friction = 0.3f;
+			new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+		}
 	}
 
 	/*!
