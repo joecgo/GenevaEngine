@@ -18,10 +18,19 @@
 
 namespace GenevaEngine
 {
-	/*!
-	 *  Default Constructor.
-	 */
-	Shader::Shader() {}
+	float debugVertices[] = {
+		// positions
+		0.5f, -0.5f,   // bottom right
+	   -0.5f, -0.5f,   // bottom left
+		0.0f,  0.5f,   // top
+	};
+
+	float debugColors[] = {
+		// colors
+		0.0f, 1.0f, 0.0f, 1.0f,   // bottom right
+		0.0f, 0.0f, 1.0f, 1.0f,   // bottom left
+		1.0f, 0.0f, 0.0f, 1.0f    // top
+	};
 
 	/*!
 	 *  constructor generates the shader a fragment shader and vertex shader file path
@@ -31,7 +40,9 @@ namespace GenevaEngine
 	 */
 	Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	{
-		// 1. retrieve the vertex/fragment source code from filePath
+		//// ---------------------------------------------------------------
+		/// 1. retrieve the vertex/fragment source code from filePath
+		// -----------------------------------------------------------------
 		std::string vertexCode;
 		std::string fragmentCode;
 		std::ifstream vShaderFile;
@@ -61,68 +72,110 @@ namespace GenevaEngine
 		}
 		const char* vShaderCode = vertexCode.c_str();
 		const char* fShaderCode = fragmentCode.c_str();
-		// 2. compile shaders
+
+		//// ---------------------------------------------------------------
+		/// 2. compile shaders
+		// -------------------------------------------------------------
 		unsigned int vertex, fragment;
 		// vertex shader
 		vertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertex, 1, &vShaderCode, NULL);
 		glCompileShader(vertex);
-		checkCompileErrors(vertex, "VERTEX");
+		CheckCompileErrors(vertex, "VERTEX");
 		// fragment Shader
 		fragment = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragment, 1, &fShaderCode, NULL);
 		glCompileShader(fragment);
-		checkCompileErrors(fragment, "FRAGMENT");
+		CheckCompileErrors(fragment, "FRAGMENT");
 		// shader Program
-		ID = glCreateProgram();
-		glAttachShader(ID, vertex);
-		glAttachShader(ID, fragment);
-		glLinkProgram(ID);
-		checkCompileErrors(ID, "PROGRAM");
+		m_programId = glCreateProgram();
+		glAttachShader(m_programId, vertex);
+		glAttachShader(m_programId, fragment);
+		glLinkProgram(m_programId);
+		CheckCompileErrors(m_programId, "PROGRAM");
 		// delete the shaders as they're linked into our program now and no longer necessary
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
+
+		// manage variables for shader
+		m_projectionUniform = glGetUniformLocation(m_programId, "projectionMatrix");
+		m_vertexAttribute = 0;
+		m_colorAttribute = 1;
+
+		// Generate 1 vertex buffer and 2 vertex arrays
+		glGenVertexArrays(1, &m_vaoId);
+		glGenBuffers(2, m_vboIds);
+
+		glBindVertexArray(m_vaoId);
+		glEnableVertexAttribArray(m_vertexAttribute);
+		glEnableVertexAttribArray(m_colorAttribute);
+
+		// Vertex buffer
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[0]);
+		glVertexAttribPointer(m_vertexAttribute, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+		glBufferData(GL_ARRAY_BUFFER, sizeof(debugVertices), debugVertices, GL_DYNAMIC_DRAW);
+
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
+		glVertexAttribPointer(m_colorAttribute, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+		glBufferData(GL_ARRAY_BUFFER, sizeof(debugColors), debugColors, GL_DYNAMIC_DRAW);
+
+		// Cleanup
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
 	}
 
-	/*!
-	 *  Activate the shader
-	 */
-	void Shader::use()
+	Shader::~Shader()
 	{
-		glUseProgram(ID);
+		if (m_vaoId)
+		{
+			glDeleteVertexArrays(1, &m_vaoId);
+			glDeleteBuffers(2, m_vboIds);
+		}
 	}
 
-	/*!
-	 * Sets a uniform bool in the shader
-	 *
-	 *      \param [in] name
-	 *      \param [in] value
-	 */
-	void Shader::setBool(const std::string& name, bool value) const
+	void Shader::UpdateProjection(glm::mat4 projection)
 	{
-		glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+		glUniformMatrix4fv(m_projectionUniform, 1, GL_FALSE, glm::value_ptr(projection));
 	}
 
-	/*!
-	 *  Sets a uniform int in the shader
-	 *
-	 *      \param [in] name
-	 *      \param [in] value
-	 */
-	void Shader::setInt(const std::string& name, int value) const
+	void Shader::Vertex(const b2Vec2& v, const Color& c)
 	{
-		glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+		if (m_count == e_maxVertices)
+			Flush();
+
+		m_vertices[m_count] = v;
+		m_colors[m_count] = c;
+		++m_count;
 	}
 
-	/*!
-	 *  Sets a uniform float in the shader
-	 *
-	 *      \param [in] name
-	 *      \param [in] value
-	 */
-	void Shader::setFloat(const std::string& name, float value) const
+	void Shader::Flush()
 	{
-		glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+		if (m_count == 0)
+			return;
+
+		glUseProgram(m_programId);
+
+		// testing only (REMOVE)
+		m_count = 3;
+
+		glBindVertexArray(m_vaoId);
+
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[0]);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(b2Vec2), debugVertices); // m_vertices);
+
+		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(Color), debugColors); // m_colors);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glDrawArrays(GL_TRIANGLES, 0, m_count);
+		glDisable(GL_BLEND);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		glUseProgram(0);
+
+		m_count = 0;
 	}
 
 	/*!
@@ -131,7 +184,7 @@ namespace GenevaEngine
 	 *      \param [in] shader
 	 *      \param [in] type
 	 */
-	void Shader::checkCompileErrors(unsigned int shader, std::string type)
+	void Shader::CheckCompileErrors(unsigned int shader, std::string type)
 	{
 		int success;
 		char infoLog[1024];
@@ -151,8 +204,8 @@ namespace GenevaEngine
 			if (!success)
 			{
 				glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-				std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog
-					<< "\n -- ---- -- " << std::endl;
+				std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n"
+					<< infoLog << "\n -- ---- -- " << std::endl;
 			}
 		}
 	}

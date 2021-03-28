@@ -65,10 +65,6 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_world_callbacks.cpp" />
     <ClCompile Include="External\box2d\src\rope\b2_rope.cpp" />
     <ClCompile Include="External\glad\glad.c" />
-    <ClCompile Include="Source\Graphics\GeoShader.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Core\ASystem.cpp">
       <SubType>
       </SubType>
@@ -154,10 +150,6 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
-    <ClInclude Include="Source\Graphics\GeoShader.hpp">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\Core\ASystem.hpp">
       <SubType>
       </SubType>
@@ -196,8 +188,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\ColorShader.frag" />
-    <None Include="Shaders\ColorShader.vert" />
+    <None Include="Shaders\TriangleShader.frag" />
+    <None Include="Shaders\TriangleShader.vert" />
     <None Include="Shaders\TextureShader.frag" />
     <None Include="Shaders\TextureShader.vert" />
   </ItemGroup>

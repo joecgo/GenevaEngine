@@ -46,10 +46,9 @@ namespace GenevaEngine
 
 		// member variables
 		std::vector<Color> palette = {
-		Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),
+		Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
 		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
-		Camera camera = Camera(
-			glm::vec3(0.0f, 8.3f, 23.0f)); // position
+		Camera camera = Camera(glm::vec3(0.0f, 0.0f, 50.0f)); //0.0f, 8.3f, 23.0f // position
 		GLFWwindow* window;
 
 		// glfw callbacks
@@ -67,7 +66,7 @@ namespace GenevaEngine
 		Model* GetModel(std::string name);
 
 	private:
-		// mouse state
+		// mouse state for debug camera
 		static double mouse_y;
 		static double mouse_x;
 		static double mouse_scroll;
@@ -79,8 +78,13 @@ namespace GenevaEngine
 		Shader* default_shader;
 		std::map<std::string, Shader> shaders;
 
+		// debug camera methods
 		void UpdateCameraMovement();
-		void RenderEntity(Entity* entity, glm::mat4 viewTransform) const;
+
+		// render methods
+		void RenderEntity(Entity* entity);
+		void DrawSolidPolygon(b2Vec2* vertices, int32 vertexCount, Color& color);
+		void Flush();
 
 		// inherited mebers, methods, and constructors
 		using ASystem::ASystem;

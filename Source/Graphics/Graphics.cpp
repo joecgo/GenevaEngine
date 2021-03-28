@@ -54,16 +54,13 @@ namespace GenevaEngine
 			return; // TODO: inform GameSession of fatal error
 		}
 
-		// tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
-		stbi_set_flip_vertically_on_load(true);
-
 		// configure global opengl state
 		glEnable(GL_DEPTH_TEST);
 
 		// create, save, and assign shaders. TODO: do this with a config file
-		SaveShader("ColorShader", Shader("Shaders/ColorShader.vert", "Shaders/ColorShader.frag"));
-		default_shader = GetShader("ColorShader");
-		default_shader->use();
+		SaveShader("TriangleShader",
+			Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag"));
+		default_shader = GetShader("TriangleShader");
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
@@ -80,35 +77,36 @@ namespace GenevaEngine
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// get view matrics from camera
-		glm::mat4 viewTransform = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
-
-		// save view matrix to shader uniform value
-		int camera_view_loc = glGetUniformLocation(default_shader->ID, "uCameraView");
-		glUniformMatrix4fv(camera_view_loc, 1, GL_FALSE, glm::value_ptr(viewTransform));
+		// pass projection from camera to shader
+		glm::mat4 projection = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
+		default_shader->UpdateProjection(projection);
 
 		// render entities
 		for (Entity* entity : gamesession->entities)
-			RenderEntity(entity, viewTransform);
+			RenderEntity(entity);
+		Flush();
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	void Graphics::RenderEntity(Entity* entity, glm::mat4 viewTransform) const
+	void Graphics::RenderEntity(Entity* entity)
 	{
-		// calc entity's world transform
-		glm::mat4 worldTransform = glm::mat4(1.0f);
-		worldTransform = glm::translate(worldTransform, entity->startPosition);
-		worldTransform = glm::scale(worldTransform, entity->scale);
+		// draw shape depending on type
+		b2PolygonShape shape = entity->GetShape();
+		switch (shape.GetType())
+		{
+		case b2Shape::e_polygon:
+			DrawSolidPolygon(shape.m_vertices, shape.m_count, palette[5]);
+			break;
 
-		// pass world tranform to shader as a uniform value "uObject"
-		int object_loc = glGetUniformLocation(default_shader->ID, "uObject");
-		glUniformMatrix4fv(object_loc, 1, GL_FALSE, glm::value_ptr(worldTransform));
-
-		// draw the entity
-		//Draw(entity);
+		case b2Shape::e_chain:
+		case b2Shape::e_circle:
+		case b2Shape::e_edge:
+		default:
+			break;
+		}
 	}
 
 	/*!
@@ -204,5 +202,33 @@ namespace GenevaEngine
 	void Graphics::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
+	}
+
+	//
+	void Graphics::DrawSolidPolygon(b2Vec2* vertices, int vertexCount, Color& color)
+	{
+		Color fillColor(0.5f * color.r, 0.5f * color.g, 0.5f * color.b, 0.5f);
+
+		for (int i = 1; i < vertexCount - 1; ++i)
+		{
+			default_shader->Vertex(vertices[0], fillColor);
+			default_shader->Vertex(vertices[i], fillColor);
+			default_shader->Vertex(vertices[i + 1], fillColor);
+		}
+
+		//b2Vec2 p1 = vertices[vertexCount - 1];
+		//for (int32 i = 0; i < vertexCount; ++i)
+		//{
+		//	b2Vec2 p2 = vertices[i];
+		//	m_lines->Vertex(p1, color);
+		//	m_lines->Vertex(p2, color);
+		//	p1 = p2;
+		//}
+	}
+
+	//
+	void Graphics::Flush()
+	{
+		default_shader->Flush();
 	}
 }

@@ -45,6 +45,7 @@ namespace GenevaEngine
 			b2PolygonShape arg_shape_def, std::string arg_name = "none");
 
 		// helper methods
+		b2PolygonShape GetShape() { return shape_def; }
 		void Spawn();
 
 		// Transform Component

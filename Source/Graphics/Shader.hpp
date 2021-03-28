@@ -16,13 +16,27 @@
 
 #pragma once
 
+  // Disable warning messages from box2d: C26812 C26495
+#pragma warning( disable : 26812 26495)
+
+  // Disable warning messages from Shader: C6386
+#pragma warning( disable : 6386)
+
+#include <box2d/box2d.h>
+
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
+#include <glm/gtc/matrix_transform.hpp> // mat4
+#include <glm/gtc/type_ptr.hpp> // value_ptr
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+#include <Graphics/Color.hpp>
+
+#define BUFFER_OFFSET(x)  ((const void*) (x))
 
 namespace GenevaEngine
 {
@@ -32,23 +46,32 @@ namespace GenevaEngine
 	class Shader
 	{
 	public:
-		unsigned int ID = -1;
+		// member vars
+		static constexpr int e_maxVertices = 512;
+		b2Vec2 m_vertices[e_maxVertices];
+		Color m_colors[e_maxVertices];
+		int32 m_count = 0;
+		GLuint m_programId = -1;
+		GLuint m_vaoId;
+		GLuint m_vboIds[2];
+		GLint m_projectionUniform;
+		GLint m_vertexAttribute;
+		GLint m_colorAttribute;
 
-		// default contructor
-		Shader();
-		// constructor generates the shader on the fly
+		// constructors
+		Shader() {};
 		Shader(const char* vertexPath, const char* fragmentPath);
 
-		// activate the shader
-		void use();
-		// utility uniform functions
-		void setBool(const std::string& name, bool value) const;
-		void setInt(const std::string& name, int value) const;
-		void setFloat(const std::string& name, float value) const;
+		// destructor
+		~Shader();
+
+		// render methods
+		void UpdateProjection(glm::mat4 projection);
+		void Vertex(const b2Vec2& v, const Color& c);
+		void Flush();
 
 	private:
 		// utility function for checking shader compilation/linking errors.
-		// ------------------------------------------------------------------------
-		void checkCompileErrors(unsigned int shader, std::string type);
+		void CheckCompileErrors(unsigned int shader, std::string type);
 	};
 }

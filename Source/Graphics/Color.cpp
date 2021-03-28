@@ -23,10 +23,15 @@ namespace GenevaEngine
 	 *
 	 *      \param [in] hexValue
 	 */
-	Color::Color(int hexValue)
+	Color::Color(int hexValue, float arg_a) :
+		r(((hexValue >> 16) & 0xFF) / 255.0f),
+		g(((hexValue >> 8) & 0xFF) / 255.0f),
+		b(((hexValue) & 0xFF) / 255.0f)
 	{
-		r = ((hexValue >> 16) & 0xFF) / 255.0f;
-		g = ((hexValue >> 8) & 0xFF) / 255.0f;
-		b = ((hexValue) & 0xFF) / 255.0f;
+	}
+
+	Color::Color(float arg_r, float arg_g, float arg_b, float arg_a) :
+		r(arg_r), g(arg_g), b(arg_b), a(arg_a)
+	{
 	}
 }

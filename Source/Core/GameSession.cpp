@@ -111,7 +111,6 @@ namespace GenevaEngine
 			}
 
 			const double alpha = accumulator / dt;
-			//physics->InterpolateMotion((float)alpha);	// Physics (between time steps)
 			for (Entity* entity : entities)				// Game Logic
 				entity->Update(frameTime);
 			graphics->Update(frameTime); 				// Render

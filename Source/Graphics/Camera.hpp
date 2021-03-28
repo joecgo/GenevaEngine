@@ -68,7 +68,7 @@ namespace GenevaEngine
 		float MouseSensitivity;
 		float Fov;
 		float NearClipping = 0.1f;
-		float FarClipping = 100.0f;
+		float FarClipping = 1000.0f;
 		float MaxFov = 150.0f;
 		float MinFov = 20.0f;
 		float OrthoWidth = 50.0f;

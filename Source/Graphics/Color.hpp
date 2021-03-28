@@ -24,8 +24,9 @@ namespace GenevaEngine
 	class Color
 	{
 	public:
-		float r = 0.0f, g = 0.0f, b = 0.0f;
+		float r = 0.0f, g = 0.0f, b = 0.0f, a = 0.0f;
 
-		Color(int hexValue);
+		Color(int hexValue = 0x000000, float a = 1.0f);
+		Color(float r, float g, float b, float a = 1.0f);
 	};
 }
