@@ -50,7 +50,7 @@ namespace GenevaEngine
 		new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
 
 		// create dynamic boxes
-		for (size_t i = 0; i < 100; i++)
+		for (size_t i = 0; i < 500; i++)
 		{
 			bodyDef.type = b2_dynamicBody;
 			bodyDef.position.Set(0.0f, (float)i * 5.0f);
