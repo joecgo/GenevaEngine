@@ -58,9 +58,7 @@ namespace GenevaEngine
 		glEnable(GL_DEPTH_TEST);
 
 		// create, save, and assign shaders. TODO: do this with a config file
-		SaveShader("TriangleShader",
-			Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag"));
-		default_shader = GetShader("TriangleShader");
+		default_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
 
 		// set clear color
 		Graphics::SetClearColor(Graphics::palette[0]);
@@ -68,6 +66,8 @@ namespace GenevaEngine
 
 	void Graphics::End()
 	{
+		delete (default_shader);
+
 		// glfw: terminate, clearing all previously allocated GLFW resources.
 		glfwTerminate();
 	}

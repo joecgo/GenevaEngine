@@ -18,20 +18,6 @@
 
 namespace GenevaEngine
 {
-	float debugVertices[] = {
-		// positions
-		0.5f, -0.5f,   // bottom right
-	   -0.5f, -0.5f,   // bottom left
-		0.0f,  0.5f,   // top
-	};
-
-	float debugColors[] = {
-		// colors
-		0.0f, 1.0f, 0.0f, 1.0f,   // bottom right
-		0.0f, 0.0f, 1.0f, 1.0f,   // bottom left
-		1.0f, 0.0f, 0.0f, 1.0f    // top
-	};
-
 	/*!
 	 *  constructor generates the shader a fragment shader and vertex shader file path
 	 *
@@ -93,19 +79,19 @@ namespace GenevaEngine
 		glAttachShader(m_programId, fragment);
 		glLinkProgram(m_programId);
 		CheckCompileErrors(m_programId, "PROGRAM");
+
 		// delete the shaders as they're linked into our program now and no longer necessary
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
 
 		// manage variables for shader
-		m_projectionUniform = glGetUniformLocation(m_programId, "projectionMatrix");
+		glUseProgram(m_programId);
 		m_vertexAttribute = 0;
 		m_colorAttribute = 1;
 
 		// Generate 1 vertex buffer and 2 vertex arrays
 		glGenVertexArrays(1, &m_vaoId);
-		glGenBuffers(2, m_vboIds);
-
+		glGenBuffers(3, m_vboIds);
 		glBindVertexArray(m_vaoId);
 		glEnableVertexAttribArray(m_vertexAttribute);
 		glEnableVertexAttribArray(m_colorAttribute);
@@ -113,15 +99,20 @@ namespace GenevaEngine
 		// Vertex buffer
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[0]);
 		glVertexAttribPointer(m_vertexAttribute, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-		glBufferData(GL_ARRAY_BUFFER, sizeof(debugVertices), debugVertices, GL_DYNAMIC_DRAW);
-
+		glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices), m_vertices, GL_DYNAMIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
 		glVertexAttribPointer(m_colorAttribute, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-		glBufferData(GL_ARRAY_BUFFER, sizeof(debugColors), debugColors, GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(m_colors), m_colors, GL_DYNAMIC_DRAW);
 
-		// Cleanup
+		// save uniform location for later use
+		m_projectionUniform = glGetUniformLocation(m_programId, "projectionMatrix");
+
+		// clean up
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
+		glUseProgram(0);
+
+		CheckErrors();
 	}
 
 	Shader::~Shader()
@@ -135,7 +126,7 @@ namespace GenevaEngine
 
 	void Shader::UpdateProjection(glm::mat4 projection)
 	{
-		glUniformMatrix4fv(m_projectionUniform, 1, GL_FALSE, glm::value_ptr(projection));
+		m_projectionMatrix = projection;
 	}
 
 	void Shader::Vertex(const b2Vec2& v, const Color& c)
@@ -155,16 +146,15 @@ namespace GenevaEngine
 
 		glUseProgram(m_programId);
 
-		// testing only (REMOVE)
-		m_count = 3;
+		glUniformMatrix4fv(m_projectionUniform, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
 
 		glBindVertexArray(m_vaoId);
 
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[0]);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(b2Vec2), debugVertices); // m_vertices);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(b2Vec2), m_vertices); // m_vertices);
 
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(Color), debugColors); // m_colors);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(Color), m_colors); // m_colors);
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -175,7 +165,19 @@ namespace GenevaEngine
 		glBindVertexArray(0);
 		glUseProgram(0);
 
+		CheckErrors();
+
 		m_count = 0;
+	}
+
+	void Shader::CheckErrors()
+	{
+		GLenum errCode = glGetError();
+		if (errCode != GL_NO_ERROR)
+		{
+			fprintf(stderr, "OpenGL error = %d\n", errCode);
+			assert(false);
+		}
 	}
 
 	/*!

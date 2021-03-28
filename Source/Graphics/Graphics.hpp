@@ -48,7 +48,7 @@ namespace GenevaEngine
 		std::vector<Color> palette = {
 		Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
 		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
-		Camera camera = Camera(glm::vec3(0.0f, 0.0f, 50.0f)); //0.0f, 8.3f, 23.0f // position
+		Camera camera = Camera(glm::vec3(0, 28.0f, 60.0f));
 		GLFWwindow* window;
 
 		// glfw callbacks
@@ -75,7 +75,7 @@ namespace GenevaEngine
 		double lastY = SCR_HEIGHT / 2.0f;
 
 		// Asset references references
-		Shader* default_shader;
+		Shader* default_shader = nullptr;
 		std::map<std::string, Shader> shaders;
 
 		// debug camera methods

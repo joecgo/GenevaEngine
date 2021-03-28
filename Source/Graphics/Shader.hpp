@@ -57,6 +57,7 @@ namespace GenevaEngine
 		GLint m_projectionUniform;
 		GLint m_vertexAttribute;
 		GLint m_colorAttribute;
+		glm::mat4 m_projectionMatrix;
 
 		// constructors
 		Shader() {};
@@ -73,5 +74,6 @@ namespace GenevaEngine
 	private:
 		// utility function for checking shader compilation/linking errors.
 		void CheckCompileErrors(unsigned int shader, std::string type);
+		void CheckErrors();
 	};
 }
