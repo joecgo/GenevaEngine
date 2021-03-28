@@ -76,7 +76,8 @@ namespace GenevaEngine
 		double lastY = SCR_HEIGHT / 2.0f;
 
 		// Asset references references
-		Shader* default_shader = nullptr;
+		Shader* triangle_shader = nullptr;
+		Shader* line_shader = nullptr;
 		std::map<std::string, Shader> shaders;
 
 		// debug camera methods

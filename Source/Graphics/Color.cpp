@@ -34,4 +34,9 @@ namespace GenevaEngine
 		r(arg_r), g(arg_g), b(arg_b), a(arg_a)
 	{
 	}
+
+	Color Color::operator*(float scalar)
+	{
+		return Color(r * scalar, g * scalar, b * scalar, a * scalar);
+	}
 }

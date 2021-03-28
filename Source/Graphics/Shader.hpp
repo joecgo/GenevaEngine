@@ -58,6 +58,7 @@ namespace GenevaEngine
 		GLint m_vertexAttribute;
 		GLint m_colorAttribute;
 		glm::mat4 m_projectionMatrix;
+		GLint m_drawType = GL_TRIANGLES;
 
 		// constructors
 		Shader() {};

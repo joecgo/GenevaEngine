@@ -156,10 +156,17 @@ namespace GenevaEngine
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(Color), m_colors); // m_colors);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glDrawArrays(GL_TRIANGLES, 0, m_count);
-		glDisable(GL_BLEND);
+		if (m_drawType == GL_TRIANGLES)
+		{ // TRIANGLES
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glDrawArrays(m_drawType, 0, m_count);
+			glDisable(GL_BLEND);
+		}
+		else
+		{ // LINES
+			glDrawArrays(m_drawType, 0, m_count);
+		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);

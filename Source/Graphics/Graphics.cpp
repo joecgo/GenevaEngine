@@ -58,20 +58,24 @@ namespace GenevaEngine
 		glEnable(GL_DEPTH_TEST);
 
 		// create, save, and assign shaders. TODO: do this with a config file
-		default_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+		glLineWidth(2.0f);
+		triangle_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+		triangle_shader->m_drawType = GL_TRIANGLES;
+		line_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+		line_shader->m_drawType = GL_LINES;
 
 		// set clear color
-		Graphics::SetClearColor(Graphics::palette[0]);
+		Graphics::SetClearColor(Graphics::palette[1]);
 	}
 
 	void Graphics::End()
 	{
-		delete (default_shader);
+		delete (triangle_shader);
+		delete (line_shader);
 
 		// glfw: terminate, clearing all previously allocated GLFW resources.
 		glfwTerminate();
 	}
-
 	void Graphics::Update(double dt)
 	{
 		// clear graphics before the work starts
@@ -79,7 +83,8 @@ namespace GenevaEngine
 
 		// pass projection from camera to shader
 		glm::mat4 projection = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
-		default_shader->UpdateProjection(projection);
+		triangle_shader->UpdateProjection(projection);
+		line_shader->UpdateProjection(projection);
 
 		// render entities
 		for (Entity* entity : gamesession->entities)
@@ -212,28 +217,29 @@ namespace GenevaEngine
 	//
 	void Graphics::DrawSolidPolygon(b2Vec2* vertices, int vertexCount, Color& color)
 	{
-		Color fillColor(0.5f * color.r, 0.5f * color.g, 0.5f * color.b, 0.5f);
+		Color fillColor = color * 0.7f;
 
 		for (int i = 1; i < vertexCount - 1; ++i)
 		{
-			default_shader->Vertex(vertices[0], fillColor);
-			default_shader->Vertex(vertices[i], fillColor);
-			default_shader->Vertex(vertices[i + 1], fillColor);
+			triangle_shader->Vertex(vertices[0], fillColor);
+			triangle_shader->Vertex(vertices[i], fillColor);
+			triangle_shader->Vertex(vertices[i + 1], fillColor);
 		}
 
-		//b2Vec2 p1 = vertices[vertexCount - 1];
-		//for (int32 i = 0; i < vertexCount; ++i)
-		//{
-		//	b2Vec2 p2 = vertices[i];
-		//	m_lines->Vertex(p1, color);
-		//	m_lines->Vertex(p2, color);
-		//	p1 = p2;
-		//}
+		b2Vec2 p1 = vertices[vertexCount - 1];
+		for (int32 i = 0; i < vertexCount; ++i)
+		{
+			b2Vec2 p2 = vertices[i];
+			line_shader->Vertex(p1, color);
+			line_shader->Vertex(p2, color);
+			p1 = p2;
+		}
 	}
 
 	//
 	void Graphics::Flush()
 	{
-		default_shader->Flush();
+		line_shader->Flush();
+		triangle_shader->Flush();
 	}
 }
