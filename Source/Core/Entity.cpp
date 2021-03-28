@@ -58,9 +58,6 @@ namespace GenevaEngine
 
 	void Entity::Update(double dt)
 	{
-		b2Vec2 position = body->GetPosition();
-		float angle = body->GetAngle();
-		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 	}
 
 	void Entity::FixedUpdate(double alpha)
