@@ -9,7 +9,7 @@ out vec4 Color;
 
 void main()
 {    
-	Color =  vec4(1.0f, 1.0f, 1.0f, 1.0f); // aColor * uTint;
+	Color =  aColor; // * uTint;
 
 	gl_Position = projectionMatrix * vec4(aPos, 0, 1.0);
 
