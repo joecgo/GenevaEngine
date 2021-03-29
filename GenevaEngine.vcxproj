@@ -87,10 +87,12 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Mesh.cpp" />
-    <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="External\stb\stb_image.cpp" />
+    <ClCompile Include="Source\Input\Command.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Input\Input.cpp">
       <SubType>
       </SubType>
@@ -175,9 +177,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Mesh.hpp" />
-    <ClInclude Include="Source\Graphics\Model.hpp" />
     <ClInclude Include="Source\Graphics\Shader.hpp" />
+    <ClInclude Include="Source\Input\Command.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Input\Input.hpp">
       <SubType>
       </SubType>
@@ -190,8 +194,6 @@
   <ItemGroup>
     <None Include="Shaders\TriangleShader.frag" />
     <None Include="Shaders\TriangleShader.vert" />
-    <None Include="Shaders\TextureShader.frag" />
-    <None Include="Shaders\TextureShader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -21,12 +21,6 @@
     <ClCompile Include="Source\Graphics\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -192,19 +186,16 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Input\Command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Mesh.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics\Shader.hpp">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Model.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Color.hpp">
       <Filter>Header Files</Filter>
@@ -377,11 +368,12 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Input\Command.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\TriangleShader.frag" />
-    <None Include="Shaders\TextureShader.frag" />
-    <None Include="Shaders\TextureShader.vert" />
     <None Include="Shaders\TriangleShader.vert" />
   </ItemGroup>
 </Project>
