@@ -25,14 +25,14 @@ namespace GenevaEngine
 	/*!
 	 *  Core system for handling input
 	 */
-	class Input : public ASystem
+	class Input : public System
 	{
 	private:
 		// called on update
 		void processInput(GLFWwindow* window, double dt);
 
 		// inherited methods and constructors
-		using ASystem::ASystem;
+		using System::System;
 		void Start();
 		void Update(double dt);
 		void End();

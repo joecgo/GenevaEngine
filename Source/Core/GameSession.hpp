@@ -28,7 +28,7 @@
 namespace GenevaEngine
 {
 	class Entity;
-	class ASystem;
+	class System;
 	class Graphics;
 	class Input;
 	class Physics;
@@ -50,14 +50,14 @@ namespace GenevaEngine
 		Input* input = nullptr;
 		Entity* kevin = nullptr; // testing jump
 
-		void AddSystem(ASystem* system);
+		void AddSystem(System* system);
 		void AddEntity(Entity* entity);
 
 		// box2d
 		b2World* GetWorld();
 
 		// system, entity references
-		std::vector<ASystem*> systems;
+		std::vector<System*> systems;
 		std::vector<Entity*> entities;
 
 	private:

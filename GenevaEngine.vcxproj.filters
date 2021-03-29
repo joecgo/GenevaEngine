@@ -39,7 +39,7 @@
     <ClCompile Include="Source\Graphics\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\ASystem.cpp">
+    <ClCompile Include="Source\Core\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Graphics.cpp">
@@ -209,7 +209,7 @@
     <ClInclude Include="Source\Graphics\Color.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\ASystem.hpp">
+    <ClInclude Include="Source\Core\System.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.hpp">

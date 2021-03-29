@@ -22,7 +22,7 @@
 
 #include <box2d/box2d.h> // box2d
 #include <Core/GameSession.hpp>
-#include <Core/ASystem.hpp>
+#include <Core/System.hpp>
 #include <Core/Entity.hpp>
 #include <Graphics/Graphics.hpp>
 #include <Input/Input.hpp>

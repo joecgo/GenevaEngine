@@ -67,7 +67,7 @@ namespace GenevaEngine
 	void GameSession::Start()
 	{
 		// start systems
-		for (ASystem* system : systems)
+		for (System* system : systems)
 			system->Start();
 
 		// start entities
@@ -139,7 +139,7 @@ namespace GenevaEngine
 			entity->End();
 
 		// end systems
-		for (ASystem* system : systems)
+		for (System* system : systems)
 			system->End();
 
 		// delete entities
@@ -147,7 +147,7 @@ namespace GenevaEngine
 			delete entity;
 
 		// delete systems
-		for (ASystem* system : systems)
+		for (System* system : systems)
 			delete system;
 
 		// public flag for closing down the program in main()
@@ -169,7 +169,7 @@ namespace GenevaEngine
 	 *
 	 *      \param [in,out] system
 	 */
-	void GameSession::AddSystem(ASystem* system)
+	void GameSession::AddSystem(System* system)
 	{
 		systems.push_back(system);
 	}

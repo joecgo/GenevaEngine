@@ -65,7 +65,7 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_world_callbacks.cpp" />
     <ClCompile Include="External\box2d\src\rope\b2_rope.cpp" />
     <ClCompile Include="External\glad\glad.c" />
-    <ClCompile Include="Source\Core\ASystem.cpp">
+    <ClCompile Include="Source\Core\System.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -150,7 +150,7 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
-    <ClInclude Include="Source\Core\ASystem.hpp">
+    <ClInclude Include="Source\Core\System.hpp">
       <SubType>
       </SubType>
     </ClInclude>

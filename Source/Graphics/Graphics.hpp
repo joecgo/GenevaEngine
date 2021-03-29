@@ -37,7 +37,7 @@
 
 namespace GenevaEngine
 {
-	class Graphics : public ASystem
+	class Graphics : public System
 	{
 	public:
 		// window constants
@@ -89,7 +89,7 @@ namespace GenevaEngine
 		void Flush();
 
 		// inherited mebers, methods, and constructors
-		using ASystem::ASystem;
+		using System::System;
 		void Start();
 		void Update(double dt);
 		void End();

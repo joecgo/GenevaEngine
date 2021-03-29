@@ -30,7 +30,7 @@ namespace GenevaEngine
 	/*!
 	 *  \brief Physics system
 	 */
-	class Physics : public ASystem
+	class Physics : public System
 	{
 	public:
 		b2World* GetWorld();
@@ -43,7 +43,7 @@ namespace GenevaEngine
 		b2World world = b2World(gravity);
 
 		// inherited members, methods, and constructors
-		using ASystem::ASystem;
+		using System::System;
 		void Start();
 		void Update(double dt);
 		void End();
