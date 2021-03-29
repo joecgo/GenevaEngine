@@ -32,7 +32,7 @@ namespace GenevaEngine
 	class Entity
 	{
 	public:
-		// increments on entity construction
+		// increments on entity construction to create a unique id
 		static int entity_count;
 
 		// general info
@@ -43,28 +43,29 @@ namespace GenevaEngine
 		Entity(GameSession* gs, b2BodyDef arg_body_def, b2FixtureDef arg_fixture_def,
 			b2PolygonShape arg_shape_def, std::string arg_name = "none");
 
-		// helper methods
-		b2PolygonShape GetShape() { return shape_def; }
-		b2Body* GetBody() { return body; }
+		// puts this instance into the game
 		void Spawn();
 
-		// Transform Component
-		glm::vec3 startPosition = glm::vec3();
-		glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
+		// box2d getters
+		b2PolygonShape GetShape() { return shape_def; }
+		b2Body* GetBody() { return body; }
 
 	private:
+		// global refs
 		GameSession* gamesession;
+
+		// box2d
 		b2World* world;
 		b2BodyDef body_def;
 		b2PolygonShape shape_def;
 		b2FixtureDef fixture_def;
 		b2Body* body = nullptr;
 
+		// GameSession calls
 		void Start();
 		void FixedUpdate(double alpha); // update on fixed time-steps
-		void Update(double dt);		 // update on every frame
+		void Update(double dt);			// update on every frame
 		void End();
-
 		friend class GameSession;
 	};
 }
