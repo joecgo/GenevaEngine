@@ -183,7 +183,10 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Input\Command.cpp">
+    <ClCompile Include="Source\Input\Commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -365,7 +368,10 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Input\Command.hpp">
+    <ClInclude Include="Source\Input\Commands.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\Controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

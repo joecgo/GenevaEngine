@@ -19,17 +19,50 @@
 
 namespace GenevaEngine
 {
+	std::map<int, bool> Input::keys;
+
 	void Input::Start()
 	{
+		// keys
+		SetupKeyInputs(gamesession->graphics->window);
+
+		// set up player controller
+		// commands deleted in ~Controller
+		player_controller = new Controller();
+		player_controller->BindCommand((int)GLFW_KEY_SPACE, new JumpCommand());
 	}
 
 	void Input::End()
 	{
+		delete player_controller;
 	}
 
 	void Input::Update(double dt)
 	{
-		processInput(gamesession->graphics->window, dt);
+		player_controller->HandleInput();
+
+		ProcessDevCheats(gamesession->graphics->window, dt);
+	}
+
+	bool Input::KeyDown(int key)
+	{
+		return keys[key];
+	}
+
+	void Input::SetKeyValue(int key, bool value)
+	{
+		keys[key] = value;
+	}
+
+	void Input::SetupKeyInputs(GLFWwindow* window)
+	{
+		glfwSetKeyCallback(window, Input::KeyCallback);
+	}
+
+	void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		// Send key event to all KeyInput instances
+		Input::SetKeyValue(key, action != GLFW_RELEASE);
 	}
 
 	/*!
@@ -37,15 +70,10 @@ namespace GenevaEngine
 	 *
 	 *      \param [in,out] window
 	 */
-	void Input::processInput(GLFWwindow* window, double dt)
+	void Input::ProcessDevCheats(GLFWwindow* window, double dt)
 	{
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
-
-		if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		Graphics* gfx = gamesession->graphics;
 		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)

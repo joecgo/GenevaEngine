@@ -26,6 +26,8 @@
 
 namespace GenevaEngine
 {
+	class Controller;
+
 	/*!
 	 *  \brief An object that populates the game. Like an actor or game object.
 	 */
@@ -51,15 +53,15 @@ namespace GenevaEngine
 		b2Body* GetBody() { return body; }
 
 	private:
-		// global refs
-		GameSession* gamesession;
+		// object references
+		GameSession* gamesession = nullptr;
 
 		// box2d
-		b2World* world;
+		b2World* world = nullptr;
+		b2Body* body = nullptr;
 		b2BodyDef body_def;
 		b2PolygonShape shape_def;
 		b2FixtureDef fixture_def;
-		b2Body* body = nullptr;
 
 		// GameSession calls
 		void Start();
