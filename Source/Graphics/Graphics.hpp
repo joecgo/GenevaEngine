@@ -21,7 +21,6 @@
 #include <GLFW/glfw3.h> // GLFW
 #include <glm/gtc/matrix_transform.hpp> // vec3 mat4
 #include <glm/gtc/type_ptr.hpp> // value_ptr
-#include <stb/stb_image.h> // stbi_set_flip_vertically_on_load
 
 #include <iostream> // cout, endl
 #include <vector> // vector
@@ -31,8 +30,6 @@
 #include <Core/GameCommon.hpp>
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
-#include <Graphics/Mesh.hpp>
-#include <Graphics/Model.hpp>
 #include <Graphics/Color.hpp>
 
 namespace GenevaEngine
@@ -59,12 +56,10 @@ namespace GenevaEngine
 
 		// glfw wrappers
 		void SetClearColor(Color color);
+
 		// shader storage and access methods
 		void SaveShader(std::string name, Shader shader);
 		Shader* GetShader(std::string name);
-		// model storage and access methods
-		void SaveModel(std::string name, Model model);
-		Model* GetModel(std::string name);
 
 	private:
 		// mouse state for debug camera

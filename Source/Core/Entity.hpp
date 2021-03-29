@@ -22,7 +22,6 @@
 #include <string> // string
 
 #include <Graphics/Shader.hpp>
-#include <Graphics/Model.hpp>
 #include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
