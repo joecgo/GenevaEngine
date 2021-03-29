@@ -41,7 +41,8 @@
 namespace GenevaEngine
 {
 	/*!
-	 *  \brief Manages a single shader program.
+	 *  \brief Manages a single shader program, adding verts to the buffer,
+	 *         and all the steps to interface with opengl.
 	 */
 	class Shader
 	{
