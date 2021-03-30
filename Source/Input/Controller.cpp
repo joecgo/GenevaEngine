@@ -21,26 +21,46 @@ namespace GenevaEngine
 {
 	Controller::~Controller()
 	{
-		// delete commands
-		for (auto const& [key, val] : key_binds)
-		{
+		// delete press commands
+		for (auto const& [key, val] : keypress_binds)
 			delete val;
-		}
+
+		// delete axis commands
+		for (auto const& [key, val] : axis_binds)
+			delete val;
 	}
 
-	void Controller::BindCommand(int key_value, Command* command)
+	void Controller::Bind_KeyPress_Command(int key_value, Command* command)
 	{
-		key_binds[key_value] = command;
+		keypress_binds[key_value] = command;
+	}
+
+	void Controller::Bind_Axis_Command(AxisKeys key_values, Command* command)
+	{
+		axis_binds[key_values] = command;
 	}
 
 	void Controller::HandleInput()
 	{
-		// iterate through key binds, polling each global key state
-		for (auto const& [key, val] : key_binds)
+		// iterate through key press binds, polling each global key state
+		for (auto const& [key, val] : keypress_binds)
 		{
 			// if key is pressed, execute command
 			if (Input::KeyPressed(key))
-				key_binds[key]->Execute(*this);
+				keypress_binds[key]->Execute(*this);
+		}
+
+		// iterate through axis binds, polling each global key state
+		for (auto const& [key, val] : axis_binds)
+		{
+			float axis = 0;
+			if (Input::KeyDown(key.pos_key))
+				axis = 1.0f;
+			if (Input::KeyDown(key.neg_key))
+				axis -= 1.0f;
+
+			axis_binds[key]->SetAxis(axis);
+			axis_binds[key]->Execute(*this);
 		}
 	}
 
@@ -52,5 +72,10 @@ namespace GenevaEngine
 	void Controller::Jump()
 	{
 		entity->Jump();
+	}
+
+	void Controller::Move(float axis)
+	{
+		entity->Move(axis);
 	}
 }

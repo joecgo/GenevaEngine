@@ -88,4 +88,14 @@ namespace GenevaEngine
 		b2Vec2 force(0, body->GetMass() * 50.0f);
 		body->ApplyLinearImpulseToCenter(force, true);
 	}
+
+	void Entity::Move(float x)
+	{
+		b2Vec2 vel = body->GetLinearVelocity();
+		if (x > 0)
+			vel.x = body->GetMass() * 1.0f;
+		else if (x < 0)
+			vel.x = body->GetMass() * -1.0f;
+		body->SetLinearVelocity(vel);
+	}
 }

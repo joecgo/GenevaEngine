@@ -19,8 +19,18 @@
 
 namespace GenevaEngine
 {
+	void Command::SetAxis(float arg_axis)
+	{
+		axis = arg_axis;
+	}
+
 	void JumpCommand::Execute(Controller& controller)
 	{
 		controller.Jump();
+	}
+
+	void MoveCommand::Execute(Controller& controller)
+	{
+		controller.Move(axis);
 	}
 }

@@ -26,9 +26,19 @@ namespace GenevaEngine
 	public:
 		virtual ~Command() {}
 		virtual void Execute(Controller& controller) = 0;
+		void SetAxis(float arg_axis);
+
+	protected:
+		float axis; // -1 to 1, used in axis commands
 	};
 
 	class JumpCommand : public Command
+	{
+	public:
+		void Execute(Controller& controller);
+	};
+
+	class MoveCommand : public Command
 	{
 	public:
 		void Execute(Controller& controller);
