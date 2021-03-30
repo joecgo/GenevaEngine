@@ -91,9 +91,8 @@ namespace GenevaEngine
 			RenderEntity(entity);
 		Flush();
 
-		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+		// glfw: swap buffers
 		glfwSwapBuffers(window);
-		glfwPollEvents();
 	}
 
 	void Graphics::RenderEntity(Entity* entity)

@@ -35,11 +35,11 @@ namespace GenevaEngine
 
 	void Controller::HandleInput()
 	{
-		// iterate through all keys
-		for (auto const& [key, val] : Input::keys)
+		// iterate through key binds, polling each global key state
+		for (auto const& [key, val] : key_binds)
 		{
-			// key is pressed, execute command
-			if (val && key_binds.count(key) != 0)
+			// if key is pressed, execute command
+			if (Input::KeyPressed(key))
 				key_binds[key]->Execute(*this);
 		}
 	}

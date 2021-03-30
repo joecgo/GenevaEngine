@@ -19,7 +19,7 @@
 
 namespace GenevaEngine
 {
-	std::map<int, bool> Input::keys;
+	std::map<int, Input::KeyState> Input::keys;
 
 	void Input::Start()
 	{
@@ -39,19 +39,54 @@ namespace GenevaEngine
 
 	void Input::Update(double dt)
 	{
+		UpdateKeyStates();
+		glfwPollEvents();
 		player_controller->HandleInput();
-
 		ProcessDevCheats(gamesession->graphics->window, dt);
 	}
 
-	bool Input::KeyDown(int key)
+	void Input::UpdateKeyStates()
+	{
+		for (auto const& [key, val] : keys)
+		{
+			if (val == KeyState::Pressed)
+				keys[key] = KeyState::Down;
+			if (val == KeyState::Released)
+				keys[key] = KeyState::Up;
+		}
+	}
+
+	Input::KeyState Input::GetKeyState(int key)
 	{
 		return keys[key];
 	}
 
-	void Input::SetKeyValue(int key, bool value)
+	bool Input::KeyDown(int key)
 	{
-		keys[key] = value;
+		return (keys[key] == KeyState::Down) || (keys[key] == KeyState::Pressed);
+	}
+
+	bool Input::KeyUp(int key)
+	{
+		return (keys[key] == KeyState::Up) || (keys[key] == KeyState::Released);
+	}
+
+	bool Input::KeyPressed(int key)
+	{
+		return keys[key] == KeyState::Pressed;
+	}
+
+	bool Input::KeyReleased(int key)
+	{
+		return keys[key] == KeyState::Released;
+	}
+
+	void Input::KeyStateEvent(int key, bool is_down)
+	{
+		if (keys[key] == KeyState::Up && is_down)
+			keys[key] = KeyState::Pressed;
+		else if (keys[key] == KeyState::Down && !is_down)
+			keys[key] = KeyState::Released;
 	}
 
 	void Input::SetupKeyInputs(GLFWwindow* window)
@@ -62,7 +97,7 @@ namespace GenevaEngine
 	void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		// Send key event to all KeyInput instances
-		Input::SetKeyValue(key, action != GLFW_RELEASE);
+		Input::KeyStateEvent(key, action == GLFW_PRESS);
 	}
 
 	/*!

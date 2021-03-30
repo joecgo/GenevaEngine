@@ -32,18 +32,26 @@ namespace GenevaEngine
 	class Input : public System
 	{
 	public:
-		static std::map<int, bool> keys;
+		// key state data
+		enum KeyState { Up, Pressed, Down, Released };
+		static std::map<int, KeyState> keys;
 
-		// returns pressed state.  Else returns false.
-		bool KeyDown(int key);
+		// get state getters
+		static KeyState GetKeyState(int key);
+		static bool KeyDown(int key);
+		static bool KeyUp(int key);
+		static bool KeyPressed(int key);
+		static bool KeyReleased(int key);
 
 	private:
 		// controllers
 		Controller* player_controller;
 
 		// key state handling
-		static void SetKeyValue(int key, bool value);
-		static void SetupKeyInputs(GLFWwindow* window);
+		void SetupKeyInputs(GLFWwindow* window);
+		static void KeyStateEvent(int key, bool is_down);
+		// progresses key states forward one step (i.e. Pressed -> Down)
+		void UpdateKeyStates();
 		// The GLFW callback for key events.  Sends events to all KeyInput instances
 		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
