@@ -29,7 +29,7 @@ namespace GenevaEngine
 		// set up player controller
 		// commands deleted in ~Controller
 		player_controller = new Controller();
-		player_controller->BindCommand((int)GLFW_KEY_SPACE, new JumpCommand());
+		player_controller->BindCommand(GLFW_KEY_SPACE, new JumpCommand());
 	}
 
 	void Input::End()
