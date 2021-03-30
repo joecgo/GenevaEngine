@@ -45,6 +45,11 @@ namespace GenevaEngine
 		ProcessDevCheats(gamesession->graphics->window, dt);
 	}
 
+	Controller* Input::GetPlayerController()
+	{
+		return player_controller;
+	}
+
 	void Input::UpdateKeyStates()
 	{
 		for (auto const& [key, val] : keys)
@@ -111,19 +116,6 @@ namespace GenevaEngine
 			glfwSetWindowShouldClose(window, true);
 
 		Graphics* gfx = gamesession->graphics;
-		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[0]);
-		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[1]);
-		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[2]);
-		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[3]);
-		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[4]);
-		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
-			gfx->SetClearColor(gfx->palette[5]);
-
 		float sensitivity = 5.0f;
 		float moveRate = (float)dt * sensitivity;
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)

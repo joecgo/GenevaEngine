@@ -32,18 +32,23 @@ namespace GenevaEngine
 	class Input : public System
 	{
 	public:
-		// key state data
+		// key state enums
 		enum KeyState { Up, Pressed, Down, Released };
-		static std::map<int, KeyState> keys;
 
-		// get state getters
+		// Key state
 		static KeyState GetKeyState(int key);
 		static bool KeyDown(int key);
 		static bool KeyUp(int key);
 		static bool KeyPressed(int key);
 		static bool KeyReleased(int key);
 
+		// Player controller
+		Controller* GetPlayerController(); // TODO: add player IDs for multiplayer
+
 	private:
+		// key state data
+		static std::map<int, KeyState> keys;
+
 		// controllers
 		Controller* player_controller;
 

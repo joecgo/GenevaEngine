@@ -28,7 +28,7 @@ namespace GenevaEngine
 		physics = new Physics(this);
 		input = new Input(this);
 		graphics = new Graphics(this);
-		CreateEntities();
+
 		Start();
 	}
 
@@ -47,9 +47,11 @@ namespace GenevaEngine
 		bodyDef.position.Set(0.0f, -10.0f);
 		shapeDef.SetAsBox(50.0f, 10.0f);
 		fixtureDef.density = 0; // 0 density is static
-		new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
+		Entity* ground = new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
+		ground->SetRenderColor(2);
 
 		// create dynamic boxes
+		Entity* box = nullptr;
 		for (size_t i = 0; i < 50; i++)
 		{
 			bodyDef.type = b2_dynamicBody;
@@ -57,8 +59,19 @@ namespace GenevaEngine
 			shapeDef.SetAsBox(1.0f, 1.0f);
 			fixtureDef.density = 1.0f;
 			fixtureDef.friction = 0.3f;
-			new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+			box = new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+			box->SetRenderColor(3);
 		}
+
+		// create hero. It is a bigger box! so heroic...
+		bodyDef.type = b2_dynamicBody;
+		bodyDef.position.Set(15.0f, 5.0f);
+		shapeDef.SetAsBox(3.0f, 3.0f);
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;
+		Entity* hero = new Entity(this, bodyDef, fixtureDef, shapeDef, "hero");
+		hero->SetRenderColor(5);
+		input->GetPlayerController()->Possess(hero);
 	}
 
 	/*!
@@ -70,6 +83,8 @@ namespace GenevaEngine
 		graphics->Start();
 		physics->Start();
 		input->Start();
+
+		CreateEntities();
 
 		// start entities
 		for (Entity* entity : entities)

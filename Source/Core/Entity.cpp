@@ -67,4 +67,25 @@ namespace GenevaEngine
 	void Entity::End()
 	{
 	}
+
+	void Entity::SetRenderColor(int palette_color_id)
+	{
+		render_color = gamesession->graphics->GetPaletteColor(palette_color_id);
+	}
+
+	void Entity::SetRenderColor(Color color)
+	{
+		render_color = color;
+	}
+
+	Color Entity::GetRenderColor() const
+	{
+		return render_color;
+	}
+
+	void Entity::Jump()
+	{
+		b2Vec2 force(0, body->GetMass() * 50.0f);
+		body->ApplyLinearImpulseToCenter(force, true);
+	}
 }

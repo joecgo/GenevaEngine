@@ -33,6 +33,7 @@ namespace GenevaEngine
 		~Controller();
 		void HandleInput();
 		void BindCommand(int key_value, Command* command);
+		void Possess(Entity* arg_entity);
 
 		// commands
 		void Jump();

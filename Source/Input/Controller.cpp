@@ -44,8 +44,13 @@ namespace GenevaEngine
 		}
 	}
 
+	void Controller::Possess(Entity* arg_entity)
+	{
+		entity = arg_entity;
+	}
+
 	void Controller::Jump()
 	{
-		std::cout << "JUMP" << std::endl;
+		entity->Jump();
 	}
 }

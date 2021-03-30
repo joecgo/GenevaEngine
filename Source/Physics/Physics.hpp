@@ -39,7 +39,7 @@ namespace GenevaEngine
 		// box2d
 		const int32 velocity_iterations = 6; // setting for constraint solver
 		const int32 position_iterations = 2; // setting for constraint solver
-		const b2Vec2 gravity = b2Vec2(0, -10.0f); // -10
+		const b2Vec2 gravity = b2Vec2(0, -50.0f); // -10
 		b2World world = b2World(gravity);
 
 		// inherited members, methods, and constructors

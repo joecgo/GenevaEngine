@@ -65,7 +65,7 @@ namespace GenevaEngine
 		line_shader->m_drawType = GL_LINES;
 
 		// set clear color
-		Graphics::SetClearColor(Graphics::palette[1]);
+		Graphics::SetClearColor(GetPaletteColor(1));
 	}
 
 	void Graphics::End()
@@ -98,6 +98,7 @@ namespace GenevaEngine
 	void Graphics::RenderEntity(Entity* entity)
 	{
 		// draw shape depending on type
+		Color color = entity->GetRenderColor();
 		b2PolygonShape shape = entity->GetShape();
 		b2Transform xf = entity->GetBody()->GetTransform();
 		for (size_t i = 0; i < shape.m_count; i++)
@@ -107,7 +108,7 @@ namespace GenevaEngine
 		{
 		case b2Shape::e_polygon:
 
-			DrawSolidPolygon(transformed_verts, shape.m_count, palette[5]);
+			DrawSolidPolygon(transformed_verts, shape.m_count, color);
 			break;
 
 		case b2Shape::e_chain:
@@ -240,5 +241,15 @@ namespace GenevaEngine
 	{
 		line_shader->Flush();
 		triangle_shader->Flush();
+	}
+
+	// color palette
+	Color Graphics::GetPaletteColor(int color_id)
+	{
+		// if color id is out of range, return full red
+		if (color_id < 0 || color_id >= palette.size())
+			return Color(0xFF0000);
+
+		return palette[color_id];
 	}
 }

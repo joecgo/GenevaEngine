@@ -48,6 +48,14 @@ namespace GenevaEngine
 		// puts this instance into the game
 		void Spawn();
 
+		// Rendering
+		void SetRenderColor(int palette_color_id);
+		void SetRenderColor(Color color);
+		Color GetRenderColor() const;
+
+		// Gameplay Behaviors
+		void Jump();
+
 		// box2d getters
 		b2PolygonShape GetShape() { return shape_def; }
 		b2Body* GetBody() { return body; }
@@ -55,6 +63,9 @@ namespace GenevaEngine
 	private:
 		// object references
 		GameSession* gamesession = nullptr;
+
+		// Rendering
+		Color render_color;
 
 		// box2d
 		b2World* world = nullptr;

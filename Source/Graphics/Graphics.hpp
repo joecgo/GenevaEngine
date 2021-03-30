@@ -43,9 +43,6 @@ namespace GenevaEngine
 
 		// member variables
 		b2Vec2 transformed_verts[512];
-		std::vector<Color> palette = {
-		Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
-		Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
 		Camera camera = Camera(glm::vec3(0, 42.0357f, 104.984f));
 		GLFWwindow* window;
 
@@ -53,6 +50,9 @@ namespace GenevaEngine
 		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 		static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+
+		// color palette
+		Color GetPaletteColor(int color_id);
 
 		// glfw wrappers
 		void SetClearColor(Color color);
@@ -62,6 +62,11 @@ namespace GenevaEngine
 		Shader* GetShader(std::string name);
 
 	private:
+		// color palette
+		std::vector<Color> palette = {
+			Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
+			Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
+
 		// mouse state for debug camera
 		static double mouse_y;
 		static double mouse_x;
