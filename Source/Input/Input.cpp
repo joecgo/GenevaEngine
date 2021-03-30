@@ -31,10 +31,10 @@ namespace GenevaEngine
 		player_controller = new Controller();
 		Controller* pc = player_controller;
 		// JUMP
-		pc->Bind_KeyPress_Command(GLFW_KEY_SPACE, new JumpCommand());
+		pc->BindCommand(GLFW_KEY_SPACE, new JumpCommand());
 		// MOVE
-		pc->Bind_Axis_Command(AxisKeys(GLFW_KEY_A, GLFW_KEY_D), new MoveCommand());
-		pc->Bind_Axis_Command(AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT), new MoveCommand());
+		pc->BindCommand(AxisKeys(GLFW_KEY_A, GLFW_KEY_D), new MoveCommand());
+		pc->BindCommand(AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT), new MoveCommand());
 	}
 
 	void Input::End()

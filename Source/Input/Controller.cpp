@@ -30,12 +30,12 @@ namespace GenevaEngine
 			delete val;
 	}
 
-	void Controller::Bind_KeyPress_Command(int key_value, Command* command)
+	void Controller::BindCommand(int key_value, Command* command)
 	{
 		keypress_binds[key_value] = command;
 	}
 
-	void Controller::Bind_Axis_Command(AxisKeys key_values, Command* command)
+	void Controller::BindCommand(AxisKeys key_values, Command* command)
 	{
 		axis_binds[key_values] = command;
 	}
