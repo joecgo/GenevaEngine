@@ -29,7 +29,12 @@ namespace GenevaEngine
 {
 	struct AxisKeys
 	{
-		bool operator<(const AxisKeys& o)  const {
+		AxisKeys(int arg_neg_key, int arg_pos_key) :
+			pos_key(arg_pos_key), neg_key(arg_neg_key)
+		{}
+
+		bool operator<(const AxisKeys& o)  const
+		{
 			return pos_key > o.pos_key;
 		}
 

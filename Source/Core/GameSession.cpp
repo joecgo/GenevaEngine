@@ -99,7 +99,7 @@ namespace GenevaEngine
 	void GameSession::GameLoop()
 	{
 		// initialize time variables
-		double dt = 0.01;
+		float dt = 0.01;
 		double currentTime = Time();
 		double accumulator = 0.0;
 
@@ -107,17 +107,17 @@ namespace GenevaEngine
 		{
 			// time calculations
 			double newTime = Time();
-			double frameTime = newTime - currentTime;
-			if (frameTime > 0.25)
-				frameTime = 0.25;
+			frame_time = newTime - currentTime;
+			if (frame_time > 0.25)
+				frame_time = 0.25;
 			currentTime = newTime;
-			accumulator += frameTime;
+			accumulator += frame_time;
 
 			//// -----------------------------------------------------
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			input->Update(frameTime); 					// Input
+			input->Update(frame_time); 					// Input
 
 			// fixed update loop
 			while (accumulator >= dt)
@@ -131,8 +131,8 @@ namespace GenevaEngine
 
 			const double alpha = accumulator / dt;
 			for (Entity* entity : entities)				// Game Logic
-				entity->Update(frameTime);
-			graphics->Update(frameTime); 				// Render
+				entity->Update(frame_time);
+			graphics->Update(frame_time); 				// Render
 			while (paused) { newTime = Time(); };		// Pausing
 
 			//// -----------------------------------------------------

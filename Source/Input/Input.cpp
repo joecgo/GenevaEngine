@@ -29,11 +29,12 @@ namespace GenevaEngine
 		// set up player controller
 		// commands deleted in ~Controller
 		player_controller = new Controller();
-		player_controller->Bind_KeyPress_Command(GLFW_KEY_SPACE, new JumpCommand());
-		AxisKeys move_axis_keys;
-		move_axis_keys.neg_key = GLFW_KEY_A;
-		move_axis_keys.pos_key = GLFW_KEY_D;
-		player_controller->Bind_Axis_Command(move_axis_keys, new MoveCommand());
+		Controller* pc = player_controller;
+		// JUMP
+		pc->Bind_KeyPress_Command(GLFW_KEY_SPACE, new JumpCommand());
+		// MOVE
+		pc->Bind_Axis_Command(AxisKeys(GLFW_KEY_A, GLFW_KEY_D), new MoveCommand());
+		pc->Bind_Axis_Command(AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT), new MoveCommand());
 	}
 
 	void Input::End()

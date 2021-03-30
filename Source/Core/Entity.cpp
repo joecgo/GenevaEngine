@@ -91,11 +91,18 @@ namespace GenevaEngine
 
 	void Entity::Move(float x)
 	{
+		float dt = FrameTime();
 		b2Vec2 vel = body->GetLinearVelocity();
 		if (x > 0)
-			vel.x = body->GetMass() * 1.0f;
+			vel.x = 2000.0f * dt;
 		else if (x < 0)
-			vel.x = body->GetMass() * -1.0f;
+			vel.x = -2000.0f * dt;
 		body->SetLinearVelocity(vel);
+		std::cout << x << std::endl;
+	}
+
+	float Entity::FrameTime()
+	{
+		return (float)gamesession->frame_time;
 	}
 }

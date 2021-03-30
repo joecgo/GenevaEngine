@@ -41,6 +41,7 @@ namespace GenevaEngine
 	public:
 		GameSession();
 
+		double frame_time = 0.01;
 		bool paused = false;
 		bool isRunning = true; // flag tells main when to return
 

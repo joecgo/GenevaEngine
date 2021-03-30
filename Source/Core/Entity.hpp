@@ -75,7 +75,10 @@ namespace GenevaEngine
 		b2PolygonShape shape_def;
 		b2FixtureDef fixture_def;
 
-		// GameSession calls
+		// global state getters
+		float FrameTime();
+
+		// GameSession calls these
 		void Start();
 		void FixedUpdate(double alpha); // update on fixed time-steps
 		void Update(double dt);			// update on every frame
