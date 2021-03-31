@@ -68,7 +68,7 @@ namespace GenevaEngine
 		bodyDef.position.Set(15.0f, 5.0f);
 		shapeDef.SetAsBox(3.0f, 3.0f);
 		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 0.3f;
+		fixtureDef.friction = 5.0f;
 		Entity* hero = new Entity(this, bodyDef, fixtureDef, shapeDef, "hero");
 		hero->SetRenderColor(5);
 		input->GetPlayerController()->Possess(hero);

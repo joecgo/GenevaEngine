@@ -29,9 +29,11 @@ namespace GenevaEngine
 		// set up player controller
 		// commands deleted in ~Controller
 		player_controller = new Controller();
-		Controller* pc = player_controller;
+		Controller* pc = player_controller; // for readibility
+
 		// JUMP
 		pc->BindCommand(GLFW_KEY_SPACE, new JumpCommand());
+
 		// MOVE
 		std::list<AxisKeys> move_keys{
 			AxisKeys(GLFW_KEY_A, GLFW_KEY_D),
@@ -109,7 +111,7 @@ namespace GenevaEngine
 	void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		// Send key event to all KeyInput instances
-		Input::KeyStateEvent(key, action == GLFW_PRESS);
+		Input::KeyStateEvent(key, action != GLFW_RELEASE);
 	}
 
 	/*!

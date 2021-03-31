@@ -85,20 +85,23 @@ namespace GenevaEngine
 
 	void Entity::Jump()
 	{
-		b2Vec2 force(0, body->GetMass() * 50.0f);
+		float jump_power = 150.0f;
+		b2Vec2 force(0, body->GetMass() * jump_power);
 		body->ApplyLinearImpulseToCenter(force, true);
 	}
 
 	void Entity::Move(float x)
 	{
-		float dt = FrameTime();
+		const float dt = FrameTime();
+		const float move_speed = 2000.0f;
+
 		b2Vec2 vel = body->GetLinearVelocity();
+		//vel.x = 0;
 		if (x > 0)
-			vel.x = 2000.0f * dt;
+			vel.x = move_speed * dt;
 		else if (x < 0)
-			vel.x = -2000.0f * dt;
+			vel.x = -1.0f * move_speed * dt;
 		body->SetLinearVelocity(vel);
-		std::cout << x << std::endl;
 	}
 
 	float Entity::FrameTime()
