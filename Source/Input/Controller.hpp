@@ -23,23 +23,32 @@
 #include <Core/GameCommon.hpp>
 #include <Input/Commands.hpp>
 
-#include <map> // map
+#include <list> // list
+#include <set> // set
+#include <algorithm> // clamp
 
 namespace GenevaEngine
 {
 	struct AxisKeys
 	{
+		int pos_key;
+		int neg_key;
+
 		AxisKeys(int arg_neg_key, int arg_pos_key) :
 			pos_key(arg_pos_key), neg_key(arg_neg_key)
 		{}
+	};
 
-		bool operator<(const AxisKeys& o)  const
-		{
-			return pos_key > o.pos_key;
-		}
+	struct AxisBinding
+	{
+		std::list<AxisKeys> key_pairs;
+		Command* command;
+	};
 
-		int pos_key = 0;
-		int neg_key = 0;
+	struct KeyBinding
+	{
+		int key;
+		Command* command;
 	};
 
 	class Controller
@@ -47,8 +56,8 @@ namespace GenevaEngine
 	public:
 		~Controller();
 		void HandleInput();
-		void Bind_KeyPress_Command(int key_value, Command* command);
-		void Bind_Axis_Command(AxisKeys key_values, Command* command);
+		void BindCommand(int key, Command* command);
+		void BindCommand(std::list<AxisKeys> keys_pairs, Command* command);
 		void Possess(Entity* arg_entity);
 
 		// commands
@@ -56,8 +65,8 @@ namespace GenevaEngine
 		void Move(float axis);
 
 	private:
-		std::map<int, Command*> keypress_binds;
-		std::map<AxisKeys, Command*> axis_binds;
+		std::list<KeyBinding> keypress_binds;
+		std::list<AxisBinding> axis_binds;
 		Entity* entity = nullptr;
 	};
 }

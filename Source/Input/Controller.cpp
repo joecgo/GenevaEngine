@@ -30,37 +30,48 @@ namespace GenevaEngine
 			delete val;
 	}
 
-	void Controller::BindCommand(int key_value, Command* command)
+	void Controller::BindCommand(int key, Command* command)
 	{
-		keypress_binds[key_value] = command;
+		KeyBinding kb;
+		kb.command = command;
+		kb.key = key;
+		keypress_binds.push_back(kb);
 	}
 
-	void Controller::BindCommand(AxisKeys key_values, Command* command)
+	void Controller::BindCommand(std::list<AxisKeys> keys_pairs, Command* command)
 	{
-		axis_binds[key_values] = command;
+		AxisBinding ab;
+		ab.command = command;
+		ab.key_pairs = keys_pairs;
+		axis_binds.push_back(ab);
 	}
 
 	void Controller::HandleInput()
 	{
 		// iterate through key press binds, polling each global key state
-		for (auto const& [key, val] : keypress_binds)
+		for (KeyBinding kb : keypress_binds)
 		{
 			// if key is pressed, execute command
-			if (Input::KeyPressed(key))
-				keypress_binds[key]->Execute(*this);
+			if (Input::KeyPressed(kb.key))
+				kb.command->Execute(*this);
 		}
 
-		// iterate through axis binds, polling each global key state
-		for (auto const& [key, val] : axis_binds)
+		// iterate through axis bind pairs, adding to axis values, then executing
+		for (AxisBinding axis_bind : axis_binds)
 		{
 			float axis = 0;
-			if (Input::KeyDown(key.pos_key))
-				axis = 1.0f;
-			if (Input::KeyDown(key.neg_key))
-				axis -= 1.0f;
+			for (AxisKeys key_pair : axis_bind.key_pairs)
+			{
+				// TODO: handle joystick/trigger input
+				// keydown style input
+				if (Input::KeyDown(key_pair.pos_key))
+					axis += 1.0f;
+				if (Input::KeyDown(key_pair.neg_key))
+					axis -= 1.0f;
+			}
 
-			axis_binds[key]->SetAxis(axis);
-			axis_binds[key]->Execute(*this);
+			axis_bind.command->SetAxis(std::clamp(axis, -1.0f, 1.0f));
+			axis_bind.command->Execute(*this);
 		}
 	}
 

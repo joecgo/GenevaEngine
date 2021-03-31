@@ -33,8 +33,10 @@ namespace GenevaEngine
 		// JUMP
 		pc->BindCommand(GLFW_KEY_SPACE, new JumpCommand());
 		// MOVE
-		pc->BindCommand(AxisKeys(GLFW_KEY_A, GLFW_KEY_D), new MoveCommand());
-		pc->BindCommand(AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT), new MoveCommand());
+		std::list<AxisKeys> move_keys{
+			AxisKeys(GLFW_KEY_A, GLFW_KEY_D),
+			AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT) };
+		pc->BindCommand(move_keys, new MoveCommand());
 	}
 
 	void Input::End()

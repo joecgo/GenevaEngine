@@ -19,9 +19,9 @@
 
 namespace GenevaEngine
 {
-	void Command::SetAxis(float arg_axis)
+	void Command::SetAxis(float axis_value)
 	{
-		axis = arg_axis;
+		axis = axis_value;
 	}
 
 	void JumpCommand::Execute(Controller& controller)

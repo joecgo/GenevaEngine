@@ -26,7 +26,7 @@ namespace GenevaEngine
 	public:
 		virtual ~Command() {}
 		virtual void Execute(Controller& controller) = 0;
-		void SetAxis(float arg_axis);
+		void SetAxis(float axis_value);
 
 	protected:
 		float axis; // -1 to 1, used in axis commands
