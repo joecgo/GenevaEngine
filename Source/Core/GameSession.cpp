@@ -58,7 +58,7 @@ namespace GenevaEngine
 			bodyDef.type = b2_dynamicBody;
 			bodyDef.position.Set(0.0f, (float)i * 5.0f);
 			shapeDef.SetAsBox(1.0f, 1.0f);
-			fixtureDef.density = 0.01f;
+			fixtureDef.density = 0.01f; // super low density for "foam-like" behavior
 			fixtureDef.friction = 0.3f;
 			box = new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
 			box->SetRenderColor(3);
