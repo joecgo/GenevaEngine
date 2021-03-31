@@ -17,7 +17,6 @@
 
 #include <Core/GameCommon.hpp>
 
-using namespace std;
 namespace GenevaEngine
 {
 	// static members
@@ -54,10 +53,49 @@ namespace GenevaEngine
 		body = world->CreateBody(&body_def);
 		fixture_def.shape = &shape_def;
 		body->CreateFixture(&fixture_def);
+
+		// enter any initial states
+		for (EntityState* state : states)
+			state->Enter(*this);
+	}
+
+	void Entity::AddFSM(EntityState* initial_state)
+	{
+		states.push_back(initial_state);
+	}
+
+	void Entity::Notify(Command* command)
+	{
+		// iterate through states
+		for (int i = 0; i < states.size(); i++)
+		{
+			EntityState* state = states[i];
+			EntityState* next_state = state->Notify(*this, command);
+			if (next_state != nullptr)
+			{
+				state->Exit(*this);
+				delete state;
+				next_state->Enter(*this);
+				states[i] = next_state;
+			}
+		}
 	}
 
 	void Entity::Update(double dt)
 	{
+		// iterate through states
+		for (int i = 0; i < states.size(); i++)
+		{
+			EntityState* state = states[i];
+			EntityState* next_state = state->Update(*this);
+			if (next_state != nullptr)
+			{
+				state->Exit(*this);
+				delete state;
+				next_state->Enter(*this);
+				states[i] = next_state;
+			}
+		}
 	}
 
 	void Entity::FixedUpdate(double alpha)
@@ -81,27 +119,6 @@ namespace GenevaEngine
 	Color Entity::GetRenderColor() const
 	{
 		return render_color;
-	}
-
-	void Entity::Jump()
-	{
-		float jump_power = 150.0f;
-		b2Vec2 force(0, body->GetMass() * jump_power);
-		body->ApplyLinearImpulseToCenter(force, true);
-	}
-
-	void Entity::Move(float x)
-	{
-		const float dt = FrameTime();
-		const float move_speed = 2000.0f;
-
-		b2Vec2 vel = body->GetLinearVelocity();
-		//vel.x = 0;
-		if (x > 0)
-			vel.x = move_speed * dt;
-		else if (x < 0)
-			vel.x = -1.0f * move_speed * dt;
-		body->SetLinearVelocity(vel);
 	}
 
 	float Entity::FrameTime()

@@ -32,13 +32,13 @@ namespace GenevaEngine
 		Controller* pc = player_controller; // for readibility
 
 		// JUMP
-		pc->BindCommand(GLFW_KEY_SPACE, new JumpCommand());
+		pc->BindCommand(GLFW_KEY_SPACE, new Command(Command::Jump));
 
 		// MOVE
 		std::list<AxisKeys> move_keys{
 			AxisKeys(GLFW_KEY_A, GLFW_KEY_D),
 			AxisKeys(GLFW_KEY_LEFT, GLFW_KEY_RIGHT) };
-		pc->BindCommand(move_keys, new MoveCommand());
+		pc->BindCommand(move_keys, new Command(Command::Move));
 	}
 
 	void Input::End()

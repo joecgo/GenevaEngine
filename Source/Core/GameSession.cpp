@@ -17,6 +17,7 @@
   **/
 
 #include <Core/GameCommon.hpp>
+#include <Gameplay/CharacterStates.hpp>
 
 namespace GenevaEngine
 {
@@ -51,17 +52,17 @@ namespace GenevaEngine
 		ground->SetRenderColor(2);
 
 		// create dynamic boxes
-		Entity* box = nullptr;
-		for (size_t i = 0; i < 50; i++)
-		{
-			bodyDef.type = b2_dynamicBody;
-			bodyDef.position.Set(0.0f, (float)i * 5.0f);
-			shapeDef.SetAsBox(1.0f, 1.0f);
-			fixtureDef.density = 1.0f;
-			fixtureDef.friction = 0.3f;
-			box = new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
-			box->SetRenderColor(3);
-		}
+		//Entity* box = nullptr;
+		//for (size_t i = 0; i < 50; i++)
+		//{
+		//	bodyDef.type = b2_dynamicBody;
+		//	bodyDef.position.Set(0.0f, (float)i * 5.0f);
+		//	shapeDef.SetAsBox(1.0f, 1.0f);
+		//	fixtureDef.density = 1.0f;
+		//	fixtureDef.friction = 0.3f;
+		//	box = new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+		//	box->SetRenderColor(3);
+		//}
 
 		// create hero. It is a bigger box! so heroic...
 		bodyDef.type = b2_dynamicBody;
@@ -72,6 +73,7 @@ namespace GenevaEngine
 		Entity* hero = new Entity(this, bodyDef, fixtureDef, shapeDef, "hero");
 		hero->SetRenderColor(5);
 		input->GetPlayerController()->Possess(hero);
+		hero->AddFSM(new Grounded());
 	}
 
 	/*!
@@ -99,7 +101,7 @@ namespace GenevaEngine
 	void GameSession::GameLoop()
 	{
 		// initialize time variables
-		float dt = 0.01;
+		float dt = 0.01f;
 		double currentTime = Time();
 		double accumulator = 0.0;
 

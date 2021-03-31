@@ -21,7 +21,7 @@
 #include <GLFW/glfw3.h> // GLFW
 
 #include <Core/GameCommon.hpp>
-#include <Input/Commands.hpp>
+#include <Input/Command.hpp>
 
 #include <list> // list
 #include <set> // set
@@ -59,10 +59,6 @@ namespace GenevaEngine
 		void BindCommand(int key, Command* command);
 		void BindCommand(std::list<AxisKeys> keys_pairs, Command* command);
 		void Possess(Entity* arg_entity);
-
-		// commands
-		void Jump();
-		void Move(float axis);
 
 	private:
 		std::list<KeyBinding> keypress_binds;

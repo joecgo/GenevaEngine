@@ -9,38 +9,41 @@
  ****************************************************************************/
 
  /**
-  * \file Commands.hpp
+  * \file CharacterStates.hpp
   * \author Joe Goldman
-  * \brief Contains Base Command class and all inherited commands
+  * \brief Character State class declarations
   *
   */
 
 #pragma once
 
-#include <Input/Controller.hpp>
+#include <Gameplay/EntityState.hpp>
+#include <Input/Command.hpp>
+#include <Core/Entity.hpp>
+#include <Gameplay/RayCastCallback.hpp>
 
 namespace GenevaEngine
 {
-	class Command
+	class Grounded : public EntityState
 	{
 	public:
-		virtual ~Command() {}
-		virtual void Execute(Controller& controller) = 0;
-		void SetAxis(float axis_value);
-
-	protected:
-		float axis; // -1 to 1, used in axis commands
+		virtual void Enter(Entity& entity);
+		virtual EntityState* Notify(Entity& entity, Command* command);
+		virtual EntityState* Update(Entity& entity);
+		virtual void Exit(Entity& entity);
+	private:
+		void Jump(Entity& entity);
+		void Move(Entity& entity, float x);
 	};
 
-	class JumpCommand : public Command
+	class Airborne : public EntityState
 	{
 	public:
-		void Execute(Controller& controller);
-	};
-
-	class MoveCommand : public Command
-	{
-	public:
-		void Execute(Controller& controller);
+		virtual void Enter(Entity& entity);
+		virtual EntityState* Notify(Entity& entity, Command* command);
+		virtual EntityState* Update(Entity& entity);
+		virtual void Exit(Entity& entity);
+	private:
+		void Move(Entity& entity, float x);
 	};
 }

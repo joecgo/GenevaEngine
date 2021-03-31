@@ -9,28 +9,29 @@
  ****************************************************************************/
 
  /**
-  * \file Commands.cpp
+  * \file RayCastCallback.cpp
   * \author Joe Goldman
-  * \brief Definitions for command classes
+  * \brief RayCastCallback class definition
   *
   **/
 
-#include <Input/Commands.hpp>
+#include <Gameplay/RayCastCallback.hpp>
 
 namespace GenevaEngine
 {
-	void Command::SetAxis(float axis_value)
+	RayCastCallback::RayCastCallback()
 	{
-		axis = axis_value;
+		bHit = false;
 	}
 
-	void JumpCommand::Execute(Controller& controller)
+	float RayCastCallback::ReportFixture(b2Fixture* fixture, const b2Vec2& point,
+		const b2Vec2& normal, float fraction)
 	{
-		controller.Jump();
-	}
-
-	void MoveCommand::Execute(Controller& controller)
-	{
-		controller.Move(axis);
+		bHit = true;
+		out_fixture = fixture;
+		out_point = point;
+		out_normal = normal;
+		out_fraction = fraction;
+		return 0;
 	}
 }

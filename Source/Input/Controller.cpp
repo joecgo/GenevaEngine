@@ -22,12 +22,12 @@ namespace GenevaEngine
 	Controller::~Controller()
 	{
 		// delete press commands
-		for (auto const& [key, val] : keypress_binds)
-			delete val;
+		for (KeyBinding kb : keypress_binds)
+			delete kb.command;
 
 		// delete axis commands
-		for (auto const& [key, val] : axis_binds)
-			delete val;
+		for (AxisBinding ka : axis_binds)
+			delete ka.command;
 	}
 
 	void Controller::BindCommand(int key, Command* command)
@@ -53,7 +53,7 @@ namespace GenevaEngine
 		{
 			// if key is pressed, execute command
 			if (Input::KeyPressed(kb.key))
-				kb.command->Execute(*this);
+				entity->Notify(kb.command);
 		}
 
 		// iterate through axis bind pairs, adding to axis values, then executing
@@ -71,22 +71,12 @@ namespace GenevaEngine
 			}
 
 			axis_bind.command->SetAxis(std::clamp(axis, -1.0f, 1.0f));
-			axis_bind.command->Execute(*this);
+			entity->Notify(axis_bind.command);
 		}
 	}
 
 	void Controller::Possess(Entity* arg_entity)
 	{
 		entity = arg_entity;
-	}
-
-	void Controller::Jump()
-	{
-		entity->Jump();
-	}
-
-	void Controller::Move(float axis)
-	{
-		entity->Move(axis);
 	}
 }

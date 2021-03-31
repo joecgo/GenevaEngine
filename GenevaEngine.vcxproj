@@ -77,6 +77,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Gameplay\CharacterStates.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Gameplay\RayCastCallback.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Graphics\Color.cpp">
       <SubType>
       </SubType>
@@ -88,7 +96,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Shader.cpp" />
-    <ClCompile Include="Source\Input\Commands.cpp">
+    <ClCompile Include="Source\Input\Command.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -171,6 +179,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Gameplay\CharacterStates.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Gameplay\EntityState.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Gameplay\RayCastCallback.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Graphics\Color.hpp">
       <SubType>
       </SubType>
@@ -181,7 +201,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Shader.hpp" />
-    <ClInclude Include="Source\Input\Commands.hpp">
+    <ClInclude Include="Source\Input\Command.hpp">
       <SubType>
       </SubType>
     </ClInclude>
