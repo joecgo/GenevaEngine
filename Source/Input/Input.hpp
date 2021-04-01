@@ -38,6 +38,9 @@ namespace GenevaEngine
 		// key state enums
 		enum KeyState { Up, Pressed, Down, Released };
 
+		// Attributes
+		bool DevCheatsOn = false;
+
 		// Key state
 		static KeyState GetKeyState(int key);
 		static bool KeyDown(int key);

@@ -21,6 +21,7 @@
 #pragma warning( disable : 26812 26495)
 
 #include <box2d/box2d.h> // box2d
+#include <iostream> // cout endl
 #include <Core/GameSession.hpp>
 #include <Core/System.hpp>
 #include <Core/Entity.hpp>

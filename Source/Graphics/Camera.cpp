@@ -21,72 +21,46 @@ namespace GenevaEngine
 	 *  Constructor with vectors.
 	 *
 	 *      \param [in] position
-	 *      \param [in] up
-	 *      \param [in] yaw
-	 *      \param [in] pitch
 	 */
-	Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
-		Front(glm::vec3(0.0f, 0.0f, -1.0f)),
-		MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY),
-		Fov(FOV)
+	Camera::Camera(b2Vec2 position) : Position(position)
 	{
-		Position = position;
-		WorldUp = up;
-		Yaw = yaw;
-		Pitch = pitch;
-		updateCameraVectors();
 	}
 
-	/*!
-	 *  Constructor with scalar values.
-	 *
-	 *      \param [in] posX
-	 *      \param [in] posY
-	 *      \param [in] posZ
-	 *      \param [in] upX
-	 *      \param [in] upY
-	 *      \param [in] upZ
-	 *      \param [in] yaw
-	 *      \param [in] pitch
-	 */
-	Camera::Camera(float posX, float posY, float posZ, float upX, float upY,
-		float upZ, float yaw, float pitch) :
-		Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED),
-		MouseSensitivity(SENSITIVITY), Fov(FOV)
-	{
-		Position = glm::vec3(posX, posY, posZ);
-		WorldUp = glm::vec3(upX, upY, upZ);
-		Yaw = yaw;
-		Pitch = pitch;
-		updateCameraVectors();
-	}
-	/*!
-	 *  Returns the camera's view matrix.
-	 *
-	 *      \return The view matrix.
-	 */
-	glm::mat4 Camera::GetViewMatrix(int screen_width, int screen_height) const
+	// Convert from world coordinates to normalized device coordinates.
+	// http://www.songho.ca/opengl/gl_projectionmatrix.html
+	void Camera::BuildProjectionMatrix(float* m, float zBias, int screen_width, int screen_height)
 	{
 		// camera view
-		glm::mat4 view = glm::lookAt(Position, Position + Front, Up);
+		//glm::mat4 view = glm::lookAt(Position, Position + Front, Up);
 
-		// Orthogonal view
-		if (OrthoView)
-		{
-			// orthro view
-			float right = OrthoWidth * 0.5f;
-			float left = right * -1.0f;
-			float top = right * (float)screen_height / (float)screen_width;
-			float bottom = top * -1.0f;
-			glm::mat4 ortho = glm::ortho<float>(left, right, bottom, top, -1.0f, FarClipping);
-			return ortho * view;
-		}
+		float w = float(screen_width);
+		float h = float(screen_height);
+		float ratio = w / h;
+		b2Vec2 extents(ratio * 25.0f, 25.0f);
+		extents *= Zoom;
 
-		// Perspective view
-		glm::mat4 perspective = glm::perspective(glm::radians(Fov),
-			(float)screen_width / (float)screen_height, NearClipping, FarClipping);
-		return perspective * view;
+		b2Vec2 lower = Position - extents;
+		b2Vec2 upper = Position + extents;
+
+		m[0] = 2.0f / (upper.x - lower.x);
+		m[1] = 0.0f;
+		m[2] = 0.0f;
+		m[3] = 0.0f;
+
+		m[4] = 0.0f;
+		m[5] = 2.0f / (upper.y - lower.y);
+		m[6] = 0.0f;
+		m[7] = 0.0f;
+
+		m[8] = 0.0f;
+		m[9] = 0.0f;
+		m[10] = 1.0f;
+		m[11] = 0.0f;
+
+		m[12] = -(upper.x + lower.x) / (upper.x - lower.x);
+		m[13] = -(upper.y + lower.y) / (upper.y - lower.y);
+		m[14] = zBias;
+		m[15] = 1.0f;
 	}
 
 	/*!
@@ -99,77 +73,21 @@ namespace GenevaEngine
 	 */
 	void Camera::ProcessCameraMovement(Movement direction, float deltaTime)
 	{
-		float velocity = MovementSpeed * deltaTime;
+		float velocity = DebugFlySpeed * deltaTime;
+		b2Vec2 right(1.0f, 0.0f);
+		b2Vec2 up(0.0, 1.0f);
 		if (direction == Movement::FORWARD)
-			Position += Front * velocity;
+			Zoom -= velocity * 0.05f;
 		if (direction == Movement::BACKWARD)
-			Position -= Front * velocity;
+			Zoom += velocity * 0.05f;
 		if (direction == Movement::LEFT)
-			Position -= Right * velocity;
+			Position -= velocity * right;
 		if (direction == Movement::RIGHT)
-			Position += Right * velocity;
+			Position += velocity * right;
 		if (direction == Movement::UP)
-			Position += Up * velocity;
+			Position += velocity * up;
 		if (direction == Movement::DOWN)
-			Position -= Up * velocity;
-		std::cout << Position.x << ", " << Position.y << ", " << Position.z << ", " << std::endl;
-	}
-
-	/*!
-	 *  Processes the mouse movement.
-	 *
-	 *      \param [in] xoffset
-	 *      \param [in] yoffset
-	 *      \param [in] constrainPitch
-	 */
-	void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
-	{
-		xoffset *= MouseSensitivity;
-		yoffset *= MouseSensitivity;
-
-		Yaw += xoffset;
-		Pitch += yoffset;
-
-		// make sure that when pitch is out of bounds, screen doesn't get flipped
-		if (constrainPitch)
-		{
-			if (Pitch > 89.0f)
-				Pitch = 89.0f;
-			if (Pitch < -89.0f)
-				Pitch = -89.0f;
-		}
-
-		// update Front, Right and Up Vectors using the updated Euler angles
-		updateCameraVectors();
-	}
-
-	/*!
-	 *  Processes the mouse scroll.
-	 *
-	 *      \param [in] yoffset
-	 */
-	void Camera::ProcessMouseScroll(float yoffset)
-	{
-		Fov -= (float)yoffset;
-		if (Fov < MinFov)
-			Fov = MinFov;
-		if (Fov > MaxFov)
-			Fov = MaxFov;
-	}
-
-	/*!
-	 *  Calculates the front vector from the Camera's (updated) Euler Angles
-	 */
-	void Camera::updateCameraVectors()
-	{
-		// calculate the new Front vector
-		glm::vec3 front;
-		front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-		front.y = sin(glm::radians(Pitch));
-		front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-		Front = glm::normalize(front);
-		// also re-calculate the Right and Up vector
-		Right = glm::normalize(glm::cross(Front, WorldUp));
-		Up = glm::normalize(glm::cross(Right, Front));
+			Position -= velocity * up;
+		std::cout << Position.x << ", " << Position.y << ", " << Zoom << ", " << std::endl;
 	}
 }

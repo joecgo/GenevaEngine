@@ -23,11 +23,8 @@
 #pragma warning( disable : 6386)
 
 #include <box2d/box2d.h>
-
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
-#include <glm/gtc/matrix_transform.hpp> // mat4
-#include <glm/gtc/type_ptr.hpp> // value_ptr
 
 #include <string>
 #include <fstream>
@@ -58,7 +55,7 @@ namespace GenevaEngine
 		GLint m_projectionUniform;
 		GLint m_vertexAttribute;
 		GLint m_colorAttribute;
-		glm::mat4 m_projectionMatrix;
+		float* m_projectionMatrix;
 		GLint m_drawType = GL_TRIANGLES;
 
 		// constructors
@@ -69,7 +66,7 @@ namespace GenevaEngine
 		~Shader();
 
 		// render methods
-		void UpdateProjection(glm::mat4 projection);
+		void UpdateProjection(float* projection);
 		void Vertex(const b2Vec2& v, const Color& c);
 		void Flush();
 

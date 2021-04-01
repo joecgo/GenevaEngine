@@ -124,7 +124,7 @@ namespace GenevaEngine
 		}
 	}
 
-	void Shader::UpdateProjection(glm::mat4 projection)
+	void Shader::UpdateProjection(float* projection)
 	{
 		m_projectionMatrix = projection;
 	}
@@ -146,7 +146,7 @@ namespace GenevaEngine
 
 		glUseProgram(m_programId);
 
-		glUniformMatrix4fv(m_projectionUniform, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix));
+		glUniformMatrix4fv(m_projectionUniform, 1, GL_FALSE, m_projectionMatrix);
 
 		glBindVertexArray(m_vaoId);
 

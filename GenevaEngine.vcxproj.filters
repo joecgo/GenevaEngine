@@ -195,6 +195,9 @@
     <ClCompile Include="Source\Gameplay\RayCastCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Gameplay\EntityBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp">
@@ -387,6 +390,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Gameplay\RayCastCallback.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gameplay\EntityBehavior.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

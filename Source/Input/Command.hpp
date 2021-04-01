@@ -23,15 +23,15 @@ namespace GenevaEngine
 	{
 	public:
 		// list command types off here, use by observer to query the command type
-		enum Type { Jump, Move };
+		enum Type { None, Jump, Move };
 
 		Command(Type command_type);
 		void SetAxis(float axis_value);
 		float GetAxis();
-		float GetType();
+		Type GetType();
 
 	private:
-		float axis; // -1 to 1, used in axis commands
+		float axis = 0; // -1 to 1, used in axis commands
 		const Type type; // for observer to query the command type
 	};
 }

@@ -19,8 +19,6 @@
 
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
-#include <glm/gtc/matrix_transform.hpp> // vec3 mat4
-#include <glm/gtc/type_ptr.hpp> // value_ptr
 
 #include <iostream> // cout, endl
 #include <vector> // vector
@@ -42,13 +40,11 @@ namespace GenevaEngine
 
 		// member variables
 		b2Vec2 transformed_verts[512];
-		Camera camera = Camera(glm::vec3(0, 42.0357f, 104.984f));
+		Camera camera = Camera(b2Vec2(0.0f, 30.0f));
 		GLFWwindow* window;
 
 		// glfw callbacks
-		static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-		static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+		static void FrameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
 		// color palette
 		Color GetPaletteColor(int color_id);

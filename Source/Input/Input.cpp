@@ -51,7 +51,8 @@ namespace GenevaEngine
 		UpdateKeyStates();
 		glfwPollEvents();
 		player_controller->HandleInput();
-		ProcessDevCheats(gamesession->graphics->window, dt);
+		if (DevCheatsOn)
+			ProcessDevCheats(gamesession->graphics->window, dt);
 	}
 
 	Controller* Input::GetPlayerController()
@@ -121,23 +122,20 @@ namespace GenevaEngine
 	 */
 	void Input::ProcessDevCheats(GLFWwindow* window, double dt)
 	{
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, true);
-
-		//Graphics* gfx = gamesession->graphics;
-		//float sensitivity = 5.0f;
-		//float moveRate = (float)dt * sensitivity;
-		//if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::FORWARD, moveRate);
-		//if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::BACKWARD, moveRate);
-		//if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::LEFT, moveRate);
-		//if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::RIGHT, moveRate);
-		//if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::DOWN, moveRate);
-		//if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-		//	gfx->camera.ProcessCameraMovement(Camera::Movement::UP, moveRate);
+		Graphics* gfx = gamesession->graphics;
+		float sensitivity = 5.0f;
+		float moveRate = (float)dt * sensitivity;
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::FORWARD, moveRate);
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::BACKWARD, moveRate);
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::LEFT, moveRate);
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::RIGHT, moveRate);
+		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::DOWN, moveRate);
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+			gfx->camera.ProcessCameraMovement(Camera::Movement::UP, moveRate);
 	}
 }

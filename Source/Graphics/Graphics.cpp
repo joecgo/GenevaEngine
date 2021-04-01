@@ -45,7 +45,7 @@ namespace GenevaEngine
 			return; // TODO: inform GameSession of error
 		}
 		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+		glfwSetFramebufferSizeCallback(window, FrameBufferSizeCallback);
 
 		// tell GLFW to capture our mouse
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -81,13 +81,18 @@ namespace GenevaEngine
 	}
 	void Graphics::Update(double dt)
 	{
+		// check for close window
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, true);
+
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// pass projection from camera to shader
-		glm::mat4 projection = camera.GetViewMatrix(SCR_WIDTH, SCR_HEIGHT);
-		triangle_shader->UpdateProjection(projection);
-		line_shader->UpdateProjection(projection);
+		float proj[16]{ 0 };
+		camera.BuildProjectionMatrix(proj, 0.0f, SCR_WIDTH, SCR_HEIGHT);
+		triangle_shader->UpdateProjection(proj);
+		line_shader->UpdateProjection(proj);
 
 		// render entities
 		for (Entity* entity : gamesession->entities)
@@ -155,56 +160,6 @@ namespace GenevaEngine
 		return &(shaders[name]);
 	}
 
-	void Graphics::UpdateCameraMovement()
-	{
-		if (firstMouse)
-		{
-			lastX = mouse_x;
-			lastY = mouse_y;
-			firstMouse = false;
-		}
-
-		float xoffset = (float)mouse_x - (float)lastX;
-		float yoffset = (float)lastY - (float)mouse_y; // reversed since y-coordinates go from bottom to top
-		lastX = mouse_x;
-		lastY = mouse_y;
-
-		float look_sensitivity = 0.1f;
-		float scroll_sensitivity = 3.0f;
-		xoffset *= look_sensitivity;
-		yoffset *= look_sensitivity;
-		float mouseScrollDelta = (float)mouse_scroll * scroll_sensitivity;
-		mouse_scroll = 0.0; // reset value
-
-		camera.ProcessMouseMovement(xoffset, yoffset);
-		camera.ProcessMouseScroll(mouseScrollDelta);
-	}
-
-	/*!
-	 *  callback for the mouse position
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     xpos
-	 *      \param [in]     ypos
-	 */
-	void Graphics::mouse_callback(GLFWwindow* window, double xpos, double ypos)
-	{
-		mouse_x = xpos;
-		mouse_y = ypos;
-	}
-
-	/*!
-	 *  callback for scroll input
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     xoffset
-	 *      \param [in]     yoffset
-	 */
-	void Graphics::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-	{
-		mouse_scroll = yoffset;
-	}
-
 	/*!
 	 *  Callback for the framebuffer
 	 *
@@ -212,7 +167,7 @@ namespace GenevaEngine
 	 *      \param [in]     width
 	 *      \param [in]     height
 	 */
-	void Graphics::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	void Graphics::FrameBufferSizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}

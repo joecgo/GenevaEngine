@@ -17,8 +17,6 @@
 
 #pragma once
 
-#include <glm/glm.hpp> // vec3
-
 #include <string> // string
 #include <vector> // vector
 

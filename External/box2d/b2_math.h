@@ -113,6 +113,13 @@ struct B2_API b2Vec2
 		return length;
 	}
 
+	// get the unit vector (vector / length)
+	b2Vec2 UnitVector()
+	{
+		float invLength = 1.0f / Length();
+		return b2Vec2(x * invLength, y * invLength);
+	}
+
 	/// Does this vector contain finite coordinates?
 	bool IsValid() const
 	{
@@ -162,6 +169,42 @@ struct B2_API b2Vec3
 	void operator *= (float s)
 	{
 		x *= s; y *= s; z *= s;
+	}
+
+	/// Get the length of this vector (the norm).
+	float Length() const
+	{
+		return b2Sqrt(x * x + y * y + z * z);
+	}
+
+	/// Get the length squared. For performance, use this instead of
+	/// b2Vec2::Length (if possible).
+	float LengthSquared() const
+	{
+		return x * x + y * y;
+	}
+
+	/// Convert this vector into a unit vector. Returns the length.
+	float Normalize()
+	{
+		float length = Length();
+		if (length < b2_epsilon)
+		{
+			return 0.0f;
+		}
+		float invLength = 1.0f / length;
+		x *= invLength;
+		y *= invLength;
+		z *= invLength;
+
+		return length;
+	}
+
+	// get the unit vector (vector / length)
+	b2Vec3 UnitVector()
+	{
+		float invLength = 1.0f / Length();
+		return b2Vec3(x * invLength, y * invLength, z * invLength);
 	}
 
 	float x, y, z;
@@ -471,6 +514,11 @@ inline float b2DistanceSquared(const b2Vec2& a, const b2Vec2& b)
 }
 
 inline b2Vec3 operator * (float s, const b2Vec3& a)
+{
+	return b2Vec3(s * a.x, s * a.y, s * a.z);
+}
+
+inline b2Vec3 operator * (const b2Vec3& a, float s)
 {
 	return b2Vec3(s * a.x, s * a.y, s * a.z);
 }

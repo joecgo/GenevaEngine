@@ -30,7 +30,7 @@ namespace GenevaEngine
 	{
 		return axis;
 	}
-	float Command::GetType()
+	Command::Type Command::GetType()
 	{
 		return type;
 	}
