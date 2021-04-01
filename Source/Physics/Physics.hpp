@@ -17,13 +17,9 @@
 
 #pragma once
 
-#include <glm/gtc/matrix_transform.hpp> // vec3
+#include <box2d/box2d.h>
 
-#include <vector> // vector
-#include <list> // list
-#include <cmath> // signbit
-
-#include <Core/GameCommon.hpp>
+#include <Core/System.hpp>
 
 namespace GenevaEngine
 {

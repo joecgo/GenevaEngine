@@ -17,10 +17,13 @@
 
 #pragma once
 
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // GLFW
+
 #include <map>
 
 #include <Input/Controller.hpp>
-#include <Core/GameCommon.hpp>
+#include <Core/System.hpp>
 
 namespace GenevaEngine
 {

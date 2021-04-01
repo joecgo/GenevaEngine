@@ -16,10 +16,11 @@
   */
 
 #pragma once
-#include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
 {
+	class GameSession;
+
 	/*!
 	 *  Abstract class for game engine systems to inherit from
 	 */
@@ -33,7 +34,7 @@ namespace GenevaEngine
 		 *
 		 *      \param [in] gs
 		 */
-		System(GameSession* gs) : gamesession(gs) { gamesession->AddSystem(this); }
+		System(GameSession* gs);
 
 		virtual void Start() = 0;
 		virtual void Update(double dt) = 0;

@@ -19,4 +19,8 @@
 
 namespace GenevaEngine
 {
+	System::System(GameSession* gs) : gamesession(gs)
+	{
+		gamesession->AddSystem(this);
+	}
 }

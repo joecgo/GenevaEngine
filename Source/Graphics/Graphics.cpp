@@ -15,6 +15,9 @@
   *
   **/
 
+#include <glad/glad.h> // extension of GLFW
+#include <GLFW/glfw3.h> // GLFW
+
 #include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
@@ -39,7 +42,7 @@ namespace GenevaEngine
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
-			return; // TODO: inform GameSession of fatal error
+			return; // TODO: inform GameSession of error
 		}
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -51,7 +54,7 @@ namespace GenevaEngine
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
 			std::cout << "Failed to initialize GLAD" << std::endl;
-			return; // TODO: inform GameSession of fatal error
+			return; // TODO: inform GameSession of error
 		}
 
 		// configure global opengl state

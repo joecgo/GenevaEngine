@@ -27,7 +27,6 @@
 #include <map> // map
 #include <queue> // queue
 
-#include <Core/GameCommon.hpp>
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
 #include <Graphics/Color.hpp>

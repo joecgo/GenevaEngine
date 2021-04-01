@@ -22,13 +22,13 @@
 #include <string> // string
 #include <vector> // vector
 
-#include <Core/GameCommon.hpp>
 #include <Input/Command.hpp>
 #include <Graphics/Shader.hpp>
 #include <Gameplay/EntityState.hpp>
 
 namespace GenevaEngine
 {
+	class GameSession;
 	class Controller;
 
 	/*!
