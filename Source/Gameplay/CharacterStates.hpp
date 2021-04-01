@@ -25,20 +25,26 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief Grounded state for Character FSM
+	 */
 	class Grounded : public EntityState
 	{
 	public:
 		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
+		virtual EntityState* Notify(Entity& entity, const Command* command);
 		virtual EntityState* Update(Entity& entity);
 		virtual void Exit(Entity& entity);
 	};
 
+	/*!
+	 *  \brief Airborne state for Character FSM
+	 */
 	class Airborne : public EntityState
 	{
 	public:
 		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
+		virtual EntityState* Notify(Entity& entity, const Command* command);
 		virtual EntityState* Update(Entity& entity);
 		virtual void Exit(Entity& entity);
 	};

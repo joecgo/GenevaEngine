@@ -33,16 +33,31 @@ namespace GenevaEngine
 		Start();
 	}
 
+	/*!
+	 *  Returns the game session's physics.
+	 *
+	 *      \return The physics.
+	 */
 	Physics* GameSession::GetPhysics()
 	{
 		return m_physics;
 	}
 
+	/*!
+	 *  Returns the game session's input.
+	 *
+	 *      \return The input.
+	 */
 	Input* GameSession::GetInput()
 	{
 		return m_input;
 	}
 
+	/*!
+	 *  Returns the game session's graphics.
+	 *
+	 *      \return The graphics.
+	 */
 	Graphics* GameSession::GetGraphics()
 	{
 		return m_graphics;

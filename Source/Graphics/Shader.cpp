@@ -115,6 +115,9 @@ namespace GenevaEngine
 		CheckErrors();
 	}
 
+	/*!
+	 *  Destructor.
+	 */
 	Shader::~Shader()
 	{
 		if (m_vaoId)
@@ -124,11 +127,22 @@ namespace GenevaEngine
 		}
 	}
 
+	/*!
+	 *  Updates the projection matrics
+	 *
+	 *      \param [in,out] projection
+	 */
 	void Shader::UpdateProjection(float* projection)
 	{
 		m_projectionMatrix = projection;
 	}
 
+	/*!
+	 *   add a vertex to be rendered by the shader.
+	 *
+	 *      \param [in] v
+	 *      \param [in] c
+	 */
 	void Shader::Vertex(const b2Vec2& v, const Color& c)
 	{
 		if (m_count == k_maxVertices)
@@ -139,6 +153,9 @@ namespace GenevaEngine
 		++m_count;
 	}
 
+	/*!
+	 *  Flushes the remaining vertices in the buffer to get rendered
+	 */
 	void Shader::Flush()
 	{
 		if (m_count == 0)
@@ -177,6 +194,9 @@ namespace GenevaEngine
 		m_count = 0;
 	}
 
+	/*!
+	 *  Polls for any errors
+	 */
 	void Shader::CheckErrors()
 	{
 		GLenum errCode = glGetError();

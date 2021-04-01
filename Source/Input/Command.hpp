@@ -19,6 +19,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief Like an event that can be bound to input. Sent from Controllers
+	 */
 	class Command
 	{
 	public:
@@ -27,8 +30,8 @@ namespace GenevaEngine
 
 		Command(Type command_type);
 		void SetAxis(float axis_value);
-		float GetAxis();
-		Type GetType();
+		float GetAxis() const;
+		Type GetType() const;
 
 	private:
 		float m_axis = 0; // -1 to 1, used in axis commands

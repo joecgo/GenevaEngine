@@ -31,11 +31,26 @@ namespace GenevaEngine
 	{
 	}
 
+	/*!
+	 *  Constructor.
+	 *
+	 *      \param [in] red
+	 *      \param [in] green
+	 *      \param [in] blue
+	 *      \param [in] alpha
+	 */
 	Color::Color(float red, float green, float blue, float alpha) :
 		r(red), g(green), b(blue), a(alpha)
 	{
 	}
 
+	/*!
+	 *  multiply color by scalar
+	 *
+	 *      \param [in] scalar
+	 *
+	 *      \return
+	 */
 	Color Color::operator*(float scalar)
 	{
 		return Color(r * scalar, g * scalar, b * scalar, a * scalar);

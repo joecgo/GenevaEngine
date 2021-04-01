@@ -26,8 +26,16 @@ namespace GenevaEngine
 	{
 	}
 
-	// Convert from world coordinates to normalized device coordinates.
-	// http://www.songho.ca/opengl/gl_projectionmatrix.html
+	/*!
+	 *	Convert from world coordinates to normalized device coordinates.
+	 *	Copied from box2d testbed
+	 *  http://www.songho.ca/opengl/gl_projectionmatrix.html
+	 *
+	 *      \param [in,out] m
+	 *      \param [in]     zBias
+	 *      \param [in]     screen_width
+	 *      \param [in]     screen_height
+	 */
 	void Camera::BuildProjectionMatrix(float* m, float zBias, int screen_width, int screen_height)
 	{
 		// camera view

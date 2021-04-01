@@ -23,7 +23,7 @@ namespace GenevaEngine
 	void Grounded::Enter(Entity& entity)
 	{
 	}
-	EntityState* Grounded::Notify(Entity& entity, Command* command)
+	EntityState* Grounded::Notify(Entity& entity, const Command* command)
 	{
 		switch ((int)command->GetType())
 		{
@@ -50,7 +50,7 @@ namespace GenevaEngine
 	void Airborne::Enter(Entity& entity)
 	{
 	}
-	EntityState* Airborne::Notify(Entity& entity, Command* command)
+	EntityState* Airborne::Notify(Entity& entity, const Command* command)
 	{
 		switch ((int)command->GetType())
 		{

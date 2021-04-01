@@ -19,6 +19,13 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Sets horizontal velocity
+	 *
+	 *      \param [in,out] entity
+	 *      \param [in]     x_axis
+	 *      \param [in]     moveSpeed
+	 */
 	void EntityBehavior::Move(Entity& entity, float x_axis, float moveSpeed)
 	{
 		b2Body* body = entity.GetBody();
@@ -32,6 +39,12 @@ namespace GenevaEngine
 		body->SetLinearVelocity(vel);
 	}
 
+	/*!
+	 *  Jump via a great upward force
+	 *
+	 *      \param [in,out] entity
+	 *      \param [in]     jumpPower
+	 */
 	void EntityBehavior::Jump(Entity& entity, float jumpPower)
 	{
 		b2Body* body = entity.GetBody();

@@ -21,6 +21,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief Entity behavior functions
+	 */
 	class EntityBehavior
 	{
 	public:

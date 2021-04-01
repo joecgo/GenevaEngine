@@ -19,18 +19,41 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Constructor.
+	 *
+	 *      \param [in] command_type
+	 */
 	Command::Command(Type command_type) : m_type(command_type)
 	{
 	}
+
+	/*!
+	 *  Sets the command's axis value.
+	 *
+	 *      \param [in] axis_value
+	 */
 	void Command::SetAxis(float axis_value)
 	{
 		m_axis = axis_value;
 	}
-	float Command::GetAxis()
+
+	/*!
+	 *  Returns the command's axis value
+	 *
+	 *      \return The axis.
+	 */
+	float Command::GetAxis() const
 	{
 		return m_axis;
 	}
-	Command::Type Command::GetType()
+
+	/*!
+	 *  Returns the command's type.
+	 *
+	 *      \return The type.
+	 */
+	Command::Type Command::GetType() const
 	{
 		return m_type;
 	}

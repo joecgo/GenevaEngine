@@ -22,6 +22,15 @@ namespace GenevaEngine
 	// static members
 	int Entity::m_entityCount = 0;
 
+	/*!
+	 *  Constructor.
+	 *
+	 *      \param [in] gs
+	 *      \param [in] bodyDef
+	 *      \param [in] fixtureDef
+	 *      \param [in] shapeDef
+	 *      \param [in] name
+	 */
 	Entity::Entity(GameSession* gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef,
 		b2PolygonShape shapeDef, std::string name) :
 		m_gameSession(gs),
@@ -35,11 +44,17 @@ namespace GenevaEngine
 		m_gameSession->AddEntity(this); // add to gamesession entities
 	}
 
+	/*!
+	 *  Spawns the entity.
+	 */
 	void Entity::Start()
 	{
 		Spawn();
 	}
 
+	/*!
+	 *  Spawns the entity.
+	 */
 	void Entity::Spawn()
 	{
 		// error check for existing body
@@ -59,12 +74,22 @@ namespace GenevaEngine
 			state->Enter(*this);
 	}
 
+	/*!
+	 *  Adds a FSM by providing the initial state to the entity
+	 *
+	 *      \param [in,out] initial_state
+	 */
 	void Entity::AddFSM(EntityState* initial_state)
 	{
 		m_states.push_back(initial_state);
 	}
 
-	void Entity::Notify(Command* command)
+	/*!
+	 *  Notifies the entity of incoming commands
+	 *
+	 *      \param [in] command
+	 */
+	void Entity::Notify(const Command* command)
 	{
 		// iterate through states
 		for (int i = 0; i < m_states.size(); i++)
@@ -81,6 +106,11 @@ namespace GenevaEngine
 		}
 	}
 
+	/*!
+	 *  Called every render update. dt is the FrameTime
+	 *
+	 *      \param [in] dt
+	 */
 	void Entity::Update(double dt)
 	{
 		// iterate through states
@@ -98,29 +128,57 @@ namespace GenevaEngine
 		}
 	}
 
+	/*!
+	 *  Called every physics update. alpha is time between physics steps
+	 *
+	 *      \param [in] alpha
+	 */
 	void Entity::FixedUpdate(double alpha)
 	{
 	}
 
+	/*!
+	 *  Ends call for Entity
+	 */
 	void Entity::End()
 	{
 	}
 
+	/*!
+	 *  Sets the entity's render color.
+	 *
+	 *      \param [in] palette_color_id
+	 */
 	void Entity::SetRenderColor(int palette_color_id)
 	{
 		m_render_color = m_gameSession->GetGraphics()->GetPaletteColor(palette_color_id);
 	}
 
+	/*!
+	 *  Sets the entity's render color.
+	 *
+	 *      \param [in] color
+	 */
 	void Entity::SetRenderColor(Color color)
 	{
 		m_render_color = color;
 	}
 
+	/*!
+	 *  Returns the entity's render color.
+	 *
+	 *      \return The render color.
+	 */
 	Color Entity::GetRenderColor() const
 	{
 		return m_render_color;
 	}
 
+	/*!
+	 *  Amount of time between frames being rendered
+	 *
+	 *      \return frame time
+	 */
 	float Entity::FrameTime()
 	{
 		return (float)m_gameSession->FrameTime;

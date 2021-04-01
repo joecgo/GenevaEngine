@@ -19,6 +19,11 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Constructor.
+	 *
+	 *      \param [in] gs
+	 */
 	System::System(GameSession* gs) : m_gameSession(gs)
 	{
 		m_gameSession->AddSystem(this);

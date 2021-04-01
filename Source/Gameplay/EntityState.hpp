@@ -24,11 +24,14 @@ namespace GenevaEngine
 	class Command;
 	class Entity;
 
+	/*!
+	 *  \brief Abstract state for entity FSM
+	 */
 	class EntityState
 	{
 	public:
 		virtual void Enter(Entity& entity) = 0;
-		virtual EntityState* Notify(Entity& entity, Command* command) = 0;
+		virtual EntityState* Notify(Entity& entity, const Command* command) = 0;
 		virtual EntityState* Update(Entity& entity) = 0;
 		virtual void Exit(Entity& entity) = 0;
 	};

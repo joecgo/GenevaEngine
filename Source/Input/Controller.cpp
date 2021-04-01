@@ -19,6 +19,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Destructor. deletes commands from memory here
+	 */
 	Controller::~Controller()
 	{
 		// delete press commands
@@ -30,6 +33,12 @@ namespace GenevaEngine
 			delete ka.command;
 	}
 
+	/*!
+	 *  Binds key to a command. Command sent when key is pressed
+	 *
+	 *      \param [in]     key
+	 *      \param [in,out] command
+	 */
 	void Controller::BindCommand(int key, Command* command)
 	{
 		KeyBinding kb;
@@ -38,6 +47,12 @@ namespace GenevaEngine
 		keypress_binds.push_back(kb);
 	}
 
+	/*!
+	 *  Binds an axis value to a command sent every frame
+	 *  neg key is -1 and pos key is 1
+	 *      \param [in]     keys_pairs
+	 *      \param [in,out] command
+	 */
 	void Controller::BindCommand(std::list<AxisKeys> keys_pairs, Command* command)
 	{
 		AxisBinding ab;
@@ -46,6 +61,9 @@ namespace GenevaEngine
 		axis_binds.push_back(ab);
 	}
 
+	/*!
+	 *  Polls input system for input
+	 */
 	void Controller::HandleInput()
 	{
 		// iterate through key press binds, polling each global key state
@@ -75,8 +93,13 @@ namespace GenevaEngine
 		}
 	}
 
-	void Controller::Possess(Entity* arg_entity)
+	/*!
+	 *  Controller that posseses an entity then controls it
+	 *
+	 *      \param [in,out] entity
+	 */
+	void Controller::Possess(Entity* entity)
 	{
-		m_entity = arg_entity;
+		m_entity = entity;
 	}
 }

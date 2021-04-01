@@ -22,6 +22,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  Starts the graphics.
+	 */
 	void Graphics::Start()
 	{
 		// glfw: initialize and configure
@@ -70,6 +73,9 @@ namespace GenevaEngine
 		Graphics::SetClearColor(GetPaletteColor(1));
 	}
 
+	/*!
+	 *  Ends the graphics.
+	 */
 	void Graphics::End()
 	{
 		delete (m_triangle_shader);
@@ -78,6 +84,12 @@ namespace GenevaEngine
 		// glfw: terminate, clearing all previously allocated GLFW resources.
 		glfwTerminate();
 	}
+
+	/*!
+	 *  Updates the graphics.
+	 *
+	 *      \param [in] dt
+	 */
 	void Graphics::Update(double dt)
 	{
 		// check for close window
@@ -102,6 +114,11 @@ namespace GenevaEngine
 		glfwSwapBuffers(m_window);
 	}
 
+	/*!
+	 *  Renders the entity.
+	 *
+	 *      \param [in,out] entity
+	 */
 	void Graphics::RenderEntity(Entity* entity)
 	{
 		// draw shape depending on type
@@ -136,11 +153,21 @@ namespace GenevaEngine
 		glClearColor(color.r, color.g, color.b, 1.0f);
 	}
 
+	/*!
+	 *  Returns the graphics's window.
+	 *
+	 *      \return The window.
+	 */
 	GLFWwindow* Graphics::GetWindow()
 	{
 		return m_window;
 	}
 
+	/*!
+	 *  Returns the graphics's camera.
+	 *
+	 *      \return The camera.
+	 */
 	Camera* Graphics::GetCamera()
 	{
 		return &m_camera;
@@ -203,14 +230,22 @@ namespace GenevaEngine
 		}
 	}
 
-	//
+	/*!
+	 *  Flush the remaining buffers to be rendered
+	 */
 	void Graphics::Flush()
 	{
 		m_line_shader->Flush();
 		m_triangle_shader->Flush();
 	}
 
-	// color palette
+	/*!
+	 *  Returns a color from the pallete using a color id
+	 *
+	 *      \param [in] color_id
+	 *
+	 *      \return The palette color.
+	 */
 	Color Graphics::GetPaletteColor(int color_id)
 	{
 		// if color id is out of range, return full red

@@ -48,7 +48,7 @@ namespace GenevaEngine
 		// add an initial state for a finite state machine
 		void AddFSM(EntityState* initial_state);
 		// Notify state machines of incoming command
-		void Notify(Command* command);
+		void Notify(const Command* command);
 		// Global state getters
 		float FrameTime();
 

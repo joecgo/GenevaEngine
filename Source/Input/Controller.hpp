@@ -29,6 +29,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief pos key and neg key pair to create axis input
+	 */
 	struct AxisKeys
 	{
 		int pos_key;
@@ -39,18 +42,27 @@ namespace GenevaEngine
 		{}
 	};
 
+	/*!
+	 *  \brief a list of neg key, pos key pairs and a command
+	 */
 	struct AxisBinding
 	{
 		std::list<AxisKeys> key_pairs;
 		Command* command;
 	};
 
+	/*!
+	 *  \brief a key and command
+	 */
 	struct KeyBinding
 	{
 		int key;
 		Command* command;
 	};
 
+	/*!
+	 *  \brief Controller translates input into commands for entitys to follow
+	 */
 	class Controller
 	{
 	public:
@@ -58,7 +70,7 @@ namespace GenevaEngine
 		void HandleInput();
 		void BindCommand(int key, Command* command);
 		void BindCommand(std::list<AxisKeys> keys_pairs, Command* command);
-		void Possess(Entity* arg_entity);
+		void Possess(Entity* entity);
 
 	private:
 		std::list<KeyBinding> keypress_binds;

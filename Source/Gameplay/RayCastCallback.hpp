@@ -21,6 +21,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief implement box2d's abstract RayCast class
+	 */
 	class RayCastCallback : public b2RayCastCallback
 	{
 	public:
