@@ -35,16 +35,13 @@ namespace GenevaEngine
 	class Entity
 	{
 	public:
-		// increments on entity construction to create a unique id
-		static int entity_count;
-
-		// general info
-		const int id = -1;
-		std::string name;
+		// Attributes
+		const int ID;
+		std::string Name;
 
 		// constructor
-		Entity(GameSession* gs, b2BodyDef arg_body_def, b2FixtureDef arg_fixture_def,
-			b2PolygonShape arg_shape_def, std::string arg_name = "none");
+		Entity(GameSession* gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef,
+			b2PolygonShape shapeDef, std::string name = "none");
 
 		// puts this instance into the game
 		void Spawn();
@@ -61,29 +58,32 @@ namespace GenevaEngine
 		Color GetRenderColor() const;
 
 		// TODO: box2d wrapper class
-		b2World* GetWorld() { return world; };
-		b2PolygonShape GetShape() { return shape_def; }
-		b2Body* GetBody() { return body; }
+		b2World* GetWorld() { return m_world; };
+		b2PolygonShape GetShape() { return m_shapeDef; }
+		b2Body* GetBody() { return m_body; }
 
 	private:
-		// object references
-		GameSession* gamesession = nullptr;
+		// increments on entity construction to create a unique id
+		static int m_entityCount;
 
-		// Finite state machines which observe all incoming commands
-		std::vector<EntityState*> states;
+		// object references
+		GameSession* m_gameSession = nullptr;
+
+		// Finite state machines which observe incoming commands
+		std::vector<EntityState*> m_states;
 
 		// TODO: implement components
 		// Component* components[max_components]
 
 		// TODO: render settings class
-		Color render_color;
+		Color m_render_color;
 
 		// TODO: box2d wrapper class
-		b2World* world = nullptr;
-		b2Body* body = nullptr;
-		b2BodyDef body_def;
-		b2PolygonShape shape_def;
-		b2FixtureDef fixture_def;
+		b2World* m_world = nullptr;
+		b2Body* m_body = nullptr;
+		b2BodyDef m_bodyDef;
+		b2PolygonShape m_shapeDef;
+		b2FixtureDef m_fixtureDef;
 
 		//  Game loop
 		void Start();

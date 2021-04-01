@@ -38,19 +38,14 @@ namespace GenevaEngine
 		static const unsigned int SCR_WIDTH = 1200;
 		static const unsigned int SCR_HEIGHT = SCR_WIDTH * 9 / 16;
 
-		// member variables
-		b2Vec2 transformed_verts[512];
-		Camera camera = Camera(b2Vec2(0.0f, 30.0f));
-		GLFWwindow* window;
-
 		// glfw callbacks
 		static void FrameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
-		// color palette
+		// getters & setters
 		Color GetPaletteColor(int color_id);
-
-		// glfw wrappers
 		void SetClearColor(Color color);
+		GLFWwindow* GetWindow();
+		Camera* GetCamera();
 
 		// shader storage and access methods
 		void SaveShader(std::string name, Shader shader);
@@ -58,22 +53,19 @@ namespace GenevaEngine
 
 	private:
 		// color palette
-		std::vector<Color> palette = {
+		std::vector<Color> m_palette = {
 			Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
 			Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
 
-		// mouse state for debug camera
-		static double mouse_y;
-		static double mouse_x;
-		static double mouse_scroll;
-		bool firstMouse;
-		double lastX = SCR_WIDTH / 2.0f;
-		double lastY = SCR_HEIGHT / 2.0f;
+		// Asset references
+		Camera m_camera = Camera(b2Vec2(0.0f, 30.0f));
+		GLFWwindow* m_window;
+		Shader* m_triangle_shader = nullptr;
+		Shader* m_line_shader = nullptr;
+		std::map<std::string, Shader> m_shaders;
 
-		// Asset references references
-		Shader* triangle_shader = nullptr;
-		Shader* line_shader = nullptr;
-		std::map<std::string, Shader> shaders;
+		// verts used in a single shape perspective transformation
+		b2Vec2 m_transformedVerts[512];
 
 		// debug camera methods
 		void UpdateCameraMovement();

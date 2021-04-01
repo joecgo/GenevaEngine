@@ -24,7 +24,7 @@ namespace GenevaEngine
 	class EntityBehavior
 	{
 	public:
-		static void Move(Entity& entity, float x_axis, float move_speed = 2000.0f);
-		static void Jump(Entity& entity, float jump_power = 150.0f);
+		static void Move(Entity& entity, float x_axis, float moveSpeed = 2000.0f);
+		static void Jump(Entity& entity, float jumpPower = 150.0f);
 	};
 }

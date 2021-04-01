@@ -19,23 +19,23 @@
 
 namespace GenevaEngine
 {
-	void EntityBehavior::Move(Entity& entity, float x_axis, float move_speed)
+	void EntityBehavior::Move(Entity& entity, float x_axis, float moveSpeed)
 	{
 		b2Body* body = entity.GetBody();
 		const float dt = entity.FrameTime();
 
 		b2Vec2 vel = body->GetLinearVelocity();
 		if (x_axis > 0)
-			vel.x = move_speed * dt;
+			vel.x = moveSpeed * dt;
 		else if (x_axis < 0)
-			vel.x = -1.0f * move_speed * dt;
+			vel.x = -1.0f * moveSpeed * dt;
 		body->SetLinearVelocity(vel);
 	}
 
-	void EntityBehavior::Jump(Entity& entity, float jump_power)
+	void EntityBehavior::Jump(Entity& entity, float jumpPower)
 	{
 		b2Body* body = entity.GetBody();
-		b2Vec2 force(0, body->GetMass() * jump_power);
+		b2Vec2 force(0, body->GetMass() * jumpPower);
 		body->ApplyLinearImpulseToCenter(force, true);
 	}
 }

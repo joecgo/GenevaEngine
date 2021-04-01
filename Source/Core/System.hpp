@@ -27,7 +27,7 @@ namespace GenevaEngine
 	class System
 	{
 	protected:
-		GameSession* gamesession = nullptr;
+		GameSession* m_gameSession = nullptr;
 	private:
 		/*!
 		 *  Constructor.

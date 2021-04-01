@@ -29,11 +29,11 @@ namespace GenevaEngine
 
 	void Physics::Update(double dt)
 	{
-		world.Step((float)dt, velocity_iterations, position_iterations);
+		m_world.Step((float)dt, k_velocity_iterations, k_position_iterations);
 	}
 
 	b2World* Physics::GetWorld()
 	{
-		return &(world);
+		return &(m_world);
 	}
 }

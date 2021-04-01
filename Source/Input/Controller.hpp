@@ -63,6 +63,6 @@ namespace GenevaEngine
 	private:
 		std::list<KeyBinding> keypress_binds;
 		std::list<AxisBinding> axis_binds;
-		Entity* entity = nullptr;
+		Entity* m_entity = nullptr;
 	};
 }

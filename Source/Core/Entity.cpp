@@ -20,19 +20,19 @@
 namespace GenevaEngine
 {
 	// static members
-	int Entity::entity_count = 0;
+	int Entity::m_entityCount = 0;
 
-	Entity::Entity(GameSession* gs, b2BodyDef arg_body_def, b2FixtureDef arg_fixture_def,
-		b2PolygonShape arg_shape_def, std::string arg_name) :
-		gamesession(gs),
-		body_def(arg_body_def),
-		fixture_def(arg_fixture_def),
-		shape_def(arg_shape_def),
-		name(arg_name),
-		id(++entity_count),
-		world(gs->GetWorld())
+	Entity::Entity(GameSession* gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef,
+		b2PolygonShape shapeDef, std::string name) :
+		m_gameSession(gs),
+		m_bodyDef(bodyDef),
+		m_fixtureDef(fixtureDef),
+		m_shapeDef(shapeDef),
+		Name(name),
+		ID(++m_entityCount),
+		m_world(gs->GetWorld())
 	{
-		gamesession->AddEntity(this); // add to gamesession entities
+		m_gameSession->AddEntity(this); // add to gamesession entities
 	}
 
 	void Entity::Start()
@@ -43,40 +43,40 @@ namespace GenevaEngine
 	void Entity::Spawn()
 	{
 		// error check for existing body
-		if (body != nullptr)
+		if (m_body != nullptr)
 		{
 			std::cout << "Error - Entity::Spawn - Entity is already spawned" << std::endl;
 			return;
 		}
 
 		// spawn
-		body = world->CreateBody(&body_def);
-		fixture_def.shape = &shape_def;
-		body->CreateFixture(&fixture_def);
+		m_body = m_world->CreateBody(&m_bodyDef);
+		m_fixtureDef.shape = &m_shapeDef;
+		m_body->CreateFixture(&m_fixtureDef);
 
 		// enter any initial states
-		for (EntityState* state : states)
+		for (EntityState* state : m_states)
 			state->Enter(*this);
 	}
 
 	void Entity::AddFSM(EntityState* initial_state)
 	{
-		states.push_back(initial_state);
+		m_states.push_back(initial_state);
 	}
 
 	void Entity::Notify(Command* command)
 	{
 		// iterate through states
-		for (int i = 0; i < states.size(); i++)
+		for (int i = 0; i < m_states.size(); i++)
 		{
-			EntityState* state = states[i];
+			EntityState* state = m_states[i];
 			EntityState* next_state = state->Notify(*this, command);
 			if (next_state != nullptr)
 			{
 				state->Exit(*this);
 				delete state;
 				next_state->Enter(*this);
-				states[i] = next_state;
+				m_states[i] = next_state;
 			}
 		}
 	}
@@ -84,16 +84,16 @@ namespace GenevaEngine
 	void Entity::Update(double dt)
 	{
 		// iterate through states
-		for (int i = 0; i < states.size(); i++)
+		for (int i = 0; i < m_states.size(); i++)
 		{
-			EntityState* state = states[i];
+			EntityState* state = m_states[i];
 			EntityState* next_state = state->Update(*this);
 			if (next_state != nullptr)
 			{
 				state->Exit(*this);
 				delete state;
 				next_state->Enter(*this);
-				states[i] = next_state;
+				m_states[i] = next_state;
 			}
 		}
 	}
@@ -108,21 +108,21 @@ namespace GenevaEngine
 
 	void Entity::SetRenderColor(int palette_color_id)
 	{
-		render_color = gamesession->graphics->GetPaletteColor(palette_color_id);
+		m_render_color = m_gameSession->GetGraphics()->GetPaletteColor(palette_color_id);
 	}
 
 	void Entity::SetRenderColor(Color color)
 	{
-		render_color = color;
+		m_render_color = color;
 	}
 
 	Color Entity::GetRenderColor() const
 	{
-		return render_color;
+		return m_render_color;
 	}
 
 	float Entity::FrameTime()
 	{
-		return (float)gamesession->frame_time;
+		return (float)m_gameSession->FrameTime;
 	}
 }

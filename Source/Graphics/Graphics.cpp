@@ -22,11 +22,6 @@
 
 namespace GenevaEngine
 {
-	// define static member variables for mouse callback function
-	double Graphics::mouse_x = 0.0;
-	double Graphics::mouse_y = 0.0;
-	double Graphics::mouse_scroll = 0.0;
-
 	void Graphics::Start()
 	{
 		// glfw: initialize and configure
@@ -36,19 +31,19 @@ namespace GenevaEngine
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		// glfw: window creation
-		window = glfwCreateWindow(Graphics::SCR_WIDTH, Graphics::SCR_HEIGHT,
+		m_window = glfwCreateWindow(Graphics::SCR_WIDTH, Graphics::SCR_HEIGHT,
 			"GenevaEngine", NULL, NULL);
-		if (window == NULL)
+		if (m_window == NULL)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
 			return; // TODO: inform GameSession of error
 		}
-		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, FrameBufferSizeCallback);
+		glfwMakeContextCurrent(m_window);
+		glfwSetFramebufferSizeCallback(m_window, FrameBufferSizeCallback);
 
 		// tell GLFW to capture our mouse
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		// glad: load all OpenGL function pointers
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -62,10 +57,14 @@ namespace GenevaEngine
 
 		// create, save, and assign shaders. TODO: do this with a config file
 		glLineWidth(2.0f);
-		triangle_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
-		triangle_shader->m_drawType = GL_TRIANGLES;
-		line_shader = new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
-		line_shader->m_drawType = GL_LINES;
+		// triangle shader
+		m_triangle_shader =
+			new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+		m_triangle_shader->DrawType = GL_TRIANGLES;
+		// line shader
+		m_line_shader =
+			new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+		m_line_shader->DrawType = GL_LINES;
 
 		// set clear color
 		Graphics::SetClearColor(GetPaletteColor(1));
@@ -73,8 +72,8 @@ namespace GenevaEngine
 
 	void Graphics::End()
 	{
-		delete (triangle_shader);
-		delete (line_shader);
+		delete (m_triangle_shader);
+		delete (m_line_shader);
 
 		// glfw: terminate, clearing all previously allocated GLFW resources.
 		glfwTerminate();
@@ -82,25 +81,25 @@ namespace GenevaEngine
 	void Graphics::Update(double dt)
 	{
 		// check for close window
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, true);
+		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(m_window, true);
 
 		// clear graphics before the work starts
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// pass projection from camera to shader
 		float proj[16]{ 0 };
-		camera.BuildProjectionMatrix(proj, 0.0f, SCR_WIDTH, SCR_HEIGHT);
-		triangle_shader->UpdateProjection(proj);
-		line_shader->UpdateProjection(proj);
+		m_camera.BuildProjectionMatrix(proj, 0.0f, SCR_WIDTH, SCR_HEIGHT);
+		m_triangle_shader->UpdateProjection(proj);
+		m_line_shader->UpdateProjection(proj);
 
 		// render entities
-		for (Entity* entity : gamesession->entities)
+		for (Entity* entity : m_gameSession->entities)
 			RenderEntity(entity);
 		Flush();
 
 		// glfw: swap buffers
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(m_window);
 	}
 
 	void Graphics::RenderEntity(Entity* entity)
@@ -110,13 +109,13 @@ namespace GenevaEngine
 		b2PolygonShape shape = entity->GetShape();
 		b2Transform xf = entity->GetBody()->GetTransform();
 		for (size_t i = 0; i < shape.m_count; i++)
-			transformed_verts[i] = b2Mul(xf, shape.m_vertices[i]);
+			m_transformedVerts[i] = b2Mul(xf, shape.m_vertices[i]);
 
 		switch (shape.GetType())
 		{
 		case b2Shape::e_polygon:
 
-			DrawSolidPolygon(transformed_verts, shape.m_count, color);
+			DrawSolidPolygon(m_transformedVerts, shape.m_count, color);
 			break;
 
 		case b2Shape::e_chain:
@@ -137,6 +136,16 @@ namespace GenevaEngine
 		glClearColor(color.r, color.g, color.b, 1.0f);
 	}
 
+	GLFWwindow* Graphics::GetWindow()
+	{
+		return m_window;
+	}
+
+	Camera* Graphics::GetCamera()
+	{
+		return &m_camera;
+	}
+
 	/*!
 	 *  Saves a shader by name.
 	 *
@@ -145,7 +154,7 @@ namespace GenevaEngine
 	 */
 	void Graphics::SaveShader(std::string name, Shader shader)
 	{
-		shaders[name] = shader;
+		m_shaders[name] = shader;
 	}
 
 	/*!
@@ -157,7 +166,7 @@ namespace GenevaEngine
 	 */
 	Shader* Graphics::GetShader(std::string name)
 	{
-		return &(shaders[name]);
+		return &(m_shaders[name]);
 	}
 
 	/*!
@@ -179,17 +188,17 @@ namespace GenevaEngine
 
 		for (int i = 1; i < vertexCount - 1; ++i)
 		{
-			triangle_shader->Vertex(vertices[0], fillColor);
-			triangle_shader->Vertex(vertices[i], fillColor);
-			triangle_shader->Vertex(vertices[i + 1], fillColor);
+			m_triangle_shader->Vertex(vertices[0], fillColor);
+			m_triangle_shader->Vertex(vertices[i], fillColor);
+			m_triangle_shader->Vertex(vertices[i + 1], fillColor);
 		}
 
 		b2Vec2 p1 = vertices[vertexCount - 1];
 		for (int32 i = 0; i < vertexCount; ++i)
 		{
 			b2Vec2 p2 = vertices[i];
-			line_shader->Vertex(p1, color);
-			line_shader->Vertex(p2, color);
+			m_line_shader->Vertex(p1, color);
+			m_line_shader->Vertex(p2, color);
 			p1 = p2;
 		}
 	}
@@ -197,17 +206,17 @@ namespace GenevaEngine
 	//
 	void Graphics::Flush()
 	{
-		line_shader->Flush();
-		triangle_shader->Flush();
+		m_line_shader->Flush();
+		m_triangle_shader->Flush();
 	}
 
 	// color palette
 	Color Graphics::GetPaletteColor(int color_id)
 	{
 		// if color id is out of range, return full red
-		if (color_id < 0 || color_id >= palette.size())
+		if (color_id < 0 || color_id >= m_palette.size())
 			return Color(0xFF0000);
 
-		return palette[color_id];
+		return m_palette[color_id];
 	}
 }

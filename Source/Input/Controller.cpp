@@ -53,7 +53,7 @@ namespace GenevaEngine
 		{
 			// if key is pressed, execute command
 			if (Input::KeyPressed(kb.key))
-				entity->Notify(kb.command);
+				m_entity->Notify(kb.command);
 		}
 
 		// iterate through axis bind pairs, adding to axis values, then executing
@@ -71,12 +71,12 @@ namespace GenevaEngine
 			}
 
 			axis_bind.command->SetAxis(std::clamp(axis, -1.0f, 1.0f));
-			entity->Notify(axis_bind.command);
+			m_entity->Notify(axis_bind.command);
 		}
 	}
 
 	void Controller::Possess(Entity* arg_entity)
 	{
-		entity = arg_entity;
+		m_entity = arg_entity;
 	}
 }

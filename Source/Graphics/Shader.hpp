@@ -44,19 +44,8 @@ namespace GenevaEngine
 	class Shader
 	{
 	public:
-		// member vars
-		static constexpr int e_maxVertices = 4096;
-		b2Vec2 m_vertices[e_maxVertices];
-		Color m_colors[e_maxVertices];
-		int32 m_count = 0;
-		GLuint m_programId = -1;
-		GLuint m_vaoId;
-		GLuint m_vboIds[2];
-		GLint m_projectionUniform;
-		GLint m_vertexAttribute;
-		GLint m_colorAttribute;
-		float* m_projectionMatrix;
-		GLint m_drawType = GL_TRIANGLES;
+		// attributes
+		GLint DrawType = GL_TRIANGLES;
 
 		// constructors
 		Shader() {};
@@ -71,6 +60,19 @@ namespace GenevaEngine
 		void Flush();
 
 	private:
+		// member vars
+		static constexpr int k_maxVertices = 4096;
+		b2Vec2 m_vertices[k_maxVertices];
+		Color m_colors[k_maxVertices];
+		int32 m_count = 0;
+		GLuint m_programId = -1;
+		GLuint m_vaoId;
+		GLuint m_vboIds[2];
+		GLint m_projectionUniform;
+		GLint m_vertexAttribute;
+		GLint m_colorAttribute;
+		float* m_projectionMatrix;
+
 		// utility function for checking shader compilation/linking errors.
 		void CheckCompileErrors(unsigned int shader, std::string type);
 		void CheckErrors();

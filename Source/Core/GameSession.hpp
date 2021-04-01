@@ -41,16 +41,17 @@ namespace GenevaEngine
 	public:
 		GameSession();
 
-		double frame_time = 0.01;
-		bool paused = false;
-		bool isRunning = true; // flag tells main when to return
+		// Attributes
+		double FrameTime = 0.01;
+		bool Paused = false;
+		bool IsRunning = true; // flag tells main when to return
 
-		// system references
-		Physics* physics = nullptr;
-		Graphics* graphics = nullptr;
-		Input* input = nullptr;
-		Entity* kevin = nullptr; // testing jump
+		// getters
+		Physics* GetPhysics();
+		Input* GetInput();
+		Graphics* GetGraphics();
 
+		// systems and entities add themselves to gamesession on consturction
 		void AddSystem(System* system);
 		void AddEntity(Entity* entity);
 
@@ -62,6 +63,11 @@ namespace GenevaEngine
 		std::vector<Entity*> entities;
 
 	private:
+		// system references
+		Physics* m_physics = nullptr;
+		Graphics* m_graphics = nullptr;
+		Input* m_input = nullptr;
+
 		double Time();
 		void Start();
 		void GameLoop();

@@ -131,7 +131,7 @@ namespace GenevaEngine
 
 	void Shader::Vertex(const b2Vec2& v, const Color& c)
 	{
-		if (m_count == e_maxVertices)
+		if (m_count == k_maxVertices)
 			Flush();
 
 		m_vertices[m_count] = v;
@@ -156,16 +156,16 @@ namespace GenevaEngine
 		glBindBuffer(GL_ARRAY_BUFFER, m_vboIds[1]);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, m_count * sizeof(Color), m_colors); // m_colors);
 
-		if (m_drawType == GL_TRIANGLES)
+		if (DrawType == GL_TRIANGLES)
 		{ // TRIANGLES
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glDrawArrays(m_drawType, 0, m_count);
+			glDrawArrays(DrawType, 0, m_count);
 			glDisable(GL_BLEND);
 		}
 		else
 		{ // LINES
-			glDrawArrays(m_drawType, 0, m_count);
+			glDrawArrays(DrawType, 0, m_count);
 		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

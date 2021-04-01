@@ -33,10 +33,10 @@ namespace GenevaEngine
 
 	private:
 		// box2d
-		const int32 velocity_iterations = 6; // setting for constraint solver
-		const int32 position_iterations = 2; // setting for constraint solver
-		const b2Vec2 gravity = b2Vec2(0, -200.0f);
-		b2World world = b2World(gravity);
+		const int32 k_velocity_iterations = 6; // setting for constraint solver
+		const int32 k_position_iterations = 2; // setting for constraint solver
+		b2Vec2 m_gravity = b2Vec2(0, -200.0f);
+		b2World m_world = b2World(m_gravity);
 
 		// inherited members, methods, and constructors
 		using System::System;

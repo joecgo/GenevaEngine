@@ -70,7 +70,7 @@ namespace GenevaEngine
 		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, boxHeight);
 		entity.GetWorld()->RayCast(&callback, p1, p2);
 
-		if (callback.bHit)
+		if (callback.Hit)
 			return new Grounded();
 
 		return nullptr;

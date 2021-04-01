@@ -26,11 +26,26 @@ namespace GenevaEngine
 	 */
 	GameSession::GameSession()
 	{
-		physics = new Physics(this);
-		input = new Input(this);
-		graphics = new Graphics(this);
+		m_physics = new Physics(this);
+		m_input = new Input(this);
+		m_graphics = new Graphics(this);
 
 		Start();
+	}
+
+	Physics* GameSession::GetPhysics()
+	{
+		return m_physics;
+	}
+
+	Input* GameSession::GetInput()
+	{
+		return m_input;
+	}
+
+	Graphics* GameSession::GetGraphics()
+	{
+		return m_graphics;
 	}
 
 	/*!
@@ -72,7 +87,7 @@ namespace GenevaEngine
 		fixtureDef.friction = 5.0f;
 		Entity* hero = new Entity(this, bodyDef, fixtureDef, shapeDef, "hero");
 		hero->SetRenderColor(5);
-		input->GetPlayerController()->Possess(hero);
+		m_input->GetPlayerController()->Possess(hero);
 		hero->AddFSM(new Grounded());
 	}
 
@@ -82,9 +97,9 @@ namespace GenevaEngine
 	void GameSession::Start()
 	{
 		// start systems
-		graphics->Start();
-		physics->Start();
-		input->Start();
+		m_graphics->Start();
+		m_physics->Start();
+		m_input->Start();
 
 		CreateEntities();
 
@@ -105,26 +120,26 @@ namespace GenevaEngine
 		double currentTime = Time();
 		double accumulator = 0.0;
 
-		while (!glfwWindowShouldClose(graphics->window))
+		while (!glfwWindowShouldClose(m_graphics->m_window))
 		{
 			// time calculations
 			double newTime = Time();
-			frame_time = newTime - currentTime;
-			if (frame_time > 0.25)
-				frame_time = 0.25;
+			FrameTime = newTime - currentTime;
+			if (FrameTime > 0.25)
+				FrameTime = 0.25;
 			currentTime = newTime;
-			accumulator += frame_time;
+			accumulator += FrameTime;
 
 			//// -----------------------------------------------------
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			input->Update(frame_time); 					// Input
+			m_input->Update(FrameTime); 					// Input
 
 			// fixed update loop
 			while (accumulator >= dt)
 			{
-				physics->Update(dt);					// Physics (fixed update)
+				m_physics->Update(dt);					// Physics (fixed update)
 				for (Entity* entity : entities)			// Game Logic (fixed update)
 					entity->FixedUpdate(dt);
 
@@ -133,9 +148,9 @@ namespace GenevaEngine
 
 			const double alpha = accumulator / dt;
 			for (Entity* entity : entities)				// Game Logic
-				entity->Update(frame_time);
-			graphics->Update(frame_time); 				// Render
-			while (paused) { newTime = Time(); };		// Pausing
+				entity->Update(FrameTime);
+			m_graphics->Update(FrameTime); 				// Render
+			while (Paused) { newTime = Time(); };		// Pausing
 
 			//// -----------------------------------------------------
 			/// Game Loop Execution
@@ -169,7 +184,7 @@ namespace GenevaEngine
 			delete system;
 
 		// public flag for closing down the program in main()
-		isRunning = false;
+		IsRunning = false;
 	}
 
 	/*!
@@ -204,6 +219,6 @@ namespace GenevaEngine
 
 	b2World* GameSession::GetWorld()
 	{
-		return &(physics->world);
+		return &(m_physics->m_world);
 	}
 }

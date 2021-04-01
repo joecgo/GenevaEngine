@@ -19,19 +19,19 @@
 
 namespace GenevaEngine
 {
-	Command::Command(Type command_type) : type(command_type)
+	Command::Command(Type command_type) : m_type(command_type)
 	{
 	}
 	void Command::SetAxis(float axis_value)
 	{
-		axis = axis_value;
+		m_axis = axis_value;
 	}
 	float Command::GetAxis()
 	{
-		return axis;
+		return m_axis;
 	}
 	Command::Type Command::GetType()
 	{
-		return type;
+		return m_type;
 	}
 }

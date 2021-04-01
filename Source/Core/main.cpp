@@ -19,7 +19,7 @@
 int main()
 {
 	GenevaEngine::GameSession gs;
-	while (gs.isRunning) {}
+	while (gs.IsRunning) {}
 
 	return 0;
 }

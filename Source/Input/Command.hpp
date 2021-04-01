@@ -31,7 +31,7 @@ namespace GenevaEngine
 		Type GetType();
 
 	private:
-		float axis = 0; // -1 to 1, used in axis commands
-		const Type type; // for observer to query the command type
+		float m_axis = 0; // -1 to 1, used in axis commands
+		const Type m_type; // for observer to query the command type
 	};
 }
