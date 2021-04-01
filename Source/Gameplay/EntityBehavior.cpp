@@ -9,37 +9,33 @@
  ****************************************************************************/
 
  /**
-  * \file CharacterStates.hpp
+  * \file EntityBehavior.cpp
   * \author Joe Goldman
-  * \brief Character State class declarations
+  * \brief EntityBehavior class definition
   *
-  */
+  **/
 
-#pragma once
-
-#include <Gameplay/EntityState.hpp>
-#include <Input/Command.hpp>
-#include <Core/Entity.hpp>
-#include <Gameplay/RayCastCallback.hpp>
 #include <Gameplay/EntityBehavior.hpp>
 
 namespace GenevaEngine
 {
-	class Grounded : public EntityState
+	void EntityBehavior::Move(Entity& entity, float x_axis, float move_speed)
 	{
-	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
-	};
+		b2Body* body = entity.GetBody();
+		const float dt = entity.FrameTime();
 
-	class Airborne : public EntityState
+		b2Vec2 vel = body->GetLinearVelocity();
+		if (x_axis > 0)
+			vel.x = move_speed * dt;
+		else if (x_axis < 0)
+			vel.x = -1.0f * move_speed * dt;
+		body->SetLinearVelocity(vel);
+	}
+
+	void EntityBehavior::Jump(Entity& entity, float jump_power)
 	{
-	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
-	};
+		b2Body* body = entity.GetBody();
+		b2Vec2 force(0, body->GetMass() * jump_power);
+		body->ApplyLinearImpulseToCenter(force, true);
+	}
 }

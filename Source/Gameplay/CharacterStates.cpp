@@ -22,18 +22,17 @@ namespace GenevaEngine
 	// GROUNDED
 	void Grounded::Enter(Entity& entity)
 	{
-		name = "grounded";
 	}
 	EntityState* Grounded::Notify(Entity& entity, Command* command)
 	{
 		switch ((int)command->GetType())
 		{
 		case Command::Jump:
-			Jump(entity);
+			EntityBehavior::Jump(entity, 150.0f);
 			return new Airborne();
 
 		case Command::Move:
-			Move(entity, command->GetAxis());
+			EntityBehavior::Move(entity, command->GetAxis(), 2000.0f);
 			break;
 		}
 
@@ -46,39 +45,17 @@ namespace GenevaEngine
 	void Grounded::Exit(Entity& entity)
 	{
 	}
-	void Grounded::Jump(Entity& entity)
-	{
-		b2Body* body = entity.GetBody();
-		float jump_power = 150.0f;
-		b2Vec2 force(0, body->GetMass() * jump_power);
-		body->ApplyLinearImpulseToCenter(force, true);
-	}
-	void Grounded::Move(Entity& entity, float x)
-	{
-		b2Body* body = entity.GetBody();
-		const float dt = entity.FrameTime();
-		const float move_speed = 2000.0f;
-
-		b2Vec2 vel = body->GetLinearVelocity();
-		//vel.x = 0;
-		if (x > 0)
-			vel.x = move_speed * dt;
-		else if (x < 0)
-			vel.x = -1.0f * move_speed * dt;
-		body->SetLinearVelocity(vel);
-	}
 
 	// AIRBOURNE
 	void Airborne::Enter(Entity& entity)
 	{
-		name = "airbourne";
 	}
 	EntityState* Airborne::Notify(Entity& entity, Command* command)
 	{
 		switch ((int)command->GetType())
 		{
 		case Command::Move:
-			Move(entity, command->GetAxis());
+			EntityBehavior::Move(entity, command->GetAxis(), 2000.0f);
 			break;
 		}
 
@@ -100,20 +77,5 @@ namespace GenevaEngine
 	}
 	void Airborne::Exit(Entity& entity)
 	{
-	}
-
-	void Airborne::Move(Entity& entity, float x)
-	{
-		b2Body* body = entity.GetBody();
-		const float dt = entity.FrameTime();
-		const float move_speed = 2000.0f;
-
-		b2Vec2 vel = body->GetLinearVelocity();
-		//vel.x = 0;
-		if (x > 0)
-			vel.x = move_speed * dt;
-		else if (x < 0)
-			vel.x = -1.0f * move_speed * dt;
-		body->SetLinearVelocity(vel);
 	}
 }

@@ -9,37 +9,22 @@
  ****************************************************************************/
 
  /**
-  * \file CharacterStates.hpp
+  * \file EntityBehavior.hpp
   * \author Joe Goldman
-  * \brief Character State class declarations
+  * \brief EntityBehavior class declaration.
   *
   */
 
 #pragma once
 
-#include <Gameplay/EntityState.hpp>
-#include <Input/Command.hpp>
 #include <Core/Entity.hpp>
-#include <Gameplay/RayCastCallback.hpp>
-#include <Gameplay/EntityBehavior.hpp>
 
 namespace GenevaEngine
 {
-	class Grounded : public EntityState
+	class EntityBehavior
 	{
 	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
-	};
-
-	class Airborne : public EntityState
-	{
-	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
+		static void Move(Entity& entity, float x_axis, float move_speed = 2000.0f);
+		static void Jump(Entity& entity, float jump_power = 150.0f);
 	};
 }

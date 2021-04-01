@@ -27,7 +27,6 @@ namespace GenevaEngine
 	class EntityState
 	{
 	public:
-		std::string name = "none";
 		virtual void Enter(Entity& entity) = 0;
 		virtual EntityState* Notify(Entity& entity, Command* command) = 0;
 		virtual EntityState* Update(Entity& entity) = 0;
