@@ -100,45 +100,71 @@ $(document).ready(function(){initNavTree('_shader_8hpp_source.html',''); initRes
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span> <span class="comment">// extension of GLFW</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;GLFW/glfw3.h&gt;</span> <span class="comment">// GLFW</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="comment">// Disable warning messages from box2d: C26812 C26495</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#pragma warning( disable : 26812 26495)</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span>GenevaEngine</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_geneva_engine_1_1_shader.html">   32</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_shader.html">Shader</a></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID = -1;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">// default contructor</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="class_geneva_engine_1_1_shader.html#a08d8615e9365c2d4958bb1cf27bb1978">Shader</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// constructor generates the shader on the fly</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_geneva_engine_1_1_shader.html#a08d8615e9365c2d4958bb1cf27bb1978">Shader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* vertexPath, <span class="keyword">const</span> <span class="keywordtype">char</span>* fragmentPath);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">// activate the shader</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#a5b651aca729e5b68295e1811d333f95a">use</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// utility uniform functions</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#a1c828730811dd3ee1263f6a8c80cf5ae">setBool</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">bool</span> value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#ade8cbb93370e9a9d39439cda32bf67fd">setInt</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">int</span> value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#a46a1320b258eacb0c155e9b288abec6d">setFloat</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> value) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// utility function for checking shader compilation/linking errors.</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// ------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> checkCompileErrors(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> shader, std::string type);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html">GenevaEngine::Shader</a></div><div class="ttdoc">Manages a single shader program.</div><div class="ttdef"><b>Definition:</b> Shader.hpp:33</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_a08d8615e9365c2d4958bb1cf27bb1978"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#a08d8615e9365c2d4958bb1cf27bb1978">GenevaEngine::Shader::Shader</a></div><div class="ttdeci">Shader()</div><div class="ttdef"><b>Definition:</b> Shader.cpp:24</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_a1c828730811dd3ee1263f6a8c80cf5ae"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#a1c828730811dd3ee1263f6a8c80cf5ae">GenevaEngine::Shader::setBool</a></div><div class="ttdeci">void setBool(const std::string &amp;name, bool value) const</div><div class="ttdef"><b>Definition:</b> Shader.cpp:101</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_a46a1320b258eacb0c155e9b288abec6d"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#a46a1320b258eacb0c155e9b288abec6d">GenevaEngine::Shader::setFloat</a></div><div class="ttdeci">void setFloat(const std::string &amp;name, float value) const</div><div class="ttdef"><b>Definition:</b> Shader.cpp:123</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_a5b651aca729e5b68295e1811d333f95a"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#a5b651aca729e5b68295e1811d333f95a">GenevaEngine::Shader::use</a></div><div class="ttdeci">void use()</div><div class="ttdef"><b>Definition:</b> Shader.cpp:90</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_ade8cbb93370e9a9d39439cda32bf67fd"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#ade8cbb93370e9a9d39439cda32bf67fd">GenevaEngine::Shader::setInt</a></div><div class="ttdeci">void setInt(const std::string &amp;name, int value) const</div><div class="ttdef"><b>Definition:</b> Shader.cpp:112</div></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="comment">// Disable warning messages from Shader: C6386</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#pragma warning( disable : 6386)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;box2d/box2d.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span> <span class="comment">// extension of GLFW</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;GLFW/glfw3.h&gt;</span> <span class="comment">// GLFW</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_color_8hpp.html">Graphics/Color.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define BUFFER_OFFSET(x)  ((const void*) (x))</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span>GenevaEngine</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_geneva_engine_1_1_shader.html">   44</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_shader.html">Shader</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// attributes</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        GLint DrawType = GL_TRIANGLES;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// constructors</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_geneva_engine_1_1_shader.html">Shader</a>() {};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_geneva_engine_1_1_shader.html">Shader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* vertexPath, <span class="keyword">const</span> <span class="keywordtype">char</span>* fragmentPath);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// destructor</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_geneva_engine_1_1_shader.html#a4e9a2ed4299d3ab30c7933816836c9d5">~Shader</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// render methods</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#ac98f486b603da1180c9c223bb6ea37c7">UpdateProjection</a>(<span class="keywordtype">float</span>* projection);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#af124b9d9273b54419ec49853631b0349">Vertex</a>(<span class="keyword">const</span> b2Vec2&amp; v, <span class="keyword">const</span> <a class="code" href="class_geneva_engine_1_1_color.html">Color</a>&amp; c);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_shader.html#aa901e81ba1dfade26b6a6fed699d9402">Flush</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// member vars</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> k_maxVertices = 4096;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        b2Vec2 m_vertices[k_maxVertices];</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="class_geneva_engine_1_1_color.html">Color</a> m_colors[k_maxVertices];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        int32 m_count = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        GLuint m_programId = -1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        GLuint m_vaoId;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        GLuint m_vboIds[2];</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        GLint m_projectionUniform;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        GLint m_vertexAttribute;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        GLint m_colorAttribute;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">float</span>* m_projectionMatrix;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// utility function for checking shader compilation/linking errors.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> CheckCompileErrors(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> shader, std::string type);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> CheckErrors();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    };</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<div class="ttc" id="a_color_8hpp_html"><div class="ttname"><a href="_color_8hpp.html">Color.hpp</a></div><div class="ttdoc">Color class declaration.</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_color_html"><div class="ttname"><a href="class_geneva_engine_1_1_color.html">GenevaEngine::Color</a></div><div class="ttdoc">A container for a single color.</div><div class="ttdef"><b>Definition:</b> Color.hpp:25</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_shader_html"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html">GenevaEngine::Shader</a></div><div class="ttdoc">Manages a single shader program, adding verts to the buffer, and all the steps to interface with open...</div><div class="ttdef"><b>Definition:</b> Shader.hpp:45</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_a4e9a2ed4299d3ab30c7933816836c9d5"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#a4e9a2ed4299d3ab30c7933816836c9d5">GenevaEngine::Shader::~Shader</a></div><div class="ttdeci">~Shader()</div><div class="ttdef"><b>Definition:</b> Shader.cpp:121</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_aa901e81ba1dfade26b6a6fed699d9402"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#aa901e81ba1dfade26b6a6fed699d9402">GenevaEngine::Shader::Flush</a></div><div class="ttdeci">void Flush()</div><div class="ttdef"><b>Definition:</b> Shader.cpp:159</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_ac98f486b603da1180c9c223bb6ea37c7"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#ac98f486b603da1180c9c223bb6ea37c7">GenevaEngine::Shader::UpdateProjection</a></div><div class="ttdeci">void UpdateProjection(float *projection)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:135</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_shader_html_af124b9d9273b54419ec49853631b0349"><div class="ttname"><a href="class_geneva_engine_1_1_shader.html#af124b9d9273b54419ec49853631b0349">GenevaEngine::Shader::Vertex</a></div><div class="ttdeci">void Vertex(const b2Vec2 &amp;v, const Color &amp;c)</div><div class="ttdef"><b>Definition:</b> Shader.cpp:146</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

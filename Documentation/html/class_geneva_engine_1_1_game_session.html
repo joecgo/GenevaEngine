@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_game_session.h
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_geneva_engine_1_1_game_session-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GenevaEngine::GameSession Class Reference</div>  </div>
@@ -99,19 +99,37 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_game_session.h
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a921e4cd6d3e988752ccc83a9da820821"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a921e4cd6d3e988752ccc83a9da820821">GameSession</a> ()</td></tr>
 <tr class="separator:a921e4cd6d3e988752ccc83a9da820821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdce57c70e5b6b8e99d9533a3de77866"><td class="memItemLeft" align="right" valign="top"><a id="abdce57c70e5b6b8e99d9533a3de77866"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsRunning</b> ()</td></tr>
-<tr class="separator:abdce57c70e5b6b8e99d9533a3de77866"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d5e9f1453671980a1469cf599572218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a5d5e9f1453671980a1469cf599572218">AddSystem</a> (<a class="el" href="class_geneva_engine_1_1_a_system.html">ASystem</a> *system)</td></tr>
-<tr class="separator:a5d5e9f1453671980a1469cf599572218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1877f4c203a3954f97ed2400075f20cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_physics.html">Physics</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a1877f4c203a3954f97ed2400075f20cb">GetPhysics</a> ()</td></tr>
+<tr class="separator:a1877f4c203a3954f97ed2400075f20cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac225459e91954c6c032ec7ae2192f640"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_input.html">Input</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#ac225459e91954c6c032ec7ae2192f640">GetInput</a> ()</td></tr>
+<tr class="separator:ac225459e91954c6c032ec7ae2192f640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413799a6e61550371c13cebc3e8a17a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_graphics.html">Graphics</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a413799a6e61550371c13cebc3e8a17a5">GetGraphics</a> ()</td></tr>
+<tr class="separator:a413799a6e61550371c13cebc3e8a17a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ac2fa01adc8512d57243ca4c0039bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a66ac2fa01adc8512d57243ca4c0039bc">AddSystem</a> (<a class="el" href="class_geneva_engine_1_1_system.html">System</a> *system)</td></tr>
+<tr class="separator:a66ac2fa01adc8512d57243ca4c0039bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93b1590bc7754496c96747a4101eb352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352">AddEntity</a> (<a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> *entity)</td></tr>
 <tr class="separator:a93b1590bc7754496c96747a4101eb352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb3c4c1cc89e3143725b894cdc9b6af4"><td class="memItemLeft" align="right" valign="top"><a id="acb3c4c1cc89e3143725b894cdc9b6af4"></a>
+b2World *&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorld</b> ()</td></tr>
+<tr class="separator:acb3c4c1cc89e3143725b894cdc9b6af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a59141ebe5ac537cdd32ca7f90bcf8a4c"><td class="memItemLeft" align="right" valign="top"><a id="a59141ebe5ac537cdd32ca7f90bcf8a4c"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeltaTime</b> ()</td></tr>
-<tr class="separator:a59141ebe5ac537cdd32ca7f90bcf8a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a144e0ad3575a24e0cb01e6e20a742c0c"><td class="memItemLeft" align="right" valign="top"><a id="a144e0ad3575a24e0cb01e6e20a742c0c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>FrameTime</b> = 0.01</td></tr>
+<tr class="separator:a144e0ad3575a24e0cb01e6e20a742c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac02b2eaccb77556139759e1511203952"><td class="memItemLeft" align="right" valign="top"><a id="ac02b2eaccb77556139759e1511203952"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Paused</b> = false</td></tr>
+<tr class="separator:ac02b2eaccb77556139759e1511203952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3fb238d564e7dda45572bac96ff150"><td class="memItemLeft" align="right" valign="top"><a id="a6c3fb238d564e7dda45572bac96ff150"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsRunning</b> = true</td></tr>
+<tr class="separator:a6c3fb238d564e7dda45572bac96ff150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1e0bde6d2bd0572fc583d585171fc3"><td class="memItemLeft" align="right" valign="top"><a id="aaf1e0bde6d2bd0572fc583d585171fc3"></a>
+std::vector&lt; <a class="el" href="class_geneva_engine_1_1_system.html">System</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>systems</b></td></tr>
+<tr class="separator:aaf1e0bde6d2bd0572fc583d585171fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ac17ab4cc4c3d19cfac18aee1f9d33"><td class="memItemLeft" align="right" valign="top"><a id="ae7ac17ab4cc4c3d19cfac18aee1f9d33"></a>
+std::vector&lt; <a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>entities</b></td></tr>
+<tr class="separator:ae7ac17ab4cc4c3d19cfac18aee1f9d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a> contains the control flow and initialization of all the systems. </p>
@@ -154,8 +172,8 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeltaTime<
 </pre> 
 </div>
 </div>
-<a id="a5d5e9f1453671980a1469cf599572218"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d5e9f1453671980a1469cf599572218">&#9670;&nbsp;</a></span>AddSystem()</h2>
+<a id="a66ac2fa01adc8512d57243ca4c0039bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66ac2fa01adc8512d57243ca4c0039bc">&#9670;&nbsp;</a></span>AddSystem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,13 +181,67 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeltaTime<
         <tr>
           <td class="memname">void GenevaEngine::GameSession::AddSystem </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_geneva_engine_1_1_a_system.html">ASystem</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_geneva_engine_1_1_system.html">System</a> *&#160;</td>
           <td class="paramname"><em>system</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds a System to <a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a>'s array of Systems </p><pre class="fragment">\param [in,out] system
+<p>Adds a <a class="el" href="class_geneva_engine_1_1_system.html">System</a> to <a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a>'s array of Systems </p><pre class="fragment">\param [in,out] system
+</pre> 
+</div>
+</div>
+<a id="a413799a6e61550371c13cebc3e8a17a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a413799a6e61550371c13cebc3e8a17a5">&#9670;&nbsp;</a></span>GetGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_geneva_engine_1_1_graphics.html">Graphics</a> * GenevaEngine::GameSession::GetGraphics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the game session's graphics. </p><pre class="fragment">\return The graphics.
+</pre> 
+</div>
+</div>
+<a id="ac225459e91954c6c032ec7ae2192f640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac225459e91954c6c032ec7ae2192f640">&#9670;&nbsp;</a></span>GetInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_geneva_engine_1_1_input.html">Input</a> * GenevaEngine::GameSession::GetInput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the game session's input. </p><pre class="fragment">\return The input.
+</pre> 
+</div>
+</div>
+<a id="a1877f4c203a3954f97ed2400075f20cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1877f4c203a3954f97ed2400075f20cb">&#9670;&nbsp;</a></span>GetPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_geneva_engine_1_1_physics.html">Physics</a> * GenevaEngine::GameSession::GetPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the game session's physics. </p><pre class="fragment">\return The physics.
 </pre> 
 </div>
 </div>

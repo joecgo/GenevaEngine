@@ -2,7 +2,7 @@
 \label{class_geneva_engine_1_1_shader}\index{GenevaEngine::Shader@{GenevaEngine::Shader}}
 
 
-Manages a single shader program.  
+Manages a single shader program, adding verts to the buffer, and all the steps to interface with opengl.  
 
 
 
@@ -12,82 +12,86 @@ Manages a single shader program.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_shader_a08d8615e9365c2d4958bb1cf27bb1978}{Shader}} ()
-\item 
 \mbox{\hyperlink{class_geneva_engine_1_1_shader_ab45f2938b7b5ebf66845c6dfa3dcaf71}{Shader}} (const char $\ast$vertex\+Path, const char $\ast$fragment\+Path)
 \item 
-void \mbox{\hyperlink{class_geneva_engine_1_1_shader_a5b651aca729e5b68295e1811d333f95a}{use}} ()
+\mbox{\hyperlink{class_geneva_engine_1_1_shader_a4e9a2ed4299d3ab30c7933816836c9d5}{$\sim$\+Shader}} ()
 \item 
-void \mbox{\hyperlink{class_geneva_engine_1_1_shader_a1c828730811dd3ee1263f6a8c80cf5ae}{set\+Bool}} (const std\+::string \&name, bool value) const
+void \mbox{\hyperlink{class_geneva_engine_1_1_shader_ac98f486b603da1180c9c223bb6ea37c7}{Update\+Projection}} (float $\ast$projection)
 \item 
-void \mbox{\hyperlink{class_geneva_engine_1_1_shader_ade8cbb93370e9a9d39439cda32bf67fd}{set\+Int}} (const std\+::string \&name, int value) const
+void \mbox{\hyperlink{class_geneva_engine_1_1_shader_af124b9d9273b54419ec49853631b0349}{Vertex}} (const b2\+Vec2 \&v, const \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} \&c)
 \item 
-void \mbox{\hyperlink{class_geneva_engine_1_1_shader_a46a1320b258eacb0c155e9b288abec6d}{set\+Float}} (const std\+::string \&name, float value) const
+void \mbox{\hyperlink{class_geneva_engine_1_1_shader_aa901e81ba1dfade26b6a6fed699d9402}{Flush}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_shader_ae2685ed848c47e49fbd2ecee6f5d6da7}\label{class_geneva_engine_1_1_shader_ae2685ed848c47e49fbd2ecee6f5d6da7}} 
-unsigned int {\bfseries ID} = -\/1
+\mbox{\Hypertarget{class_geneva_engine_1_1_shader_a34d510c1af9aebd511cbe1142531d3bd}\label{class_geneva_engine_1_1_shader_a34d510c1af9aebd511cbe1142531d3bd}} 
+GLint {\bfseries Draw\+Type} = GL\+\_\+\+TRIANGLES
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Manages a single shader program. 
+Manages a single shader program, adding verts to the buffer, and all the steps to interface with opengl. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_shader_a08d8615e9365c2d4958bb1cf27bb1978}\label{class_geneva_engine_1_1_shader_a08d8615e9365c2d4958bb1cf27bb1978}} 
+\mbox{\Hypertarget{class_geneva_engine_1_1_shader_ab45f2938b7b5ebf66845c6dfa3dcaf71}\label{class_geneva_engine_1_1_shader_ab45f2938b7b5ebf66845c6dfa3dcaf71}} 
 \index{GenevaEngine::Shader@{GenevaEngine::Shader}!Shader@{Shader}}
 \index{Shader@{Shader}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Geneva\+Engine\+::\+Shader\+::\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Default Constructor. \mbox{\Hypertarget{class_geneva_engine_1_1_shader_ab45f2938b7b5ebf66845c6dfa3dcaf71}\label{class_geneva_engine_1_1_shader_ab45f2938b7b5ebf66845c6dfa3dcaf71}} 
-\index{GenevaEngine::Shader@{GenevaEngine::Shader}!Shader@{Shader}}
-\index{Shader@{Shader}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}}
 {\footnotesize\ttfamily Geneva\+Engine\+::\+Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{const char $\ast$}]{vertex\+Path,  }\item[{const char $\ast$}]{fragment\+Path }\end{DoxyParamCaption})}
 
 constructor generates the shader a fragment shader and vertex shader file path \begin{DoxyVerb}\param [in] vertexPath
 \param [in] fragmentPath
 \end{DoxyVerb}
- 
+ \DoxyHorRuler{0}
+
+\begin{DoxyEnumerate}
+\item retrieve the vertex/fragment source code from file\+Path
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+
+\begin{DoxyEnumerate}
+\item compile shaders
+\end{DoxyEnumerate}\mbox{\Hypertarget{class_geneva_engine_1_1_shader_a4e9a2ed4299d3ab30c7933816836c9d5}\label{class_geneva_engine_1_1_shader_a4e9a2ed4299d3ab30c7933816836c9d5}} 
+\index{GenevaEngine::Shader@{GenevaEngine::Shader}!````~Shader@{$\sim$Shader}}
+\index{````~Shader@{$\sim$Shader}!GenevaEngine::Shader@{GenevaEngine::Shader}}
+\doxysubsubsection{\texorpdfstring{$\sim$Shader()}{~Shader()}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_shader_a1c828730811dd3ee1263f6a8c80cf5ae}\label{class_geneva_engine_1_1_shader_a1c828730811dd3ee1263f6a8c80cf5ae}} 
-\index{GenevaEngine::Shader@{GenevaEngine::Shader}!setBool@{setBool}}
-\index{setBool@{setBool}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{setBool()}{setBool()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::set\+Bool (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{bool}]{value }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{class_geneva_engine_1_1_shader_aa901e81ba1dfade26b6a6fed699d9402}\label{class_geneva_engine_1_1_shader_aa901e81ba1dfade26b6a6fed699d9402}} 
+\index{GenevaEngine::Shader@{GenevaEngine::Shader}!Flush@{Flush}}
+\index{Flush@{Flush}!GenevaEngine::Shader@{GenevaEngine::Shader}}
+\doxysubsubsection{\texorpdfstring{Flush()}{Flush()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::\+Flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Sets a uniform bool in the shader \begin{DoxyVerb} \param [in] name
- \param [in] value
+Flushes the remaining vertices in the buffer to get rendered \mbox{\Hypertarget{class_geneva_engine_1_1_shader_ac98f486b603da1180c9c223bb6ea37c7}\label{class_geneva_engine_1_1_shader_ac98f486b603da1180c9c223bb6ea37c7}} 
+\index{GenevaEngine::Shader@{GenevaEngine::Shader}!UpdateProjection@{UpdateProjection}}
+\index{UpdateProjection@{UpdateProjection}!GenevaEngine::Shader@{GenevaEngine::Shader}}
+\doxysubsubsection{\texorpdfstring{UpdateProjection()}{UpdateProjection()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::\+Update\+Projection (\begin{DoxyParamCaption}\item[{float $\ast$}]{projection }\end{DoxyParamCaption})}
+
+Updates the projection matrics \begin{DoxyVerb}\param [in,out] projection
 \end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_shader_a46a1320b258eacb0c155e9b288abec6d}\label{class_geneva_engine_1_1_shader_a46a1320b258eacb0c155e9b288abec6d}} 
-\index{GenevaEngine::Shader@{GenevaEngine::Shader}!setFloat@{setFloat}}
-\index{setFloat@{setFloat}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{setFloat()}{setFloat()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::set\+Float (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{float}]{value }\end{DoxyParamCaption}) const}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_shader_af124b9d9273b54419ec49853631b0349}\label{class_geneva_engine_1_1_shader_af124b9d9273b54419ec49853631b0349}} 
+\index{GenevaEngine::Shader@{GenevaEngine::Shader}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!GenevaEngine::Shader@{GenevaEngine::Shader}}
+\doxysubsubsection{\texorpdfstring{Vertex()}{Vertex()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::\+Vertex (\begin{DoxyParamCaption}\item[{const b2\+Vec2 \&}]{v,  }\item[{const \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} \&}]{c }\end{DoxyParamCaption})}
 
-Sets a uniform float in the shader \begin{DoxyVerb}\param [in] name
-\param [in] value
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_shader_ade8cbb93370e9a9d39439cda32bf67fd}\label{class_geneva_engine_1_1_shader_ade8cbb93370e9a9d39439cda32bf67fd}} 
-\index{GenevaEngine::Shader@{GenevaEngine::Shader}!setInt@{setInt}}
-\index{setInt@{setInt}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{setInt()}{setInt()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::set\+Int (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{int}]{value }\end{DoxyParamCaption}) const}
+add a vertex to be rendered by the shader.
 
-Sets a uniform int in the shader \begin{DoxyVerb}\param [in] name
-\param [in] value
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_shader_a5b651aca729e5b68295e1811d333f95a}\label{class_geneva_engine_1_1_shader_a5b651aca729e5b68295e1811d333f95a}} 
-\index{GenevaEngine::Shader@{GenevaEngine::Shader}!use@{use}}
-\index{use@{use}!GenevaEngine::Shader@{GenevaEngine::Shader}}
-\doxysubsubsection{\texorpdfstring{use()}{use()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Shader\+::use (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Activate the shader 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

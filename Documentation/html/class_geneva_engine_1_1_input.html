@@ -85,7 +85,11 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_input.html',''
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_geneva_engine_1_1_input-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GenevaEngine::Input Class Reference</div>  </div>
@@ -99,22 +103,61 @@ Inheritance diagram for GenevaEngine::Input:</div>
  <div class="center">
   <img src="class_geneva_engine_1_1_input.png" usemap="#GenevaEngine::Input_map" alt=""/>
   <map id="GenevaEngine::Input_map" name="GenevaEngine::Input_map">
-<area href="class_geneva_engine_1_1_a_system.html" alt="GenevaEngine::ASystem" shape="rect" coords="0,0,150,24"/>
+<area href="class_geneva_engine_1_1_system.html" alt="GenevaEngine::System" shape="rect" coords="0,0,141,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a0a895ebfae68c2edf769224d7f94b928"><td class="memItemLeft" align="right" valign="top"><a id="a0a895ebfae68c2edf769224d7f94b928"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>KeyState</b> { <b>Up</b>
+, <b>Pressed</b>
+, <b>Down</b>
+, <b>Released</b>
+ }</td></tr>
+<tr class="separator:a0a895ebfae68c2edf769224d7f94b928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab7d9475b71dbbb131231cfe51890a95b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_controller.html">Controller</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#ab7d9475b71dbbb131231cfe51890a95b">GetPlayerController</a> ()</td></tr>
+<tr class="separator:ab7d9475b71dbbb131231cfe51890a95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa42abb0da5d4b37291a73ca3f243f7d6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#aa42abb0da5d4b37291a73ca3f243f7d6">mouse_callback</a> (GLFWwindow *window, double xpos, double ypos)</td></tr>
-<tr class="separator:aa42abb0da5d4b37291a73ca3f243f7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac75b4f615173f96f9ea20e1286a3025a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#ac75b4f615173f96f9ea20e1286a3025a">scroll_callback</a> (GLFWwindow *window, double xoffset, double yoffset)</td></tr>
-<tr class="separator:ac75b4f615173f96f9ea20e1286a3025a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766528445b326884fa495d48df76ee16"><td class="memItemLeft" align="right" valign="top">static KeyState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#a766528445b326884fa495d48df76ee16">GetKeyState</a> (int key)</td></tr>
+<tr class="separator:a766528445b326884fa495d48df76ee16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd9b96baedadd31b7cc57012644bae1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#a2cd9b96baedadd31b7cc57012644bae1">KeyDown</a> (int key)</td></tr>
+<tr class="separator:a2cd9b96baedadd31b7cc57012644bae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0eef919f4a5c9a7396079f3c38bcedb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#ac0eef919f4a5c9a7396079f3c38bcedb">KeyUp</a> (int key)</td></tr>
+<tr class="separator:ac0eef919f4a5c9a7396079f3c38bcedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a886ed6798657838dbf09dba6dff2513f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#a886ed6798657838dbf09dba6dff2513f">KeyPressed</a> (int key)</td></tr>
+<tr class="separator:a886ed6798657838dbf09dba6dff2513f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae72f16705f0cc730e0a1decbc74eee96"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_input.html#ae72f16705f0cc730e0a1decbc74eee96">KeyReleased</a> (int key)</td></tr>
+<tr class="separator:ae72f16705f0cc730e0a1decbc74eee96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ade5573a352ed6bf854cf7d951a7ac7a5"><td class="memItemLeft" align="right" valign="top"><a id="ade5573a352ed6bf854cf7d951a7ac7a5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>DevCheatsOn</b> = false</td></tr>
+<tr class="separator:ade5573a352ed6bf854cf7d951a7ac7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a457986e85a61e428e7f0a7350202e9d4"><td class="memItemLeft" align="right" valign="top"><a id="a457986e85a61e428e7f0a7350202e9d4"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td></tr>
+<tr class="separator:a457986e85a61e428e7f0a7350202e9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_geneva_engine_1_1_system"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_geneva_engine_1_1_system')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_geneva_engine_1_1_system.html">GenevaEngine::System</a></td></tr>
+<tr class="memitem:ae5c6e12ef3a48247268d7892dd1c26d4 inherit pro_attribs_class_geneva_engine_1_1_system"><td class="memItemLeft" align="right" valign="top"><a id="ae5c6e12ef3a48247268d7892dd1c26d4"></a>
+<a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gameSession</b> = nullptr</td></tr>
+<tr class="separator:ae5c6e12ef3a48247268d7892dd1c26d4 inherit pro_attribs_class_geneva_engine_1_1_system"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Core system for handling input </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa42abb0da5d4b37291a73ca3f243f7d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa42abb0da5d4b37291a73ca3f243f7d6">&#9670;&nbsp;</a></span>mouse_callback()</h2>
+<a id="a766528445b326884fa495d48df76ee16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a766528445b326884fa495d48df76ee16">&#9670;&nbsp;</a></span>GetKeyState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,27 +166,11 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GenevaEngine::Input::mouse_callback </td>
+          <td class="memname">Input::KeyState GenevaEngine::Input::GetKeyState </td>
           <td>(</td>
-          <td class="paramtype">GLFWwindow *&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xpos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ypos</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -152,14 +179,32 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Callback for mouse input </p><pre class="fragment">\param [in,out] window
-\param [in]     xpos
-\param [in]     ypos
+<p>Get a specific gets state (UP, DOWN, PRESSED, RELEASED) </p><pre class="fragment">\param [in] key
+
+\return The key state.
 </pre> 
 </div>
 </div>
-<a id="ac75b4f615173f96f9ea20e1286a3025a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac75b4f615173f96f9ea20e1286a3025a">&#9670;&nbsp;</a></span>scroll_callback()</h2>
+<a id="ab7d9475b71dbbb131231cfe51890a95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d9475b71dbbb131231cfe51890a95b">&#9670;&nbsp;</a></span>GetPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_geneva_engine_1_1_controller.html">Controller</a> * GenevaEngine::Input::GetPlayerController </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the player controller. </p><pre class="fragment">\return The player controller.
+</pre> 
+</div>
+</div>
+<a id="a2cd9b96baedadd31b7cc57012644bae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd9b96baedadd31b7cc57012644bae1">&#9670;&nbsp;</a></span>KeyDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,27 +213,11 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GenevaEngine::Input::scroll_callback </td>
+          <td class="memname">bool GenevaEngine::Input::KeyDown </td>
           <td>(</td>
-          <td class="paramtype">GLFWwindow *&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>xoffset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>yoffset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -197,9 +226,96 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>callback for scroll input </p><pre class="fragment">\param [in,out] window
-\param [in]     xoffset
-\param [in]     yoffset
+<p>Is the key down? (Down or Pressed) </p><pre class="fragment">\param [in] key
+
+\return
+</pre> 
+</div>
+</div>
+<a id="a886ed6798657838dbf09dba6dff2513f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a886ed6798657838dbf09dba6dff2513f">&#9670;&nbsp;</a></span>KeyPressed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenevaEngine::Input::KeyPressed </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Is the key pressed? Only pressed for 1 frame, then becomes "Down" state </p><pre class="fragment">\param [in] key
+
+\return
+</pre> 
+</div>
+</div>
+<a id="ae72f16705f0cc730e0a1decbc74eee96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae72f16705f0cc730e0a1decbc74eee96">&#9670;&nbsp;</a></span>KeyReleased()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenevaEngine::Input::KeyReleased </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Is the key released? Only released for 1 frame, then becomes "Up" state </p><pre class="fragment">\param [in] key
+
+\return
+</pre> 
+</div>
+</div>
+<a id="ac0eef919f4a5c9a7396079f3c38bcedb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0eef919f4a5c9a7396079f3c38bcedb">&#9670;&nbsp;</a></span>KeyUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenevaEngine::Input::KeyUp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>is the key up? (UP or Released) </p><pre class="fragment">\param [in] key
+
+\return
 </pre> 
 </div>
 </div>

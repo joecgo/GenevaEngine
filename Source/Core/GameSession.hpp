@@ -34,7 +34,7 @@ namespace GenevaEngine
 	class Physics;
 
 	/*!
-	 *  GameSession contains the control flow and initialization of all the systems.
+	 *  \brief GameSession contains the control flow and initialization of all the systems.
 	 */
 	class GameSession
 	{

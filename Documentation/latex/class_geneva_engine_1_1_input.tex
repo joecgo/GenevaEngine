@@ -10,38 +10,110 @@ Inheritance diagram for Geneva\+Engine\+::Input\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{class_geneva_engine_1_1_input}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_input_a0a895ebfae68c2edf769224d7f94b928}\label{class_geneva_engine_1_1_input_a0a895ebfae68c2edf769224d7f94b928}} 
+enum {\bfseries Key\+State} \{ {\bfseries Up}
+, {\bfseries Pressed}
+, {\bfseries Down}
+, {\bfseries Released}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_controller}{Controller}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_input_ab7d9475b71dbbb131231cfe51890a95b}{Get\+Player\+Controller}} ()
+\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_geneva_engine_1_1_input_aa42abb0da5d4b37291a73ca3f243f7d6}{mouse\+\_\+callback}} (GLFWwindow $\ast$window, double xpos, double ypos)
+static Key\+State \mbox{\hyperlink{class_geneva_engine_1_1_input_a766528445b326884fa495d48df76ee16}{Get\+Key\+State}} (int key)
 \item 
-static void \mbox{\hyperlink{class_geneva_engine_1_1_input_ac75b4f615173f96f9ea20e1286a3025a}{scroll\+\_\+callback}} (GLFWwindow $\ast$window, double xoffset, double yoffset)
+static bool \mbox{\hyperlink{class_geneva_engine_1_1_input_a2cd9b96baedadd31b7cc57012644bae1}{Key\+Down}} (int key)
+\item 
+static bool \mbox{\hyperlink{class_geneva_engine_1_1_input_ac0eef919f4a5c9a7396079f3c38bcedb}{Key\+Up}} (int key)
+\item 
+static bool \mbox{\hyperlink{class_geneva_engine_1_1_input_a886ed6798657838dbf09dba6dff2513f}{Key\+Pressed}} (int key)
+\item 
+static bool \mbox{\hyperlink{class_geneva_engine_1_1_input_ae72f16705f0cc730e0a1decbc74eee96}{Key\+Released}} (int key)
 \end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_input_ade5573a352ed6bf854cf7d951a7ac7a5}\label{class_geneva_engine_1_1_input_ade5573a352ed6bf854cf7d951a7ac7a5}} 
+bool {\bfseries Dev\+Cheats\+On} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_input_a457986e85a61e428e7f0a7350202e9d4}\label{class_geneva_engine_1_1_input_a457986e85a61e428e7f0a7350202e9d4}} 
+class {\bfseries Game\+Session}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 Core system for handling input 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_input_aa42abb0da5d4b37291a73ca3f243f7d6}\label{class_geneva_engine_1_1_input_aa42abb0da5d4b37291a73ca3f243f7d6}} 
-\index{GenevaEngine::Input@{GenevaEngine::Input}!mouse\_callback@{mouse\_callback}}
-\index{mouse\_callback@{mouse\_callback}!GenevaEngine::Input@{GenevaEngine::Input}}
-\doxysubsubsection{\texorpdfstring{mouse\_callback()}{mouse\_callback()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Input\+::mouse\+\_\+callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{double}]{xpos,  }\item[{double}]{ypos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{class_geneva_engine_1_1_input_a766528445b326884fa495d48df76ee16}\label{class_geneva_engine_1_1_input_a766528445b326884fa495d48df76ee16}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!GetKeyState@{GetKeyState}}
+\index{GetKeyState@{GetKeyState}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{GetKeyState()}{GetKeyState()}}
+{\footnotesize\ttfamily Input\+::\+Key\+State Geneva\+Engine\+::\+Input\+::\+Get\+Key\+State (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-Callback for mouse input \begin{DoxyVerb}\param [in,out] window
-\param [in]     xpos
-\param [in]     ypos
+Get a specific gets state (UP, DOWN, PRESSED, RELEASED) \begin{DoxyVerb}\param [in] key
+
+\return The key state.
 \end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_input_ac75b4f615173f96f9ea20e1286a3025a}\label{class_geneva_engine_1_1_input_ac75b4f615173f96f9ea20e1286a3025a}} 
-\index{GenevaEngine::Input@{GenevaEngine::Input}!scroll\_callback@{scroll\_callback}}
-\index{scroll\_callback@{scroll\_callback}!GenevaEngine::Input@{GenevaEngine::Input}}
-\doxysubsubsection{\texorpdfstring{scroll\_callback()}{scroll\_callback()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Input\+::scroll\+\_\+callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{double}]{xoffset,  }\item[{double}]{yoffset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_input_ab7d9475b71dbbb131231cfe51890a95b}\label{class_geneva_engine_1_1_input_ab7d9475b71dbbb131231cfe51890a95b}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!GetPlayerController@{GetPlayerController}}
+\index{GetPlayerController@{GetPlayerController}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{GetPlayerController()}{GetPlayerController()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_controller}{Controller}} $\ast$ Geneva\+Engine\+::\+Input\+::\+Get\+Player\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-callback for scroll input \begin{DoxyVerb}\param [in,out] window
-\param [in]     xoffset
-\param [in]     yoffset
+Returns the player controller. \begin{DoxyVerb}\return The player controller.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_input_a2cd9b96baedadd31b7cc57012644bae1}\label{class_geneva_engine_1_1_input_a2cd9b96baedadd31b7cc57012644bae1}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!KeyDown@{KeyDown}}
+\index{KeyDown@{KeyDown}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{KeyDown()}{KeyDown()}}
+{\footnotesize\ttfamily bool Geneva\+Engine\+::\+Input\+::\+Key\+Down (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Is the key down? (Down or Pressed) \begin{DoxyVerb}\param [in] key
+
+\return
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_input_a886ed6798657838dbf09dba6dff2513f}\label{class_geneva_engine_1_1_input_a886ed6798657838dbf09dba6dff2513f}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!KeyPressed@{KeyPressed}}
+\index{KeyPressed@{KeyPressed}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{KeyPressed()}{KeyPressed()}}
+{\footnotesize\ttfamily bool Geneva\+Engine\+::\+Input\+::\+Key\+Pressed (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Is the key pressed? Only pressed for 1 frame, then becomes \char`\"{}\+Down\char`\"{} state \begin{DoxyVerb}\param [in] key
+
+\return
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_input_ae72f16705f0cc730e0a1decbc74eee96}\label{class_geneva_engine_1_1_input_ae72f16705f0cc730e0a1decbc74eee96}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!KeyReleased@{KeyReleased}}
+\index{KeyReleased@{KeyReleased}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{KeyReleased()}{KeyReleased()}}
+{\footnotesize\ttfamily bool Geneva\+Engine\+::\+Input\+::\+Key\+Released (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Is the key released? Only released for 1 frame, then becomes \char`\"{}\+Up\char`\"{} state \begin{DoxyVerb}\param [in] key
+
+\return
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_input_ac0eef919f4a5c9a7396079f3c38bcedb}\label{class_geneva_engine_1_1_input_ac0eef919f4a5c9a7396079f3c38bcedb}} 
+\index{GenevaEngine::Input@{GenevaEngine::Input}!KeyUp@{KeyUp}}
+\index{KeyUp@{KeyUp}!GenevaEngine::Input@{GenevaEngine::Input}}
+\doxysubsubsection{\texorpdfstring{KeyUp()}{KeyUp()}}
+{\footnotesize\ttfamily bool Geneva\+Engine\+::\+Input\+::\+Key\+Up (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+is the key up? (UP or Released) \begin{DoxyVerb}\param [in] key
+
+\return
 \end{DoxyVerb}
  
 

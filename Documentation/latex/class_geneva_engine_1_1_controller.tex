@@ -1,0 +1,81 @@
+\hypertarget{class_geneva_engine_1_1_controller}{}\doxysection{Geneva\+Engine\+::Controller Class Reference}
+\label{class_geneva_engine_1_1_controller}\index{GenevaEngine::Controller@{GenevaEngine::Controller}}
+
+
+\mbox{\hyperlink{class_geneva_engine_1_1_controller}{Controller}} translates input into commands for entitys to follow.  
+
+
+
+
+{\ttfamily \#include $<$Controller.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_controller_afbd50137f17d3be3b9878c9d6c9fc11b}{$\sim$\+Controller}} ()
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_controller_add29212f2807ce07e6057b26beaab0a3}{Handle\+Input}} ()
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_controller_a365dd8a5d4aabce0d90eb9902104447c}{Bind\+Command}} (int key, \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$command)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_controller_a3e216f774876426303267530b811a162}{Bind\+Command}} (std\+::list$<$ \mbox{\hyperlink{struct_geneva_engine_1_1_axis_keys}{Axis\+Keys}} $>$ keys\+\_\+pairs, \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$command)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_controller_a49ef281bcb24fd34f553b7ebf325d271}{Possess}} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} $\ast$entity)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_geneva_engine_1_1_controller}{Controller}} translates input into commands for entitys to follow. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_controller_afbd50137f17d3be3b9878c9d6c9fc11b}\label{class_geneva_engine_1_1_controller_afbd50137f17d3be3b9878c9d6c9fc11b}} 
+\index{GenevaEngine::Controller@{GenevaEngine::Controller}!````~Controller@{$\sim$Controller}}
+\index{````~Controller@{$\sim$Controller}!GenevaEngine::Controller@{GenevaEngine::Controller}}
+\doxysubsubsection{\texorpdfstring{$\sim$Controller()}{~Controller()}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Controller\+::$\sim$\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor. deletes commands from memory here 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_controller_a365dd8a5d4aabce0d90eb9902104447c}\label{class_geneva_engine_1_1_controller_a365dd8a5d4aabce0d90eb9902104447c}} 
+\index{GenevaEngine::Controller@{GenevaEngine::Controller}!BindCommand@{BindCommand}}
+\index{BindCommand@{BindCommand}!GenevaEngine::Controller@{GenevaEngine::Controller}}
+\doxysubsubsection{\texorpdfstring{BindCommand()}{BindCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Controller\+::\+Bind\+Command (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{\mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$}]{command }\end{DoxyParamCaption})}
+
+Binds key to a command. \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} sent when key is pressed \begin{DoxyVerb}\param [in]     key
+\param [in,out] command
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_controller_a3e216f774876426303267530b811a162}\label{class_geneva_engine_1_1_controller_a3e216f774876426303267530b811a162}} 
+\index{GenevaEngine::Controller@{GenevaEngine::Controller}!BindCommand@{BindCommand}}
+\index{BindCommand@{BindCommand}!GenevaEngine::Controller@{GenevaEngine::Controller}}
+\doxysubsubsection{\texorpdfstring{BindCommand()}{BindCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Controller\+::\+Bind\+Command (\begin{DoxyParamCaption}\item[{std\+::list$<$ \mbox{\hyperlink{struct_geneva_engine_1_1_axis_keys}{Axis\+Keys}} $>$}]{keys\+\_\+pairs,  }\item[{\mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$}]{command }\end{DoxyParamCaption})}
+
+Binds an axis value to a command sent every frame neg key is -\/1 and pos key is 1 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em keys\+\_\+pairs} & \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em command} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_geneva_engine_1_1_controller_add29212f2807ce07e6057b26beaab0a3}\label{class_geneva_engine_1_1_controller_add29212f2807ce07e6057b26beaab0a3}} 
+\index{GenevaEngine::Controller@{GenevaEngine::Controller}!HandleInput@{HandleInput}}
+\index{HandleInput@{HandleInput}!GenevaEngine::Controller@{GenevaEngine::Controller}}
+\doxysubsubsection{\texorpdfstring{HandleInput()}{HandleInput()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Controller\+::\+Handle\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Polls input system for input \mbox{\Hypertarget{class_geneva_engine_1_1_controller_a49ef281bcb24fd34f553b7ebf325d271}\label{class_geneva_engine_1_1_controller_a49ef281bcb24fd34f553b7ebf325d271}} 
+\index{GenevaEngine::Controller@{GenevaEngine::Controller}!Possess@{Possess}}
+\index{Possess@{Possess}!GenevaEngine::Controller@{GenevaEngine::Controller}}
+\doxysubsubsection{\texorpdfstring{Possess()}{Possess()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Controller\+::\+Possess (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_geneva_engine_1_1_controller}{Controller}} that posseses an entity then controls it \begin{DoxyVerb}\param [in,out] entity
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Input/\mbox{\hyperlink{_controller_8hpp}{Controller.\+hpp}}\item 
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Input/\mbox{\hyperlink{_controller_8cpp}{Controller.\+cpp}}\end{DoxyCompactItemize}

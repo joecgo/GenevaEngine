@@ -93,55 +93,35 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_shader.html','
 </div><!--header-->
 <div class="contents">
 
-<p>Manages a single shader program.  
+<p>Manages a single shader program, adding verts to the buffer, and all the steps to interface with opengl.  
  <a href="class_geneva_engine_1_1_shader.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_shader_8hpp_source.html">Shader.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a08d8615e9365c2d4958bb1cf27bb1978"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#a08d8615e9365c2d4958bb1cf27bb1978">Shader</a> ()</td></tr>
-<tr class="separator:a08d8615e9365c2d4958bb1cf27bb1978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab45f2938b7b5ebf66845c6dfa3dcaf71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#ab45f2938b7b5ebf66845c6dfa3dcaf71">Shader</a> (const char *vertexPath, const char *fragmentPath)</td></tr>
 <tr class="separator:ab45f2938b7b5ebf66845c6dfa3dcaf71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b651aca729e5b68295e1811d333f95a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#a5b651aca729e5b68295e1811d333f95a">use</a> ()</td></tr>
-<tr class="separator:a5b651aca729e5b68295e1811d333f95a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c828730811dd3ee1263f6a8c80cf5ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#a1c828730811dd3ee1263f6a8c80cf5ae">setBool</a> (const std::string &amp;name, bool value) const</td></tr>
-<tr class="separator:a1c828730811dd3ee1263f6a8c80cf5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade8cbb93370e9a9d39439cda32bf67fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#ade8cbb93370e9a9d39439cda32bf67fd">setInt</a> (const std::string &amp;name, int value) const</td></tr>
-<tr class="separator:ade8cbb93370e9a9d39439cda32bf67fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46a1320b258eacb0c155e9b288abec6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#a46a1320b258eacb0c155e9b288abec6d">setFloat</a> (const std::string &amp;name, float value) const</td></tr>
-<tr class="separator:a46a1320b258eacb0c155e9b288abec6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e9a2ed4299d3ab30c7933816836c9d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#a4e9a2ed4299d3ab30c7933816836c9d5">~Shader</a> ()</td></tr>
+<tr class="separator:a4e9a2ed4299d3ab30c7933816836c9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98f486b603da1180c9c223bb6ea37c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#ac98f486b603da1180c9c223bb6ea37c7">UpdateProjection</a> (float *projection)</td></tr>
+<tr class="separator:ac98f486b603da1180c9c223bb6ea37c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af124b9d9273b54419ec49853631b0349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#af124b9d9273b54419ec49853631b0349">Vertex</a> (const b2Vec2 &amp;v, const <a class="el" href="class_geneva_engine_1_1_color.html">Color</a> &amp;c)</td></tr>
+<tr class="separator:af124b9d9273b54419ec49853631b0349"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa901e81ba1dfade26b6a6fed699d9402"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_shader.html#aa901e81ba1dfade26b6a6fed699d9402">Flush</a> ()</td></tr>
+<tr class="separator:aa901e81ba1dfade26b6a6fed699d9402"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae2685ed848c47e49fbd2ecee6f5d6da7"><td class="memItemLeft" align="right" valign="top"><a id="ae2685ed848c47e49fbd2ecee6f5d6da7"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b> = -1</td></tr>
-<tr class="separator:ae2685ed848c47e49fbd2ecee6f5d6da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d510c1af9aebd511cbe1142531d3bd"><td class="memItemLeft" align="right" valign="top"><a id="a34d510c1af9aebd511cbe1142531d3bd"></a>
+GLint&#160;</td><td class="memItemRight" valign="bottom"><b>DrawType</b> = GL_TRIANGLES</td></tr>
+<tr class="separator:a34d510c1af9aebd511cbe1142531d3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Manages a single shader program. </p>
+<div class="textblock"><p>Manages a single shader program, adding verts to the buffer, and all the steps to interface with opengl. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a08d8615e9365c2d4958bb1cf27bb1978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08d8615e9365c2d4958bb1cf27bb1978">&#9670;&nbsp;</a></span>Shader() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">GenevaEngine::Shader::Shader </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Default Constructor. </p>
-
-</div>
-</div>
 <a id="ab45f2938b7b5ebf66845c6dfa3dcaf71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab45f2938b7b5ebf66845c6dfa3dcaf71">&#9670;&nbsp;</a></span>Shader() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab45f2938b7b5ebf66845c6dfa3dcaf71">&#9670;&nbsp;</a></span>Shader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,115 +147,106 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b> = -1</
 </div><div class="memdoc">
 <p>constructor generates the shader a fragment shader and vertex shader file path </p><pre class="fragment">\param [in] vertexPath
 \param [in] fragmentPath
-</pre> 
+</pre> <hr  />
+<ol type="1">
+<li>retrieve the vertex/fragment source code from filePath</li>
+</ol>
+<hr  />
+<ol type="1">
+<li>compile shaders</li>
+</ol>
+
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1c828730811dd3ee1263f6a8c80cf5ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c828730811dd3ee1263f6a8c80cf5ae">&#9670;&nbsp;</a></span>setBool()</h2>
+<a id="a4e9a2ed4299d3ab30c7933816836c9d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e9a2ed4299d3ab30c7933816836c9d5">&#9670;&nbsp;</a></span>~Shader()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GenevaEngine::Shader::setBool </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets a uniform bool in the shader </p><pre class="fragment"> \param [in] name
- \param [in] value
-</pre> 
-</div>
-</div>
-<a id="a46a1320b258eacb0c155e9b288abec6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46a1320b258eacb0c155e9b288abec6d">&#9670;&nbsp;</a></span>setFloat()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GenevaEngine::Shader::setFloat </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets a uniform float in the shader </p><pre class="fragment">\param [in] name
-\param [in] value
-</pre> 
-</div>
-</div>
-<a id="ade8cbb93370e9a9d39439cda32bf67fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade8cbb93370e9a9d39439cda32bf67fd">&#9670;&nbsp;</a></span>setInt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GenevaEngine::Shader::setInt </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets a uniform int in the shader </p><pre class="fragment">\param [in] name
-\param [in] value
-</pre> 
-</div>
-</div>
-<a id="a5b651aca729e5b68295e1811d333f95a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b651aca729e5b68295e1811d333f95a">&#9670;&nbsp;</a></span>use()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GenevaEngine::Shader::use </td>
+          <td class="memname">GenevaEngine::Shader::~Shader </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Activate the shader </p>
+<p>Destructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa901e81ba1dfade26b6a6fed699d9402"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa901e81ba1dfade26b6a6fed699d9402">&#9670;&nbsp;</a></span>Flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenevaEngine::Shader::Flush </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flushes the remaining vertices in the buffer to get rendered </p>
+
+</div>
+</div>
+<a id="ac98f486b603da1180c9c223bb6ea37c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98f486b603da1180c9c223bb6ea37c7">&#9670;&nbsp;</a></span>UpdateProjection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenevaEngine::Shader::UpdateProjection </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>projection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the projection matrics </p><pre class="fragment">\param [in,out] projection
+</pre> 
+</div>
+</div>
+<a id="af124b9d9273b54419ec49853631b0349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af124b9d9273b54419ec49853631b0349">&#9670;&nbsp;</a></span>Vertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenevaEngine::Shader::Vertex </td>
+          <td>(</td>
+          <td class="paramtype">const b2Vec2 &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_geneva_engine_1_1_color.html">Color</a> &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>add a vertex to be rendered by the shader.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

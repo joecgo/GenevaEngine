@@ -100,16 +100,23 @@ $(document).ready(function(){initNavTree('_game_common_8hpp_source.html',''); in
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_session_8hpp.html">Core/GameSession.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_a_system_8hpp.html">Core/ASystem.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_entity_8hpp.html">Core/Entity.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_graphics_8hpp.html">Graphics/Graphics.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_input_8hpp.html">Input/Input.hpp</a>&gt;</span></div>
-<div class="ttc" id="a_a_system_8hpp_html"><div class="ttname"><a href="_a_system_8hpp.html">ASystem.hpp</a></div><div class="ttdoc">Abstract system class declaration.</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="comment">// Disable warning messages from box2d: C26812 C26495</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#pragma warning( disable : 26812 26495)</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;box2d/box2d.h&gt;</span> <span class="comment">// box2d</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span> <span class="comment">// cout endl</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_session_8hpp.html">Core/GameSession.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_system_8hpp.html">Core/System.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_entity_8hpp.html">Core/Entity.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_graphics_8hpp.html">Graphics/Graphics.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_input_8hpp.html">Input/Input.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_physics_8hpp.html">Physics/Physics.hpp</a>&gt;</span></div>
 <div class="ttc" id="a_entity_8hpp_html"><div class="ttname"><a href="_entity_8hpp.html">Entity.hpp</a></div><div class="ttdoc">Entity class declaration.</div></div>
 <div class="ttc" id="a_game_session_8hpp_html"><div class="ttname"><a href="_game_session_8hpp.html">GameSession.hpp</a></div><div class="ttdoc">GameSession class declaration. GameSession contains the control flow and initialization of all the sy...</div></div>
 <div class="ttc" id="a_graphics_8hpp_html"><div class="ttname"><a href="_graphics_8hpp.html">Graphics.hpp</a></div><div class="ttdoc">Graphics system class declaration.</div></div>
 <div class="ttc" id="a_input_8hpp_html"><div class="ttname"><a href="_input_8hpp.html">Input.hpp</a></div><div class="ttdoc">Input system class declaration.</div></div>
+<div class="ttc" id="a_physics_8hpp_html"><div class="ttname"><a href="_physics_8hpp.html">Physics.hpp</a></div><div class="ttdoc">Physics system class declaration.</div></div>
+<div class="ttc" id="a_system_8hpp_html"><div class="ttname"><a href="_system_8hpp.html">System.hpp</a></div><div class="ttdoc">Base system class declaration.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

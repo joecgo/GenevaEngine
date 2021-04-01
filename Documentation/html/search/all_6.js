@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['input_26',['Input',['../class_geneva_engine_1_1_input.html',1,'GenevaEngine']]],
-  ['input_2ecpp_27',['Input.cpp',['../_input_8cpp.html',1,'']]],
-  ['input_2ehpp_28',['Input.hpp',['../_input_8hpp.html',1,'']]]
+  ['handleinput_53',['HandleInput',['../class_geneva_engine_1_1_controller.html#add29212f2807ce07e6057b26beaab0a3',1,'GenevaEngine::Controller']]]
 ];

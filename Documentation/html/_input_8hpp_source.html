@@ -100,39 +100,75 @@ $(document).ready(function(){initNavTree('_input_8hpp_source.html',''); initResi
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_camera_8hpp.html">Graphics/Camera.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_common_8hpp.html">Core/GameCommon.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span> <span class="comment">// extension of GLFW</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;GLFW/glfw3.h&gt;</span> <span class="comment">// GLFW</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>GenevaEngine</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_geneva_engine_1_1_input.html">   28</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_input.html">Input</a> : <span class="keyword">public</span> <a class="code" href="class_geneva_engine_1_1_a_system.html">ASystem</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_input.html#aa42abb0da5d4b37291a73ca3f243f7d6">mouse_callback</a>(GLFWwindow* window, <span class="keywordtype">double</span> xpos, <span class="keywordtype">double</span> ypos);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_input.html#ac75b4f615173f96f9ea20e1286a3025a">scroll_callback</a>(GLFWwindow* window, <span class="keywordtype">double</span> xoffset, <span class="keywordtype">double</span> yoffset);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">// mouse input state</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> firstMouse_;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">double</span> lastX_;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">double</span> lastY_;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// inherited methods and constructors</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">using</span> ASystem::ASystem;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> Start();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> Update();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> End();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">// called on update</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> processInput(GLFWwindow* window);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="ttc" id="a_camera_8hpp_html"><div class="ttname"><a href="_camera_8hpp.html">Camera.hpp</a></div><div class="ttdoc">Camera class declaration.</div></div>
-<div class="ttc" id="a_game_common_8hpp_html"><div class="ttname"><a href="_game_common_8hpp.html">GameCommon.hpp</a></div><div class="ttdoc">Includes all the common classes for the game engine in one place.</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_a_system_html"><div class="ttname"><a href="class_geneva_engine_1_1_a_system.html">GenevaEngine::ASystem</a></div><div class="ttdef"><b>Definition:</b> ASystem.hpp:27</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_input_html"><div class="ttname"><a href="class_geneva_engine_1_1_input.html">GenevaEngine::Input</a></div><div class="ttdef"><b>Definition:</b> Input.hpp:29</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_input_html_aa42abb0da5d4b37291a73ca3f243f7d6"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#aa42abb0da5d4b37291a73ca3f243f7d6">GenevaEngine::Input::mouse_callback</a></div><div class="ttdeci">static void mouse_callback(GLFWwindow *window, double xpos, double ypos)</div><div class="ttdef"><b>Definition:</b> Input.cpp:90</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_input_html_ac75b4f615173f96f9ea20e1286a3025a"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#ac75b4f615173f96f9ea20e1286a3025a">GenevaEngine::Input::scroll_callback</a></div><div class="ttdeci">static void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)</div><div class="ttdef"><b>Definition:</b> Input.cpp:118</div></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controller_8hpp.html">Input/Controller.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_system_8hpp.html">Core/System.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span>GenevaEngine</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">class </span>Command;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_geneva_engine_1_1_input.html">   35</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_input.html">Input</a> : <span class="keyword">public</span> <a class="code" href="class_geneva_engine_1_1_system.html">System</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">// key state enums</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">enum</span> KeyState { Up, Pressed, Down, Released };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// Attributes</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">bool</span> DevCheatsOn = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// Key state</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">static</span> KeyState <a class="code" href="class_geneva_engine_1_1_input.html#a766528445b326884fa495d48df76ee16">GetKeyState</a>(<span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_geneva_engine_1_1_input.html#a2cd9b96baedadd31b7cc57012644bae1">KeyDown</a>(<span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_geneva_engine_1_1_input.html#ac0eef919f4a5c9a7396079f3c38bcedb">KeyUp</a>(<span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_geneva_engine_1_1_input.html#a886ed6798657838dbf09dba6dff2513f">KeyPressed</a>(<span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_geneva_engine_1_1_input.html#ae72f16705f0cc730e0a1decbc74eee96">KeyReleased</a>(<span class="keywordtype">int</span> key);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Player controller</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_geneva_engine_1_1_controller.html">Controller</a>* <a class="code" href="class_geneva_engine_1_1_input.html#ab7d9475b71dbbb131231cfe51890a95b">GetPlayerController</a>(); <span class="comment">// TODO: add player IDs for multiplayer</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// key state data</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">static</span> std::map&lt;int, KeyState&gt; keys;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// controllers</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_geneva_engine_1_1_controller.html">Controller</a>* m_playerController;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// key state handling</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">void</span> SetupKeyInputs(GLFWwindow* window);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> KeyStateEvent(<span class="keywordtype">int</span> key, <span class="keywordtype">bool</span> is_down);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// progresses key states forward one step (i.e. Pressed -&gt; Down)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> UpdateKeyStates();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">// The GLFW callback for key events.  Sends events to all KeyInput instances</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> KeyCallback(GLFWwindow* window, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> scancode, <span class="keywordtype">int</span> action, <span class="keywordtype">int</span> mods);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// process input from GLFW for camera cheats I set up during GLFW tutorials</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> ProcessDevCheats(GLFWwindow* window, <span class="keywordtype">double</span> dt);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// inherited methods and constructors</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">using</span> System::System;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> Start();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> Update(<span class="keywordtype">double</span> dt);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">void</span> End();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_game_session.html">GameSession</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    };</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="ttc" id="a_controller_8hpp_html"><div class="ttname"><a href="_controller_8hpp.html">Controller.hpp</a></div><div class="ttdoc">Controller class declaration.</div></div>
+<div class="ttc" id="a_system_8hpp_html"><div class="ttname"><a href="_system_8hpp.html">System.hpp</a></div><div class="ttdoc">Base system class declaration.</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_controller_html"><div class="ttname"><a href="class_geneva_engine_1_1_controller.html">GenevaEngine::Controller</a></div><div class="ttdoc">Controller translates input into commands for entitys to follow.</div><div class="ttdef"><b>Definition:</b> Controller.hpp:67</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html">GenevaEngine::GameSession</a></div><div class="ttdef"><b>Definition:</b> GameSession.hpp:40</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html"><div class="ttname"><a href="class_geneva_engine_1_1_input.html">GenevaEngine::Input</a></div><div class="ttdef"><b>Definition:</b> Input.hpp:36</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_a2cd9b96baedadd31b7cc57012644bae1"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#a2cd9b96baedadd31b7cc57012644bae1">GenevaEngine::Input::KeyDown</a></div><div class="ttdeci">static bool KeyDown(int key)</div><div class="ttdef"><b>Definition:</b> Input.cpp:113</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_a766528445b326884fa495d48df76ee16"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#a766528445b326884fa495d48df76ee16">GenevaEngine::Input::GetKeyState</a></div><div class="ttdeci">static KeyState GetKeyState(int key)</div><div class="ttdef"><b>Definition:</b> Input.cpp:101</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_a886ed6798657838dbf09dba6dff2513f"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#a886ed6798657838dbf09dba6dff2513f">GenevaEngine::Input::KeyPressed</a></div><div class="ttdeci">static bool KeyPressed(int key)</div><div class="ttdef"><b>Definition:</b> Input.cpp:137</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_ab7d9475b71dbbb131231cfe51890a95b"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#ab7d9475b71dbbb131231cfe51890a95b">GenevaEngine::Input::GetPlayerController</a></div><div class="ttdeci">Controller * GetPlayerController()</div><div class="ttdef"><b>Definition:</b> Input.cpp:74</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_ac0eef919f4a5c9a7396079f3c38bcedb"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#ac0eef919f4a5c9a7396079f3c38bcedb">GenevaEngine::Input::KeyUp</a></div><div class="ttdeci">static bool KeyUp(int key)</div><div class="ttdef"><b>Definition:</b> Input.cpp:125</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_input_html_ae72f16705f0cc730e0a1decbc74eee96"><div class="ttname"><a href="class_geneva_engine_1_1_input.html#ae72f16705f0cc730e0a1decbc74eee96">GenevaEngine::Input::KeyReleased</a></div><div class="ttdeci">static bool KeyReleased(int key)</div><div class="ttdef"><b>Definition:</b> Input.cpp:149</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_system_html"><div class="ttname"><a href="class_geneva_engine_1_1_system.html">GenevaEngine::System</a></div><div class="ttdef"><b>Definition:</b> System.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -30,7 +30,7 @@ namespace GenevaEngine
 	class Command;
 
 	/*!
-	 *  Core system for handling input
+	 *  \brief Core system for handling input
 	 */
 	class Input : public System
 	{

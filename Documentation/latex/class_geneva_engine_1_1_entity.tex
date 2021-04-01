@@ -12,28 +12,39 @@ An object that populates the game. Like an actor or game object.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_entity_a955874bbf03133b4e52ddd2403cba054}{Entity}} (\mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+Session}} $\ast$gs, glm\+::vec3 pos, glm\+::vec3 scale, string model\+\_\+name, string shader\+\_\+name=\char`\"{}texture\+Shader\char`\"{})
+\mbox{\hyperlink{class_geneva_engine_1_1_entity_a63165fb1f43aeac6134348c5a47eeb6d}{Entity}} (\mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+Session}} $\ast$gs, b2\+Body\+Def body\+Def, b2\+Fixture\+Def fixture\+Def, b2\+Polygon\+Shape shape\+Def, std\+::string name=\char`\"{}none\char`\"{})
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_entity_a12bedb21994eabad47314f6f2e112e83}{Spawn}} ()
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_entity_a8c00dbcd54914fbf67f4d11acb859fdf}{Add\+FSM}} (\mbox{\hyperlink{class_geneva_engine_1_1_entity_state}{Entity\+State}} $\ast$initial\+\_\+state)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_entity_ab602ac8ae8eb16dc500fee12f736ff0a}{Notify}} (const \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$command)
+\item 
+float \mbox{\hyperlink{class_geneva_engine_1_1_entity_a2d2bcac07ca5ffacba1392d115d17b0b}{Frame\+Time}} ()
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_entity_a466f40683cb98b6c73d5aa3b42fdb457}{Set\+Render\+Color}} (int palette\+\_\+color\+\_\+id)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_entity_a0402de82af3ac49bee115b6e720923b2}{Set\+Render\+Color}} (\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} color)
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} \mbox{\hyperlink{class_geneva_engine_1_1_entity_a2b2fc9667d13b9b8e6e53e56e5861ca1}{Get\+Render\+Color}} () const
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_ab877e1ca4c1ea523708d305a38c8d5ca}\label{class_geneva_engine_1_1_entity_ab877e1ca4c1ea523708d305a38c8d5ca}} 
+b2\+World $\ast$ {\bfseries Get\+World} ()
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a92ae90249fe13edee20d00e5630f84b0}\label{class_geneva_engine_1_1_entity_a92ae90249fe13edee20d00e5630f84b0}} 
+b2\+Polygon\+Shape {\bfseries Get\+Shape} ()
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a3f1418cc02117b7f5cdfa064fe0731c0}\label{class_geneva_engine_1_1_entity_a3f1418cc02117b7f5cdfa064fe0731c0}} 
+b2\+Body $\ast$ {\bfseries Get\+Body} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_afb46e9fd345db78745109c660fb0d60d}\label{class_geneva_engine_1_1_entity_afb46e9fd345db78745109c660fb0d60d}} 
-\mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} $\ast$ {\bfseries model\+\_\+} = nullptr
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_ad7196b0a15ccd7f77fd3f030add3b6df}\label{class_geneva_engine_1_1_entity_ad7196b0a15ccd7f77fd3f030add3b6df}} 
+const int {\bfseries ID}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a89e7b0e1a3fc311cb78e74e14f182232}\label{class_geneva_engine_1_1_entity_a89e7b0e1a3fc311cb78e74e14f182232}} 
-std\+::string {\bfseries model\+\_\+name\+\_\+} = 0
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_ad8ee47e4d872716e53162ce40dc63e25}\label{class_geneva_engine_1_1_entity_ad8ee47e4d872716e53162ce40dc63e25}} 
-\mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$ {\bfseries shader\+\_\+} = nullptr
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a0e52d6e6622411d07fde77c8d69e004e}\label{class_geneva_engine_1_1_entity_a0e52d6e6622411d07fde77c8d69e004e}} 
-std\+::string {\bfseries shader\+\_\+name\+\_\+} = 0
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a28272fc2d618db7cf9ee58046e4946c3}\label{class_geneva_engine_1_1_entity_a28272fc2d618db7cf9ee58046e4946c3}} 
-glm\+::vec3 {\bfseries position\+\_\+} = glm\+::vec3(0.\+0f, 0.\+0f, 0.\+0f)
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a3d36f7db933881417ae31f985b909d25}\label{class_geneva_engine_1_1_entity_a3d36f7db933881417ae31f985b909d25}} 
-glm\+::vec3 {\bfseries scale\+\_\+} = glm\+::vec3(1.\+0f, 1.\+0f, 51.\+0f)
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_adcd534fc99c1a1463ca4de4784a6f6d5}\label{class_geneva_engine_1_1_entity_adcd534fc99c1a1463ca4de4784a6f6d5}} 
+std\+::string {\bfseries Name}
 \end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -47,20 +58,76 @@ class {\bfseries Game\+Session}
 An object that populates the game. Like an actor or game object. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a955874bbf03133b4e52ddd2403cba054}\label{class_geneva_engine_1_1_entity_a955874bbf03133b4e52ddd2403cba054}} 
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a63165fb1f43aeac6134348c5a47eeb6d}\label{class_geneva_engine_1_1_entity_a63165fb1f43aeac6134348c5a47eeb6d}} 
 \index{GenevaEngine::Entity@{GenevaEngine::Entity}!Entity@{Entity}}
 \index{Entity@{Entity}!GenevaEngine::Entity@{GenevaEngine::Entity}}
 \doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
-{\footnotesize\ttfamily Geneva\+Engine\+::\+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+Session}} $\ast$}]{gs,  }\item[{glm\+::vec3}]{pos,  }\item[{glm\+::vec3}]{scale,  }\item[{string}]{model\+\_\+name,  }\item[{string}]{shader\+\_\+name = {\ttfamily \char`\"{}textureShader\char`\"{}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+Session}} $\ast$}]{gs,  }\item[{b2\+Body\+Def}]{body\+Def,  }\item[{b2\+Fixture\+Def}]{fixture\+Def,  }\item[{b2\+Polygon\+Shape}]{shape\+Def,  }\item[{std\+::string}]{name = {\ttfamily \char`\"{}none\char`\"{}} }\end{DoxyParamCaption})}
 
-Constructor \begin{DoxyVerb}\param [in] modelName
-\param [in] shaderName
-\param [in] position
-\param [in] scale
-
-\return
+Constructor. \begin{DoxyVerb}\param [in] gs
+\param [in] bodyDef
+\param [in] fixtureDef
+\param [in] shapeDef
+\param [in] name
 \end{DoxyVerb}
  
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_entity_a8c00dbcd54914fbf67f4d11acb859fdf}\label{class_geneva_engine_1_1_entity_a8c00dbcd54914fbf67f4d11acb859fdf}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!AddFSM@{AddFSM}}
+\index{AddFSM@{AddFSM}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{AddFSM()}{AddFSM()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Entity\+::\+Add\+FSM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_entity_state}{Entity\+State}} $\ast$}]{initial\+\_\+state }\end{DoxyParamCaption})}
+
+Adds a FSM by providing the initial state to the entity \begin{DoxyVerb}\param [in,out] initial_state
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_a2d2bcac07ca5ffacba1392d115d17b0b}\label{class_geneva_engine_1_1_entity_a2d2bcac07ca5ffacba1392d115d17b0b}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!FrameTime@{FrameTime}}
+\index{FrameTime@{FrameTime}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{FrameTime()}{FrameTime()}}
+{\footnotesize\ttfamily float Geneva\+Engine\+::\+Entity\+::\+Frame\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Amount of time between frames being rendered \begin{DoxyVerb}\return frame time
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_a2b2fc9667d13b9b8e6e53e56e5861ca1}\label{class_geneva_engine_1_1_entity_a2b2fc9667d13b9b8e6e53e56e5861ca1}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!GetRenderColor@{GetRenderColor}}
+\index{GetRenderColor@{GetRenderColor}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{GetRenderColor()}{GetRenderColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} Geneva\+Engine\+::\+Entity\+::\+Get\+Render\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the entity\textquotesingle{}s render color. \begin{DoxyVerb}\return The render color.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_ab602ac8ae8eb16dc500fee12f736ff0a}\label{class_geneva_engine_1_1_entity_ab602ac8ae8eb16dc500fee12f736ff0a}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!Notify@{Notify}}
+\index{Notify@{Notify}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{Notify()}{Notify()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Entity\+::\+Notify (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$}]{command }\end{DoxyParamCaption})}
+
+Notifies the entity of incoming commands \begin{DoxyVerb}\param [in] command
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_a0402de82af3ac49bee115b6e720923b2}\label{class_geneva_engine_1_1_entity_a0402de82af3ac49bee115b6e720923b2}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!SetRenderColor@{SetRenderColor}}
+\index{SetRenderColor@{SetRenderColor}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{SetRenderColor()}{SetRenderColor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Entity\+::\+Set\+Render\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}}}]{color }\end{DoxyParamCaption})}
+
+Sets the entity\textquotesingle{}s render color. \begin{DoxyVerb}\param [in] color
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_a466f40683cb98b6c73d5aa3b42fdb457}\label{class_geneva_engine_1_1_entity_a466f40683cb98b6c73d5aa3b42fdb457}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!SetRenderColor@{SetRenderColor}}
+\index{SetRenderColor@{SetRenderColor}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{SetRenderColor()}{SetRenderColor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Entity\+::\+Set\+Render\+Color (\begin{DoxyParamCaption}\item[{int}]{palette\+\_\+color\+\_\+id }\end{DoxyParamCaption})}
+
+Sets the entity\textquotesingle{}s render color. \begin{DoxyVerb}\param [in] palette_color_id
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_entity_a12bedb21994eabad47314f6f2e112e83}\label{class_geneva_engine_1_1_entity_a12bedb21994eabad47314f6f2e112e83}} 
+\index{GenevaEngine::Entity@{GenevaEngine::Entity}!Spawn@{Spawn}}
+\index{Spawn@{Spawn}!GenevaEngine::Entity@{GenevaEngine::Entity}}
+\doxysubsubsection{\texorpdfstring{Spawn()}{Spawn()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Entity\+::\+Spawn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Spawns the entity. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -100,8 +100,12 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_color.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06e8e1795aea2c39e9f084ff62e252da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_color.html#a06e8e1795aea2c39e9f084ff62e252da">Color</a> (int hexValue)</td></tr>
-<tr class="separator:a06e8e1795aea2c39e9f084ff62e252da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c3e2181850c65061ead28031f9d1b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_color.html#a26c3e2181850c65061ead28031f9d1b8">Color</a> (int hexValue=0x000000, float alpha=1.0f)</td></tr>
+<tr class="separator:a26c3e2181850c65061ead28031f9d1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac09233b7085222d9db0f537c02a33969"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_color.html#ac09233b7085222d9db0f537c02a33969">Color</a> (float red, float green, float blue, float alpha=1.0f)</td></tr>
+<tr class="separator:ac09233b7085222d9db0f537c02a33969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41b440885933c6fb85c0d6a93bf2e37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_color.html#ab41b440885933c6fb85c0d6a93bf2e37">operator*</a> (float scalar)</td></tr>
+<tr class="separator:ab41b440885933c6fb85c0d6a93bf2e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -114,12 +118,15 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>g</b> = 0.0f</td></t
 <tr class="memitem:a7f20f1350dc5ccc2f75422c0706d4143"><td class="memItemLeft" align="right" valign="top"><a id="a7f20f1350dc5ccc2f75422c0706d4143"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>b</b> = 0.0f</td></tr>
 <tr class="separator:a7f20f1350dc5ccc2f75422c0706d4143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef09ac87d3f3ad6179405863fbb5a5c"><td class="memItemLeft" align="right" valign="top"><a id="a8ef09ac87d3f3ad6179405863fbb5a5c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> = 1.0f</td></tr>
+<tr class="separator:a8ef09ac87d3f3ad6179405863fbb5a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for a single color. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a06e8e1795aea2c39e9f084ff62e252da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06e8e1795aea2c39e9f084ff62e252da">&#9670;&nbsp;</a></span>Color()</h2>
+<a id="a26c3e2181850c65061ead28031f9d1b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26c3e2181850c65061ead28031f9d1b8">&#9670;&nbsp;</a></span>Color() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -128,12 +135,88 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>b</b> = 0.0f</td></t
           <td class="memname">GenevaEngine::Color::Color </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>hexValue</em></td><td>)</td>
+          <td class="paramname"><em>hexValue</em> = <code>0x000000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>1.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Constructor using RGB hex value </p><pre class="fragment">\param [in] hexValue
+</pre> 
+</div>
+</div>
+<a id="ac09233b7085222d9db0f537c02a33969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac09233b7085222d9db0f537c02a33969">&#9670;&nbsp;</a></span>Color() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenevaEngine::Color::Color </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>red</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>green</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>blue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>1.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor. </p><pre class="fragment">\param [in] red
+\param [in] green
+\param [in] blue
+\param [in] alpha
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab41b440885933c6fb85c0d6a93bf2e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41b440885933c6fb85c0d6a93bf2e37">&#9670;&nbsp;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_geneva_engine_1_1_color.html">Color</a> GenevaEngine::Color::operator* </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scalar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>multiply color by scalar </p><pre class="fragment">\param [in] scalar
+
+\return
 </pre> 
 </div>
 </div>

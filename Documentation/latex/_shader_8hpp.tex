@@ -5,17 +5,25 @@
 Shader class declaration.  
 
 
+{\ttfamily \#include $<$box2d/box2d.\+h$>$}\newline
 {\ttfamily \#include $<$glad/glad.\+h$>$}\newline
 {\ttfamily \#include $<$GLFW/glfw3.\+h$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$Graphics/\+Color.\+hpp$>$}\newline
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Geneva\+Engine\+::\+Shader}}
-\begin{DoxyCompactList}\small\item\em Manages a single shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Manages a single shader program, adding verts to the buffer, and all the steps to interface with opengl. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_shader_8hpp_a25c313caf789c52f8abe6c5b2727be33}\label{_shader_8hpp_a25c313caf789c52f8abe6c5b2727be33}} 
+\#define {\bfseries BUFFER\+\_\+\+OFFSET}(x)~((const void$\ast$) (x))
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

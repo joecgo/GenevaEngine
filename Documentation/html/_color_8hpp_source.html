@@ -105,13 +105,16 @@ $(document).ready(function(){initNavTree('_color_8hpp_source.html',''); initResi
 <div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_geneva_engine_1_1_color.html">   24</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_geneva_engine_1_1_color.html">Color</a></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">float</span> r = 0.0f, g = 0.0f, b = 0.0f;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">float</span> r = 0.0f, g = 0.0f, b = 0.0f, a = 1.0f;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_geneva_engine_1_1_color.html#a06e8e1795aea2c39e9f084ff62e252da">Color</a>(<span class="keywordtype">int</span> hexValue);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_geneva_engine_1_1_color.html#a26c3e2181850c65061ead28031f9d1b8">Color</a>(<span class="keywordtype">int</span> hexValue = 0x000000, <span class="keywordtype">float</span> alpha = 1.0f);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_geneva_engine_1_1_color.html#a26c3e2181850c65061ead28031f9d1b8">Color</a>(<span class="keywordtype">float</span> red, <span class="keywordtype">float</span> green, <span class="keywordtype">float</span> blue, <span class="keywordtype">float</span> alpha = 1.0f);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_geneva_engine_1_1_color.html">Color</a> <a class="code" href="class_geneva_engine_1_1_color.html#ab41b440885933c6fb85c0d6a93bf2e37">operator*</a>(<span class="keywordtype">float</span> scalar);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="ttc" id="aclass_geneva_engine_1_1_color_html"><div class="ttname"><a href="class_geneva_engine_1_1_color.html">GenevaEngine::Color</a></div><div class="ttdoc">A container for a single color.</div><div class="ttdef"><b>Definition:</b> Color.hpp:25</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_color_html_a06e8e1795aea2c39e9f084ff62e252da"><div class="ttname"><a href="class_geneva_engine_1_1_color.html#a06e8e1795aea2c39e9f084ff62e252da">GenevaEngine::Color::Color</a></div><div class="ttdeci">Color(int hexValue)</div><div class="ttdef"><b>Definition:</b> Color.cpp:26</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_color_html_a26c3e2181850c65061ead28031f9d1b8"><div class="ttname"><a href="class_geneva_engine_1_1_color.html#a26c3e2181850c65061ead28031f9d1b8">GenevaEngine::Color::Color</a></div><div class="ttdeci">Color(int hexValue=0x000000, float alpha=1.0f)</div><div class="ttdef"><b>Definition:</b> Color.cpp:26</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_color_html_ab41b440885933c6fb85c0d6a93bf2e37"><div class="ttname"><a href="class_geneva_engine_1_1_color.html#ab41b440885933c6fb85c0d6a93bf2e37">GenevaEngine::Color::operator*</a></div><div class="ttdeci">Color operator*(float scalar)</div><div class="ttdef"><b>Definition:</b> Color.cpp:54</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

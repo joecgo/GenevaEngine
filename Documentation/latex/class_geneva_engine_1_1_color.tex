@@ -12,7 +12,11 @@ A container for a single color.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_color_a06e8e1795aea2c39e9f084ff62e252da}{Color}} (int hex\+Value)
+\mbox{\hyperlink{class_geneva_engine_1_1_color_a26c3e2181850c65061ead28031f9d1b8}{Color}} (int hex\+Value=0x000000, float alpha=1.\+0f)
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_color_ac09233b7085222d9db0f537c02a33969}{Color}} (float red, float green, float blue, float alpha=1.\+0f)
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} \mbox{\hyperlink{class_geneva_engine_1_1_color_ab41b440885933c6fb85c0d6a93bf2e37}{operator$\ast$}} (float scalar)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -25,6 +29,9 @@ float {\bfseries g} = 0.\+0f
 \item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_color_a7f20f1350dc5ccc2f75422c0706d4143}\label{class_geneva_engine_1_1_color_a7f20f1350dc5ccc2f75422c0706d4143}} 
 float {\bfseries b} = 0.\+0f
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_color_a8ef09ac87d3f3ad6179405863fbb5a5c}\label{class_geneva_engine_1_1_color_a8ef09ac87d3f3ad6179405863fbb5a5c}} 
+float {\bfseries a} = 1.\+0f
 \end{DoxyCompactItemize}
 
 
@@ -32,13 +39,37 @@ float {\bfseries b} = 0.\+0f
 A container for a single color. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_color_a06e8e1795aea2c39e9f084ff62e252da}\label{class_geneva_engine_1_1_color_a06e8e1795aea2c39e9f084ff62e252da}} 
+\mbox{\Hypertarget{class_geneva_engine_1_1_color_a26c3e2181850c65061ead28031f9d1b8}\label{class_geneva_engine_1_1_color_a26c3e2181850c65061ead28031f9d1b8}} 
 \index{GenevaEngine::Color@{GenevaEngine::Color}!Color@{Color}}
 \index{Color@{Color}!GenevaEngine::Color@{GenevaEngine::Color}}
-\doxysubsubsection{\texorpdfstring{Color()}{Color()}}
-{\footnotesize\ttfamily Geneva\+Engine\+::\+Color\+::\+Color (\begin{DoxyParamCaption}\item[{int}]{hex\+Value }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Color\+::\+Color (\begin{DoxyParamCaption}\item[{int}]{hex\+Value = {\ttfamily 0x000000},  }\item[{float}]{alpha = {\ttfamily 1.0f} }\end{DoxyParamCaption})}
 
 Constructor using RGB hex value \begin{DoxyVerb}\param [in] hexValue
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_color_ac09233b7085222d9db0f537c02a33969}\label{class_geneva_engine_1_1_color_ac09233b7085222d9db0f537c02a33969}} 
+\index{GenevaEngine::Color@{GenevaEngine::Color}!Color@{Color}}
+\index{Color@{Color}!GenevaEngine::Color@{GenevaEngine::Color}}
+\doxysubsubsection{\texorpdfstring{Color()}{Color()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Geneva\+Engine\+::\+Color\+::\+Color (\begin{DoxyParamCaption}\item[{float}]{red,  }\item[{float}]{green,  }\item[{float}]{blue,  }\item[{float}]{alpha = {\ttfamily 1.0f} }\end{DoxyParamCaption})}
+
+Constructor. \begin{DoxyVerb}\param [in] red
+\param [in] green
+\param [in] blue
+\param [in] alpha
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geneva_engine_1_1_color_ab41b440885933c6fb85c0d6a93bf2e37}\label{class_geneva_engine_1_1_color_ab41b440885933c6fb85c0d6a93bf2e37}} 
+\index{GenevaEngine::Color@{GenevaEngine::Color}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!GenevaEngine::Color@{GenevaEngine::Color}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} Geneva\+Engine\+::\+Color\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{float}]{scalar }\end{DoxyParamCaption})}
+
+multiply color by scalar \begin{DoxyVerb}\param [in] scalar
+
+\return
 \end{DoxyVerb}
  
 

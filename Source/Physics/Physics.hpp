@@ -24,7 +24,7 @@
 namespace GenevaEngine
 {
 	/*!
-	 *  \brief Physics system
+	 *  \brief Physics system. Uses box2d
 	 */
 	class Physics : public System
 	{

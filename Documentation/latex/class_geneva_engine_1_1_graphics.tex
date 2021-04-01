@@ -9,22 +9,22 @@ Inheritance diagram for Geneva\+Engine\+::Graphics\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a8dac433f7b91f5cc8c347b3ac498daaf}{Get\+Palette\+Color}} (int color\+\_\+id)
+\item 
+void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a975408bda62abee7171448a9018459be}{Set\+Clear\+Color}} (\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} color)
+\item 
+GLFWwindow $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_graphics_aa627120af3eb0e6e8161f3ab61e2a72d}{Get\+Window}} ()
+\item 
+\mbox{\hyperlink{class_geneva_engine_1_1_camera}{Camera}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a23f37d5525513e1b3f4753ed26744b8c}{Get\+Camera}} ()
+\item 
 void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a7b7c636bb7188af1b300e3add5fae289}{Save\+Shader}} (std\+::string name, \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} shader)
 \item 
-void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_ac28e92ed0a022ce85d1237f14c5f4b31}{Save\+Model}} (std\+::string name, \mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} model)
+\mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a4e910456159cfa7e05819e4345061fc3}{Get\+Shader}} (std\+::string name)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a975408bda62abee7171448a9018459be}{Set\+Clear\+Color}} (\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} color)
-\item 
-static void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_ad577cfea23d716e1df257fee0097946b}{framebuffer\+\_\+size\+\_\+callback}} (GLFWwindow $\ast$window, int width, int height)
-\item 
-static \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a4e910456159cfa7e05819e4345061fc3}{Get\+Shader}} (std\+::string name)
-\item 
-static \mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_graphics_ae4b55eac63fb2d2436df60d4b4d8584f}{Get\+Model}} (std\+::string name)
-\item 
-static void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a06e38d22679895566beeff2221f146c0}{Render}} (\mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} $\ast$model, \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$shader, glm\+::mat4 world\+Tranform)
+static void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a374c8cdbff2735d1934968d87d2a5f50}{Frame\+Buffer\+Size\+Callback}} (GLFWwindow $\ast$window, int width, int height)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
@@ -33,67 +33,63 @@ static void \mbox{\hyperlink{class_geneva_engine_1_1_graphics_a06e38d22679895566
 static const unsigned int {\bfseries SCR\+\_\+\+WIDTH} = 1200
 \item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a7ab349bd42d48b5c322eba95133617d9}\label{class_geneva_engine_1_1_graphics_a7ab349bd42d48b5c322eba95133617d9}} 
-static const unsigned int {\bfseries SCR\+\_\+\+HEIGHT} = 900
-\item 
-static std\+::vector$<$ \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} $>$ {\bfseries palette}
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_acd5a48ff139050b5734c433f983b3f25}\label{class_geneva_engine_1_1_graphics_acd5a48ff139050b5734c433f983b3f25}} 
-static \mbox{\hyperlink{class_geneva_engine_1_1_camera}{Camera}} {\bfseries camera}
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a72b9fe6aedee012dddf9262b317b34bc}\label{class_geneva_engine_1_1_graphics_a72b9fe6aedee012dddf9262b317b34bc}} 
-static GLFWwindow $\ast$ {\bfseries window}
+static const unsigned int {\bfseries SCR\+\_\+\+HEIGHT} = SCR\+\_\+\+WIDTH $\ast$ 9 / 16
 \end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a457986e85a61e428e7f0a7350202e9d4}\label{class_geneva_engine_1_1_graphics_a457986e85a61e428e7f0a7350202e9d4}} 
+class {\bfseries Game\+Session}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_ad577cfea23d716e1df257fee0097946b}\label{class_geneva_engine_1_1_graphics_ad577cfea23d716e1df257fee0097946b}} 
-\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!framebuffer\_size\_callback@{framebuffer\_size\_callback}}
-\index{framebuffer\_size\_callback@{framebuffer\_size\_callback}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
-\doxysubsubsection{\texorpdfstring{framebuffer\_size\_callback()}{framebuffer\_size\_callback()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::framebuffer\+\_\+size\+\_\+callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a374c8cdbff2735d1934968d87d2a5f50}\label{class_geneva_engine_1_1_graphics_a374c8cdbff2735d1934968d87d2a5f50}} 
+\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!FrameBufferSizeCallback@{FrameBufferSizeCallback}}
+\index{FrameBufferSizeCallback@{FrameBufferSizeCallback}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
+\doxysubsubsection{\texorpdfstring{FrameBufferSizeCallback()}{FrameBufferSizeCallback()}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::\+Frame\+Buffer\+Size\+Callback (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Callback for the framebuffer \begin{DoxyVerb}\param [in,out] window
 \param [in]     width
 \param [in]     height
 \end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_ae4b55eac63fb2d2436df60d4b4d8584f}\label{class_geneva_engine_1_1_graphics_ae4b55eac63fb2d2436df60d4b4d8584f}} 
-\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!GetModel@{GetModel}}
-\index{GetModel@{GetModel}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
-\doxysubsubsection{\texorpdfstring{GetModel()}{GetModel()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} $\ast$ Geneva\+Engine\+::\+Graphics\+::\+Get\+Model (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a23f37d5525513e1b3f4753ed26744b8c}\label{class_geneva_engine_1_1_graphics_a23f37d5525513e1b3f4753ed26744b8c}} 
+\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!GetCamera@{GetCamera}}
+\index{GetCamera@{GetCamera}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
+\doxysubsubsection{\texorpdfstring{GetCamera()}{GetCamera()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_camera}{Camera}} $\ast$ Geneva\+Engine\+::\+Graphics\+::\+Get\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Retrieves a model from \mbox{\hyperlink{class_geneva_engine_1_1_graphics}{Graphics}} system by name. \begin{DoxyVerb}\param [in] name
+Returns the graphics\textquotesingle{}s camera. \begin{DoxyVerb}\return The camera.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a8dac433f7b91f5cc8c347b3ac498daaf}\label{class_geneva_engine_1_1_graphics_a8dac433f7b91f5cc8c347b3ac498daaf}} 
+\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!GetPaletteColor@{GetPaletteColor}}
+\index{GetPaletteColor@{GetPaletteColor}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
+\doxysubsubsection{\texorpdfstring{GetPaletteColor()}{GetPaletteColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} Geneva\+Engine\+::\+Graphics\+::\+Get\+Palette\+Color (\begin{DoxyParamCaption}\item[{int}]{color\+\_\+id }\end{DoxyParamCaption})}
 
-\return The model.
+Returns a color from the pallete using a color id \begin{DoxyVerb}\param [in] color_id
+
+\return The palette color.
 \end{DoxyVerb}
  \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a4e910456159cfa7e05819e4345061fc3}\label{class_geneva_engine_1_1_graphics_a4e910456159cfa7e05819e4345061fc3}} 
 \index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!GetShader@{GetShader}}
 \index{GetShader@{GetShader}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
 \doxysubsubsection{\texorpdfstring{GetShader()}{GetShader()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$ Geneva\+Engine\+::\+Graphics\+::\+Get\+Shader (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$ Geneva\+Engine\+::\+Graphics\+::\+Get\+Shader (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
 
 Retrieves a shader from \mbox{\hyperlink{class_geneva_engine_1_1_graphics}{Graphics}} system by name. \begin{DoxyVerb}\param [in] name
 
 \return The shader.
 \end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a06e38d22679895566beeff2221f146c0}\label{class_geneva_engine_1_1_graphics_a06e38d22679895566beeff2221f146c0}} 
-\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!Render@{Render}}
-\index{Render@{Render}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
-\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}} $\ast$}]{model,  }\item[{\mbox{\hyperlink{class_geneva_engine_1_1_shader}{Shader}} $\ast$}]{shader,  }\item[{glm\+::mat4}]{world\+Tranform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+ \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_aa627120af3eb0e6e8161f3ab61e2a72d}\label{class_geneva_engine_1_1_graphics_aa627120af3eb0e6e8161f3ab61e2a72d}} 
+\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!GetWindow@{GetWindow}}
+\index{GetWindow@{GetWindow}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
+\doxysubsubsection{\texorpdfstring{GetWindow()}{GetWindow()}}
+{\footnotesize\ttfamily GLFWwindow $\ast$ Geneva\+Engine\+::\+Graphics\+::\+Get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Queues up the provided object data to be rendered next update. \begin{DoxyVerb}\param [in,out] model
-\param [in,out] shader
-\param [in]     worldTranform
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_ac28e92ed0a022ce85d1237f14c5f4b31}\label{class_geneva_engine_1_1_graphics_ac28e92ed0a022ce85d1237f14c5f4b31}} 
-\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!SaveModel@{SaveModel}}
-\index{SaveModel@{SaveModel}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
-\doxysubsubsection{\texorpdfstring{SaveModel()}{SaveModel()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::\+Save\+Model (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{\mbox{\hyperlink{class_geneva_engine_1_1_model}{Model}}}]{model }\end{DoxyParamCaption})}
-
-Saves a model by name. \begin{DoxyVerb}\param [in] name
-\param [in] model
+Returns the graphics\textquotesingle{}s window. \begin{DoxyVerb}\return The window.
 \end{DoxyVerb}
  \mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a7b7c636bb7188af1b300e3add5fae289}\label{class_geneva_engine_1_1_graphics_a7b7c636bb7188af1b300e3add5fae289}} 
 \index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!SaveShader@{SaveShader}}
@@ -108,27 +104,11 @@ Saves a shader by name. \begin{DoxyVerb}\param [in] name
 \index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!SetClearColor@{SetClearColor}}
 \index{SetClearColor@{SetClearColor}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
 \doxysubsubsection{\texorpdfstring{SetClearColor()}{SetClearColor()}}
-{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::\+Set\+Clear\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}}}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily void Geneva\+Engine\+::\+Graphics\+::\+Set\+Clear\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}}}]{color }\end{DoxyParamCaption})}
 
 Sets window the clear color. \begin{DoxyVerb}\param [in] color Color to set.
 \end{DoxyVerb}
  
-
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_geneva_engine_1_1_graphics_a353031a616964ef61ca32e6224b1f80c}\label{class_geneva_engine_1_1_graphics_a353031a616964ef61ca32e6224b1f80c}} 
-\index{GenevaEngine::Graphics@{GenevaEngine::Graphics}!palette@{palette}}
-\index{palette@{palette}!GenevaEngine::Graphics@{GenevaEngine::Graphics}}
-\doxysubsubsection{\texorpdfstring{palette}{palette}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_geneva_engine_1_1_color}{Color}} $>$ Geneva\+Engine\+::\+Graphics\+::palette\hspace{0.3cm}{\ttfamily [static]}}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{= \{}
-\DoxyCodeLine{        Color(0x2a363b), Color(0x355c7d), Color(0x6c5b7b),}
-\DoxyCodeLine{        Color(0xc06c84), Color(0xf67280), Color(0xf8b195) \}}
-
-\end{DoxyCode}
-
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

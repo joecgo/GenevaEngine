@@ -31,6 +31,9 @@
 
 namespace GenevaEngine
 {
+	/*!
+	 *  \brief Sets up shaders, window, and renders the game. Uses GLFW
+	 */
 	class Graphics : public System
 	{
 	public:
