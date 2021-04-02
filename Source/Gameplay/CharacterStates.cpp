@@ -66,7 +66,7 @@ namespace GenevaEngine
 		// check for grounded
 		RayCastCallback callback;
 		float boxHeight = -3.1f; // TODO: figure out a better way to get this
-		b2Body* body = entity.GetBody();
+		b2Body* body = entity.GetAnchorBody();
 		b2Vec2 p1 = body->GetPosition();
 		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, boxHeight);
 		entity.GetWorld()->RayCast(&callback, p1, p2);

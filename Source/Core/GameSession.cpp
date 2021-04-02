@@ -33,31 +33,16 @@ namespace GenevaEngine
 		Start();
 	}
 
-	/*!
-	 *  Returns the game session's physics.
-	 *
-	 *      \return The physics.
-	 */
 	Physics* GameSession::GetPhysics()
 	{
 		return m_physics;
 	}
 
-	/*!
-	 *  Returns the game session's input.
-	 *
-	 *      \return The input.
-	 */
 	Input* GameSession::GetInput()
 	{
 		return m_input;
 	}
 
-	/*!
-	 *  Returns the game session's graphics.
-	 *
-	 *      \return The graphics.
-	 */
 	Graphics* GameSession::GetGraphics()
 	{
 		return m_graphics;
@@ -73,12 +58,18 @@ namespace GenevaEngine
 		b2BodyDef bodyDef;
 		b2FixtureDef fixtureDef;
 		b2PolygonShape shapeDef;
+		MultiBody* multiBody = nullptr;
 
 		// create ground
 		bodyDef.position.Set(0.0f, -10.0f);
 		shapeDef.SetAsBox(50.0f, 10.0f);
 		fixtureDef.density = 0; // 0 density is static
-		Entity* ground = new Entity(this, bodyDef, fixtureDef, shapeDef, "ground");
+		multiBody = new MultiBody();
+		multiBody->AddBody(bodyDef, true);
+		multiBody->SetPolygonShape(shapeDef, fixtureDef);
+		multiBody->SetWorld(GetPhysics()->GetWorld());
+		Entity* ground = new Entity(this, "ground");
+		ground->AddMultiBody(multiBody);
 		ground->SetRenderColor(2);
 
 		// create dynamic boxes
@@ -90,7 +81,12 @@ namespace GenevaEngine
 			shapeDef.SetAsBox(1.0f, 1.0f);
 			fixtureDef.density = 0.01f; // super low density for "foam-like" behavior
 			fixtureDef.friction = 0.3f;
-			box = new Entity(this, bodyDef, fixtureDef, shapeDef, "box");
+			multiBody = new MultiBody();
+			multiBody->AddBody(bodyDef, true);
+			multiBody->SetPolygonShape(shapeDef, fixtureDef);
+			multiBody->SetWorld(GetPhysics()->GetWorld());
+			box = new Entity(this, "box");
+			box->AddMultiBody(multiBody);
 			box->SetRenderColor(3);
 		}
 
@@ -100,7 +96,12 @@ namespace GenevaEngine
 		shapeDef.SetAsBox(3.0f, 3.0f);
 		fixtureDef.density = 1.0f;
 		fixtureDef.friction = 5.0f;
-		Entity* hero = new Entity(this, bodyDef, fixtureDef, shapeDef, "hero");
+		multiBody = new MultiBody();
+		multiBody->AddBody(bodyDef, true);
+		multiBody->SetPolygonShape(shapeDef, fixtureDef);
+		multiBody->SetWorld(GetPhysics()->GetWorld());
+		Entity* hero = new Entity(this, "hero");
+		hero->AddMultiBody(multiBody);
 		hero->SetRenderColor(5);
 		m_input->GetPlayerController()->Possess(hero);
 		hero->AddFSM(new Grounded());

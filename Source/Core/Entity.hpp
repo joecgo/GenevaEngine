@@ -23,6 +23,7 @@
 #include <Input/Command.hpp>
 #include <Graphics/Shader.hpp>
 #include <Gameplay/EntityState.hpp>
+#include <Physics/MultiBody.hpp>
 
 namespace GenevaEngine
 {
@@ -36,41 +37,33 @@ namespace GenevaEngine
 	{
 	public:
 		// Attributes
-		const int ID;
-		std::string Name;
+		const int ID;		// unique ID
+		std::string Name;	// A recognizable name for debugging
 
 		// constructor
-		Entity(GameSession* gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef,
-			b2PolygonShape shapeDef, std::string name = "none");
+		Entity(GameSession* gs, std::string name = "none");
 
-		// puts this instance into the game
-		void Spawn();
-		// add an initial state for a finite state machine
-		void AddFSM(EntityState* initial_state);
-		// Notify state machines of incoming command
-		void Notify(const Command* command);
-		// Global state getters
-		float FrameTime();
+		void Spawn();							// puts this instance into the game
+		void AddMultiBody(MultiBody* multiBody);// attach a multibody to the entity
+		void AddFSM(EntityState* initState);	// add an initial state for a FSM
+		void Notify(const Command* command);	// Notify FSMs of incoming command
+		float FrameTime();						// Dt since last frame was rendered
+		b2World* GetWorld();					// Box2d world object
+		b2PolygonShape GetShape();				// Box2d shape for this entity
+		b2Body* GetAnchorBody();				// Box2d anchoring body from Entity's MultiBody
 
 		// TODO: render settings class
 		void SetRenderColor(int palette_color_id);
 		void SetRenderColor(Color color);
 		Color GetRenderColor() const;
 
-		// TODO: box2d wrapper class
-		b2World* GetWorld() { return m_world; };
-		b2PolygonShape GetShape() { return m_shapeDef; }
-		b2Body* GetBody() { return m_body; }
-
 	private:
 		// increments on entity construction to create a unique id
 		static int m_entityCount;
 
-		// object references
-		GameSession* m_gameSession = nullptr;
-
-		// Finite state machines which observe incoming commands
-		std::vector<EntityState*> m_states;
+		GameSession* m_gameSession = nullptr;	// object references
+		std::vector<EntityState*> m_states; 	// FSMs which observe incoming commands
+		MultiBody* m_multiBody;					// composite of multiple box2d bodies
 
 		// TODO: implement components
 		// Component* components[max_components]
@@ -78,18 +71,11 @@ namespace GenevaEngine
 		// TODO: render settings class
 		Color m_render_color;
 
-		// TODO: box2d wrapper class
-		b2World* m_world = nullptr;
-		b2Body* m_body = nullptr;
-		b2BodyDef m_bodyDef;
-		b2PolygonShape m_shapeDef;
-		b2FixtureDef m_fixtureDef;
-
 		//  Game loop
-		void Start();
-		void FixedUpdate(double alpha); // update on fixed time-steps
-		void Update(double dt);			// update on every frame
-		void End();
+		void Start();							// called once before first update
+		void FixedUpdate(double alpha);			// called on fixed physics time-steps
+		void Update(double dt);					// called on every rendered frame
+		void End();								// called once after last update
 		friend class GameSession;
 	};
 }

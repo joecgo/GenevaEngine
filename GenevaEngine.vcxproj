@@ -65,6 +65,10 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_world_callbacks.cpp" />
     <ClCompile Include="External\box2d\src\rope\b2_rope.cpp" />
     <ClCompile Include="External\glad\glad.c" />
+    <ClCompile Include="Source\Core\EntityPrototypes.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Core\System.cpp">
       <SubType>
       </SubType>
@@ -109,6 +113,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Input\Input.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\MultiBody.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -167,6 +175,10 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
+    <ClInclude Include="Source\Core\EntityPrototypes.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Core\System.hpp">
       <SubType>
       </SubType>
@@ -218,6 +230,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Input\Input.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\MultiBody.hpp">
       <SubType>
       </SubType>
     </ClInclude>

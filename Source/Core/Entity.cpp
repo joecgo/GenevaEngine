@@ -31,15 +31,10 @@ namespace GenevaEngine
 	 *      \param [in] shapeDef
 	 *      \param [in] name
 	 */
-	Entity::Entity(GameSession* gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef,
-		b2PolygonShape shapeDef, std::string name) :
+	Entity::Entity(GameSession* gs, std::string name) :
 		m_gameSession(gs),
-		m_bodyDef(bodyDef),
-		m_fixtureDef(fixtureDef),
-		m_shapeDef(shapeDef),
 		Name(name),
-		ID(++m_entityCount),
-		m_world(gs->GetWorld())
+		ID(++m_entityCount)
 	{
 		m_gameSession->AddEntity(this); // add to gamesession entities
 	}
@@ -50,26 +45,20 @@ namespace GenevaEngine
 		Spawn();
 	}
 
-	/*!
-	 *  Spawns the entity.
-	 */
 	void Entity::Spawn()
 	{
-		// error check for existing body
-		if (m_body != nullptr)
-		{
-			std::cout << "Error - Entity::Spawn - Entity is already spawned" << std::endl;
-			return;
-		}
-
-		// spawn
-		m_body = m_world->CreateBody(&m_bodyDef);
-		m_fixtureDef.shape = &m_shapeDef;
-		m_body->CreateFixture(&m_fixtureDef);
+		// initialize bodies
+		m_multiBody->Initialize();
 
 		// enter any initial states
 		for (EntityState* state : m_states)
 			state->Enter(*this);
+	}
+
+	// Multibody is deleted in End() call of Entity
+	void Entity::AddMultiBody(MultiBody* multiBody)
+	{
+		m_multiBody = multiBody;
 	}
 
 	/*!
@@ -140,6 +129,7 @@ namespace GenevaEngine
 	 */
 	void Entity::End()
 	{
+		delete m_multiBody;
 	}
 
 	/*!
@@ -180,5 +170,20 @@ namespace GenevaEngine
 	float Entity::FrameTime()
 	{
 		return (float)m_gameSession->FrameTime;
+	}
+
+	b2World* Entity::GetWorld()
+	{
+		return m_multiBody->GetWorld();
+	};
+
+	b2PolygonShape Entity::GetShape()
+	{
+		return m_multiBody->GetShape();
+	}
+
+	b2Body* Entity::GetAnchorBody()
+	{
+		return m_multiBody->GetAnchorBody();
 	}
 }

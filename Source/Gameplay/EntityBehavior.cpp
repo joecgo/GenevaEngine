@@ -28,7 +28,7 @@ namespace GenevaEngine
 	 */
 	void EntityBehavior::Move(Entity& entity, float x_axis, float moveSpeed)
 	{
-		b2Body* body = entity.GetBody();
+		b2Body* body = entity.GetAnchorBody();
 		const float dt = entity.FrameTime();
 
 		b2Vec2 vel = body->GetLinearVelocity();
@@ -47,7 +47,7 @@ namespace GenevaEngine
 	 */
 	void EntityBehavior::Jump(Entity& entity, float jumpPower)
 	{
-		b2Body* body = entity.GetBody();
+		b2Body* body = entity.GetAnchorBody();
 		b2Vec2 force(0, body->GetMass() * jumpPower);
 		body->ApplyLinearImpulseToCenter(force, true);
 	}

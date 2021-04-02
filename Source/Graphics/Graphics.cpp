@@ -124,7 +124,7 @@ namespace GenevaEngine
 		// draw shape depending on type
 		Color color = entity->GetRenderColor();
 		b2PolygonShape shape = entity->GetShape();
-		b2Transform xf = entity->GetBody()->GetTransform();
+		b2Transform xf = entity->GetAnchorBody()->GetTransform();
 		for (size_t i = 0; i < shape.m_count; i++)
 			m_transformedVerts[i] = b2Mul(xf, shape.m_vertices[i]);
 
