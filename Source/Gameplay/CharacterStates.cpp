@@ -63,6 +63,7 @@ namespace GenevaEngine
 	}
 	EntityState* Airborne::Update(Entity& entity)
 	{
+		// check for grounded
 		RayCastCallback callback;
 		float boxHeight = -3.1f; // TODO: figure out a better way to get this
 		b2Body* body = entity.GetBody();

@@ -44,9 +44,7 @@ namespace GenevaEngine
 		m_gameSession->AddEntity(this); // add to gamesession entities
 	}
 
-	/*!
-	 *  Spawns the entity.
-	 */
+	// First call to entity from gamesession
 	void Entity::Start()
 	{
 		Spawn();
