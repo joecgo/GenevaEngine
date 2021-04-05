@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include <Physics/Construct.hpp>
+#include <Constructs/Construct.hpp>
 #include <Core/State.hpp>
 
 namespace GenevaEngine

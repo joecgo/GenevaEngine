@@ -192,13 +192,16 @@
     <ClCompile Include="Source\Gameplay\SingleShapeBehavior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Gameplay\RayCastCallback.cpp">
+    <ClCompile Include="Source\Physics\RayCastCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Physics\Construct.cpp">
+    <ClCompile Include="Source\Constructs\Construct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Physics\SingleShape.cpp">
+    <ClCompile Include="Source\Constructs\SingleShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Constructs\Web.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,16 +395,19 @@
     <ClInclude Include="Source\Gameplay\SingleShapeBehavior.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\RayCastCallback.hpp">
+    <ClInclude Include="Source\Physics\RayCastCallback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Physics\Construct.hpp">
+    <ClInclude Include="Source\Constructs\Construct.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Physics\Box2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Physics\SingleShape.hpp">
+    <ClInclude Include="Source\Constructs\SingleShape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Constructs\Web.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

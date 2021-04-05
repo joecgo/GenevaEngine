@@ -72,6 +72,9 @@ namespace GenevaEngine
 		void Start();
 		void GameLoop();
 		void End();
-		void CreateEntities();
+
+		// Level creation
+		void WebDemo();
+		void HardBoxBehaviorDemo();
 	};
 }

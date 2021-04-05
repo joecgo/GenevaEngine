@@ -18,7 +18,7 @@
 #pragma once
 
 #include <Physics/Box2d.hpp>
-#include <Physics/Construct.hpp>
+#include <Constructs/Construct.hpp>
 #include <Core/State.hpp>
 
 namespace GenevaEngine

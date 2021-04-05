@@ -18,8 +18,8 @@
 
 #include <Core/GameCommon.hpp>
 #include <Gameplay/SingleShapeBehavior.hpp>
-#include <Physics/Construct.hpp>
-#include <Physics/SingleShape.hpp>
+#include <Constructs/Construct.hpp>
+#include <Constructs/SingleShape.hpp>
 
 namespace GenevaEngine
 {
@@ -53,11 +53,24 @@ namespace GenevaEngine
 		return m_graphics;
 	}
 
-	/*!
-	 *  Temporary way to create the entities for testing stuff out
-	 *  TODO: create entities from a scene file instead of like this
-	 */
-	void GameSession::CreateEntities()
+	void GameSession::WebDemo()
+	{
+		// get world from physics system
+		//b2World* world = GetPhysics()->GetWorld();
+
+		// create web construct
+		//Web* ground = new SingleShape(world);
+		//ground->BodyDef.position.Set(0.0f, -10.0f);
+		//ground->BodyDef.type = b2_staticBody;
+		//ground->FixtureDef.density = 0.0f;
+		//ground->Shape.SetAsBox(50.0f, 10.0f);
+		//// create entity
+		//Entity* ground_entity = new Entity(this, "box");
+		//ground_entity->AddConstruct(ground);
+		//ground_entity->SetRenderColor(2);
+	}
+
+	void GameSession::HardBoxBehaviorDemo()
 	{
 		// get world from physics system
 		b2World* world = GetPhysics()->GetWorld();
@@ -114,7 +127,8 @@ namespace GenevaEngine
 		m_physics->Start();
 		m_input->Start();
 
-		CreateEntities();
+		// Create entities
+		// HardBoxBehaviorDemo();
 
 		// start entities
 		for (Entity* entity : entities)

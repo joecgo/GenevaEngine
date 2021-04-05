@@ -18,7 +18,7 @@
 #include <Core/Entity.hpp>
 #include <Core/GameSession.hpp>
 #include <Physics/Box2d.hpp>
-#include <Physics/Construct.hpp>
+#include <Constructs/Construct.hpp>
 
 namespace GenevaEngine
 {

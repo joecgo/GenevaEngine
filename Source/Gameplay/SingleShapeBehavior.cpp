@@ -17,9 +17,9 @@
 
 #include <Gameplay/SingleShapeBehavior.hpp>
 #include <Input/Command.hpp>
-#include <Gameplay/RayCastCallback.hpp>
-#include <Physics/Construct.hpp>
-#include <Physics/SingleShape.hpp>
+#include <Physics/RayCastCallback.hpp>
+#include <Constructs/Construct.hpp>
+#include <Constructs/SingleShape.hpp>
 #include <Core/State.hpp>
 #include <Core/GameSession.hpp>
 

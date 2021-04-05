@@ -18,7 +18,7 @@
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
 
-#include <Physics/Construct.hpp>
+#include <Constructs/Construct.hpp>
 #include <Core/GameCommon.hpp>
 
 namespace GenevaEngine

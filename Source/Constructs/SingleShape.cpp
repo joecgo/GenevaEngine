@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Physics/SingleShape.hpp>
+#include <Constructs/SingleShape.hpp>
 #include <Gameplay/SingleShapeBehavior.hpp>
 #include <Core/GameSession.hpp>
 

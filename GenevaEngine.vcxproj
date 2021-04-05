@@ -65,7 +65,7 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_world_callbacks.cpp" />
     <ClCompile Include="External\box2d\src\rope\b2_rope.cpp" />
     <ClCompile Include="External\glad\glad.c" />
-    <ClCompile Include="Source\Physics\SingleShape.cpp">
+    <ClCompile Include="Source\Constructs\SingleShape.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -85,7 +85,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Gameplay\RayCastCallback.cpp">
+    <ClCompile Include="Source\Physics\RayCastCallback.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -112,11 +112,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Physics\Construct.cpp">
+    <ClCompile Include="Source\Constructs\Construct.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Physics\Physics.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Constructs\Web.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -175,7 +179,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Physics\SingleShape.hpp">
+    <ClInclude Include="Source\Constructs\SingleShape.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -203,7 +207,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\RayCastCallback.hpp">
+    <ClInclude Include="Source\Physics\RayCastCallback.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -229,11 +233,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Physics\Construct.hpp">
+    <ClInclude Include="Source\Constructs\Construct.hpp">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Physics\Physics.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Constructs\Web.hpp">
       <SubType>
       </SubType>
     </ClInclude>

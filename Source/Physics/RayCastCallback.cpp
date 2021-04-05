@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Gameplay/RayCastCallback.hpp>
+#include <Physics/RayCastCallback.hpp>
 
 namespace GenevaEngine
 {
