@@ -17,9 +17,10 @@
   **/
 
 #include <Core/GameCommon.hpp>
-#include <Gameplay/SingleShapeBehavior.hpp>
+
 #include <Constructs/Construct.hpp>
 #include <Constructs/SingleShape.hpp>
+#include <Constructs/Web.hpp>
 
 namespace GenevaEngine
 {
@@ -56,18 +57,12 @@ namespace GenevaEngine
 	void GameSession::WebDemo()
 	{
 		// get world from physics system
-		//b2World* world = GetPhysics()->GetWorld();
+		b2World* world = GetPhysics()->GetWorld();
 
-		// create web construct
-		//Web* ground = new SingleShape(world);
-		//ground->BodyDef.position.Set(0.0f, -10.0f);
-		//ground->BodyDef.type = b2_staticBody;
-		//ground->FixtureDef.density = 0.0f;
-		//ground->Shape.SetAsBox(50.0f, 10.0f);
-		//// create entity
-		//Entity* ground_entity = new Entity(this, "box");
-		//ground_entity->AddConstruct(ground);
-		//ground_entity->SetRenderColor(2);
+		// create entity
+		Entity* web_entity = new Entity(this, "box");
+		web_entity->AddConstruct(new Web(world));
+		web_entity->SetRenderColor(5);
 	}
 
 	void GameSession::HardBoxBehaviorDemo()
@@ -129,6 +124,7 @@ namespace GenevaEngine
 
 		// Create entities
 		// HardBoxBehaviorDemo();
+		WebDemo();
 
 		// start entities
 		for (Entity* entity : entities)
