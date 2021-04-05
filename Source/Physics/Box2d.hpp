@@ -9,25 +9,15 @@
  ****************************************************************************/
 
  /**
-  * \file EntityBehavior.hpp
+  * \file Box2d.hpp
   * \author Joe Goldman
-  * \brief EntityBehavior class declaration.
+  * \brief Box2d include without the vs compiler warnings
   *
   */
 
 #pragma once
 
-#include <Core/Entity.hpp>
+  // Disable warning messages from box2d: C26812 C26495
+#pragma warning( disable : 26812 26495)
 
-namespace GenevaEngine
-{
-	/*!
-	 *  \brief Entity behavior functions
-	 */
-	class EntityBehavior
-	{
-	public:
-		static void Move(Entity& entity, float x_axis, float moveSpeed = 2000.0f);
-		static void Jump(Entity& entity, float jumpPower = 150.0f);
-	};
-}
+#include <box2d/box2d.h> // box2d

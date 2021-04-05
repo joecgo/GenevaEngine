@@ -9,22 +9,31 @@
  ****************************************************************************/
 
  /**
-  * \file EntityPrototypes.hpp
+  * \file State.hpp
   * \author Joe Goldman
-  * \brief EntityPrototypes class declaration
+  * \brief State class declaration
   *
   */
 
 #pragma once
 
+#include <string>
+
 namespace GenevaEngine
 {
-	class Entity;
+	class Command;
+	class Construct;
 
-	class EntityPrototypes
+	/*!
+	 *  \brief  State for use in FSMs
+	 */
+	template <class T>
+	class State
 	{
-		static Entity* Web()
-		{
-		}
+	public:
+		virtual void Enter(T* owner) = 0;
+		virtual State<T>* Notify(T* owner, const Command* command) = 0;
+		virtual State<T>* Update(T* owner, double dt) = 0;
+		virtual void Exit(T* owner) = 0;
 	};
 }

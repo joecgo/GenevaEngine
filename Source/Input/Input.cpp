@@ -49,7 +49,8 @@ namespace GenevaEngine
 	 */
 	void Input::End()
 	{
-		delete m_playerController;
+		if (m_playerController != nullptr)
+			delete m_playerController;
 	}
 
 	/*!
@@ -61,7 +62,10 @@ namespace GenevaEngine
 	{
 		UpdateKeyStates();
 		glfwPollEvents();
-		m_playerController->HandleInput();
+
+		if (m_playerController != nullptr)
+			m_playerController->HandleInput();
+
 		if (DevCheatsOn)
 			ProcessDevCheats(m_gameSession->GetGraphics()->GetWindow(), dt);
 	}

@@ -15,7 +15,10 @@
   *
   **/
 
-#include <Core/GameCommon.hpp>
+#include <Core/Entity.hpp>
+#include <Core/GameSession.hpp>
+#include <Physics/Box2d.hpp>
+#include <Physics/Construct.hpp>
 
 namespace GenevaEngine
 {
@@ -45,30 +48,26 @@ namespace GenevaEngine
 		Spawn();
 	}
 
+	Construct* Entity::GetConstruct()
+	{
+		return m_construct;
+	}
+
 	void Entity::Spawn()
 	{
 		// initialize bodies
-		m_multiBody->Initialize();
-
-		// enter any initial states
-		for (EntityState* state : m_states)
-			state->Enter(*this);
+		if (m_construct != nullptr)
+			m_construct->SafeCreate();
 	}
 
-	// Multibody is deleted in End() call of Entity
-	void Entity::AddMultiBody(MultiBody* multiBody)
+	// Add a composite of box2d objects and properties
+	void Entity::AddConstruct(Construct* construct)
 	{
-		m_multiBody = multiBody;
-	}
+		// TODO: allow for an entity to have multiple constructs
+		if (m_construct != nullptr)
+			delete m_construct;
 
-	/*!
-	 *  Adds a FSM by providing the initial state to the entity
-	 *
-	 *      \param [in,out] initial_state
-	 */
-	void Entity::AddFSM(EntityState* initial_state)
-	{
-		m_states.push_back(initial_state);
+		m_construct = construct;
 	}
 
 	/*!
@@ -78,19 +77,8 @@ namespace GenevaEngine
 	 */
 	void Entity::Notify(const Command* command)
 	{
-		// iterate through states
-		for (int i = 0; i < m_states.size(); i++)
-		{
-			EntityState* state = m_states[i];
-			EntityState* next_state = state->Notify(*this, command);
-			if (next_state != nullptr)
-			{
-				state->Exit(*this);
-				delete state;
-				next_state->Enter(*this);
-				m_states[i] = next_state;
-			}
-		}
+		if (m_construct != nullptr)
+			m_construct->Notify(command);
 	}
 
 	/*!
@@ -100,19 +88,8 @@ namespace GenevaEngine
 	 */
 	void Entity::Update(double dt)
 	{
-		// iterate through states
-		for (int i = 0; i < m_states.size(); i++)
-		{
-			EntityState* state = m_states[i];
-			EntityState* next_state = state->Update(*this);
-			if (next_state != nullptr)
-			{
-				state->Exit(*this);
-				delete state;
-				next_state->Enter(*this);
-				m_states[i] = next_state;
-			}
-		}
+		if (m_construct != nullptr)
+			m_construct->Update(dt);
 	}
 
 	/*!
@@ -122,14 +99,23 @@ namespace GenevaEngine
 	 */
 	void Entity::FixedUpdate(double alpha)
 	{
+		if (m_construct != nullptr)
+			m_construct->FixedUpdate(alpha);
 	}
 
 	/*!
-	 *  Ends call for Entity
+	 *  Entity is being removed from the game.
+	 *  Clean up pointers and memory that belongs to the Entity
 	 */
 	void Entity::End()
 	{
-		delete m_multiBody;
+		// construct clean up
+		if (m_construct != nullptr)
+		{
+			m_construct->End();
+			delete m_construct;
+			m_construct = nullptr;
+		}
 	}
 
 	/*!
@@ -170,20 +156,5 @@ namespace GenevaEngine
 	float Entity::FrameTime()
 	{
 		return (float)m_gameSession->FrameTime;
-	}
-
-	b2World* Entity::GetWorld()
-	{
-		return m_multiBody->GetWorld();
-	};
-
-	b2PolygonShape Entity::GetShape()
-	{
-		return m_multiBody->GetShape();
-	}
-
-	b2Body* Entity::GetAnchorBody()
-	{
-		return m_multiBody->GetAnchorBody();
 	}
 }

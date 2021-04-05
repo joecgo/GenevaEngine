@@ -42,7 +42,7 @@ namespace GenevaEngine
 		GameSession();
 
 		// Attributes
-		double FrameTime = 0.01;
+		static double FrameTime;
 		bool Paused = false;
 		bool IsRunning = true; // flag tells main when to return
 

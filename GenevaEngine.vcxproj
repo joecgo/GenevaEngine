@@ -65,7 +65,7 @@
     <ClCompile Include="External\box2d\src\dynamics\b2_world_callbacks.cpp" />
     <ClCompile Include="External\box2d\src\rope\b2_rope.cpp" />
     <ClCompile Include="External\glad\glad.c" />
-    <ClCompile Include="Source\Core\EntityPrototypes.cpp">
+    <ClCompile Include="Source\Physics\SingleShape.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -81,11 +81,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Gameplay\CharacterStates.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Gameplay\EntityBehavior.cpp">
+    <ClCompile Include="Source\Gameplay\SingleShapeBehavior.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -116,7 +112,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Physics\MultiBody.cpp">
+    <ClCompile Include="Source\Physics\Construct.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -175,7 +171,11 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
-    <ClInclude Include="Source\Core\EntityPrototypes.hpp">
+    <ClInclude Include="Source\Physics\Box2d.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\SingleShape.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -195,15 +195,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\CharacterStates.hpp">
+    <ClInclude Include="Source\Gameplay\SingleShapeBehavior.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\EntityBehavior.hpp">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Gameplay\EntityState.hpp">
+    <ClInclude Include="Source\Core\State.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -233,7 +229,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Physics\MultiBody.hpp">
+    <ClInclude Include="Source\Physics\Construct.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -376,6 +372,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ShowIncludes>true</ShowIncludes>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -18,6 +18,7 @@
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
 
+#include <Physics/Construct.hpp>
 #include <Core/GameCommon.hpp>
 
 namespace GenevaEngine
@@ -107,7 +108,7 @@ namespace GenevaEngine
 
 		// render entities
 		for (Entity* entity : m_gameSession->entities)
-			RenderEntity(entity);
+			RenderEntity(*entity);
 		Flush();
 
 		// glfw: swap buffers
@@ -119,27 +120,35 @@ namespace GenevaEngine
 	 *
 	 *      \param [in,out] entity
 	 */
-	void Graphics::RenderEntity(Entity* entity)
+	void Graphics::RenderEntity(Entity& entity)
 	{
-		// draw shape depending on type
-		Color color = entity->GetRenderColor();
-		b2PolygonShape shape = entity->GetShape();
-		b2Transform xf = entity->GetAnchorBody()->GetTransform();
-		for (size_t i = 0; i < shape.m_count; i++)
-			m_transformedVerts[i] = b2Mul(xf, shape.m_vertices[i]);
+		// draw entities contruct (composite of box2d bodies)
+		Color color = entity.GetRenderColor();
+		Construct* construct = entity.GetConstruct();
+		std::list<BodyRenderData>* constructData = construct->GetConstructRenderData();
 
-		switch (shape.GetType())
+		// render each body
+		for (BodyRenderData bodyData : *constructData)
 		{
-		case b2Shape::e_polygon:
+			b2PolygonShape shape = bodyData.Shape;
+			b2Body* body = bodyData.Body;
+			b2Transform xf = body->GetTransform();
+			for (size_t i = 0; i < shape.m_count; i++)
+				m_transformedVerts[i] = b2Mul(xf, shape.m_vertices[i]);
 
-			DrawSolidPolygon(m_transformedVerts, shape.m_count, color);
-			break;
+			switch (shape.GetType())
+			{
+			case b2Shape::e_polygon:
 
-		case b2Shape::e_chain:
-		case b2Shape::e_circle:
-		case b2Shape::e_edge:
-		default:
-			break;
+				DrawSolidPolygon(m_transformedVerts, shape.m_count, color);
+				break;
+
+			case b2Shape::e_chain:
+			case b2Shape::e_circle:
+			case b2Shape::e_edge:
+			default:
+				break;
+			}
 		}
 	}
 
@@ -163,52 +172,26 @@ namespace GenevaEngine
 		return m_window;
 	}
 
-	/*!
-	 *  Returns the graphics's camera.
-	 *
-	 *      \return The camera.
-	 */
 	Camera* Graphics::GetCamera()
 	{
 		return &m_camera;
 	}
 
-	/*!
-	 *  Saves a shader by name.
-	 *
-	 *      \param [in] name
-	 *      \param [in] shader
-	 */
 	void Graphics::SaveShader(std::string name, Shader shader)
 	{
 		m_shaders[name] = shader;
 	}
 
-	/*!
-	 *  Retrieves a shader from Graphics system by name.
-	 *
-	 *      \param [in] name
-	 *
-	 *      \return The shader.
-	 */
 	Shader* Graphics::GetShader(std::string name)
 	{
 		return &(m_shaders[name]);
 	}
 
-	/*!
-	 *  Callback for the framebuffer
-	 *
-	 *      \param [in,out] window
-	 *      \param [in]     width
-	 *      \param [in]     height
-	 */
 	void Graphics::FrameBufferSizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
-	//
 	void Graphics::DrawSolidPolygon(b2Vec2* vertices, int vertexCount, Color& color)
 	{
 		Color fillColor = color * 0.7f;

@@ -189,19 +189,16 @@
     <ClCompile Include="Source\Input\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Gameplay\CharacterStates.cpp">
+    <ClCompile Include="Source\Gameplay\SingleShapeBehavior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Gameplay\RayCastCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Gameplay\EntityBehavior.cpp">
+    <ClCompile Include="Source\Physics\Construct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\EntityPrototypes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Physics\MultiBody.cpp">
+    <ClCompile Include="Source\Physics\SingleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -389,22 +386,22 @@
     <ClInclude Include="Source\Input\Controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\EntityState.hpp">
+    <ClInclude Include="Source\Core\State.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\CharacterStates.hpp">
+    <ClInclude Include="Source\Gameplay\SingleShapeBehavior.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Gameplay\RayCastCallback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Gameplay\EntityBehavior.hpp">
+    <ClInclude Include="Source\Physics\Construct.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\EntityPrototypes.hpp">
+    <ClInclude Include="Source\Physics\Box2d.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Physics\MultiBody.hpp">
+    <ClInclude Include="Source\Physics\SingleShape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

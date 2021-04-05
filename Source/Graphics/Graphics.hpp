@@ -21,9 +21,7 @@
 #include <GLFW/glfw3.h> // GLFW
 
 #include <iostream> // cout, endl
-#include <vector> // vector
-#include <map> // map
-#include <queue> // queue
+#include <unordered_map> // unordered_map
 
 #include <Graphics/Shader.hpp>
 #include <Graphics/Camera.hpp>
@@ -50,7 +48,7 @@ namespace GenevaEngine
 		GLFWwindow* GetWindow();
 		Camera* GetCamera();
 
-		// shader storage and access methods
+		// Asset storage and access methods
 		void SaveShader(std::string name, Shader shader);
 		Shader* GetShader(std::string name);
 
@@ -60,12 +58,14 @@ namespace GenevaEngine
 			Color(0x383838), Color(0x355c7d), Color(0x6c5b7b),
 			Color(0xc06c84), Color(0xf67280), Color(0xf8b195) };
 
-		// Asset references
+		// object references
 		Camera m_camera = Camera(b2Vec2(0.0f, 30.0f));
 		GLFWwindow* m_window;
 		Shader* m_triangle_shader = nullptr;
 		Shader* m_line_shader = nullptr;
-		std::map<std::string, Shader> m_shaders;
+
+		// Assets, mapped to keys
+		std::unordered_map<std::string, Shader> m_shaders;
 
 		// verts used in a single shape perspective transformation
 		b2Vec2 m_transformedVerts[512];
@@ -74,7 +74,7 @@ namespace GenevaEngine
 		void UpdateCameraMovement();
 
 		// render methods
-		void RenderEntity(Entity* entity);
+		void RenderEntity(Entity& entity);
 		void DrawSolidPolygon(b2Vec2* vertices, int32 vertexCount, Color& color);
 		void Flush();
 

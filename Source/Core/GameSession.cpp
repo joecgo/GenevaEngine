@@ -17,10 +17,15 @@
   **/
 
 #include <Core/GameCommon.hpp>
-#include <Gameplay/CharacterStates.hpp>
+#include <Gameplay/SingleShapeBehavior.hpp>
+#include <Physics/Construct.hpp>
+#include <Physics/SingleShape.hpp>
 
 namespace GenevaEngine
 {
+	// declare static variables
+	double GameSession::FrameTime = 0.01;
+
 	/*!
 	 *  Constructor. Initialize and start core systems
 	 */
@@ -54,57 +59,49 @@ namespace GenevaEngine
 	 */
 	void GameSession::CreateEntities()
 	{
-		// define these for each entity
-		b2BodyDef bodyDef;
-		b2FixtureDef fixtureDef;
-		b2PolygonShape shapeDef;
-		MultiBody* multiBody = nullptr;
+		// get world from physics system
+		b2World* world = GetPhysics()->GetWorld();
 
-		// create ground
-		bodyDef.position.Set(0.0f, -10.0f);
-		shapeDef.SetAsBox(50.0f, 10.0f);
-		fixtureDef.density = 0; // 0 density is static
-		multiBody = new MultiBody();
-		multiBody->AddBody(bodyDef, true);
-		multiBody->SetPolygonShape(shapeDef, fixtureDef);
-		multiBody->SetWorld(GetPhysics()->GetWorld());
-		Entity* ground = new Entity(this, "ground");
-		ground->AddMultiBody(multiBody);
-		ground->SetRenderColor(2);
+		// create construct
+		SingleShape* ground = new SingleShape(world);
+		ground->BodyDef.position.Set(0.0f, -10.0f);
+		ground->BodyDef.type = b2_staticBody;
+		ground->FixtureDef.density = 0.0f;
+		ground->Shape.SetAsBox(50.0f, 10.0f);
+		// create entity
+		Entity* ground_entity = new Entity(this, "box");
+		ground_entity->AddConstruct(ground);
+		ground_entity->SetRenderColor(2);
+
+		// create construct
+		SingleShape* hero = new SingleShape(world);
+		hero->BodyDef.position.Set(5.0f, 5.0f);
+		hero->BodyDef.type = b2_dynamicBody;
+		hero->FixtureDef.density = 1.0f;
+		hero->FixtureDef.friction = 5.0f;
+		hero->Shape.SetAsBox(3.0f, 3.0f);
+		hero->EnableBehavior();
+		// create entity
+		Entity* hero_entity = new Entity(this, "hero");
+		hero_entity->AddConstruct(hero);
+		hero_entity->SetRenderColor(5);
+		GetInput()->GetPlayerController()->Possess(hero_entity);
 
 		// create dynamic boxes
-		Entity* box = nullptr;
 		for (size_t i = 0; i < 50; i++)
 		{
-			bodyDef.type = b2_dynamicBody;
-			bodyDef.position.Set(0.0f, (float)i * 5.0f);
-			shapeDef.SetAsBox(1.0f, 1.0f);
-			fixtureDef.density = 0.01f; // super low density for "foam-like" behavior
-			fixtureDef.friction = 0.3f;
-			multiBody = new MultiBody();
-			multiBody->AddBody(bodyDef, true);
-			multiBody->SetPolygonShape(shapeDef, fixtureDef);
-			multiBody->SetWorld(GetPhysics()->GetWorld());
-			box = new Entity(this, "box");
-			box->AddMultiBody(multiBody);
-			box->SetRenderColor(3);
+			// create  construct
+			SingleShape* box = new SingleShape(world);
+			box->BodyDef.position.Set(0, i * 5.0f);
+			box->BodyDef.type = b2_dynamicBody;
+			box->FixtureDef.density = 0.01f;
+			box->FixtureDef.friction = 0.3f;
+			box->Shape.SetAsBox(1.0f, 1.0f);
+			// create entity
+			Entity* box_entity = new Entity(this, "box");
+			box_entity->AddConstruct(box);
+			box_entity->SetRenderColor(3);
 		}
-
-		// create hero. It is a bigger box! so heroic...
-		bodyDef.type = b2_dynamicBody;
-		bodyDef.position.Set(15.0f, 5.0f);
-		shapeDef.SetAsBox(3.0f, 3.0f);
-		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 5.0f;
-		multiBody = new MultiBody();
-		multiBody->AddBody(bodyDef, true);
-		multiBody->SetPolygonShape(shapeDef, fixtureDef);
-		multiBody->SetWorld(GetPhysics()->GetWorld());
-		Entity* hero = new Entity(this, "hero");
-		hero->AddMultiBody(multiBody);
-		hero->SetRenderColor(5);
-		m_input->GetPlayerController()->Possess(hero);
-		hero->AddFSM(new Grounded());
 	}
 
 	/*!

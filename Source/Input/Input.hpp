@@ -56,7 +56,7 @@ namespace GenevaEngine
 		static std::map<int, KeyState> keys;
 
 		// controllers
-		Controller* m_playerController;
+		Controller* m_playerController = nullptr;
 
 		// key state handling
 		void SetupKeyInputs(GLFWwindow* window);

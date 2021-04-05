@@ -9,43 +9,49 @@
  ****************************************************************************/
 
  /**
-  * \file CharacterStates.hpp
+  * \file SingleShapeBehavior.hpp
   * \author Joe Goldman
-  * \brief Character State class declarations
+  * \brief SingleShapeBehavior class declarations
   *
   */
 
 #pragma once
 
-#include <Gameplay/EntityState.hpp>
-#include <Input/Command.hpp>
-#include <Core/Entity.hpp>
-#include <Gameplay/RayCastCallback.hpp>
-#include <Gameplay/EntityBehavior.hpp>
+#include <Core/State.hpp>
 
 namespace GenevaEngine
 {
+	class SingleShape;
+	class Command;
+
 	/*!
 	 *  \brief Grounded state for Character FSM
 	 */
-	class Grounded : public EntityState
+	class Grounded : public State<SingleShape>
 	{
 	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, const Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
+		void Enter(SingleShape* owner);
+		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
+		State<SingleShape>* Update(SingleShape* owner, double dt);
+		void Exit(SingleShape* owner);
 	};
 
 	/*!
 	 *  \brief Airborne state for Character FSM
 	 */
-	class Airborne : public EntityState
+	class Airborne : public State<SingleShape>
 	{
 	public:
-		virtual void Enter(Entity& entity);
-		virtual EntityState* Notify(Entity& entity, const Command* command);
-		virtual EntityState* Update(Entity& entity);
-		virtual void Exit(Entity& entity);
+		void Enter(SingleShape* owner);
+		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
+		State<SingleShape>* Update(SingleShape* owner, double dt);
+		void Exit(SingleShape* owner);
+	};
+
+	class SingleShapeBehavior
+	{
+	public:
+		static void Move(SingleShape& singleShape, float x_axis, float moveSpeed = 1.0f);
+		static void Jump(SingleShape& singleShape, float jumpPower = 150.0f);
 	};
 }

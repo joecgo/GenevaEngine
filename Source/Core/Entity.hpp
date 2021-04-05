@@ -17,61 +17,52 @@
 
 #pragma once
 
-#include <string> // string
-#include <vector> // vector
+#include <Graphics/Color.hpp>
 
-#include <Input/Command.hpp>
-#include <Graphics/Shader.hpp>
-#include <Gameplay/EntityState.hpp>
-#include <Physics/MultiBody.hpp>
+#include <string> // string
 
 namespace GenevaEngine
 {
 	class GameSession;
 	class Controller;
+	class Command;
+	class Construct;
 
 	/*!
-	 *  \brief An object that populates the game. Like an actor or game object.
+	 *  \brief An object that populates the game. Like a UE4 Actor or Unity GameObject.
 	 */
 	class Entity
 	{
 	public:
 		// Attributes
-		const int ID;		// unique ID
-		std::string Name;	// A recognizable name for debugging
+		const int ID;							// unique ID
+		std::string Name;						// A recognizable name for debugging
 
-		// constructor
+		// Constructor
 		Entity(GameSession* gs, std::string name = "none");
 
+		// Public methods
 		void Spawn();							// puts this instance into the game
-		void AddMultiBody(MultiBody* multiBody);// attach a multibody to the entity
-		void AddFSM(EntityState* initState);	// add an initial state for a FSM
-		void Notify(const Command* command);	// Notify FSMs of incoming command
 		float FrameTime();						// Dt since last frame was rendered
-		b2World* GetWorld();					// Box2d world object
-		b2PolygonShape GetShape();				// Box2d shape for this entity
-		b2Body* GetAnchorBody();				// Box2d anchoring body from Entity's MultiBody
-
-		// TODO: render settings class
-		void SetRenderColor(int palette_color_id);
-		void SetRenderColor(Color color);
-		Color GetRenderColor() const;
+		void Notify(const Command* command);	// Notify Construct of incoming commands
+		void AddConstruct(Construct* Construct);// Add composite of box2d objects and properties
+		Construct* GetConstruct();				// Get construct (box2d composite)
+		void SetRenderColor(int colorID);		// Set base color for rendering (from palette ID)
+		void SetRenderColor(Color color);		// Set base color for rendering
+		Color GetRenderColor() const;			// Get base color for rendering
 
 	private:
 		// increments on entity construction to create a unique id
 		static int m_entityCount;
 
-		GameSession* m_gameSession = nullptr;	// object references
-		std::vector<EntityState*> m_states; 	// FSMs which observe incoming commands
-		MultiBody* m_multiBody;					// composite of multiple box2d bodies
+		// object references
+		GameSession* m_gameSession = nullptr;
+		Construct* m_construct = nullptr;
 
-		// TODO: implement components
-		// Component* components[max_components]
-
-		// TODO: render settings class
+		// base color for rendering
 		Color m_render_color;
 
-		//  Game loop
+		//  Game loop (only called by GameSession)
 		void Start();							// called once before first update
 		void FixedUpdate(double alpha);			// called on fixed physics time-steps
 		void Update(double dt);					// called on every rendered frame

@@ -9,43 +9,43 @@
  ****************************************************************************/
 
  /**
-  * \file MultiBody.hpp
+  * \file SingleShape.hpp
   * \author Joe Goldman
-  * \brief MultiBody class declaration
+  * \brief SingleShape class declaration
   *
   */
 
 #pragma once
 
-#include <box2d/box2d.h>
-
-#include <list> //list
-#include <iostream> // cout
+#include <Physics/Box2d.hpp>
+#include <Physics/Construct.hpp>
+#include <Core/State.hpp>
 
 namespace GenevaEngine
 {
-	class Entity;
-
-	class MultiBody
+	class SingleShape : public Construct
 	{
 	public:
-		void Initialize(); // only entity should call this
-		void SetWorld(b2World* world);
-		void SetPolygonShape(b2PolygonShape shapeDef, b2FixtureDef fixtureDef);
-		void AddBody(b2BodyDef bodyDef, bool isAnchor = false);
-		b2World* GetWorld();
-		b2PolygonShape GetShape();
-		b2Body* GetAnchorBody();
+		using Construct::Construct;
+
+		// Attributes, define these before creation
+		b2FixtureDef FixtureDef;
+		b2PolygonShape Shape;
+		b2BodyDef BodyDef;
+
+		b2Body* GetBody();
+		void EnableBehavior();
 
 	private:
-		b2World* m_world = nullptr;
-		b2Body* m_anchorBody = nullptr;
-		std::list<b2Body*> m_bodies;
-		b2BodyDef m_anchorBodyDef;
-		std::list<b2BodyDef> m_looseBodyDefs;
-		b2PolygonShape m_shapeDef;
-		b2FixtureDef m_fixtureDef;
+		b2Body* m_body = nullptr;
+		State<SingleShape>* m_state;
 
-		friend Entity;
+		void Notify(const Command* command);
+		void Create();
+		void Start();					// called once before first update
+		void FixedUpdate(double alpha);	// called on fixed physics time-steps
+		void Update(double dt);			// called on every rendered frame
+		void End();						// called once after last update
+		friend class Entity;
 	};
 }

@@ -66,6 +66,8 @@ namespace GenevaEngine
 	 */
 	void Controller::HandleInput()
 	{
+		if (m_entity == nullptr) return;
+
 		// iterate through key press binds, polling each global key state
 		for (KeyBinding kb : keypress_binds)
 		{
@@ -88,7 +90,7 @@ namespace GenevaEngine
 					axis -= 1.0f;
 			}
 
-			axis_bind.command->SetAxis(std::clamp(axis, -1.0f, 1.0f));
+			axis_bind.command->SetAxis(b2Clamp(axis, -1.0f, 1.0f));
 			m_entity->Notify(axis_bind.command);
 		}
 	}
