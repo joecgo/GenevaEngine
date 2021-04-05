@@ -17,7 +17,6 @@
 
 #pragma once
 
-#include <Physics/Box2d.hpp>
 #include <Constructs/Construct.hpp>
 #include <Core/State.hpp>
 
@@ -38,7 +37,7 @@ namespace GenevaEngine
 
 	private:
 		b2Body* m_body = nullptr;
-		State<SingleShape>* m_state;
+		State<SingleShape>* m_state = nullptr;
 
 		void Notify(const Command* command);
 		void Create();
