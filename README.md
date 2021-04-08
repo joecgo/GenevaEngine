@@ -13,9 +13,9 @@ Project is created with:
 The engine is still a work in progress, but here is an overview of what I have implemented so far.
 
 #### Table of Contents  
-[Game Loop](#the-game-loop)  
+[Game Loop](#game-loop)  
 
-### The Game Loop
+### Game Loop
 This is the main game loop.
 The basic execution order is: Input -> Physics -> Gameplay -> Render 
 
