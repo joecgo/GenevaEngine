@@ -107,7 +107,7 @@ namespace GenevaEngine
 		m_line_shader->UpdateProjection(proj);
 
 		// render entities
-		for (Entity* entity : m_gameSession->entities)
+		for (Entity* entity : m_gameSession->m_entities)
 			RenderEntity(*entity);
 		Flush();
 

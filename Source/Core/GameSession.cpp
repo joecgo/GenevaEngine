@@ -127,7 +127,7 @@ namespace GenevaEngine
 		WebDemo();
 
 		// start entities
-		for (Entity* entity : entities)
+		for (Entity* entity : m_entities)
 			entity->Start();
 
 		GameLoop();
@@ -157,20 +157,21 @@ namespace GenevaEngine
 			/// Game Loop Execution
 			// -------------------------------------------------------
 
-			m_input->Update(FrameTime); 					// Input
+			m_input->Update(FrameTime); 				// Input
 
-			// fixed update loop
+			// fixed time-step update loop
 			while (accumulator >= dt)
 			{
 				m_physics->Update(dt);					// Physics (fixed update)
-				for (Entity* entity : entities)			// Game Logic (fixed update)
+				for (Entity* entity : m_entities)		// Entities and their Constructs
 					entity->FixedUpdate(dt);
 
 				accumulator -= dt;
 			}
 
+			// render update
 			const double alpha = accumulator / dt;
-			for (Entity* entity : entities)				// Game Logic
+			for (Entity* entity : m_entities)			// Entities and their Constructs
 				entity->Update(FrameTime);
 			m_graphics->Update(FrameTime); 				// Render
 			while (Paused) { newTime = Time(); };		// Pausing
@@ -191,19 +192,19 @@ namespace GenevaEngine
 	void GameSession::End()
 	{
 		// end entities
-		for (Entity* entity : entities)
+		for (Entity* entity : m_entities)
 			entity->End();
 
 		// end systems
-		for (System* system : systems)
+		for (System* system : m_systems)
 			system->End();
 
 		// delete entities
-		for (Entity* entity : entities)
+		for (Entity* entity : m_entities)
 			delete entity;
 
 		// delete systems
-		for (System* system : systems)
+		for (System* system : m_systems)
 			delete system;
 
 		// public flag for closing down the program in main()
@@ -217,7 +218,7 @@ namespace GenevaEngine
 	 */
 	void GameSession::AddEntity(Entity* entity)
 	{
-		entities.push_back(entity);
+		m_entities.push_back(entity);
 	}
 
 	/*!
@@ -227,7 +228,7 @@ namespace GenevaEngine
 	 */
 	void GameSession::AddSystem(System* system)
 	{
-		systems.push_back(system);
+		m_systems.push_back(system);
 	}
 
 	/*!

@@ -47,6 +47,7 @@ namespace GenevaEngine
 		bool IsRunning = true; // flag tells main when to return
 
 		// getters
+		std::vector<Entity*>& GetEntityList() const;
 		Physics* GetPhysics();
 		Input* GetInput();
 		Graphics* GetGraphics();
@@ -61,15 +62,17 @@ namespace GenevaEngine
 		// box2d
 		b2World* GetWorld();
 
-		// system, entity references
-		std::vector<System*> systems;
-		std::vector<Entity*> entities;
+
 
 	private:
 		// system references
 		Physics* m_physics = nullptr;
 		Graphics* m_graphics = nullptr;
 		Input* m_input = nullptr;
+
+		// system, entity references
+		std::vector<System*> m_systems;
+		std::vector<Entity*> m_entities;
 
 		double Time();
 		void Start();
@@ -79,5 +82,7 @@ namespace GenevaEngine
 		// Level creation
 		void WebDemo();
 		void HardBoxBehaviorDemo();
+
+		friend Graphics;
 	};
 }
