@@ -2,7 +2,7 @@
 A custom C++ game engine developed by Joe Goldman
 
 ## General info
-GenevaEngine was created for my own learning and fun. The goal is to create an engine that leverages [Box2D](https://box2d.org/) physics to create games with unique mechanical constructions at the core of the gameplay. Intially my goal was to recreate my [Unreal4 Dueling Game](https://www.joecgo.com/ue4-dueling-game) with 2D soft-bodies made from springs and joints. I am also inspired by the Theo Jensen machine from the Box2D testbed.
+GenevaEngine was created for my own learning and fun. The goal is to create an engine that leverages [Box2D](https://box2d.org/) physics to create games with unique mechanical constructions at the core of the gameplay. Intially my goal was to recreate my [Unreal Engine Dueling Game](https://www.joecgo.com/ue4-dueling-game) with 2D soft-bodies made from springs and joints. I am also inspired by the Theo Jensen machine from the Box2D testbed.
 	
 ## Technologies
 Project is created with:
@@ -17,10 +17,11 @@ The engine is still a work in progress, but here is an overview of some of the i
 * [Entity](#entity)
 * [Construct](#construct) 
 * more to come soon...
-* 
+
 ### Game Loop
 This is the main game loop with a fixed time-step for physics. Based on code from [Fix Your Timestep! by Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/). 
-The basic execution order is: Input -> Physics -> Gameplay -> Render 
+
+The basic execution order is: **Input** -> **Physics** -> **Gameplay** -> **Render** 
 
 Core/GameSession.cpp
 ```cpp
@@ -123,22 +124,28 @@ private:
 ### Construct
 This is where the fun starts. This is used as a base class for any type of physical construct - Anything from a wiggly soft-body to a complex Theo Jensen inspired machine. The implementation of the **Create** method gives the Construct its unique form. The **Nofity** method is implemented to allow Player or AI input to change the construct's behavior.
 
+The Construct acts as a component of the [Entity](#entity). All commands come through the Entity's **Notify** method first, and the Entity will call **Create** in it's own **Spawn** method. The **Start**, **End**, **Update**, and **FixedUpdate** methods are all called within the Entity's own methods of the same name.
+
  Constructs/Construct.hpp
 ```cpp
 class Construct
 {
 public:
 	Construct(b2World* world);
+	
 	void SetWorld(b2World* world);
 	b2World* GetWorld();
+	
 	// return a list of body render data for rendering all the verts in graphics system
 	std::list<BodyRenderData>* GetConstructRenderData();
 
 protected:
 	// current state this object is not Created twice
 	ExistanceState m_state = ExistanceState::Standby;
+	
 	// reference to b2World object
 	b2World* m_world = nullptr;
+	
 	// collection of data for graphics to use for rendering
 	std::list<BodyRenderData> m_constructRenderData;
 
