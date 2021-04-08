@@ -51,6 +51,9 @@ namespace GenevaEngine
 		Input* GetInput();
 		Graphics* GetGraphics();
 
+		// Game loop helper
+		bool WindowIsClosed();
+
 		// systems and entities add themselves to gamesession on consturction
 		void AddSystem(System* system);
 		void AddEntity(Entity* entity);

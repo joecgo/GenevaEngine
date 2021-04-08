@@ -143,7 +143,7 @@ namespace GenevaEngine
 		double currentTime = Time();
 		double accumulator = 0.0;
 
-		while (!glfwWindowShouldClose(m_graphics->m_window))
+		while (!WindowIsClosed())
 		{
 			// time calculations
 			double newTime = Time();
@@ -243,5 +243,10 @@ namespace GenevaEngine
 	b2World* GameSession::GetWorld()
 	{
 		return &(m_physics->m_world);
+	}
+
+	bool GameSession::WindowIsClosed()
+	{
+		return glfwWindowShouldClose(m_graphics->m_window);
 	}
 }
