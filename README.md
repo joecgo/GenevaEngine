@@ -2,7 +2,7 @@
 A custom C++ game engine developed by Joe Goldman
 
 ## General info
-GenevaEngine was created for my own learning and fun. The goal is to create an engine that leverages [Box2D](https://box2d.org/) physics to create games with unique mechanical constructions at the core of the gameplay. Intially my goal was to recreate my [Unreal4 Dueling Game](https://www.joecgo.com/ue4-dueling-game) with 2D soft-bodies made from springs and joints. I am also inspired by the Theo Jensen machine from the Box2D testbed.
+GenevaEngine was created for my own learning and fun. The goal is to create an engine that leverages [Box2D](https://box2d.org/) physics to create games with unique mechanical constructions at the core of the gameplay. Intially my goal was to recreate my [Unreal Engine Dueling Game](https://www.joecgo.com/ue4-dueling-game) with 2D soft-bodies made from springs and joints. I am also inspired by the Theo Jensen machine from the Box2D testbed.
 	
 ## Technologies
 Project is created with:
