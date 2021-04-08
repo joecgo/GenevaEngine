@@ -48,14 +48,14 @@ void GameSession::GameLoop()
 		while (accumulator >= dt)
 		{
 			m_physics->Update(dt);			// Physics (fixed update)
-			for (Entity* entity : entities)		// Gameplay Entities
+			for (Entity* entity : m_entities)	// Gameplay Entities
 				entity->FixedUpdate(dt);
 
 			accumulator -= dt;
 		}
 
 		const double alpha = accumulator / dt;
-		for (Entity* entity : entities)			// Gameplay Entities
+		for (Entity* entity : m_entities)		// Gameplay Entities
 			entity->Update(FrameTime);
 		m_graphics->Update(FrameTime); 			// Render
 		while (Paused) { newTime = Time(); };		// Pausing
