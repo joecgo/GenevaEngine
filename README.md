@@ -10,7 +10,7 @@ Project is created with:
 * [Box2D](https://box2d.org/)
 
 ## Code Overview
-The engine is still a work in progress, but here is an overview of what I have implemented so far.
+The engine is still a work in progress, but here is an overview of some of the important components I have implemented so far.
 
 #### Table of Contents  
 * [Game Loop](#game-loop) 
