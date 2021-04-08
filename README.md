@@ -16,8 +16,7 @@ The engine is still a work in progress, but here is an overview of what I have i
 [Game Loop](#game-loop)  
 
 ### Game Loop
-This is the main game loop with a fixed time-step for physics.
-This game loop solution is based on [Fix Your Timestep! by Glenn Fiedler] (https://gafferongames.com/post/fix_your_timestep/)
+This is the main game loop with a fixed time-step for physics. Based on code from [Fix Your Timestep! by Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/)
 The basic execution order is: Input -> Physics -> Gameplay -> Render 
 
 Core/GameSession.cpp
