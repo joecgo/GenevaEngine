@@ -29,11 +29,6 @@ namespace GenevaEngine
 	protected:
 		GameSession* m_gameSession = nullptr;
 	private:
-		/*!
-		 *  Constructor.
-		 *
-		 *      \param [in] gs
-		 */
 		System(GameSession* gs);
 
 		virtual void Start() = 0;
