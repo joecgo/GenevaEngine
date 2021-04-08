@@ -1,5 +1,7 @@
+<img align="left" width="80" height="80" src="http://github.com/joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true" alt="Geneva Engine Logo">
+
 # Geneva Engine
-![logo](http://github.com/joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true")
+
 A custom C++ game engine developed by Joe Goldman
 
 ## General info
