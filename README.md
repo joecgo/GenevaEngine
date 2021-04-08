@@ -16,7 +16,7 @@ The engine is still a work in progress, but here is an overview of what I have i
 [Game Loop](#game-loop)  
 
 ### Game Loop
-This is the main game loop.
+This is the main game loop with a fixed time-step for physics.
 The basic execution order is: Input -> Physics -> Gameplay -> Render 
 
 Core/GameSession.cpp
