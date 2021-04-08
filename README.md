@@ -8,9 +8,12 @@ GenevaEngine was created for my own learning and fun. The goal is to create an e
 Project is created with:
 * [OpenGL](https://www.opengl.org/)
 * [Box2D](https://box2d.org/)
-	
+
 ## Code Overview
 The engine is still a work in progress, but here is an overview of what I have implemented so far.
+
+#### Table of Contents  
+[Game Loop](#the-game-loop)  
 
 ### The Game Loop
 This is the main game loop.
@@ -45,14 +48,14 @@ void GameSession::GameLoop()
 		while (accumulator >= dt)
 		{
 			m_physics->Update(dt);			// Physics (fixed update)
-			for (Entity* entity : entities)		// Game Logic (fixed update)
+			for (Entity* entity : entities)		// Gameplay Entities
 				entity->FixedUpdate(dt);
 
 			accumulator -= dt;
 		}
 
 		const double alpha = accumulator / dt;
-		for (Entity* entity : entities)			// Game Logic
+		for (Entity* entity : entities)			// Gameplay Entities
 			entity->Update(FrameTime);
 		m_graphics->Update(FrameTime); 			// Render
 		while (Paused) { newTime = Time(); };		// Pausing
