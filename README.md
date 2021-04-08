@@ -1,4 +1,4 @@
-<img align="left" width="80" height="80" src="http://github.com/joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true" alt="Geneva Engine Logo">
+<img align="left" width="256" height="205" src="http://github.com/joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true" alt="Geneva Engine Logo">
 
 # Geneva Engine
 
