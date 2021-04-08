@@ -122,7 +122,9 @@ private:
 ```
 
 ### Construct
-This is where the fun starts. This is used as a base class for any type of physical construct - Anything from a wiggly soft-body to a complex Theo Jensen inspired machine. The implementation of the **Create** method gives the Construct its unique form. The **Nofity** method is implemented to allow Player or AI input to change the construct's behavior. Acts as a component of the [Entity](#entity). All commands come through the Entity's **Notify** method first, and the Entity will call **Create** in it's own **Spawn** method. The **Start** **End** **Update** and **FixedUpdate** methods are all called within the Entity's own methods of the same name.
+This is where the fun starts. This is used as a base class for any type of physical construct - Anything from a wiggly soft-body to a complex Theo Jensen inspired machine. The implementation of the **Create** method gives the Construct its unique form. The **Nofity** method is implemented to allow Player or AI input to change the construct's behavior.
+
+The Construct acts as a component of the [Entity](#entity). All commands come through the Entity's **Notify** method first, and the Entity will call **Create** in it's own **Spawn** method. The **Start** **End** **Update** and **FixedUpdate** methods are all called within the Entity's own methods of the same name.
 
  Constructs/Construct.hpp
 ```cpp
