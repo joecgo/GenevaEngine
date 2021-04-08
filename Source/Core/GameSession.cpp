@@ -123,8 +123,8 @@ namespace GenevaEngine
 		m_input->Start();
 
 		// Create entities
-		// HardBoxBehaviorDemo();
-		WebDemo();
+		HardBoxBehaviorDemo();
+		//WebDemo();
 
 		// start entities
 		for (Entity* entity : m_entities)
