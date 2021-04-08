@@ -120,7 +120,7 @@ private:
 ```
 
 ### Construct
-This is where the fun starts. This is used as a base class for any type of physical construct - Anything from a wiggly soft-body box to complex Theo Jensen inspired machine. The implementation of the **Create** method gives the Construct its unique form. The **Nofity** method is implemented to allow Player or AI input to change the construct's behavior.
+This is where the fun starts. This is used as a base class for any type of physical construct - Anything from a wiggly soft-body to a complex Theo Jensen inspired machine. The implementation of the **Create** method gives the Construct its unique form. The **Nofity** method is implemented to allow Player or AI input to change the construct's behavior.
 
  Constructs/Construct.hpp
 ```cpp
