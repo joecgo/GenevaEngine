@@ -129,16 +129,20 @@ class Construct
 {
 public:
 	Construct(b2World* world);
+	
 	void SetWorld(b2World* world);
 	b2World* GetWorld();
+	
 	// return a list of body render data for rendering all the verts in graphics system
 	std::list<BodyRenderData>* GetConstructRenderData();
 
 protected:
 	// current state this object is not Created twice
 	ExistanceState m_state = ExistanceState::Standby;
+	
 	// reference to b2World object
 	b2World* m_world = nullptr;
+	
 	// collection of data for graphics to use for rendering
 	std::list<BodyRenderData> m_constructRenderData;
 
