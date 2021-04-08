@@ -19,11 +19,9 @@ The engine is still a work in progress, but here is an overview of some of the i
 * more to come soon...
 * 
 ### Game Loop
-This is the main game loop with a fixed time-step for physics. 
+This is the main game loop with a fixed time-step for physics. Based on code from [Fix Your Timestep! by Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/). 
 
-Based on code from [Fix Your Timestep! by Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/). 
-
-The basic execution order is: Input -> Physics -> Gameplay -> Render 
+The basic execution order is: **Input** -> **Physics** -> **Gameplay** -> **Render** 
 
 Core/GameSession.cpp
 ```cpp
