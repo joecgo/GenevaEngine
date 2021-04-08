@@ -1,5 +1,5 @@
 # Geneva Engine
-![logo](http://joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true")
+![logo](http://github.com/joecgo/GenevaEngine/blob/main/Documentation/icons/GenevaLogo_Logo.jpg?raw=true")
 A custom C++ game engine developed by Joe Goldman
 
 ## General info
