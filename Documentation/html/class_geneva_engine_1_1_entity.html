@@ -94,38 +94,34 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_entity.html','
 </div><!--header-->
 <div class="contents">
 
-<p>An object that populates the game. Like an actor or game object.  
+<p>An object that populates the game. Like a UE4 Actor or Unity GameObject.  
  <a href="class_geneva_engine_1_1_entity.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_entity_8hpp_source.html">Entity.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a63165fb1f43aeac6134348c5a47eeb6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a63165fb1f43aeac6134348c5a47eeb6d">Entity</a> (<a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a> *gs, b2BodyDef bodyDef, b2FixtureDef fixtureDef, b2PolygonShape shapeDef, std::string name=&quot;none&quot;)</td></tr>
-<tr class="separator:a63165fb1f43aeac6134348c5a47eeb6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12bedb21994eabad47314f6f2e112e83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a12bedb21994eabad47314f6f2e112e83">Spawn</a> ()</td></tr>
+<tr class="memitem:ae34da34366c95e9116b71187fe403c82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#ae34da34366c95e9116b71187fe403c82">Entity</a> (<a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a> *gs, std::string name=&quot;none&quot;)</td></tr>
+<tr class="separator:ae34da34366c95e9116b71187fe403c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12bedb21994eabad47314f6f2e112e83"><td class="memItemLeft" align="right" valign="top"><a id="a12bedb21994eabad47314f6f2e112e83"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Spawn</b> ()</td></tr>
 <tr class="separator:a12bedb21994eabad47314f6f2e112e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c00dbcd54914fbf67f4d11acb859fdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a8c00dbcd54914fbf67f4d11acb859fdf">AddFSM</a> (<a class="el" href="class_geneva_engine_1_1_entity_state.html">EntityState</a> *initial_state)</td></tr>
-<tr class="separator:a8c00dbcd54914fbf67f4d11acb859fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab602ac8ae8eb16dc500fee12f736ff0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#ab602ac8ae8eb16dc500fee12f736ff0a">Notify</a> (const <a class="el" href="class_geneva_engine_1_1_command.html">Command</a> *command)</td></tr>
-<tr class="separator:ab602ac8ae8eb16dc500fee12f736ff0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d2bcac07ca5ffacba1392d115d17b0b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a2d2bcac07ca5ffacba1392d115d17b0b">FrameTime</a> ()</td></tr>
 <tr class="separator:a2d2bcac07ca5ffacba1392d115d17b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a466f40683cb98b6c73d5aa3b42fdb457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a466f40683cb98b6c73d5aa3b42fdb457">SetRenderColor</a> (int palette_color_id)</td></tr>
-<tr class="separator:a466f40683cb98b6c73d5aa3b42fdb457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab602ac8ae8eb16dc500fee12f736ff0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#ab602ac8ae8eb16dc500fee12f736ff0a">Notify</a> (const <a class="el" href="class_geneva_engine_1_1_command.html">Command</a> *command)</td></tr>
+<tr class="separator:ab602ac8ae8eb16dc500fee12f736ff0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7244bc984470d9802a5d923b9c3133e6"><td class="memItemLeft" align="right" valign="top"><a id="a7244bc984470d9802a5d923b9c3133e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddConstruct</b> (<a class="el" href="class_geneva_engine_1_1_construct.html">Construct</a> *<a class="el" href="class_geneva_engine_1_1_construct.html">Construct</a>)</td></tr>
+<tr class="separator:a7244bc984470d9802a5d923b9c3133e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c30b4caa812a95ce16f719b9f6b5716"><td class="memItemLeft" align="right" valign="top"><a id="a5c30b4caa812a95ce16f719b9f6b5716"></a>
+<a class="el" href="class_geneva_engine_1_1_construct.html">Construct</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetConstruct</b> ()</td></tr>
+<tr class="separator:a5c30b4caa812a95ce16f719b9f6b5716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2778aaedc70b234620b92fd5a08af7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#abc2778aaedc70b234620b92fd5a08af7">SetRenderColor</a> (int colorID)</td></tr>
+<tr class="separator:abc2778aaedc70b234620b92fd5a08af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0402de82af3ac49bee115b6e720923b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a0402de82af3ac49bee115b6e720923b2">SetRenderColor</a> (<a class="el" href="class_geneva_engine_1_1_color.html">Color</a> color)</td></tr>
 <tr class="separator:a0402de82af3ac49bee115b6e720923b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b2fc9667d13b9b8e6e53e56e5861ca1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_geneva_engine_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geneva_engine_1_1_entity.html#a2b2fc9667d13b9b8e6e53e56e5861ca1">GetRenderColor</a> () const</td></tr>
 <tr class="separator:a2b2fc9667d13b9b8e6e53e56e5861ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab877e1ca4c1ea523708d305a38c8d5ca"><td class="memItemLeft" align="right" valign="top"><a id="ab877e1ca4c1ea523708d305a38c8d5ca"></a>
-b2World *&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorld</b> ()</td></tr>
-<tr class="separator:ab877e1ca4c1ea523708d305a38c8d5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92ae90249fe13edee20d00e5630f84b0"><td class="memItemLeft" align="right" valign="top"><a id="a92ae90249fe13edee20d00e5630f84b0"></a>
-b2PolygonShape&#160;</td><td class="memItemRight" valign="bottom"><b>GetShape</b> ()</td></tr>
-<tr class="separator:a92ae90249fe13edee20d00e5630f84b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f1418cc02117b7f5cdfa064fe0731c0"><td class="memItemLeft" align="right" valign="top"><a id="a3f1418cc02117b7f5cdfa064fe0731c0"></a>
-b2Body *&#160;</td><td class="memItemRight" valign="bottom"><b>GetBody</b> ()</td></tr>
-<tr class="separator:a3f1418cc02117b7f5cdfa064fe0731c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -143,10 +139,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td>
 <tr class="separator:a457986e85a61e428e7f0a7350202e9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An object that populates the game. Like an actor or game object. </p>
+<div class="textblock"><p>An object that populates the game. Like a UE4 Actor or Unity GameObject. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a63165fb1f43aeac6134348c5a47eeb6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63165fb1f43aeac6134348c5a47eeb6d">&#9670;&nbsp;</a></span>Entity()</h2>
+<a id="ae34da34366c95e9116b71187fe403c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae34da34366c95e9116b71187fe403c82">&#9670;&nbsp;</a></span>Entity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,24 +152,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_geneva_engine_1_1_game_session.html">GameSession</a> *&#160;</td>
           <td class="paramname"><em>gs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">b2BodyDef&#160;</td>
-          <td class="paramname"><em>bodyDef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">b2FixtureDef&#160;</td>
-          <td class="paramname"><em>fixtureDef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">b2PolygonShape&#160;</td>
-          <td class="paramname"><em>shapeDef</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -197,25 +175,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8c00dbcd54914fbf67f4d11acb859fdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c00dbcd54914fbf67f4d11acb859fdf">&#9670;&nbsp;</a></span>AddFSM()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GenevaEngine::Entity::AddFSM </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_geneva_engine_1_1_entity_state.html">EntityState</a> *&#160;</td>
-          <td class="paramname"><em>initial_state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a FSM by providing the initial state to the entity </p><pre class="fragment">\param [in,out] initial_state
-</pre> 
-</div>
-</div>
 <a id="a2d2bcac07ca5ffacba1392d115d17b0b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d2bcac07ca5ffacba1392d115d17b0b">&#9670;&nbsp;</a></span>FrameTime()</h2>
 
@@ -290,8 +249,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td>
 </pre> 
 </div>
 </div>
-<a id="a466f40683cb98b6c73d5aa3b42fdb457"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a466f40683cb98b6c73d5aa3b42fdb457">&#9670;&nbsp;</a></span>SetRenderColor() <span class="overload">[2/2]</span></h2>
+<a id="abc2778aaedc70b234620b92fd5a08af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2778aaedc70b234620b92fd5a08af7">&#9670;&nbsp;</a></span>SetRenderColor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -307,24 +266,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GameSession</b></td>
 </div><div class="memdoc">
 <p>Sets the entity's render color. </p><pre class="fragment">\param [in] palette_color_id
 </pre> 
-</div>
-</div>
-<a id="a12bedb21994eabad47314f6f2e112e83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12bedb21994eabad47314f6f2e112e83">&#9670;&nbsp;</a></span>Spawn()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GenevaEngine::Entity::Spawn </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Spawns the entity. </p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

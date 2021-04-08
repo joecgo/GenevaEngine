@@ -7,7 +7,7 @@
 
 
 
-{\ttfamily \#include $<$Character\+States.\+hpp$>$}
+{\ttfamily \#include $<$Single\+Shape\+Behavior.\+hpp$>$}
 
 Inheritance diagram for Geneva\+Engine\+::Grounded\+:\begin{figure}[H]
 \begin{center}
@@ -18,17 +18,17 @@ Inheritance diagram for Geneva\+Engine\+::Grounded\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_ae1dfde1fcf984c055b0d2490944cfdf5}\label{class_geneva_engine_1_1_grounded_ae1dfde1fcf984c055b0d2490944cfdf5}} 
-virtual void {\bfseries Enter} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} \&entity)
+\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_a807d70fb60264306a5795bfef6e491ee}\label{class_geneva_engine_1_1_grounded_a807d70fb60264306a5795bfef6e491ee}} 
+void {\bfseries Enter} (\mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $\ast$owner)
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_ac1464b51b7181c7ac92e46a0223e1099}\label{class_geneva_engine_1_1_grounded_ac1464b51b7181c7ac92e46a0223e1099}} 
-virtual \mbox{\hyperlink{class_geneva_engine_1_1_entity_state}{Entity\+State}} $\ast$ {\bfseries Notify} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} \&entity, const \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$command)
+\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_a2ef1e4fc8727ddb530aafe11f15de8e7}\label{class_geneva_engine_1_1_grounded_a2ef1e4fc8727ddb530aafe11f15de8e7}} 
+\mbox{\hyperlink{class_geneva_engine_1_1_state}{State}}$<$ \mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $>$ $\ast$ {\bfseries Notify} (\mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $\ast$owner, const \mbox{\hyperlink{class_geneva_engine_1_1_command}{Command}} $\ast$command)
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_aaf6339d6d18c44aff9dd283ed4e16724}\label{class_geneva_engine_1_1_grounded_aaf6339d6d18c44aff9dd283ed4e16724}} 
-virtual \mbox{\hyperlink{class_geneva_engine_1_1_entity_state}{Entity\+State}} $\ast$ {\bfseries Update} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} \&entity)
+\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_a2742b2e13863629ae908082a00872631}\label{class_geneva_engine_1_1_grounded_a2742b2e13863629ae908082a00872631}} 
+\mbox{\hyperlink{class_geneva_engine_1_1_state}{State}}$<$ \mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $>$ $\ast$ {\bfseries Update} (\mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $\ast$owner, double dt)
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_a705c00e2692c3bdb8a87bc2682a98afd}\label{class_geneva_engine_1_1_grounded_a705c00e2692c3bdb8a87bc2682a98afd}} 
-virtual void {\bfseries Exit} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} \&entity)
+\mbox{\Hypertarget{class_geneva_engine_1_1_grounded_a8b82267c607df532441a9296bedb31e3}\label{class_geneva_engine_1_1_grounded_a8b82267c607df532441a9296bedb31e3}} 
+void {\bfseries Exit} (\mbox{\hyperlink{class_geneva_engine_1_1_single_shape}{Single\+Shape}} $\ast$owner)
 \end{DoxyCompactItemize}
 
 
@@ -37,5 +37,5 @@ virtual void {\bfseries Exit} (\mbox{\hyperlink{class_geneva_engine_1_1_entity}{
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Gameplay/\mbox{\hyperlink{_character_states_8hpp}{Character\+States.\+hpp}}\item 
-C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Gameplay/\mbox{\hyperlink{_character_states_8cpp}{Character\+States.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Gameplay/\mbox{\hyperlink{_single_shape_behavior_8hpp}{Single\+Shape\+Behavior.\+hpp}}\item 
+C\+:/\+Users/joecg/\+Desktop/\+Geneva\+Engine/\+Source/\+Gameplay/\mbox{\hyperlink{_single_shape_behavior_8cpp}{Single\+Shape\+Behavior.\+cpp}}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keybinding_105',['KeyBinding',['../struct_geneva_engine_1_1_key_binding.html',1,'GenevaEngine']]]
+  ['input_106',['Input',['../class_geneva_engine_1_1_input.html',1,'GenevaEngine']]]
 ];

@@ -14,11 +14,20 @@
 \item 
 \mbox{\hyperlink{class_geneva_engine_1_1_game_session_a921e4cd6d3e988752ccc83a9da820821}{Game\+Session}} ()
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_physics}{Physics}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_game_session_a1877f4c203a3954f97ed2400075f20cb}{Get\+Physics}} ()
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_ae1e8441be986c0fd7407409b9f239baf}\label{class_geneva_engine_1_1_game_session_ae1e8441be986c0fd7407409b9f239baf}} 
+std\+::vector$<$ \mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} $\ast$ $>$ \& {\bfseries Get\+Entity\+List} () const
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_input}{Input}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_game_session_ac225459e91954c6c032ec7ae2192f640}{Get\+Input}} ()
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a1877f4c203a3954f97ed2400075f20cb}\label{class_geneva_engine_1_1_game_session_a1877f4c203a3954f97ed2400075f20cb}} 
+\mbox{\hyperlink{class_geneva_engine_1_1_physics}{Physics}} $\ast$ {\bfseries Get\+Physics} ()
 \item 
-\mbox{\hyperlink{class_geneva_engine_1_1_graphics}{Graphics}} $\ast$ \mbox{\hyperlink{class_geneva_engine_1_1_game_session_a413799a6e61550371c13cebc3e8a17a5}{Get\+Graphics}} ()
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_ac225459e91954c6c032ec7ae2192f640}\label{class_geneva_engine_1_1_game_session_ac225459e91954c6c032ec7ae2192f640}} 
+\mbox{\hyperlink{class_geneva_engine_1_1_input}{Input}} $\ast$ {\bfseries Get\+Input} ()
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a413799a6e61550371c13cebc3e8a17a5}\label{class_geneva_engine_1_1_game_session_a413799a6e61550371c13cebc3e8a17a5}} 
+\mbox{\hyperlink{class_geneva_engine_1_1_graphics}{Graphics}} $\ast$ {\bfseries Get\+Graphics} ()
+\item 
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a52587ad5adcda4d27dad30cfb27c0e7b}\label{class_geneva_engine_1_1_game_session_a52587ad5adcda4d27dad30cfb27c0e7b}} 
+bool {\bfseries Window\+Is\+Closed} ()
 \item 
 void \mbox{\hyperlink{class_geneva_engine_1_1_game_session_a66ac2fa01adc8512d57243ca4c0039bc}{Add\+System}} (\mbox{\hyperlink{class_geneva_engine_1_1_system}{System}} $\ast$system)
 \item 
@@ -30,20 +39,17 @@ b2\+World $\ast$ {\bfseries Get\+World} ()
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a144e0ad3575a24e0cb01e6e20a742c0c}\label{class_geneva_engine_1_1_game_session_a144e0ad3575a24e0cb01e6e20a742c0c}} 
-double {\bfseries Frame\+Time} = 0.\+01
-\item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_game_session_ac02b2eaccb77556139759e1511203952}\label{class_geneva_engine_1_1_game_session_ac02b2eaccb77556139759e1511203952}} 
 bool {\bfseries Paused} = false
 \item 
 \mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a6c3fb238d564e7dda45572bac96ff150}\label{class_geneva_engine_1_1_game_session_a6c3fb238d564e7dda45572bac96ff150}} 
 bool {\bfseries Is\+Running} = true
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_aaf1e0bde6d2bd0572fc583d585171fc3}\label{class_geneva_engine_1_1_game_session_aaf1e0bde6d2bd0572fc583d585171fc3}} 
-std\+::vector$<$ \mbox{\hyperlink{class_geneva_engine_1_1_system}{System}} $\ast$ $>$ {\bfseries systems}
-\item 
-\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_ae7ac17ab4cc4c3d19cfac18aee1f9d33}\label{class_geneva_engine_1_1_game_session_ae7ac17ab4cc4c3d19cfac18aee1f9d33}} 
-std\+::vector$<$ \mbox{\hyperlink{class_geneva_engine_1_1_entity}{Entity}} $\ast$ $>$ {\bfseries entities}
+\mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a144e0ad3575a24e0cb01e6e20a742c0c}\label{class_geneva_engine_1_1_game_session_a144e0ad3575a24e0cb01e6e20a742c0c}} 
+static double {\bfseries Frame\+Time} = 0.\+01
 \end{DoxyCompactItemize}
 
 
@@ -75,30 +81,6 @@ Adds an entity to \mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+S
 {\footnotesize\ttfamily void Geneva\+Engine\+::\+Game\+Session\+::\+Add\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_geneva_engine_1_1_system}{System}} $\ast$}]{system }\end{DoxyParamCaption})}
 
 Adds a \mbox{\hyperlink{class_geneva_engine_1_1_system}{System}} to \mbox{\hyperlink{class_geneva_engine_1_1_game_session}{Game\+Session}}\textquotesingle{}s array of Systems \begin{DoxyVerb}\param [in,out] system
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a413799a6e61550371c13cebc3e8a17a5}\label{class_geneva_engine_1_1_game_session_a413799a6e61550371c13cebc3e8a17a5}} 
-\index{GenevaEngine::GameSession@{GenevaEngine::GameSession}!GetGraphics@{GetGraphics}}
-\index{GetGraphics@{GetGraphics}!GenevaEngine::GameSession@{GenevaEngine::GameSession}}
-\doxysubsubsection{\texorpdfstring{GetGraphics()}{GetGraphics()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_graphics}{Graphics}} $\ast$ Geneva\+Engine\+::\+Game\+Session\+::\+Get\+Graphics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Returns the game session\textquotesingle{}s graphics. \begin{DoxyVerb}\return The graphics.
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_game_session_ac225459e91954c6c032ec7ae2192f640}\label{class_geneva_engine_1_1_game_session_ac225459e91954c6c032ec7ae2192f640}} 
-\index{GenevaEngine::GameSession@{GenevaEngine::GameSession}!GetInput@{GetInput}}
-\index{GetInput@{GetInput}!GenevaEngine::GameSession@{GenevaEngine::GameSession}}
-\doxysubsubsection{\texorpdfstring{GetInput()}{GetInput()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_input}{Input}} $\ast$ Geneva\+Engine\+::\+Game\+Session\+::\+Get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Returns the game session\textquotesingle{}s input. \begin{DoxyVerb}\return The input.
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_geneva_engine_1_1_game_session_a1877f4c203a3954f97ed2400075f20cb}\label{class_geneva_engine_1_1_game_session_a1877f4c203a3954f97ed2400075f20cb}} 
-\index{GenevaEngine::GameSession@{GenevaEngine::GameSession}!GetPhysics@{GetPhysics}}
-\index{GetPhysics@{GetPhysics}!GenevaEngine::GameSession@{GenevaEngine::GameSession}}
-\doxysubsubsection{\texorpdfstring{GetPhysics()}{GetPhysics()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_geneva_engine_1_1_physics}{Physics}} $\ast$ Geneva\+Engine\+::\+Game\+Session\+::\+Get\+Physics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Returns the game session\textquotesingle{}s physics. \begin{DoxyVerb}\return The physics.
 \end{DoxyVerb}
  
 

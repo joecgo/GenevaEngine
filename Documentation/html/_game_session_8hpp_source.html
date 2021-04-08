@@ -121,49 +121,57 @@ $(document).ready(function(){initNavTree('_game_session_8hpp_source.html',''); i
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_geneva_engine_1_1_game_session.html#a921e4cd6d3e988752ccc83a9da820821">GameSession</a>();</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// Attributes</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">double</span> FrameTime = 0.01;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">double</span> FrameTime;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> Paused = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> IsRunning = <span class="keyword">true</span>; <span class="comment">// flag tells main when to return</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// getters</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_geneva_engine_1_1_physics.html">Physics</a>* <a class="code" href="class_geneva_engine_1_1_game_session.html#a1877f4c203a3954f97ed2400075f20cb">GetPhysics</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_geneva_engine_1_1_input.html">Input</a>* <a class="code" href="class_geneva_engine_1_1_game_session.html#ac225459e91954c6c032ec7ae2192f640">GetInput</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_geneva_engine_1_1_graphics.html">Graphics</a>* <a class="code" href="class_geneva_engine_1_1_game_session.html#a413799a6e61550371c13cebc3e8a17a5">GetGraphics</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// systems and entities add themselves to gamesession on consturction</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_game_session.html#a66ac2fa01adc8512d57243ca4c0039bc">AddSystem</a>(<a class="code" href="class_geneva_engine_1_1_system.html">System</a>* system);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352">AddEntity</a>(<a class="code" href="class_geneva_engine_1_1_entity.html">Entity</a>* entity);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::vector&lt;Entity*&gt;&amp; GetEntityList() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_geneva_engine_1_1_physics.html">Physics</a>* GetPhysics();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_geneva_engine_1_1_input.html">Input</a>* GetInput();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_geneva_engine_1_1_graphics.html">Graphics</a>* GetGraphics();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// Game loop helper</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">bool</span> WindowIsClosed();</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// box2d</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        b2World* GetWorld();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// system, entity references</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::vector&lt;System*&gt; systems;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::vector&lt;Entity*&gt; entities;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// systems and entities add themselves to gamesession on consturction</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_game_session.html#a66ac2fa01adc8512d57243ca4c0039bc">AddSystem</a>(<a class="code" href="class_geneva_engine_1_1_system.html">System</a>* system);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352">AddEntity</a>(<a class="code" href="class_geneva_engine_1_1_entity.html">Entity</a>* entity);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">// box2d</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        b2World* GetWorld();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">// system references</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="class_geneva_engine_1_1_physics.html">Physics</a>* m_physics = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="class_geneva_engine_1_1_graphics.html">Graphics</a>* m_graphics = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="class_geneva_engine_1_1_input.html">Input</a>* m_input = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">double</span> Time();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> Start();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> GameLoop();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> End();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span> CreateEntities();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    };</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// system references</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="class_geneva_engine_1_1_physics.html">Physics</a>* m_physics = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_geneva_engine_1_1_graphics.html">Graphics</a>* m_graphics = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="class_geneva_engine_1_1_input.html">Input</a>* m_input = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// system, entity references</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        std::vector&lt;System*&gt; m_systems;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::vector&lt;Entity*&gt; m_entities;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> Time();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> Start();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">void</span> GameLoop();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span> End();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// Level creation</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span> WebDemo();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">void</span> HardBoxBehaviorDemo();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keyword">friend</span> <a class="code" href="class_geneva_engine_1_1_graphics.html">Graphics</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 <div class="ttc" id="a_game_common_8hpp_html"><div class="ttname"><a href="_game_common_8hpp.html">GameCommon.hpp</a></div><div class="ttdoc">Includes all the common classes for the game engine in one place.</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_entity_html"><div class="ttname"><a href="class_geneva_engine_1_1_entity.html">GenevaEngine::Entity</a></div><div class="ttdoc">An object that populates the game. Like an actor or game object.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:36</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_entity_html"><div class="ttname"><a href="class_geneva_engine_1_1_entity.html">GenevaEngine::Entity</a></div><div class="ttdoc">An object that populates the game. Like a UE4 Actor or Unity GameObject.</div><div class="ttdef"><b>Definition:</b> Entity.hpp:35</div></div>
 <div class="ttc" id="aclass_geneva_engine_1_1_game_session_html"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html">GenevaEngine::GameSession</a></div><div class="ttdoc">GameSession contains the control flow and initialization of all the systems.</div><div class="ttdef"><b>Definition:</b> GameSession.hpp:40</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a1877f4c203a3954f97ed2400075f20cb"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a1877f4c203a3954f97ed2400075f20cb">GenevaEngine::GameSession::GetPhysics</a></div><div class="ttdeci">Physics * GetPhysics()</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:41</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a413799a6e61550371c13cebc3e8a17a5"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a413799a6e61550371c13cebc3e8a17a5">GenevaEngine::GameSession::GetGraphics</a></div><div class="ttdeci">Graphics * GetGraphics()</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:61</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a66ac2fa01adc8512d57243ca4c0039bc"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a66ac2fa01adc8512d57243ca4c0039bc">GenevaEngine::GameSession::AddSystem</a></div><div class="ttdeci">void AddSystem(System *system)</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:220</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a921e4cd6d3e988752ccc83a9da820821"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a921e4cd6d3e988752ccc83a9da820821">GenevaEngine::GameSession::GameSession</a></div><div class="ttdeci">GameSession()</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:27</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a93b1590bc7754496c96747a4101eb352"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352">GenevaEngine::GameSession::AddEntity</a></div><div class="ttdeci">void AddEntity(Entity *entity)</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:210</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_ac225459e91954c6c032ec7ae2192f640"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#ac225459e91954c6c032ec7ae2192f640">GenevaEngine::GameSession::GetInput</a></div><div class="ttdeci">Input * GetInput()</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:51</div></div>
-<div class="ttc" id="aclass_geneva_engine_1_1_graphics_html"><div class="ttname"><a href="class_geneva_engine_1_1_graphics.html">GenevaEngine::Graphics</a></div><div class="ttdoc">Sets up shaders, window, and renders the game. Uses GLFW.</div><div class="ttdef"><b>Definition:</b> Graphics.hpp:38</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a66ac2fa01adc8512d57243ca4c0039bc"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a66ac2fa01adc8512d57243ca4c0039bc">GenevaEngine::GameSession::AddSystem</a></div><div class="ttdeci">void AddSystem(System *system)</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:229</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a921e4cd6d3e988752ccc83a9da820821"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a921e4cd6d3e988752ccc83a9da820821">GenevaEngine::GameSession::GameSession</a></div><div class="ttdeci">GameSession()</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:33</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_game_session_html_a93b1590bc7754496c96747a4101eb352"><div class="ttname"><a href="class_geneva_engine_1_1_game_session.html#a93b1590bc7754496c96747a4101eb352">GenevaEngine::GameSession::AddEntity</a></div><div class="ttdeci">void AddEntity(Entity *entity)</div><div class="ttdef"><b>Definition:</b> GameSession.cpp:219</div></div>
+<div class="ttc" id="aclass_geneva_engine_1_1_graphics_html"><div class="ttname"><a href="class_geneva_engine_1_1_graphics.html">GenevaEngine::Graphics</a></div><div class="ttdoc">Sets up shaders, window, and renders the game. Uses GLFW.</div><div class="ttdef"><b>Definition:</b> Graphics.hpp:36</div></div>
 <div class="ttc" id="aclass_geneva_engine_1_1_input_html"><div class="ttname"><a href="class_geneva_engine_1_1_input.html">GenevaEngine::Input</a></div><div class="ttdoc">Core system for handling input.</div><div class="ttdef"><b>Definition:</b> Input.hpp:36</div></div>
 <div class="ttc" id="aclass_geneva_engine_1_1_physics_html"><div class="ttname"><a href="class_geneva_engine_1_1_physics.html">GenevaEngine::Physics</a></div><div class="ttdoc">Physics system. Uses box2d.</div><div class="ttdef"><b>Definition:</b> Physics.hpp:30</div></div>
 <div class="ttc" id="aclass_geneva_engine_1_1_system_html"><div class="ttname"><a href="class_geneva_engine_1_1_system.html">GenevaEngine::System</a></div><div class="ttdoc">Abstract class for game engine systems to inherit from.</div><div class="ttdef"><b>Definition:</b> System.hpp:28</div></div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['move_172',['Move',['../class_geneva_engine_1_1_entity_behavior.html#a811c637c840eb167350a5bb317e8f68d',1,'GenevaEngine::EntityBehavior']]]
+  ['operator_2a_179',['operator*',['../class_geneva_engine_1_1_color.html#ab41b440885933c6fb85c0d6a93bf2e37',1,'GenevaEngine::Color']]]
 ];

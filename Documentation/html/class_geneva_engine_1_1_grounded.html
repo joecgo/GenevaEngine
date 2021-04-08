@@ -95,37 +95,37 @@ $(document).ready(function(){initNavTree('class_geneva_engine_1_1_grounded.html'
 <p><a class="el" href="class_geneva_engine_1_1_grounded.html" title="Grounded state for Character FSM.">Grounded</a> state for Character FSM.  
  <a href="class_geneva_engine_1_1_grounded.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_character_states_8hpp_source.html">CharacterStates.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_single_shape_behavior_8hpp_source.html">SingleShapeBehavior.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for GenevaEngine::Grounded:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_geneva_engine_1_1_grounded.png" usemap="#GenevaEngine::Grounded_map" alt=""/>
   <map id="GenevaEngine::Grounded_map" name="GenevaEngine::Grounded_map">
-<area href="class_geneva_engine_1_1_entity_state.html" title="Abstract state for entity FSM." alt="GenevaEngine::EntityState" shape="rect" coords="0,0,160,24"/>
+<area href="class_geneva_engine_1_1_state.html" alt="GenevaEngine::State&lt; SingleShape &gt;" shape="rect" coords="0,0,224,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae1dfde1fcf984c055b0d2490944cfdf5"><td class="memItemLeft" align="right" valign="top"><a id="ae1dfde1fcf984c055b0d2490944cfdf5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Enter</b> (<a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> &amp;entity)</td></tr>
-<tr class="separator:ae1dfde1fcf984c055b0d2490944cfdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1464b51b7181c7ac92e46a0223e1099"><td class="memItemLeft" align="right" valign="top"><a id="ac1464b51b7181c7ac92e46a0223e1099"></a>
-virtual <a class="el" href="class_geneva_engine_1_1_entity_state.html">EntityState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Notify</b> (<a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> &amp;entity, const <a class="el" href="class_geneva_engine_1_1_command.html">Command</a> *command)</td></tr>
-<tr class="separator:ac1464b51b7181c7ac92e46a0223e1099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf6339d6d18c44aff9dd283ed4e16724"><td class="memItemLeft" align="right" valign="top"><a id="aaf6339d6d18c44aff9dd283ed4e16724"></a>
-virtual <a class="el" href="class_geneva_engine_1_1_entity_state.html">EntityState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (<a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> &amp;entity)</td></tr>
-<tr class="separator:aaf6339d6d18c44aff9dd283ed4e16724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a705c00e2692c3bdb8a87bc2682a98afd"><td class="memItemLeft" align="right" valign="top"><a id="a705c00e2692c3bdb8a87bc2682a98afd"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b> (<a class="el" href="class_geneva_engine_1_1_entity.html">Entity</a> &amp;entity)</td></tr>
-<tr class="separator:a705c00e2692c3bdb8a87bc2682a98afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807d70fb60264306a5795bfef6e491ee"><td class="memItemLeft" align="right" valign="top"><a id="a807d70fb60264306a5795bfef6e491ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Enter</b> (<a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> *owner)</td></tr>
+<tr class="separator:a807d70fb60264306a5795bfef6e491ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef1e4fc8727ddb530aafe11f15de8e7"><td class="memItemLeft" align="right" valign="top"><a id="a2ef1e4fc8727ddb530aafe11f15de8e7"></a>
+<a class="el" href="class_geneva_engine_1_1_state.html">State</a>&lt; <a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>Notify</b> (<a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> *owner, const <a class="el" href="class_geneva_engine_1_1_command.html">Command</a> *command)</td></tr>
+<tr class="separator:a2ef1e4fc8727ddb530aafe11f15de8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2742b2e13863629ae908082a00872631"><td class="memItemLeft" align="right" valign="top"><a id="a2742b2e13863629ae908082a00872631"></a>
+<a class="el" href="class_geneva_engine_1_1_state.html">State</a>&lt; <a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (<a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> *owner, double dt)</td></tr>
+<tr class="separator:a2742b2e13863629ae908082a00872631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b82267c607df532441a9296bedb31e3"><td class="memItemLeft" align="right" valign="top"><a id="a8b82267c607df532441a9296bedb31e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b> (<a class="el" href="class_geneva_engine_1_1_single_shape.html">SingleShape</a> *owner)</td></tr>
+<tr class="separator:a8b82267c607df532441a9296bedb31e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_geneva_engine_1_1_grounded.html" title="Grounded state for Character FSM.">Grounded</a> state for Character FSM. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/joecg/Desktop/GenevaEngine/Source/Gameplay/<a class="el" href="_character_states_8hpp_source.html">CharacterStates.hpp</a></li>
-<li>C:/Users/joecg/Desktop/GenevaEngine/Source/Gameplay/<a class="el" href="_character_states_8cpp.html">CharacterStates.cpp</a></li>
+<li>C:/Users/joecg/Desktop/GenevaEngine/Source/Gameplay/<a class="el" href="_single_shape_behavior_8hpp_source.html">SingleShapeBehavior.hpp</a></li>
+<li>C:/Users/joecg/Desktop/GenevaEngine/Source/Gameplay/<a class="el" href="_single_shape_behavior_8cpp.html">SingleShapeBehavior.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
