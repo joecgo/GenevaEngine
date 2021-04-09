@@ -139,8 +139,8 @@ public:
 	void SetWorld(b2World* world);
 	b2World* GetWorld();
 	
-	// return a list of body render data for rendering all the verts in graphics system
-	std::list<BodyRenderData>* GetConstructRenderData();
+	// return a vector of body render data for rendering all the verts in graphics system
+	std::vector<BodyRenderData>* GetConstructRenderData();
 
 protected:
 	// existance state prevents construct from being created twice
@@ -150,7 +150,7 @@ protected:
 	b2World* m_world = nullptr;
 	
 	// collection of data for graphics to use for rendering
-	std::list<BodyRenderData> m_constructRenderData;
+	std::vector<BodyRenderData> m_constructRenderData;
 
 	// private methods
 	void SafeCreate();					// does a safety check then calls Create()
