@@ -39,7 +39,7 @@ namespace GenevaEngine
 			return new Airborne();
 
 		case Command::Move:
-			SingleShapeBehavior::Move(*owner, command->GetAxis());
+			xAxis = command->GetAxis();
 			break;
 		}
 
@@ -47,6 +47,9 @@ namespace GenevaEngine
 	}
 	State<SingleShape>* Grounded::Update(SingleShape* singleShape, double dt)
 	{
+		// apply horizontal movement from xAxis input
+		SingleShapeBehavior::Move(*singleShape, (float)dt, xAxis);
+
 		return nullptr;
 	}
 	void Grounded::Exit(SingleShape* singleShape)
@@ -62,7 +65,7 @@ namespace GenevaEngine
 		switch ((int)command->GetType())
 		{
 		case Command::Move:
-			SingleShapeBehavior::Move(*singleShape, command->GetAxis());
+			xAxis = command->GetAxis();
 			break;
 		}
 
@@ -70,6 +73,9 @@ namespace GenevaEngine
 	}
 	State<SingleShape>* Airborne::Update(SingleShape* singleShape, double dt)
 	{
+		// apply horizontal movement from xAxis input
+		SingleShapeBehavior::Move(*singleShape, (float)dt, xAxis);
+
 		// first check for downward vel
 		b2Body* body = singleShape->GetBody();
 		if (body->GetLinearVelocity().y > 0)
@@ -93,23 +99,33 @@ namespace GenevaEngine
 	{
 	}
 
-	void SingleShapeBehavior::Move(SingleShape& singleShape, float x_axis, float moveSpeed)
+	void SingleShapeBehavior::Move(SingleShape& singleShape, float dt, float x_axis,
+		float moveStrength, float maxVelocity)
 	{
-		float dt = (float)GameSession::FrameTime;
-		float moveScalar = 2000.0f;
+		// get body
 		b2Body* body = singleShape.GetBody();
-		b2Vec2 vel = body->GetLinearVelocity();
+
+		// calculate force
+		float adjustedStr = moveStrength * body->GetMass() * dt;
+		float forceX = 0.0;
 		if (x_axis > 0)
-			vel.x = moveSpeed * dt * moveScalar;
+			forceX = adjustedStr;
 		else if (x_axis < 0)
-			vel.x = -1.0f * moveSpeed * dt * moveScalar;
-		body->SetLinearVelocity(vel);
+			forceX = -1.0f * adjustedStr;
+
+		// apply force
+		body->ApplyLinearImpulseToCenter(b2Vec2(forceX, 0), true);
+
+		// max velocity
+		b2Vec2 velocity = body->GetLinearVelocity();
+		velocity.x = b2Clamp(velocity.x, -1.0f * maxVelocity, maxVelocity);
+		body->SetLinearVelocity(velocity);
 	}
 
-	void SingleShapeBehavior::Jump(SingleShape& singleShape, float jumpPower)
+	void SingleShapeBehavior::Jump(SingleShape& singleShape, float jumpStrength)
 	{
 		b2Body* body = singleShape.GetBody();
-		b2Vec2 force(0, body->GetMass() * jumpPower);
+		b2Vec2 force(0, body->GetMass() * jumpStrength);
 		body->ApplyLinearImpulseToCenter(force, true);
 	}
 }

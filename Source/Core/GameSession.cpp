@@ -23,11 +23,11 @@
 #include <Input/Input.hpp>
 #include <Core/Entity.hpp>
 
-
 namespace GenevaEngine
 {
 	// declare static variables
 	double GameSession::FrameTime = 0.01;
+	float GameSession::TimeStep = 0.01f;
 
 	/*!
 	 *  Constructor. Initialize and start core systems
@@ -84,7 +84,6 @@ namespace GenevaEngine
 	void GameSession::GameLoop()
 	{
 		// initialize time variables
-		float dt = 0.01f;
 		double currentTime = Time();
 		double accumulator = 0.0;
 
@@ -105,17 +104,17 @@ namespace GenevaEngine
 			m_input->Update(FrameTime); 				// Input
 
 			// fixed time-step update loop
-			while (accumulator >= dt)
+			while (accumulator >= TimeStep)
 			{
-				m_physics->Update(dt);					// Physics (fixed update)
+				m_physics->Update(TimeStep);			// Physics (fixed update)
 				for (Entity* entity : m_entities)		// Entities and their Constructs
-					entity->FixedUpdate(dt);
+					entity->FixedUpdate(TimeStep);
 
-				accumulator -= dt;
+				accumulator -= TimeStep;
 			}
 
 			// render update
-			const double alpha = accumulator / dt;
+			const double alpha = accumulator / TimeStep;
 			for (Entity* entity : m_entities)			// Entities and their Constructs
 				entity->Update(FrameTime);
 			m_graphics->Update(FrameTime); 				// Render

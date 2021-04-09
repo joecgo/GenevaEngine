@@ -43,6 +43,7 @@ namespace GenevaEngine
 
 		// Attributes
 		static double FrameTime;
+		static float TimeStep;
 		bool Paused = false;
 		bool IsRunning = true; // flag tells main when to return
 
@@ -61,12 +62,11 @@ namespace GenevaEngine
 		// box2d
 		b2World* GetWorld();
 
-
 	private:
 		// system references
 		Physics* m_physics = nullptr;
 		Graphics* m_graphics = nullptr;
-		Input* m_input = nullptr;		
+		Input* m_input = nullptr;
 
 		// system, entity references
 		std::vector<System*> m_systems;

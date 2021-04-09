@@ -68,13 +68,9 @@ namespace GenevaEngine
 
 	void SingleShape::FixedUpdate(double alpha)
 	{
-	}
-
-	void SingleShape::Update(double dt)
-	{
 		if (m_state == nullptr) return;
 
-		State<SingleShape>* next_state = m_state->Update(this, dt);
+		State<SingleShape>* next_state = m_state->Update(this, alpha);
 		if (next_state != nullptr)
 		{
 			m_state->Exit(this);
@@ -82,6 +78,10 @@ namespace GenevaEngine
 			next_state->Enter(this);
 			m_state = next_state;
 		}
+	}
+
+	void SingleShape::Update(double dt)
+	{
 	}
 
 	void SingleShape::End()

@@ -34,6 +34,9 @@ namespace GenevaEngine
 		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
 		State<SingleShape>* Update(SingleShape* owner, double dt);
 		void Exit(SingleShape* owner);
+
+	private:
+		float xAxis = 0.0f; // horizontal axis applied by controller
 	};
 
 	/*!
@@ -46,12 +49,15 @@ namespace GenevaEngine
 		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
 		State<SingleShape>* Update(SingleShape* owner, double dt);
 		void Exit(SingleShape* owner);
+	private:
+		float xAxis = 0.0f; // horizontal axis applied by controller
 	};
 
 	class SingleShapeBehavior
 	{
 	public:
-		static void Move(SingleShape& singleShape, float x_axis, float moveSpeed = 1.0f);
-		static void Jump(SingleShape& singleShape, float jumpPower = 150.0f);
+		static void Move(SingleShape& singleShape, float dt, float x_axis,
+			float moveStrength = 500.0f, float maxVelocity = 45.0f);
+		static void Jump(SingleShape& singleShape, float jumpStrength = 150.0f);
 	};
 }

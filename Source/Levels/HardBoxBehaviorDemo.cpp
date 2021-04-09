@@ -5,15 +5,15 @@
  *                                                                          *
  *   GenevaEngine is a custom C++ engine built for the purposes of 			*
  *	 learning and fun. You can reach me at joecgo@gmail.com. 				*
- *                                                                          *  
+ *                                                                          *
  ****************************************************************************/
 
-/**
- * \file HardBoxBehaviorDemo.cpp
- * \author Joe Goldman
- * \brief HardBoxBehaviorDemo class definition
- *
- **/
+ /**
+  * \file HardBoxBehaviorDemo.cpp
+  * \author Joe Goldman
+  * \brief HardBoxBehaviorDemo class definition
+  *
+  **/
 
 #include <Levels/HardBoxBehaviorDemo.hpp>
 #include <Core/GameSession.hpp>
@@ -43,8 +43,9 @@ namespace GenevaEngine
 		SingleShape* hero = new SingleShape(world);
 		hero->BodyDef.position.Set(5.0f, 5.0f);
 		hero->BodyDef.type = b2_dynamicBody;
+		hero->BodyDef.linearDamping = 0.1f;
 		hero->FixtureDef.density = 1.0f;
-		hero->FixtureDef.friction = 5.0f;
+		hero->FixtureDef.friction = 3.0f;
 		hero->Shape.SetAsBox(3.0f, 3.0f);
 		hero->EnableBehavior();
 		// create entity
