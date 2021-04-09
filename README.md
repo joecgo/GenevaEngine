@@ -19,7 +19,7 @@ The engine is still a work in progress, but here is an overview of some of the i
 * [Game Loop](#game-loop) 
 * [Entity](#entity)
 * [Construct](#construct) 
-* [SingleShape](#singleshape)
+* [SingleShape](#a-simple-construct:-singleshape)
 
 
 ### Game Loop
@@ -165,11 +165,13 @@ protected:
 };
 ```
 
-### SingleShape
+### A Simple Construct: SingleShape
 This is a simple implementation of the [Construct](#construct) base class. The SingleShape class is designed to be general enough for any single-bodied Construct. For example, a SingleShape, during its instantiation, can be defined as a circle, a box, or any type of polygon. If you desire multiple bodies as part of a single Construct, a different class of Construct will need to be used.
 
 **SingleShape::Notify** is derived from the base Construct class, and, in this case, implemented with a custom state machine specific to the SingleShape class.
+
 **SingleShape::Create** is also derived from Construct. FixtureDef, Shape, BodyDef are Box2D objects used to define the parameters of the physical object before it is created. The render data then needs to be organized for the Graphics system to use.
+
 **SingleShape::GetBody** This method provides the Box2D body of the SingleShape. It is used to implement behaviors like movement and jumping. In a more complex Construct, a call like this may not neccessarily make sense because a construct could be made up of many bodies.
 
  Constructs/SingleShape.cpp
