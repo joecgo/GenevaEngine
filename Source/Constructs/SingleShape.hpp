@@ -20,8 +20,6 @@
 #include <Constructs/Construct.hpp>
 #include <Core/State.hpp>
 
-#include <queue> // queue
-
 namespace GenevaEngine
 {
 	class SingleShape : public Construct
