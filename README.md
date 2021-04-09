@@ -143,7 +143,7 @@ public:
 	std::list<BodyRenderData>* GetConstructRenderData();
 
 protected:
-	// current state this object is not Created twice
+	// existance state prevents construct from being created twice
 	ExistanceState m_state = ExistanceState::Standby;
 	
 	// reference to b2World object
