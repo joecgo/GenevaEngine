@@ -21,17 +21,17 @@
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // glfwWindowShouldClose
 
-#include <vector> // vector
+#include <Physics/Box2d.hpp>
+#include <Physics/Physics.hpp>
+#include <Graphics/Graphics.hpp>
+#include <Input/Input.hpp>
 
-#include <Core/GameCommon.hpp>
+#include <vector> // vector
 
 namespace GenevaEngine
 {
 	class Entity;
 	class System;
-	class Graphics;
-	class Input;
-	class Physics;
 
 	/*!
 	 *  \brief GameSession contains the control flow and initialization of all the systems.
@@ -47,7 +47,6 @@ namespace GenevaEngine
 		bool IsRunning = true; // flag tells main when to return
 
 		// getters
-		std::vector<Entity*>& GetEntityList() const;
 		Physics* GetPhysics();
 		Input* GetInput();
 		Graphics* GetGraphics();
@@ -63,12 +62,11 @@ namespace GenevaEngine
 		b2World* GetWorld();
 
 
-
 	private:
 		// system references
 		Physics* m_physics = nullptr;
 		Graphics* m_graphics = nullptr;
-		Input* m_input = nullptr;
+		Input* m_input = nullptr;		
 
 		// system, entity references
 		std::vector<System*> m_systems;
@@ -78,10 +76,6 @@ namespace GenevaEngine
 		void Start();
 		void GameLoop();
 		void End();
-
-		// Level creation
-		void WebDemo();
-		void HardBoxBehaviorDemo();
 
 		friend Graphics;
 	};

@@ -5,21 +5,31 @@
  *                                                                          *
  *   GenevaEngine is a custom C++ engine built for the purposes of 			*
  *	 learning and fun. You can reach me at joecgo@gmail.com. 				*
- *                                                                          *
+ *                                                                          *  
  ****************************************************************************/
 
- /**
-  * \file Main.cpp
-  * \author Joe Goldman
-  * \brief Launches engine in main()
-  */
+/**
+ * \file WebDemo.cpp
+ * \author Joe Goldman
+ * \brief WebDemo class definition
+ *
+ **/
 
+#include <Levels/WebDemo.hpp>
 #include <Core/GameSession.hpp>
+#include <Constructs/Web.hpp>
+#include <Core/Entity.hpp>
 
-int main()
+namespace GenevaEngine
 {
-	GenevaEngine::GameSession gs;
-	while (gs.IsRunning) {}
+	void WebDemo::Load(GameSession& gs)
+	{
+		// get world from physics system
+		b2World* world = gs.GetPhysics()->GetWorld();
 
-	return 0;
+		// create entity
+		Entity* web_entity = new Entity(&gs, "web");
+		web_entity->AddConstruct(new Web(world));
+		web_entity->SetRenderColor(5);
+	}
 }

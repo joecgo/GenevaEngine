@@ -16,13 +16,9 @@
 
 #pragma once
 
-  // Disable warning messages from box2d: C26812 C26495
-#pragma warning( disable : 26812 26495)
-
   // Disable warning messages from Shader: C6386
 #pragma warning( disable : 6386)
 
-#include <box2d/box2d.h>
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
 
@@ -31,6 +27,7 @@
 #include <sstream>
 #include <iostream>
 
+#include <Physics/Box2d.hpp> // b2Vec2
 #include <Graphics/Color.hpp>
 
 #define BUFFER_OFFSET(x)  ((const void*) (x))

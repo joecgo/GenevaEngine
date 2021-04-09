@@ -85,6 +85,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Levels\HardBoxBehaviorDemo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Levels\WebDemo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Physics\RayCastCallback.cpp">
       <SubType>
       </SubType>
@@ -175,6 +183,22 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
+    <ClInclude Include="Source\Levels\HardBoxBehaviorDemo.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\IncludeAllLevels.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\Level.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\WebDemo.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Physics\Box2d.hpp">
       <SubType>
       </SubType>
@@ -184,10 +208,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Core\System.hpp">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Core\GameCommon.hpp">
       <SubType>
       </SubType>
     </ClInclude>

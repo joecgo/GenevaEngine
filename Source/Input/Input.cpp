@@ -15,7 +15,11 @@
   *
   **/
 
-#include <Core/GameCommon.hpp>
+#include <Input/Input.hpp>
+#include <Core/GameSession.hpp>
+#include <Input/Command.hpp>
+#include <Input/Controller.hpp>
+#include <Graphics/Camera.hpp>
 
 namespace GenevaEngine
 {

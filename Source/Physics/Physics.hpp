@@ -17,8 +17,7 @@
 
 #pragma once
 
-#include <box2d/box2d.h>
-
+#include <Physics/Box2d.hpp>
 #include <Core/System.hpp>
 
 namespace GenevaEngine

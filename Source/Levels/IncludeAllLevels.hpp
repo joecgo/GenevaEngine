@@ -5,26 +5,17 @@
  *                                                                          *
  *   GenevaEngine is a custom C++ engine built for the purposes of 			*
  *	 learning and fun. You can reach me at joecgo@gmail.com. 				*
- *                                                                          *
+ *                                                                          *  
  ****************************************************************************/
 
- /**
-  * \file GameCommon.hpp
-  * \author Joe Goldman
-  * \brief Includes all the common classes for the game engine in one place
-  *
-  */
+/**
+ * \file IncludeAllLevels.hpp
+ * \author Joe Goldman
+ * \brief IncludeAllLevels is a file with the includes for all the levels
+ *
+ */
 
 #pragma once
 
-  // Disable warning messages from box2d: C26812 C26495
-#pragma warning( disable : 26812 26495)
-
-#include <box2d/box2d.h> // box2d
-#include <iostream> // cout endl
-#include <Core/GameSession.hpp>
-#include <Core/System.hpp>
-#include <Core/Entity.hpp>
-#include <Graphics/Graphics.hpp>
-#include <Input/Input.hpp>
-#include <Physics/Physics.hpp>
+#include <Levels/WebDemo.hpp>
+#include <Levels/HardBoxBehaviorDemo.hpp>

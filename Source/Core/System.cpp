@@ -15,7 +15,8 @@
   *
   **/
 
-#include <Core/GameCommon.hpp>
+#include <Core/System.hpp>
+#include <Core/GameSession.hpp>
 
 namespace GenevaEngine
 {

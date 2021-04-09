@@ -16,11 +16,13 @@
   *
   **/
 
-#include <Core/GameCommon.hpp>
+#include <Core/GameSession.hpp>
+#include <Levels/IncludeAllLevels.hpp>
+#include <Graphics/Graphics.hpp>
+#include <Physics/Physics.hpp>
+#include <Input/Input.hpp>
+#include <Core/Entity.hpp>
 
-#include <Constructs/Construct.hpp>
-#include <Constructs/SingleShape.hpp>
-#include <Constructs/Web.hpp>
 
 namespace GenevaEngine
 {
@@ -54,64 +56,6 @@ namespace GenevaEngine
 		return m_graphics;
 	}
 
-	void GameSession::WebDemo()
-	{
-		// get world from physics system
-		b2World* world = GetPhysics()->GetWorld();
-
-		// create entity
-		Entity* web_entity = new Entity(this, "box");
-		web_entity->AddConstruct(new Web(world));
-		web_entity->SetRenderColor(5);
-	}
-
-	void GameSession::HardBoxBehaviorDemo()
-	{
-		// get world from physics system
-		b2World* world = GetPhysics()->GetWorld();
-
-		// create construct
-		SingleShape* ground = new SingleShape(world);
-		ground->BodyDef.position.Set(0.0f, -10.0f);
-		ground->BodyDef.type = b2_staticBody;
-		ground->FixtureDef.density = 0.0f;
-		ground->Shape.SetAsBox(50.0f, 10.0f);
-		// create entity
-		Entity* ground_entity = new Entity(this, "box");
-		ground_entity->AddConstruct(ground);
-		ground_entity->SetRenderColor(2);
-
-		// create construct
-		SingleShape* hero = new SingleShape(world);
-		hero->BodyDef.position.Set(5.0f, 5.0f);
-		hero->BodyDef.type = b2_dynamicBody;
-		hero->FixtureDef.density = 1.0f;
-		hero->FixtureDef.friction = 5.0f;
-		hero->Shape.SetAsBox(3.0f, 3.0f);
-		hero->EnableBehavior();
-		// create entity
-		Entity* hero_entity = new Entity(this, "hero");
-		hero_entity->AddConstruct(hero);
-		hero_entity->SetRenderColor(5);
-		GetInput()->GetPlayerController()->Possess(hero_entity);
-
-		// create dynamic boxes
-		for (size_t i = 0; i < 50; i++)
-		{
-			// create  construct
-			SingleShape* box = new SingleShape(world);
-			box->BodyDef.position.Set(0, i * 5.0f);
-			box->BodyDef.type = b2_dynamicBody;
-			box->FixtureDef.density = 0.01f;
-			box->FixtureDef.friction = 0.3f;
-			box->Shape.SetAsBox(1.0f, 1.0f);
-			// create entity
-			Entity* box_entity = new Entity(this, "box");
-			box_entity->AddConstruct(box);
-			box_entity->SetRenderColor(3);
-		}
-	}
-
 	/*!
 	 *  Starts the core systems and enter game loop
 	 */
@@ -122,9 +66,10 @@ namespace GenevaEngine
 		m_physics->Start();
 		m_input->Start();
 
-		// Create entities
-		HardBoxBehaviorDemo();
-		//WebDemo();
+		// Load level
+		// TODO: level loading should be done at run-time with a config file
+		HardBoxBehaviorDemo::Load(*this);
+		//WebDemo::Load(*this);
 
 		// start entities
 		for (Entity* entity : m_entities)

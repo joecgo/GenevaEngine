@@ -22,13 +22,17 @@
 
 #include <iostream> // cout, endl
 #include <unordered_map> // unordered_map
+#include <string> // string
 
-#include <Graphics/Shader.hpp>
+#include <Core/System.hpp>
 #include <Graphics/Camera.hpp>
+#include <Graphics/Shader.hpp>
 #include <Graphics/Color.hpp>
 
 namespace GenevaEngine
 {
+	class Entity;
+
 	/*!
 	 *  \brief Sets up shaders, window, and renders the game. Uses GLFW
 	 */

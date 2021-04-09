@@ -204,6 +204,12 @@
     <ClCompile Include="Source\Constructs\Web.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Levels\WebDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Levels\HardBoxBehaviorDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp">
@@ -228,9 +234,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Entity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\GameCommon.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Physics\Physics.hpp">
@@ -408,6 +411,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Constructs\Web.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\WebDemo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\Level.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\HardBoxBehaviorDemo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\IncludeAllLevels.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

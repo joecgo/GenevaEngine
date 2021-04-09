@@ -5,21 +5,27 @@
  *                                                                          *
  *   GenevaEngine is a custom C++ engine built for the purposes of 			*
  *	 learning and fun. You can reach me at joecgo@gmail.com. 				*
- *                                                                          *
+ *                                                                          *  
  ****************************************************************************/
 
- /**
-  * \file Main.cpp
-  * \author Joe Goldman
-  * \brief Launches engine in main()
-  */
+/**
+ * \file WebDemo.hpp
+ * \author Joe Goldman
+ * \brief WebDemo level declaration
+ *
+ */
 
-#include <Core/GameSession.hpp>
+#pragma once
 
-int main()
+#include <Levels/Level.hpp>
+
+namespace GenevaEngine
 {
-	GenevaEngine::GameSession gs;
-	while (gs.IsRunning) {}
+	class GameSession;
 
-	return 0;
+	class WebDemo : public Level
+	{
+	public:
+		static void Load(GameSession& gs);
+	};
 }

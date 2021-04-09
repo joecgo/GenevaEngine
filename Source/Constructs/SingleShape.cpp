@@ -35,11 +35,6 @@ namespace GenevaEngine
 		}
 	}
 
-	b2Body* SingleShape::GetBody()
-	{
-		return m_body;
-	}
-
 	void SingleShape::Create()
 	{
 		// create body
@@ -52,6 +47,11 @@ namespace GenevaEngine
 		brData.Body = m_body;
 		brData.Shape = Shape;
 		m_constructRenderData.push_back(brData);
+	}
+
+	b2Body* SingleShape::GetBody()
+	{
+		return m_body;
 	}
 
 	void SingleShape::EnableBehavior()

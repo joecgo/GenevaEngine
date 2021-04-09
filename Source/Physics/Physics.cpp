@@ -15,7 +15,7 @@
   *
   **/
 
-#include <Core/GameCommon.hpp>
+#include <Physics/Physics.hpp>
 
 namespace GenevaEngine
 {

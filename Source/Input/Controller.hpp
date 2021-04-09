@@ -20,15 +20,15 @@
 #include <glad/glad.h> // extension of GLFW
 #include <GLFW/glfw3.h> // GLFW
 
-#include <Core/GameCommon.hpp>
-#include <Input/Command.hpp>
-
 #include <list> // list
 #include <set> // set
 #include <algorithm> // clamp
 
 namespace GenevaEngine
 {
+	class Command;
+	class Entity;
+
 	/*!
 	 *  \brief pos key and neg key pair to create axis input
 	 */
@@ -48,7 +48,7 @@ namespace GenevaEngine
 	struct AxisBinding
 	{
 		std::list<AxisKeys> key_pairs;
-		Command* command;
+		Command* command = nullptr;
 	};
 
 	/*!
@@ -57,7 +57,7 @@ namespace GenevaEngine
 	struct KeyBinding
 	{
 		int key;
-		Command* command;
+		Command* command = nullptr;
 	};
 
 	/*!

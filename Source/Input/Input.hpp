@@ -22,12 +22,12 @@
 
 #include <map>
 
-#include <Input/Controller.hpp>
 #include <Core/System.hpp>
 
 namespace GenevaEngine
 {
 	class Command;
+	class Controller;
 
 	/*!
 	 *  \brief Core system for handling input

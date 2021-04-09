@@ -35,6 +35,6 @@ namespace GenevaEngine
 		virtual void Update(double dt) = 0;
 		virtual void End() = 0;
 
-		friend class GameSession;
+		friend GameSession;
 	};
 }

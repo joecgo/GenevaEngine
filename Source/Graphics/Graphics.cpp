@@ -19,7 +19,10 @@
 #include <GLFW/glfw3.h> // GLFW
 
 #include <Constructs/Construct.hpp>
-#include <Core/GameCommon.hpp>
+#include <Graphics/Graphics.hpp>
+#include <Graphics/Shader.hpp>
+#include <Core/Entity.hpp>
+#include <Core/GameSession.hpp>
 
 namespace GenevaEngine
 {

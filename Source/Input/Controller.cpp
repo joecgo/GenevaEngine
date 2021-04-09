@@ -15,7 +15,11 @@
   *
   **/
 
+#include <Input/Input.hpp>
 #include <Input/Controller.hpp>
+#include <Input/Command.hpp>
+#include <Core/Entity.hpp>
+#include <Physics/Box2d.hpp> // b2Math
 
 namespace GenevaEngine
 {
