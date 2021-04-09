@@ -19,7 +19,7 @@ The engine is still a work in progress, but here is an overview of some of the i
 * [Game Loop](#game-loop) 
 * [Entity](#entity)
 * [Construct](#construct) 
-* [SingleShape](#a-simple-construct:-singleshape)
+* [A Simple Construct](#a-simple-construct)
 
 
 ### Game Loop
@@ -165,8 +165,8 @@ protected:
 };
 ```
 
-### A Simple Construct: SingleShape
-This is a simple implementation of the [Construct](#construct) base class. The SingleShape class is designed to be general enough for any single-bodied Construct. For example, a SingleShape, during its instantiation, can be defined as a circle, a box, or any type of polygon. If you desire multiple bodies as part of a single Construct, a different class of Construct will need to be used.
+### A Simple Construct
+This is a simple implementation of the [Construct](#construct) base class. The **SingleShape** class is designed to be general enough for any single-bodied Construct. For example, a SingleShape, during its instantiation, can be defined as a circle, a box, or any type of polygon. If you desire multiple bodies as part of a single Construct, a different class of Construct will need to be used.
 
 **SingleShape::Notify** is derived from the base Construct class, and, in this case, implemented with a custom state machine specific to the SingleShape class.
 
