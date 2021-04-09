@@ -19,7 +19,6 @@
 
 #include <Physics/Box2d.hpp>
 
-#include <list> //list
 #include <vector> // vector
 
 namespace GenevaEngine
@@ -42,7 +41,7 @@ namespace GenevaEngine
 		void SetWorld(b2World* world);
 		b2World* GetWorld();
 		// return a list of body render data for rendering all the verts in graphics system
-		std::list<BodyRenderData>* GetConstructRenderData();
+		std::vector<BodyRenderData>* GetConstructRenderData();
 
 	protected:
 		// currenty state this object is not Created twice
@@ -50,7 +49,7 @@ namespace GenevaEngine
 		// reference to b2World object
 		b2World* m_world = nullptr;
 		// collection of data for graphics to use for rendering
-		std::list<BodyRenderData> m_constructRenderData;
+		std::vector<BodyRenderData> m_constructRenderData;
 
 		// private methods
 		void SafeCreate();							// does a safety check then calls Create()

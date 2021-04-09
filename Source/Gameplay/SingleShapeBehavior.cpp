@@ -96,7 +96,7 @@ namespace GenevaEngine
 	void SingleShapeBehavior::Move(SingleShape& singleShape, float x_axis, float moveSpeed)
 	{
 		float dt = (float)GameSession::FrameTime;
-		float moveScalar = 20000.0f;
+		float moveScalar = 2000.0f;
 		b2Body* body = singleShape.GetBody();
 		b2Vec2 vel = body->GetLinearVelocity();
 		if (x_axis > 0)

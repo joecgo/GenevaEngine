@@ -61,7 +61,7 @@ namespace GenevaEngine
 		return m_world;
 	}
 
-	std::list<BodyRenderData>* Construct::GetConstructRenderData()
+	std::vector<BodyRenderData>* Construct::GetConstructRenderData()
 	{
 		return &m_constructRenderData;
 	}

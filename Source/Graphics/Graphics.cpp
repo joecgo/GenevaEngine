@@ -125,7 +125,7 @@ namespace GenevaEngine
 		// draw entities contruct (composite of box2d bodies)
 		Color color = entity.GetRenderColor();
 		Construct* construct = entity.GetConstruct();
-		std::list<BodyRenderData>* constructData = construct->GetConstructRenderData();
+		std::vector<BodyRenderData>* constructData = construct->GetConstructRenderData();
 
 		// render each body
 		for (BodyRenderData bodyData : *constructData)
