@@ -168,7 +168,7 @@ protected:
 ### A Simple Construct
 This is a simple implementation of the [Construct](#construct) base class. The **SingleShape** class is designed to be general enough for any single-bodied Construct. For example, a SingleShape, during its instantiation, can be defined as a circle, a box, or any type of polygon. If you desire multiple bodies as part of a single Construct, a different class of Construct will need to be used.
 
-**SingleShape::Notify** is derived from the base Construct class, and, in this case, implemented with a custom state machine specific to the SingleShape class.
+**SingleShape::Notify** is derived from the base Construct class, and, in this case, implements with a state machine specific to the SingleShape class.
 
 **SingleShape::Create** is also derived from Construct. FixtureDef, Shape, BodyDef are Box2D objects used to define the parameters of the physical object before it is created. The render data then needs to be organized for the Graphics system to use.
 
