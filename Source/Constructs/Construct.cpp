@@ -61,7 +61,7 @@ namespace GenevaEngine
 		return m_world;
 	}
 
-	const ConstructRenderData& Construct::GetConstructRenderData() const
+	const ConstructRenderData& Construct::GetConstructRenderData()
 	{
 		return m_renderData;
 	}

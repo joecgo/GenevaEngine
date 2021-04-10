@@ -49,7 +49,7 @@ namespace GenevaEngine
 		Spawn();
 	}
 
-	const Construct& Entity::GetConstruct() const
+	Construct& Entity::GetConstruct() const
 	{
 		return *m_construct;
 	}

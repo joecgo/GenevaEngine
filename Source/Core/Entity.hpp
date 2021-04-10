@@ -46,7 +46,7 @@ namespace GenevaEngine
 		float FrameTime();						// Dt since last frame was rendered
 		void Notify(const Command* command);	// Notify Construct of incoming commands
 		void AddConstruct(Construct* Construct);// Add composite of box2d objects and properties
-		const Construct& GetConstruct() const;	// Get construct (box2d composite)
+		Construct& GetConstruct() const;		// Get construct (box2d composite)
 		void SetRenderColor(int colorID);		// Set base color for rendering (from palette ID)
 		void SetRenderColor(Color color);		// Set base color for rendering
 		const Color GetRenderColor() const;		// Get base color for rendering

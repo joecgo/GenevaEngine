@@ -21,51 +21,57 @@ namespace GenevaEngine
 {
 	void SoftBox::Create()
 	{
-		b2PolygonShape shape;
-		b2PolygonShape shapes[5];
-		shape.SetAsBox(0.5f, 0.5f);
-
+		const bool drawCircles = false;
+		const b2Vec2 hsize = 0.5f * Size;
+		b2CircleShape shape;
+		b2FixtureDef fd;
 		b2BodyDef bd;
+
+		fd.shape = &shape;
+		fd.restitution = 0.5f;
 		bd.type = b2_dynamicBody;
+		bd.fixedRotation = true;
 
-		bd.position.Set(10.0f, 10.0f);
+		fd.density = 0.5;
+		shape.m_radius = InnerCircleRadius;
+		bd.position = StartPos;
 		m_bodies[0] = m_world->CreateBody(&bd);
-		m_bodies[0]->CreateFixture(&shape, 5.0f);
-		shapes[0] = shape;
+		m_bodies[0]->CreateFixture(&fd);
 
-		bd.position.Set(5.0f, 5.0f);
+		fd.density = 1.0f;
+		shape.m_radius = OuterCircleRadius;
+		bd.position -= hsize;
 		m_bodies[1] = m_world->CreateBody(&bd);
 		m_bodies[1]->CreateFixture(&shape, 5.0f);
-		shapes[1] = shape;
 
-		bd.position.Set(5.0f, 15.0f);
+		bd.position.y += Size.y;
 		m_bodies[2] = m_world->CreateBody(&bd);
 		m_bodies[2]->CreateFixture(&shape, 5.0f);
-		shapes[2] = shape;
 
-		bd.position.Set(15.0f, 15.0f);
+		bd.position.x += Size.x;
 		m_bodies[3] = m_world->CreateBody(&bd);
 		m_bodies[3]->CreateFixture(&shape, 5.0f);
-		shapes[3] = shape;
 
-		bd.position.Set(15.0f, 5.0f);
+		bd.position.y -= Size.y;
 		m_bodies[4] = m_world->CreateBody(&bd);
 		m_bodies[4]->CreateFixture(&shape, 5.0f);
-		shapes[4] = shape;
 
 		// add bodies and shapes to render data
-		for (int i = 0; i < 5; i++)
+		if (drawCircles)
 		{
-			BodyRenderData brData;
-			brData.Body = m_bodies[i];
-			m_renderData.BodyRenderList.push_back(brData);
+			for (int i = 0; i < 5; i++)
+			{
+				BodyRenderData brData;
+				brData.Body = m_bodies[i];
+				m_renderData.BodyRenderList.push_back(brData);
+			}
 		}
 
 		b2DistanceJointDef jd;
 		b2Vec2 p1, p2, d;
 
-		float frequencyHz = 10.0f;
-		float dampingRatio = 0.2f;
+		float frequencyHz = 8.0f;
+		float dampingRatio = 0.01f;
 
 		jd.bodyA = m_bodies[0];
 		jd.bodyB = m_bodies[1];
@@ -140,7 +146,7 @@ namespace GenevaEngine
 		m_joints[7] = m_world->CreateJoint(&jd);
 
 		// add joints and to render data
-		for (int j = 0; j < 8; j++)
+		for (int j = 4; j < 8; j++)
 		{
 			JointRenderData jrData;
 			jrData.Joint = m_joints[j];
@@ -198,5 +204,24 @@ namespace GenevaEngine
 	b2Body& SoftBox::GetCenterBody()
 	{
 		return *m_centerBody;
+	}
+
+	const ConstructRenderData& SoftBox::GetConstructRenderData()
+	{
+		const float offsetDist = b2Sqrt(OuterCircleRadius * 2.0f);
+		const b2Vec2 center = m_bodies[0]->GetPosition();
+
+		//// adjust render offset of joints to wrap the outside of the shapes
+		for (int i = 0; i < 4; i++)
+		{
+			b2Vec2 anchorA = m_renderData.JointRenderList[i].Joint->GetAnchorA();
+			b2Vec2 anchorB = m_renderData.JointRenderList[i].Joint->GetAnchorB();
+			b2Vec2 outwardVecA = (anchorA - center).UnitVector();
+			b2Vec2 outwardVecB = (anchorB - center).UnitVector();
+			m_renderData.JointRenderList[i].aOffset = offsetDist * outwardVecA;
+			m_renderData.JointRenderList[i].bOffset = offsetDist * outwardVecB;
+		}
+
+		return m_renderData;
 	}
 }

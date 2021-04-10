@@ -36,6 +36,8 @@ namespace GenevaEngine
 	struct JointRenderData
 	{
 		b2Joint* Joint = nullptr;
+		b2Vec2 aOffset = b2Vec2(0, 0);
+		b2Vec2 bOffset = b2Vec2(0, 0);
 	};
 
 	struct ConstructRenderData
@@ -50,8 +52,9 @@ namespace GenevaEngine
 		Construct(b2World* world);
 		void SetWorld(b2World* world);
 		b2World* GetWorld();
-		// return a list of body render data for rendering all the verts in graphics system
-		const ConstructRenderData& GetConstructRenderData() const;
+
+		// get data for rendering all the verts in graphics system
+		virtual const ConstructRenderData& GetConstructRenderData();
 
 	protected:
 		// currenty state this object is not Created twice

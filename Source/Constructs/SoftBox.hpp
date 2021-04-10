@@ -32,10 +32,17 @@ namespace GenevaEngine
 		using Construct::Construct;
 
 		// Creation Attributes, Define these before creation
+		float InnerCircleRadius = 2.0f;
+		float OuterCircleRadius = 1.0f;
+		b2Vec2 StartPos = b2Vec2(0, 0);
+		b2Vec2 Size = b2Vec2(10.0f, 10.0f);
 
 		// Public Methods
 		b2Body& GetCenterBody();
 		void EnableBehavior();
+
+		// implement this differently for SoftBox to get an outline of the shape
+		const ConstructRenderData& GetConstructRenderData();
 
 	private:
 		// Private members

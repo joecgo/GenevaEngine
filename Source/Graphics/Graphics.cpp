@@ -127,13 +127,17 @@ namespace GenevaEngine
 	{
 		// draw entities contruct (composite of box2d bodies)
 		const Color color = entity.GetRenderColor();
-		const ConstructRenderData& constructData = entity.GetConstruct().GetConstructRenderData();
+		Construct& construct = entity.GetConstruct();
+		const ConstructRenderData& constructData = construct.GetConstructRenderData();
 
 		// render each joint
 		for (const JointRenderData jointData : constructData.JointRenderList)
 		{
 			b2Joint* joint = jointData.Joint;
-			DrawSegment(joint->GetAnchorA(), joint->GetAnchorB(), color);
+			DrawSegment(
+				joint->GetAnchorA() + jointData.aOffset,
+				joint->GetAnchorB() + jointData.bOffset,
+				color);
 		}
 
 		// render each body
@@ -143,13 +147,14 @@ namespace GenevaEngine
 			b2Body* body = bodyData.Body;
 			b2Transform xf = body->GetTransform();
 			b2PolygonShape* polygon = nullptr;
+			b2CircleShape* circle = nullptr;
 
 			switch (shape->GetType())
 			{
 			case b2Shape::e_polygon:
 				polygon = (b2PolygonShape*)shape;
 
-				for (size_t i = 0; i < polygon->m_count; i++)
+				for (int i = 0; i < polygon->m_count; i++)
 					m_transformedVerts[i] = b2Mul(xf, polygon->m_vertices[i]);
 
 				DrawSolidPolygon(m_transformedVerts, polygon->m_count, color);
@@ -157,6 +162,9 @@ namespace GenevaEngine
 
 			case b2Shape::e_chain:
 			case b2Shape::e_circle:
+				DrawCircle(body->GetPosition(), shape->m_radius, color);
+				break;
+
 			case b2Shape::e_edge:
 			default:
 				break;
@@ -202,6 +210,28 @@ namespace GenevaEngine
 	void Graphics::FrameBufferSizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
+	}
+
+	void Graphics::DrawCircle(const b2Vec2& center, float radius, const Color& color)
+	{
+		const float segments = 16.0f;
+		const float increment = 2.0f * b2_pi / segments;
+		float sinInc = sinf(increment);
+		float cosInc = cosf(increment);
+		b2Vec2 r1(1.0f, 0.0f);
+		b2Vec2 v1 = center + radius * r1;
+		for (int i = 0; i < segments; ++i)
+		{
+			// Perform rotation to avoid additional trigonometry.
+			b2Vec2 r2;
+			r2.x = cosInc * r1.x - sinInc * r1.y;
+			r2.y = sinInc * r1.x + cosInc * r1.y;
+			b2Vec2 v2 = center + radius * r2;
+			m_line_shader->Vertex(v1, color);
+			m_line_shader->Vertex(v2, color);
+			r1 = r2;
+			v1 = v2;
+		}
 	}
 
 	void Graphics::DrawSolidPolygon(const b2Vec2* vertices, int vertexCount, const Color& color)

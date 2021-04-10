@@ -79,6 +79,7 @@ namespace GenevaEngine
 
 		// render methods
 		void RenderEntity(Entity& entity);
+		void DrawCircle(const b2Vec2& center, float radius, const Color& color);
 		void DrawSolidPolygon(const b2Vec2* vertices, int vertexCount, const Color& color);
 		void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const Color& color);
 		void Flush();
