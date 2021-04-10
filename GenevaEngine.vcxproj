@@ -69,6 +69,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Constructs\SoftBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Core\System.cpp">
       <SubType>
       </SubType>
@@ -86,6 +90,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Levels\HardBoxBehaviorDemo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Levels\SoftBoxDemo.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -187,6 +195,10 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_island.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
+    <ClInclude Include="Source\Constructs\SoftBox.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Levels\HardBoxBehaviorDemo.hpp">
       <SubType>
       </SubType>
@@ -196,6 +208,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Levels\Level.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Levels\SoftBoxDemo.hpp">
       <SubType>
       </SubType>
     </ClInclude>

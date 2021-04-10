@@ -29,11 +29,6 @@ namespace GenevaEngine
 			b2EdgeShape shape;
 			shape.SetTwoSided(b2Vec2(-40.0f, 0.0f), b2Vec2(40.0f, 0.0f));
 			ground->CreateFixture(&shape, 0.0f);
-
-			// BodyRenderData brData;
-			// brData.Body = ground;
-			// brData.Shape = shape;
-			// m_constructRenderData.push_back(brData);
 		}
 
 		{

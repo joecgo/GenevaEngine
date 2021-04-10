@@ -9,14 +9,23 @@
  ****************************************************************************/
 
  /**
-  * \file IncludeAllLevels.hpp
+  * \file SoftBoxDemo.hpp
   * \author Joe Goldman
-  * \brief IncludeAllLevels is a file with the includes for all the levels
+  * \brief SoftBoxDemo level declaration
   *
   */
 
 #pragma once
 
-#include <Levels/WebDemo.hpp>
-#include <Levels/HardBoxBehaviorDemo.hpp>
-#include <Levels/SoftBoxDemo.hpp>
+#include <Levels/Level.hpp>
+
+namespace GenevaEngine
+{
+	class GameSession;
+
+	class SoftBoxDemo : public Level
+	{
+	public:
+		static void Load(GameSession& gs);
+	};
+}
