@@ -20,6 +20,7 @@ The engine is still a work in progress, but here is an overview of some of the i
 * [Entity](#entity)
 * [Construct](#construct) 
 * [A Simple Construct](#a-simple-construct)
+* [Soft Bodies](#soft-bodies)
 
 
 ### Game Loop
@@ -174,7 +175,7 @@ This is a simple implementation of the [Construct](#construct) base class. The *
 
 **SingleShape::Create** is also derived from Construct. FixtureDef, Shape, BodyDef are Box2D objects used to define the parameters of the physical object before it is created. The render data then needs to be organized for the Graphics system to use.
 
-**SingleShape::GetBody** This method provides the Box2D body of the SingleShape. It is used to implement behaviors like movement and jumping. In a more complex Construct, a call like this may not neccessarily make sense because a construct could be made up of many bodies.
+**SingleShape::GetBody** This method provides the Box2D body of the SingleShape. It is used to implement behaviors like movement and jumping.
 
  Constructs/SingleShape.cpp
 ```cpp
@@ -211,3 +212,12 @@ b2Body* SingleShape::GetBody()
 	return m_body;
 }
 ```
+
+### Soft Bodies
+Here is an aexample of a slightly more complex [Construct](#construct) called the SoftBox. 
+![Soft Box gif](https://raw.githubusercontent.com/joecgo/GenevaEngine/main/Documentation/gifs/SoftBox.gif)
+
+It appears to be a box, but it is actually a drawing of a box around a composite of 5 circles connected by 8 joints. I apply force to the central body to create movement and jumping behavior.
+![Soft Box Debug gif](https://raw.githubusercontent.com/joecgo/GenevaEngine/main/Documentation/gifs/SoftBoxDebug.gif)
+
+
