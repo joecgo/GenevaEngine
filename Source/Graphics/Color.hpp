@@ -28,6 +28,6 @@ namespace GenevaEngine
 
 		Color(int hexValue = 0x000000, float alpha = 1.0f);
 		Color(float red, float green, float blue, float alpha = 1.0f);
-		Color operator*(float scalar);
+		Color operator*(float scalar) const;
 	};
 }

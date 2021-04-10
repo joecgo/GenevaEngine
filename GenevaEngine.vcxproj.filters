@@ -435,5 +435,9 @@
   <ItemGroup>
     <None Include="Shaders\TriangleShader.frag" />
     <None Include="Shaders\TriangleShader.vert" />
+    <None Include="Shaders\LineShader.frag" />
+    <None Include="Shaders\LineShader.vert" />
+    <None Include="Shaders\PointShader.frag" />
+    <None Include="Shaders\PointShader.vert" />
   </ItemGroup>
 </Project>

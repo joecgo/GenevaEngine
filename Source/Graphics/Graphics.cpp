@@ -70,7 +70,7 @@ namespace GenevaEngine
 		m_triangle_shader->DrawType = GL_TRIANGLES;
 		// line shader
 		m_line_shader =
-			new Shader("Shaders/TriangleShader.vert", "Shaders/TriangleShader.frag");
+			new Shader("Shaders/LineShader.vert", "Shaders/LineShader.frag");
 		m_line_shader->DrawType = GL_LINES;
 
 		// set clear color
@@ -126,24 +126,33 @@ namespace GenevaEngine
 	void Graphics::RenderEntity(Entity& entity)
 	{
 		// draw entities contruct (composite of box2d bodies)
-		Color color = entity.GetRenderColor();
-		Construct* construct = entity.GetConstruct();
-		std::vector<BodyRenderData>* constructData = construct->GetConstructRenderData();
+		const Color color = entity.GetRenderColor();
+		const ConstructRenderData& constructData = entity.GetConstruct().GetConstructRenderData();
+
+		// render each joint
+		for (const JointRenderData jointData : constructData.JointRenderList)
+		{
+			b2Joint* joint = jointData.Joint;
+			DrawSegment(joint->GetBodyA()->GetPosition(), joint->GetBodyB()->GetPosition(), color);
+		}
 
 		// render each body
-		for (BodyRenderData bodyData : *constructData)
+		for (const BodyRenderData bodyData : constructData.BodyRenderList)
 		{
-			b2PolygonShape shape = bodyData.Shape;
+			b2Shape* shape = bodyData.Body->GetFixtureList()->GetShape();
 			b2Body* body = bodyData.Body;
 			b2Transform xf = body->GetTransform();
-			for (size_t i = 0; i < shape.m_count; i++)
-				m_transformedVerts[i] = b2Mul(xf, shape.m_vertices[i]);
+			b2PolygonShape* polygon = nullptr;
 
-			switch (shape.GetType())
+			switch (shape->GetType())
 			{
 			case b2Shape::e_polygon:
+				polygon = (b2PolygonShape*)shape;
 
-				DrawSolidPolygon(m_transformedVerts, shape.m_count, color);
+				for (size_t i = 0; i < polygon->m_count; i++)
+					m_transformedVerts[i] = b2Mul(xf, polygon->m_vertices[i]);
+
+				DrawSolidPolygon(m_transformedVerts, polygon->m_count, color);
 				break;
 
 			case b2Shape::e_chain:
@@ -195,7 +204,7 @@ namespace GenevaEngine
 		glViewport(0, 0, width, height);
 	}
 
-	void Graphics::DrawSolidPolygon(b2Vec2* vertices, int vertexCount, Color& color)
+	void Graphics::DrawSolidPolygon(const b2Vec2* vertices, int vertexCount, const Color& color)
 	{
 		Color fillColor = color * 0.7f;
 
@@ -214,6 +223,12 @@ namespace GenevaEngine
 			m_line_shader->Vertex(p2, color);
 			p1 = p2;
 		}
+	}
+
+	void Graphics::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const Color& color)
+	{
+		m_line_shader->Vertex(p1, color);
+		m_line_shader->Vertex(p2, color);
 	}
 
 	/*!

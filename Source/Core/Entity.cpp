@@ -49,9 +49,9 @@ namespace GenevaEngine
 		Spawn();
 	}
 
-	Construct* Entity::GetConstruct()
+	const Construct& Entity::GetConstruct() const
 	{
-		return m_construct;
+		return *m_construct;
 	}
 
 	void Entity::Spawn()
@@ -144,7 +144,7 @@ namespace GenevaEngine
 	 *
 	 *      \return The render color.
 	 */
-	Color Entity::GetRenderColor() const
+	const Color Entity::GetRenderColor() const
 	{
 		return m_render_color;
 	}

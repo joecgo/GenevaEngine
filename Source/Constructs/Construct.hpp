@@ -31,7 +31,17 @@ namespace GenevaEngine
 	struct BodyRenderData
 	{
 		b2Body* Body = nullptr;
-		b2PolygonShape Shape;
+	};
+
+	struct JointRenderData
+	{
+		b2Joint* Joint = nullptr;
+	};
+
+	struct ConstructRenderData
+	{
+		std::vector<BodyRenderData> BodyRenderList;
+		std::vector<JointRenderData> JointRenderList;
 	};
 
 	class Construct
@@ -41,7 +51,7 @@ namespace GenevaEngine
 		void SetWorld(b2World* world);
 		b2World* GetWorld();
 		// return a list of body render data for rendering all the verts in graphics system
-		std::vector<BodyRenderData>* GetConstructRenderData();
+		const ConstructRenderData& GetConstructRenderData() const;
 
 	protected:
 		// currenty state this object is not Created twice
@@ -49,7 +59,7 @@ namespace GenevaEngine
 		// reference to b2World object
 		b2World* m_world = nullptr;
 		// collection of data for graphics to use for rendering
-		std::vector<BodyRenderData> m_constructRenderData;
+		ConstructRenderData m_renderData;
 
 		// private methods
 		void SafeCreate();							// does a safety check then calls Create()

@@ -51,7 +51,7 @@ namespace GenevaEngine
 	 *
 	 *      \return
 	 */
-	Color Color::operator*(float scalar)
+	Color Color::operator*(float scalar) const
 	{
 		return Color(r * scalar, g * scalar, b * scalar, a * scalar);
 	}

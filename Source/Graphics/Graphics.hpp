@@ -79,7 +79,8 @@ namespace GenevaEngine
 
 		// render methods
 		void RenderEntity(Entity& entity);
-		void DrawSolidPolygon(b2Vec2* vertices, int32 vertexCount, Color& color);
+		void DrawSolidPolygon(const b2Vec2* vertices, int vertexCount, const Color& color);
+		void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const Color& color);
 		void Flush();
 
 		// inherited mebers, methods, and constructors

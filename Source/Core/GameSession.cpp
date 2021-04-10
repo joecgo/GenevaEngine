@@ -68,8 +68,8 @@ namespace GenevaEngine
 
 		// Load level
 		// TODO: level loading should be done at run-time with a config file
-		HardBoxBehaviorDemo::Load(*this);
-		//WebDemo::Load(*this);
+		//HardBoxBehaviorDemo::Load(*this);
+		WebDemo::Load(*this);
 
 		// start entities
 		for (Entity* entity : m_entities)

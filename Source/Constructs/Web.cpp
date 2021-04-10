@@ -69,8 +69,7 @@ namespace GenevaEngine
 			{
 				BodyRenderData brData;
 				brData.Body = m_bodies[i];
-				brData.Shape = shapes[i];
-				m_constructRenderData.push_back(brData);
+				m_renderData.BodyRenderList.push_back(brData);
 			}
 
 			b2DistanceJointDef jd;
@@ -166,6 +165,14 @@ namespace GenevaEngine
 			jd.length = d.Length();
 			b2LinearStiffness(jd.stiffness, jd.damping, frequencyHz, dampingRatio, jd.bodyA, jd.bodyB);
 			m_joints[7] = m_world->CreateJoint(&jd);
+
+			// add joints and to render data
+			for (int j = 0; j < 8; j++)
+			{
+				JointRenderData jrData;
+				jrData.Joint = m_joints[j];
+				m_renderData.JointRenderList.push_back(jrData);
+			}
 		}
 	}
 

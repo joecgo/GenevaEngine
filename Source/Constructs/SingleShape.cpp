@@ -45,8 +45,7 @@ namespace GenevaEngine
 		// add body and shape to render data
 		BodyRenderData brData;
 		brData.Body = m_body;
-		brData.Shape = Shape;
-		m_constructRenderData.push_back(brData);
+		m_renderData.BodyRenderList.push_back(brData);
 	}
 
 	b2Body* SingleShape::GetBody()
