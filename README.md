@@ -214,10 +214,12 @@ b2Body* SingleShape::GetBody()
 ```
 
 ### Soft Bodies
-Here is an aexample of a slightly more complex [Construct](#construct) called the SoftBox. 
+Here is an example of a slightly more complex [Construct](#construct) called the SoftBox.
+
 ![Soft Box gif](https://raw.githubusercontent.com/joecgo/GenevaEngine/main/Documentation/gifs/SoftBox.gif)
 
 It appears to be a box, but it is actually a drawing of a box around a composite of 5 circles connected by 8 joints. I apply force to the central body to create movement and jumping behavior.
+
 ![Soft Box Debug gif](https://raw.githubusercontent.com/joecgo/GenevaEngine/main/Documentation/gifs/SoftBoxDebug.gif)
 
 
