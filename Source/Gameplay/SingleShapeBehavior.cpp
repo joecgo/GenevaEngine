@@ -84,9 +84,9 @@ namespace GenevaEngine
 
 		// check for grounded
 		RayCastCallback callback;
-		float rayCastLength = BodyUtils::GetHalfHeight(*body) * -1.0f - 0.01f;
+		float rayCastLength = BodyUtils::GetHalfHeight(*body) + 0.01f;
 		b2Vec2 p1 = body->GetPosition();
-		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, rayCastLength);
+		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, rayCastLength * -1.0f);
 
 		singleShape->GetWorld()->RayCast(&callback, p1, p2);
 
