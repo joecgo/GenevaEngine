@@ -133,7 +133,7 @@ namespace GenevaEngine
 		for (const JointRenderData jointData : constructData.JointRenderList)
 		{
 			b2Joint* joint = jointData.Joint;
-			DrawSegment(joint->GetBodyA()->GetPosition(), joint->GetBodyB()->GetPosition(), color);
+			DrawSegment(joint->GetAnchorA(), joint->GetAnchorB(), color);
 		}
 
 		// render each body
