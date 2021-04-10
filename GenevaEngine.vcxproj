@@ -132,6 +132,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Utilities\BodyUtils.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\box2d\include\b2_api.h" />
@@ -262,6 +266,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Constructs\Web.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\BodyUtils.hpp">
       <SubType>
       </SubType>
     </ClInclude>

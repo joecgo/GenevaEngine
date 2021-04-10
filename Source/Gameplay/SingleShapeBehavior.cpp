@@ -22,6 +22,7 @@
 #include <Constructs/SingleShape.hpp>
 #include <Core/State.hpp>
 #include <Core/GameSession.hpp>
+#include <Utilities/BodyUtils.hpp>
 
 namespace GenevaEngine
 {
@@ -83,9 +84,10 @@ namespace GenevaEngine
 
 		// check for grounded
 		RayCastCallback callback;
-		float boxHeight = -3.1f; // TODO: figure out a better way to get this
+		float rayCastLength = BodyUtils::GetHalfHeight(*body) * -1.0f - 0.01f;
 		b2Vec2 p1 = body->GetPosition();
-		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, boxHeight);
+		b2Vec2 p2 = body->GetPosition() + b2Vec2(0, rayCastLength);
+
 		singleShape->GetWorld()->RayCast(&callback, p1, p2);
 
 		if (callback.Hit)

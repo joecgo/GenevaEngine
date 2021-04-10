@@ -37,6 +37,7 @@ namespace GenevaEngine
 
 	private:
 		b2Body* m_body = nullptr;
+		float m_height = 1.0f;
 		State<SingleShape>* m_state = nullptr;
 
 		void Notify(const Command* command);
