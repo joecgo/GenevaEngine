@@ -9,31 +9,30 @@
  ****************************************************************************/
 
  /**
-  * \file SingleShapeBehavior.hpp
+  * \file SoftBoxBehavior.hpp
   * \author Joe Goldman
-  * \brief SingleShapeBehavior class declarations
+  * \brief  Behavior for the soft box declarations
   *
   */
 
 #pragma once
-
 #include <Core/State.hpp>
 
 namespace GenevaEngine
 {
-	class SingleShape;
+	class SoftBox;
 	class Command;
 
 	/*!
 	 *  \brief Grounded state for Character FSM
 	 */
-	class Grounded_SingleShape : public State<SingleShape>
+	class Grounded_SoftBox : public State<SoftBox>
 	{
 	public:
-		void Enter(SingleShape* owner);
-		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
-		State<SingleShape>* Update(SingleShape* owner, double dt);
-		void Exit(SingleShape* owner);
+		void Enter(SoftBox* owner);
+		State<SoftBox>* Notify(SoftBox* owner, const Command* command);
+		State<SoftBox>* Update(SoftBox* owner, double dt);
+		void Exit(SoftBox* owner);
 
 	private:
 		float xAxis = 0.0f; // horizontal axis applied by controller
@@ -42,22 +41,22 @@ namespace GenevaEngine
 	/*!
 	 *  \brief Airborne state for Character FSM
 	 */
-	class Airborne_SingleShape : public State<SingleShape>
+	class Airborne_SoftBox : public State<SoftBox>
 	{
 	public:
-		void Enter(SingleShape* owner);
-		State<SingleShape>* Notify(SingleShape* owner, const Command* command);
-		State<SingleShape>* Update(SingleShape* owner, double dt);
-		void Exit(SingleShape* owner);
+		void Enter(SoftBox* owner);
+		State<SoftBox>* Notify(SoftBox* owner, const Command* command);
+		State<SoftBox>* Update(SoftBox* owner, double dt);
+		void Exit(SoftBox* owner);
 	private:
 		float xAxis = 0.0f; // horizontal axis applied by controller
 	};
 
-	class SingleShapeBehavior
+	class SoftBoxBehavior
 	{
 	public:
-		static void Move(SingleShape& singleShape, float dt, float x_axis,
+		static void Move(SoftBox& singleShape, float dt, float x_axis,
 			float moveStrength = 500.0f, float maxVelocity = 45.0f);
-		static void Jump(SingleShape& singleShape, float jumpStrength = 150.0f);
+		static void Jump(SoftBox& singleShape, float jumpStrength = 150.0f);
 	};
 }

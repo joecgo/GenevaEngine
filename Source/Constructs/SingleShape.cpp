@@ -57,7 +57,7 @@ namespace GenevaEngine
 	{
 		if (m_state == nullptr)
 		{
-			m_state = new Grounded();
+			m_state = new Grounded_SingleShape();
 		}
 	}
 

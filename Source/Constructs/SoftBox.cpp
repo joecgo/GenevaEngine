@@ -16,6 +16,7 @@
   **/
 
 #include <Constructs/SoftBox.hpp>
+#include <Gameplay/SoftBoxBehavior.hpp>
 
 namespace GenevaEngine
 {
@@ -152,6 +153,9 @@ namespace GenevaEngine
 			jrData.Joint = m_joints[j];
 			m_renderData.JointRenderList.push_back(jrData);
 		}
+
+		// set center body
+		m_centerBody = m_bodies[0];
 	}
 
 	void SoftBox::Start()
@@ -186,7 +190,7 @@ namespace GenevaEngine
 	{
 		if (m_state == nullptr)
 		{
-			// m_state = new **STATE CONSTRUCTOR HERE**
+			m_state = new Grounded_SoftBox();
 		}
 	}
 

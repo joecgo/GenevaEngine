@@ -131,13 +131,28 @@ namespace GenevaEngine
 		const ConstructRenderData& constructData = construct.GetConstructRenderData();
 
 		// render each joint
-		for (const JointRenderData jointData : constructData.JointRenderList)
+		if (constructData.FillBetweenJoints)
 		{
-			b2Joint* joint = jointData.Joint;
-			DrawSegment(
-				joint->GetAnchorA() + jointData.aOffset,
-				joint->GetAnchorB() + jointData.bOffset,
-				color);
+			const int count = constructData.JointRenderList.size();
+			for (int i = 0; i < count; i++)
+			{
+				const b2Joint* joint = constructData.JointRenderList[i].Joint;
+				const b2Vec2 offset = constructData.JointRenderList[i].aOffset;
+				m_transformedVerts[i] = joint->GetAnchorA() + offset;
+			}
+
+			DrawSolidPolygon(m_transformedVerts, count, color);
+		}
+		else
+		{
+			for (const JointRenderData jointData : constructData.JointRenderList)
+			{
+				b2Joint* joint = jointData.Joint;
+				DrawSegment(
+					joint->GetAnchorA() + jointData.aOffset,
+					joint->GetAnchorB() + jointData.bOffset,
+					color);
+			}
 		}
 
 		// render each body

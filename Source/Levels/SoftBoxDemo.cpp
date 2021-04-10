@@ -41,25 +41,12 @@ namespace GenevaEngine
 		ground_entity->SetRenderColor(2);
 
 		// create construct
-		SingleShape* hero = new SingleShape(world);
-		hero->BodyDef.position.Set(5.0f, 5.0f);
-		hero->BodyDef.type = b2_dynamicBody;
-		hero->BodyDef.linearDamping = 0.1f;
-		hero->FixtureDef.density = 1.0f;
-		hero->FixtureDef.friction = 3.0f;
-		hero->Shape.SetAsBox(3.0f, 3.0f);
-		hero->EnableBehavior();
-		// create entity
-		Entity* hero_entity = new Entity(&gs, "hero");
-		hero_entity->AddConstruct(hero);
-		hero_entity->SetRenderColor(5);
-		gs.GetInput()->GetPlayerController()->Possess(hero_entity);
-
-		// create construct
 		SoftBox* softbox = new SoftBox(world);
+		softbox->EnableBehavior();
 		// create entity
 		Entity* softbox_entity = new Entity(&gs, "softbox");
 		softbox_entity->AddConstruct(softbox);
 		softbox_entity->SetRenderColor(3);
+		gs.GetInput()->GetPlayerController()->Possess(softbox_entity);
 	}
 }

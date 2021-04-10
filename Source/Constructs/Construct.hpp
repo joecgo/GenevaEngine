@@ -44,6 +44,7 @@ namespace GenevaEngine
 	{
 		std::vector<BodyRenderData> BodyRenderList;
 		std::vector<JointRenderData> JointRenderList;
+		bool FillBetweenJoints = true;
 	};
 
 	class Construct

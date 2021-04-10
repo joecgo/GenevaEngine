@@ -219,6 +219,9 @@
     <ClCompile Include="Source\Constructs\SoftBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Gameplay\SoftBoxBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\Camera.hpp">
@@ -441,6 +444,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Constructs\SoftBox.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gameplay\SoftBoxBehavior.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

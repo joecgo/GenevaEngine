@@ -89,6 +89,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Gameplay\SoftBoxBehavior.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Levels\HardBoxBehaviorDemo.cpp">
       <SubType>
       </SubType>
@@ -196,6 +200,10 @@
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_circle_contact.h" />
     <ClInclude Include="External\box2d\src\dynamics\b2_polygon_contact.h" />
     <ClInclude Include="Source\Constructs\SoftBox.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Gameplay\SoftBoxBehavior.hpp">
       <SubType>
       </SubType>
     </ClInclude>
