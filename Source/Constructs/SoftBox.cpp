@@ -64,8 +64,8 @@ namespace GenevaEngine
 		b2DistanceJointDef jd;
 		b2Vec2 p1, p2, d;
 
-		float frequencyHz = 4.0f;
-		float dampingRatio = 0.5f;
+		float frequencyHz = 10.0f;
+		float dampingRatio = 0.2f;
 
 		jd.bodyA = m_bodies[0];
 		jd.bodyB = m_bodies[1];
