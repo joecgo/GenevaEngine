@@ -171,9 +171,9 @@ This is a simple implementation of the [Construct](#construct) base class. The *
 
 ![Simple Shape gif](https://raw.githubusercontent.com/joecgo/GenevaEngine/main/Documentation/gifs/SimpleShape.gif)
 
-**SingleShape::Notify** is derived from the base Construct class, and, in this case, implements a finite state machine specific to the SingleShape class.
+**SingleShape::Notify** is derived from the base Construct class, and, in this case, Notify is implemented to feed incoming commands into the current state, then potentially transition to a new state based on what is returned. A similar thing happens in the Update method.
 
-**SingleShape::Create** is also derived from Construct. FixtureDef, Shape, BodyDef are Box2D objects used to define the parameters of the physical object before it is created. The render data then needs to be organized for the Graphics system to use.
+**SingleShape::Create** is also derived from Construct. FixtureDef, Shape, BodyDef are Box2D objects used to define the parameters of the physical object before it is created. A reference to the Box2D body is added to the Construct's render data for use by the Graphics system.
 
 **SingleShape::GetBody** This method provides the Box2D body of the SingleShape. It is used to implement behaviors like movement and jumping.
 
@@ -203,8 +203,7 @@ void SingleShape::Create()
 	// add body and shape to render data
 	BodyRenderData brData;
 	brData.Body = m_body;
-	brData.Shape = Shape;
-	m_constructRenderData.push_back(brData);
+	m_renderData.push_back(brData);
 }
 
 b2Body* SingleShape::GetBody()
